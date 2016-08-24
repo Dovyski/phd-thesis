@@ -181,15 +181,46 @@
   organization={IEEE}
 }
 
-@article{kukolja2014comparative,
-  title={Comparative analysis of emotion estimation methods based on physiological measurements for real-time applications},
-  author={Kukolja, Davor and Popovi{\'c}, Sini{\v{s}}a and Horvat, Marko and Kova{\v{c}}, Bernard and {\'C}osi{\'c}, Kre{\v{s}}imir},
-  journal={International journal of human-computer studies},
-  volume={72},
-  number={10},
-  pages={717--727},
-  year={2014},
-  publisher={Elsevier}
+@Article{kukolja2014comparative,
+  author    = {Davor Kukolja and Sini{\v{s}}a Popovi{\'{c}} and Marko Horvat and Bernard Kova{\v{c}} and Kre{\v{s}}imir {\'{C}}osi{\'{c}}},
+  title     = {Comparative analysis of emotion estimation methods based on physiological measurements for real-time applications},
+  journal   = {International Journal of Human-Computer Studies},
+  year      = {2014},
+  volume    = {72},
+  number    = {10-11},
+  pages     = {717--727},
+  month     = {oct},
+  abstract  = {In  order to improve intelligent Human-Computer Interaction it  is  important to create a  
+personalized
+adaptive emotion estimator that  is  able  to  learn  over  time  emotional  response  
+idiosyncrasies of individual person and thus  enhance estimation accuracy.  This   paper,  with the 
+ aim of  identifying preferable methods  for  such a  concept, presents  an   experiment-based  
+comparative study of  seven feature reduction and seven machine learning methods commonly used for  
+emotion estimation based on   physiological  signals.  The   analysis was  performed  on   data  
+obtained in   an   emotion  elicitation experiment  involving 14  participants. Speciﬁc discrete 
+emotions were targeted with stimuli from the International Affective Picture System database. The 
+experiment was necessary to achieve the uniformity in   the  various aspects  of   emotion  
+elicitation, data  processing, feature  calculation, self-reporting procedures and estimation 
+evaluation, in order to avoid inconsistency problems that arise when results from studies that use 
+different emotion-related databases are mutually compared. The  results of  the performed 
+experiment indicate that the combination of a multilayer perceptron (MLP) with sequential ﬂoating 
+forward selection (SFFS) exhibited the highest accuracy in discrete emotion classiﬁcation based on 
+physiological features calculated from ECG, respiration, skin conductance and skin temperature. 
+Using leave-one-session-out crossvalidation method, 60.3%  accuracy in  classiﬁcation of  5  
+discrete emotions (sadness, disgust, fear, happiness and neutral) was obtained. In order to 
+identify which methods may be the most suitable for real-time estimator adaptation, execution and 
+learning times of emotion estimators were also comparatively analyzed. Based on  this analysis, 
+preferred feature reduction method for  real- time estimator adaptation was minimum redundancy – 
+maximum relevance (mRMR), which was the fastest approach in  terms of  combined execution and 
+learning time, as  well as  the second best in accuracy,  after  SFFS.  In   combination with  
+mRMR,   highest  accuracies were  achieved by   k-nearest neighbor (kNN)  and MLP with  negligible 
+difference (50.33% versus 50.54%); however,  mRMR þ kNN  is preferable option for real-time 
+estimator adaptation due to considerably lower combined execution and
+learning time of kNN  versus MLP.},
+  doi       = {10.1016/j.ijhcs.2014.05.006},
+  file      = {:kukolja2014comparative - Comparative analysis of emotion estimation methods based on physiological measurements for real-time applications.pdf:PDF},
+  publisher = {Elsevier {BV}},
+  url       = {http://dx.doi.org/10.1016/j.ijhcs.2014.05.006},
 }
 
 @Article{bailenson2008real,
@@ -200,6 +231,17 @@
   volume    = {66},
   number    = {5},
   pages     = {303--317},
+  abstract  = {We present automated, real-time models built with machine learning algorithms which use videotapes of subjects’ faces in conjunction
+with physiological measurements to predict rated emotion (trained coders’ second-by-second assessments of sadness or amusement).
+Input consisted of videotapes of 41 subjects watching emotionally evocative films along with measures of their cardiovascular activity,
+somatic activity, and electrodermal responding. We built algorithms based on extracted points from the subjects’ faces as well as their
+physiological responses. Strengths of the current approach are (1) we are assessing real behavior of subjects watching emotional videos
+instead of actors making facial poses, (2) the training data allow us to predict both emotion type (amusement versus sadness) as well as
+the intensity level of each emotion, (3) we provide a direct comparison between person-specific, gender-specific, and general models.
+Results demonstrated good fits for the models overall, with better performance for emotion categories than for emotion intensity, for
+amusement ratings than sadness ratings, for a full model using both physiological measures and facial tracking than for either cue alone,
+and for person-specific models than for gender-specific or general models.
+r 2007 Elsevier Ltd. All rights reserved.},
   file      = {:bailenson2008real - Real-time classification of evoked emotions using facial feature tracking and physiological responses.pdf:PDF},
   publisher = {Elsevier},
 }
@@ -277,9 +319,16 @@
   publisher={IEEE}
 }
 
-@article{mcduffcogcam,
-  title={COGCAM: Contact-free Measurement of Cognitive Stress During Computer Tasks with a Digital Camera},
-  author={McDuff, Daniel J and Hernandez, Javier and Gontarek, Sarah and Picard, Rosalind W}
+@Article{mcduffcogcam,
+  author    = {Daniel J. McDuff and Javier Hernandez and Sarah Gontarek and Rosalind W. Picard},
+  title     = {COGCAM: Contact-free Measurement of Cognitive Stress During Computer Tasks with a Digital Camera},
+  year      = {2016},
+  abstract  = {Contact-free camera-based measurement of cognitive stress opens up new possibilities for human-computer interaction with applications in remote learning, stress monitoring, and optimization of workload for user experience. The autonomic nervous system controls the inter-beat intervals of the heart and breathing patterns, and these signals change under cognitive stress. We built a participant-independent cognitive stress recognition model based on photoplethysmographic signals measured remotely at a distance of 3 meters. We tested the model on naturalistic responses from 10 individuals completing randomized-order computer-based tasks (ball control and card sorting). The system successfully detected increased stress during the tasks, which were consistent with self-report measures. Changes in heart rate variability were more discriminative indicators of cognitive stress than were heart rate and breathing rate.},
+  booktitle = {Proceedings of the 2016 {CHI} Conference on Human Factors in Computing Systems - {CHI} {\textquotesingle}16},
+  doi       = {10.1145/2858036.2858247},
+  file      = {:mcduffcogcam - COGCAM_ Contact-free Measurement of Cognitive Stress During Computer Tasks with a Digital Camera.pdf:PDF},
+  publisher = {Association for Computing Machinery ({ACM})},
+  url       = {http://dx.doi.org/10.1145/2858036.2858247},
 }
 
 @inproceedings{bousefsaf2013remote,
@@ -345,13 +394,18 @@
   year={1978}
 }
 
-@inproceedings{mcduff2015survey,
-  title={A survey of remote optical photoplethysmographic imaging methods},
-  author={McDuff, Daniel J and Estepp, Justin R and Piasecki, Alyssa M and Blackford, Ethan B},
-  booktitle={Engineering in Medicine and Biology Society (EMBC), 2015 37th Annual International Conference of the IEEE},
-  pages={6398--6404},
-  year={2015},
-  organization={IEEE}
+@InProceedings{mcduff2015survey,
+  author       = {Daniel J. McDuff and Justin R. Estepp and Alyssa M. Piasecki and Ethan B. Blackford},
+  title        = {A survey of remote optical photoplethysmographic imaging methods},
+  booktitle    = {2015 37th Annual International Conference of the {IEEE} Engineering in Medicine and Biology Society ({EMBC})},
+  year         = {2015},
+  pages        = {6398--6404},
+  month        = {aug},
+  organization = {IEEE},
+  publisher    = {Institute of Electrical {\&} Electronics Engineers ({IEEE})},
+  doi          = {10.1109/embc.2015.7319857},
+  file         = {:mcduff2015survey - A survey of remote optical photoplethysmographic imaging methods.pdf:PDF},
+  url          = {http://dx.doi.org/10.1109/embc.2015.7319857},
 }
 
 @article{berg1948simple,
@@ -423,17 +477,37 @@
   year={2007},
   publisher={Oxford University Press, New York, NY}
 }
- 
-@article{51193703,
-    author = {Guillaume Chanel and Cyril Rebetez and Mireille Bétrancourt and Thierry Pun},
-    title = {{Emotion Assessment From Physiological Signals for Adaptation of Game Difficulty}},
-    journal = {IEEE Transactions on Systems, Man, and Cybernetics},
-    volume = {41},
-    year = {2011},
-    pages = {1052--1063},
-    issue = {6},
-    doi = {10.1109/TSMCA.2011.2116000},
-    masid = {51193703}
+
+@Article{Chanel_2011,
+  author    = {Guillaume Chanel and Cyril Rebetez and Mireille Bétrancourt and Thierry Pun},
+  title     = {Emotion Assessment From Physiological Signals for Adaptation of Game Difficulty},
+  journal   = {{IEEE} Transactions on Systems, Man, and Cybernetics - Part A: Systems and Humans},
+  year      = {2011},
+  volume    = {41},
+  number    = {6},
+  pages     = {1052--1063},
+  month     = {nov},
+  abstract  = {This paper proposes to maintain player’s engagement
+by adapting game difficulty according to player’s emotions
+assessed from physiological signals. The validity of this approach
+was first tested by analyzing the questionnaire responses, electroencephalogram
+(EEG) signals, and peripheral signals of the
+players playing a Tetris game at three difficulty levels. This analysis
+confirms that the different difficulty levels correspond to
+distinguishable emotions, and that, playing several times at the
+same difficulty level gives rise to boredom. The next step was to
+train several classifiers to automatically detect the three emotional
+classes from EEG and peripheral signals in a player-independent
+framework. By using either type of signals, the emotional classes
+were successfully recovered, with EEG having a better accuracy
+than peripheral signals on short periods of time. After the fusion
+of the two signal categories, the accuracy raised up to 63%.},
+  doi       = {10.1109/tsmca.2011.2116000},
+  file      = {:Chanel_2011 - Emotion Assessment From Physiological Signals for Adaptation of Game Difficulty.pdf:PDF},
+  issue     = {6},
+  masid     = {51193703},
+  publisher = {Institute of Electrical {\&} Electronics Engineers ({IEEE})},
+  url       = {http://dx.doi.org/10.1109/TSMCA.2011.2116000},
 }
 
 @INPROCEEDINGS{mcduff2014remote, 
@@ -552,27 +626,63 @@
      address = {Washington, DC, USA},
 } 
 
-
-@article{32693887,
-    author = {Nis Hjortskov and Dag Rissén and AnneKatrine Blangsted and Nils Fallentin and Ulf Lundberg and Karen Søgaard},
-    title = {{The effect of mental stress on heart rate variability and blood pressure during computer work}},
-    journal = {European Journal of Applied Physiology},
-    volume = {92},
-    year = {2004},
-    pages = {84--89},
-    issue = {1},
-    doi = {10.1007/s00421-004-1055-z},
-    masid = {32693887}
+@Article{Hjortskov_2004,
+  author    = {Nis Hjortskov and Dag Rissén and AnneKatrine Blangsted and Nils Fallentin and Ulf Lundberg and Karen Søgaard},
+  title     = {The effect of mental stress on heart rate variability and blood pressure during computer work},
+  journal   = {European Journal of Applied Physiology},
+  year      = {2004},
+  volume    = {92},
+  number    = {1-2},
+  pages     = {84--89},
+  month     = {jun},
+  abstract  = {The aim was to evaluate the cardiovascular and subjective stress response to a combined physical and mental workload, and the effect of rest. Twelve females who had no prior experience of laboratory experiments participated in the study. Computer-work-related mental stressors were either added to or removed from a standardized computer work session in the laboratory. Beat-to-beat blood pressure and electrocardiogram (ECG) were recorded continuously during the experiment. The participants reported subjective experiences of stress in six categories using an 11-point scale before and at the end of the work. Heart rate variability (HRV) variables were calculated from the ECG recordings, and a reduction in the high-frequency component of HRV and an increase in the low- to high-frequency ratio were observed in the stress situation compared to the control session. No changes were seen in the low-frequency component of HRV. The stressors induced an increase in blood pressure compared to baseline that persisted, and for the diastolic pressure it even increased in the subsequent control session. No differences were observed for subjective experience of stress with the exception of a time trend in the exhaustion scale, i.e. a progression in reported exhaustion with time. The results and the dissociation between HRV and blood pressure variables—indicate that HRV is a more sensitive and selective measure of mental stress. It could be speculated that heart rate-derived variables reflect a central pathway in cardiovascular control mechanisms (‘‘central command’’), while the blood pressure response is more influenced by local conditions in the working muscles that partly mask the effect of changes in mental workloads. In the rest period after each work session, HRV and blood pressure variables were partly normalized as expected. However, an 8-min period of rest was insufficient to restore blood pressure to resting values.},
+  doi       = {10.1007/s00421-004-1055-z},
+  file      = {:Hjortskov_2004 - The effect of mental stress on heart rate variability and blood pressure during computer work.pdf:PDF},
+  issue     = {1},
+  masid     = {32693887},
+  publisher = {Springer Science $\mathplus$ Business Media},
+  url       = {http://dx.doi.org/10.1007/s00421-004-1055-z},
 }
 
-@inproceedings{50590784,
-    author = {Ziev B. Moses and Linda J. Luecken and James C. Eason},
-    title = {{Measuring Task-related Changes in Heart Rate Variability}},
-    booktitle = {Annual International Conference of the IEEE Engineering in Medicine and Biology Society},
-    year = {2007},
-    pages = {644--647},
-    doi = {10.1109/IEMBS.2007.4352372},
-    masid = {50590784}
+@InProceedings{Moses_2007,
+  author    = {Ziev B. Moses and Linda J. Luecken and James C. Eason},
+  title     = {Measuring Task-related Changes in Heart Rate Variability},
+  booktitle = {2007 29th Annual International Conference of the {IEEE} Engineering in Medicine and Biology Society},
+  year      = {2007},
+  pages     = {644--647},
+  month     = {aug},
+  publisher = {Institute of Electrical {\&} Electronics Engineers ({IEEE})},
+  abstract  = {Small beat-to-beat differences in heart rate are the
+result of dynamic control of the cardiovascular system by the
+sympathetic and parasympathetic nervous systems. Heart
+rate variability (HRV) has been positively correlated with
+both mental and physical health. While many studies measure
+HRV under rest conditions, few have measured HRV during
+stressful situations. We describe an experimental protocol
+designed to measure baseline, task, and recovery values of
+HRV as a function of three different types of stressors. These
+stressors involve an attention task, a cold pressor test, and a
+videotaped speech presentation. We found a measurable
+change in heart rate in participants (n=10) during each task
+(all p’s < 0.05). The relative increase or decrease from pretask
+heart rate was predicted by task (one-way ANOVA,
+p=0.0001). Spectral analysis of HRV during the attention task
+revealed consistently decreased measures of both high
+(68±7%, mean±S.E.) and low (62±13%) frequency HRV
+components as compared to baseline. HRV spectra for the
+cold pressor and speech tasks revealed no consistent patterns
+of increase or decrease from baseline measurements. We also
+found no correlation in reactivity measures between any of
+our tasks. These findings suggest that each of the tasks in our
+experimental design elicits a different type of stress response
+in an individual. Our experimental approach may prove
+useful to biobehavioral researchers searching for factors that
+determine individual differences in responses to stress in
+daily life.},
+  doi       = {10.1109/iembs.2007.4352372},
+  file      = {:Moses_2007 - Measuring Task-related Changes in Heart Rate Variability.pdf:PDF},
+  masid     = {50590784},
+  url       = {http://dx.doi.org/10.1109/IEMBS.2007.4352372},
 }
 
 @INPROCEEDINGS{mental, 
@@ -621,15 +731,41 @@
 }
 
 @Article{allen2007photoplethysmography,
-  author    = {Allen, John},
+  author    = {John Allen},
   title     = {Photoplethysmography and its application in clinical physiological measurement},
   journal   = {Physiological measurement},
   year      = {2007},
   volume    = {28},
   number    = {3},
-  pages     = {R1},
+  pages     = {R1--R39},
+  month     = {feb},
+  abstract  = {Photoplethysmography (PPG) is a simple and low-cost optical technique that
+can be used to detect blood volume changes in the microvascular bed of tissue.
+It is often used non-invasively to make measurements at the skin surface. The
+PPG waveform comprises a pulsatile (‘AC’) physiological waveform attributed
+to cardiac synchronous changes in the blood volume with each heart beat,
+and is superimposed on a slowly varying (‘DC’) baseline with various lower
+frequency components attributed to respiration, sympathetic nervous system
+activity and thermoregulation. Although the origins of the components of
+the PPG signal are not fully understood, it is generally accepted that they
+can provide valuable information about the cardiovascular system. There has
+been a resurgence of interest in the technique in recent years, driven by the
+demand for low cost, simple and portable technology for the primary care
+and community based clinical settings, the wide availability of low cost and
+small semiconductor components, and the advancement of computer-based
+pulse wave analysis techniques. The PPG technology has been used in a
+wide range of commercially available medical devices for measuring oxygen
+saturation, blood pressure and cardiac output, assessing autonomic function
+and also detecting peripheral vascular disease. The introductory sections of the
+topical review describe the basic principle of operation and interaction of light
+with tissue, early and recent history of PPG, instrumentation, measurement
+protocol, and pulse wave analysis. The review then focuses on the applications
+of PPG in clinical physiological measurements, including clinical physiological
+monitoring, vascular assessment and autonomic function.},
+  doi       = {10.1088/0967-3334/28/3/r01},
   file      = {:allen2007photoplethysmography - Photoplethysmography and its application in clinical physiological measurement.pdf:PDF},
-  publisher = {IOP Publishing},
+  publisher = {{IOP} Publishing},
+  url       = {http://dx.doi.org/10.1088/0967-3334/28/3/r01},
 }
 
 
@@ -763,6 +899,16 @@
   volume    = {10},
   number    = {3},
   pages     = {229},
+  abstract  = {The study of individual differences in emotional responding can provide considerable
+insight into interpersonal dynamics and the etiology of psychopathology. Heart rate
+variability (HRV) analysis is emerging as an objective measure of regulated emotional
+responding (generating emotional responses of appropriate timing and magnitude). This
+review provides a theoretical and empirical rationale for the use of HRV as an index of
+individual differences in regulated emotional responding. Two major theoretical frameworks
+that articulate the role of HRV in emotional responding are presented, and
+relevant empirical literature is reviewed. The case is made that HRV is an accessible
+research tool that can increase the understanding of emotion in social and psychopathological
+processes.},
   file      = {:appelhans2006heart - Heart rate variability as an index of regulated emotional responding.pdf:PDF},
   publisher = {Educational Publishing Foundation},
 }
@@ -915,7 +1061,219 @@
   doi       = {10.1016/j.bspc.2016.06.020},
   file      = {:giannakakis2017stress - Stress and anxiety detection using facial cues from videos.pdf:PDF},
   publisher = {Elsevier},
+  review    = {This study develops a framework for the detection and analysis of stress/anxiety emotional states throughvideo-recorded facial cues. A thorough experimental protocol was established to induce systematic vari-ability in affective states (neutral, relaxed and stressed/anxious) through a variety of external and internalstressors. The analysis was focused mainly on non-voluntary and semi-voluntary facial cues in orderto estimate the emotion representation more objectively. Features under investigation included eye-related events, mouth activity, head motion parameters and heart rate estimated through camera-basedphotoplethysmography. A feature selection procedure was employed to select the most robust featuresfollowed by classification schemes discriminating between stress/anxiety and neutral states with refer-ence to a relaxed state in each experimental phase. In addition, a ranking transformation was proposedutilizing self reports in order to investigate the correlation of facial parameters with a participant per-ceived amount of stress/anxiety. The results indicated that, specific facial cues, derived from eye activity,mouth activity, head movements and camera based heart activity achieve good accuracy and are suitableas discriminative indicators of stress and anxiety.},
   url       = {http://dx.doi.org/10.1016/j.bspc.2016.06.020},
+}
+
+@Article{kranjec2014non,
+  author    = {J. Kranjec and S. Begu{\v{s}} and G. Ger{\v{s}}ak and J. Drnov{\v{s}}ek},
+  title     = {Non-contact heart rate and heart rate variability measurements: A review},
+  journal   = {Biomedical Signal Processing and Control},
+  year      = {2014},
+  volume    = {13},
+  pages     = {102--112},
+  month     = {sep},
+  doi       = {10.1016/j.bspc.2014.03.004},
+  file      = {:kranjec2014non - Non-contact heart rate and heart rate variability measurements_ A review.pdf:PDF},
+  publisher = {Elsevier {BV}},
+  timestamp = {2016-08-24},
+  url       = {http://dx.doi.org/10.1016/j.bspc.2014.03.004},
+}
+
+@InProceedings{li2014remote,
+  author    = {Xiaobai Li and Jie Chen and Guoying Zhao and Matti Pietikainen},
+  title     = {Remote Heart Rate Measurement from Face Videos under Realistic Situations},
+  booktitle = {2014 {IEEE} Conference on Computer Vision and Pattern Recognition},
+  year      = {2014},
+  pages     = {4264--4271},
+  month     = {jun},
+  publisher = {Institute of Electrical {\&} Electronics Engineers ({IEEE})},
+  abstract  = {Heart rate is an important indicator of people’s physiological
+state. Recently, several papers reported methods to
+measure heart rate remotely from face videos. Those methods
+work well on stationary subjects under well controlled
+conditions, but their performance significantly degrades if
+the videos are recorded under more challenging conditions,
+specifically when subjects’ motions and illumination variations
+are involved. We propose a framework which utilizes
+face tracking and Normalized Least Mean Square adaptive
+filtering methods to counter their influences. We test
+our framework on a large difficult and public database
+MAHNOB-HCI and demonstrate that our method substantially
+outperforms all previous methods. We also use our
+method for long term heart rate monitoring in a game evaluation
+scenario and achieve promising results},
+  doi       = {10.1109/cvpr.2014.543},
+  file      = {:li2014remote - Remote Heart Rate Measurement from Face Videos under Realistic Situations.pdf:PDF},
+  timestamp = {2016-08-23},
+  url       = {http://dx.doi.org/10.1109/cvpr.2014.543},
+}
+
+@Article{blanik2014hybrid,
+  author    = {Blanik, Nikolai and Abbas, Abbas K. and Venema, Boudewijn and Blazek, Vladimir and Leonhardt, Steffen},
+  title     = {Hybrid optical imaging technology for long-term remote monitoring of skin perfusion and temperature behavior},
+  journal   = {Journal of Biomedical Optics},
+  year      = {2014},
+  volume    = {19},
+  number    = {1},
+  pages     = {016012},
+  abstract  = {Photoplethysmography imaging (PPGI) and infrared thermography imaging (IRTI) are contactless camera-based measurement methods for monitoring a wide range of basic vital parameters. In particular, PPGI enhances the classical contact-based photoplethysmography. Approved evaluation algorithms of the well-established PPG method can easily be adapted for detection of heart rate, heart rate variability, respiration rate (RR), respiratory variability (RV), and vasomotional activity with PPGI. The IRTI method primarily records temperature distribution of the observed object, but information on RR and RV can also be derived from IRTI by analyzing the development of temperature distribution in the nasal region. The main advantages of both monitoring methods are unobtrusive data acquisition and the possibility of assessing spatial assignment between vital parameters and body region. Hence, these methods enable long-term monitoring or the monitoring of effects with special local characteristics. Because the two systems supplement each, a combined hybrid application is proposed and its feasibility discussed.},
+  doi       = {10.1117/1.JBO.19.1.016012},
+  file      = {:blanik2014hybrid - Hybrid optical imaging technology for long-term remote monitoring of skin perfusion and temperature behavior.pdf:PDF},
+  isbn      = {1083-3668},
+  timestamp = {2016-08-23},
+  url       = { http://dx.doi.org/10.1117/1.JBO.19.1.016012},
+}
+
+@Article{McDuff_2014,
+  author    = {Daniel McDuff and Sarah Gontarek and Rosalind W. Picard},
+  title     = {Remote Detection of Photoplethysmographic Systolic and Diastolic Peaks Using a Digital Camera},
+  journal   = {{IEEE} Transactions on Biomedical Engineering},
+  year      = {2014},
+  volume    = {61},
+  number    = {12},
+  pages     = {2948--2954},
+  month     = {dec},
+  abstract  = {We present a new method for measuring photoplethysmogram
+(PPG) signals remotely using ambient light
+and a digital camera that allows for accurate recovery of the
+waveform morphology (from a distance of 3m). In particular,
+we show that the peak-to-peak time between the systolic peak
+and diastolic peak/inflection can be automatically recovered using
+the second order derivative of the remotely measured waveform.
+We compare measurements from the face with those captured
+using a contact finger-tip sensor and show high agreement in
+peak and interval timings. Furthermore, we show that results
+can be significantly improved using orange, green and cyan color
+channels compared to the tradition red, green and blue channel
+combination. The absolute error in inter-beat-intervals was 26ms
+and the absolute error in mean systolic-diastolic peak-to-peak
+times was 12ms. The mean systolic-diastolic peak-to-peak times
+measured using the contact sensor and the camera were highly
+correlated, ρ = 0.94 (p<0.001). The results were obtained with a
+camera frame-rate of only 30Hz. This technology has significant
+potential for advancing healthcare.},
+  doi       = {10.1109/tbme.2014.2340991},
+  publisher = {Institute of Electrical and Electronics Engineers ({IEEE})},
+  timestamp = {2016-08-23},
+  url       = {http://dx.doi.org/10.1109/tbme.2014.2340991},
+}
+
+@InProceedings{tasli2014remote,
+  author       = {H. Emrah Tasli and Amogh Gudi and Marten den Uyl},
+  title        = {Remote {PPG} based vital sign measurement using adaptive facial regions},
+  booktitle    = {2014 {IEEE} International Conference on Image Processing ({ICIP})},
+  year         = {2014},
+  pages        = {1410--1414},
+  month        = {oct},
+  organization = {IEEE},
+  publisher    = {Institute of Electrical {\&} Electronics Engineers ({IEEE})},
+  doi          = {10.1109/icip.2014.7025282},
+  file         = {:tasli2014remote - Remote PPG based vital sign measurement using adaptive facial regions.pdf:PDF},
+  timestamp    = {2016-08-23},
+  url          = {http://dx.doi.org/10.1109/icip.2014.7025282},
+}
+
+@InProceedings{lee2015heart,
+  author       = {Dongseok Lee and Jeehoon Kim and Sungjun Kwon and Kwangsuk Park},
+  title        = {Heart rate estimation from facial photoplethysmography during dynamic illuminance changes},
+  booktitle    = {2015 37th Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC)},
+  year         = {2015},
+  pages        = {2758--2761},
+  month        = {aug},
+  organization = {IEEE},
+  publisher    = {Institute of Electrical {\&} Electronics Engineers ({IEEE})},
+  abstract     = {Camera-based remote photoplethysmography
+(rPPG) enables low-cost, non-contact cardiovascular activity
+monitoring. However, applying rPPG to practical use has some
+limitations caused from the artifacts by illuminance changes.
+During watching a video in a dark room, for example, watching
+a TV at night without illuminance, there is a high correlation
+between the brightness changes of a video and the illuminance
+variation on the skin of the viewer’s face. In this study, we
+propose an artifact reduction method in rPPG, which is caused
+by the variation of the illuminance. The method subtracts the
+artifacts from the raw facial rPPG signal by applying
+multi-order curve fitting between the illuminance information
+from the facial rPPG signal and the brightness information
+from a video. On average, the results showed that signal-to-noise
+ratio (SNR) increased from -11.74 to -4.19 dB and from -15.27 to
+7.99 dB for low-dynamic-brightness and
+high-dynamic-brightness video, respectively. In addition, the
+root-mean-square-error (RMSE) of estimated heart rate
+decreased from 11.00 to 1.82 bpm and from 9.88 to 4.65 bpm for
+the videos, respectively.},
+  doi          = {10.1109/embc.2015.7318963},
+  file         = {:lee2015heart - Heart rate estimation from facial photoplethysmography during dynamic illuminance changes.pdf:PDF},
+  url          = {http://dx.doi.org/10.1109/embc.2015.7318963},
+}
+
+@InProceedings{tulyakov2016self,
+  author    = {Tulyakov, Sergey and Alameda-Pineda, Xavier and Ricci, Elisa and Yin, Lijun and Cohn, Jeffrey F and Sebe, Nicu},
+  title     = {Self-adaptive matrix completion for heart rate estimation from face videos under realistic conditions},
+  booktitle = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+  year      = {2016},
+  pages     = {2396--2404},
+  abstract  = {Recent studies in computer vision have shown that, while practically invisible to a human observer, skin color changes due to blood flow can be captured on face videos and, surprisingly, be used to estimate the heart rate (HR). While considerable progress has been made in the last few years, still many issues remain open. In particular, state-of-the-art approaches are not robust enough to operate in natural conditions (e.g. in case of spontaneous movements, facial expressions, or illumination changes). Opposite to previous approaches that estimate the HR by processing all the skin pixels inside a fixed region of interest, we introduce a strategy to dynamically select face regions useful for robust HR estimation. Our approach, inspired by recent advances on matrix completion theory, allows us to predict the HR while simultaneously discover the best regions of the face to be used for estimation. Thorough experimental evaluation conducted on public benchmarks suggests that the proposed approach significantly outperforms state-of-the-art HR estimation methods in naturalistic conditions.},
+  file      = {:tulyakov2016self - Self-adaptive matrix completion for heart rate estimation from face videos under realistic conditions.pdf:PDF},
+}
+
+@InProceedings{zhang2016multimodal,
+  author    = {Zhang, Zheng and Girard, Jeff M and Wu, Yue and Zhang, Xing and Liu, Peng and Ciftci, Umur and Canavan, Shaun and Reale, Michael and Horowitz, Andy and Yang, Huiyuan and others},
+  title     = {Multimodal spontaneous emotion corpus for human behavior analysis},
+  booktitle = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+  year      = {2016},
+  pages     = {3438--3446},
+  abstract  = {Emotion is expressed in multiple modalities, yet most research
+has considered at most one or two. This stems in
+part from the lack of large, diverse, well-annotated, multimodal
+databases with which to develop and test algorithms.
+We present a well-annotated, multimodal, multidimensional
+spontaneous emotion corpus of 140 participants. Emotion
+inductions were highly varied. Data were acquired from a
+variety of sensors of the face that included high-resolution
+3D dynamic imaging, high-resolution 2D video, and thermal
+(infrared) sensing, and contact physiological sensors
+that included electrical conductivity of the skin, respiration,
+blood pressure, and heart rate. Facial expression was annotated
+for both the occurrence and intensity of facial action
+units from 2D video by experts in the Facial Action Coding
+System (FACS). The corpus further includes derived features
+from 3D, 2D, and IR (infrared) sensors and baseline
+results for facial expression and action unit detection. The
+entire corpus will be made available to the research community.},
+}
+
+@InProceedings{chwyl2016sapphire,
+  author       = {B. Chwyl and A. G. Chung and R. Amelara and J. Deglint and D. A. Clausi and A. Wong},
+  title        = {{SAPPHIRE}: Stochastically acquired photoplethysmogram for heart rate inference in realistic environments},
+  booktitle    = {2016 {IEEE} International Conference on Image Processing ({ICIP})},
+  year         = {2016},
+  pages        = {1230--1234},
+  month        = {sep},
+  organization = {IEEE},
+  publisher    = {Institute of Electrical and Electronics Engineers ({IEEE})},
+  abstract     = {A novel method, Stochastically Acquired Photoplethysmogram
+for Heart rate Inference in Realistic Environments
+(SAPPHIRE), is proposed for robust remote heart rate measurement
+through broadband video. A set of stochastically
+sampled points from the cheek region is tracked and used
+to construct corresponding time series observations via skin
+erythema transforms. From these observations, a photoplethysmogram
+(PPG) waveform is estimated via Bayesian
+minimization, with the required posterior probability inferred
+using a Monte Carlo approach. To mitigate the effects of
+noise, the contribution of each observation is weighted based
+on the observation’s likelihood to contain relevant data. A
+bandpass filter is applied to the estimated PPG waveform to
+omit implausible heart rate frequencies, and the heart rate
+is estimated through frequency domain analysis. Experimental
+results acquired from a set of thirty videos indicate
+significantly improved performance in comparison to stateof-the-art
+methods},
+  doi          = {10.1109/icip.2016.7532554},
+  file         = {:chwyl2016sapphire - SAPPHIRE_ Stochastically acquired photoplethysmogram for heart rate inference in realistic environments.pdf:PDF},
+  url          = {http://dx.doi.org/10.1109/icip.2016.7532554},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
