@@ -1076,6 +1076,7 @@ processes.},
   volume    = {13},
   pages     = {102--112},
   month     = {sep},
+  abstract  = {The following paper investigates published work on non-contact human physiological parameter measurement, more precisely measurement of the human heart rate (HR) and consequently the heart rate variability (HRV), which is considered to be an important marker of autonomic nervous system activity proven to be predictive of the likelihood of future health related events. The ability to perform measurements of cardiac activity in a non-contact manner could prove to become an important alternative to the conventional methods in the clinical field as well as in the more commercially oriented fields. Some of the published work so far indicates that the measurement of cardiac activity in a non-contact manner is indeed possible and in some cases also very precise, however there are several limitations to the methods which need to be taken into account when performing the measurements. The following paper includes a short description of the two conventional methods, electrocardiogram (ECG) and photoplethysmography (PPG), and later on focuses on the novel methods of non-contact measuring of HR with capacitively coupled ECG, Doppler radar, optical vibrocardiography, thermal imaging, RGB camera and HR from speech. Our study represents a comparative review of these methods while emphasising their advantages and disadvantages.},
   doi       = {10.1016/j.bspc.2014.03.004},
   file      = {:kranjec2014non - Non-contact heart rate and heart rate variability measurements_ A review.pdf:PDF},
   publisher = {Elsevier {BV}},
@@ -1284,10 +1285,103 @@ methods},
   title        = {Variations of Facial Actions While Playing Games with Inducing Boredom and Stress},
   booktitle    = {2016 8th International Conference on Games and Virtual Worlds for Serious Applications ({VS}-Games)},
   year         = {2016},
-  pages        = {1--4},
   month        = {sep},
   organization = {IEEE},
   abstract     = {This paper presents an experiment aimed at empirically exploring the variations of facial actions (FA) during gaming sessions with induced boredom and stress. Twenty adults with different ages and gaming experiences played three games while being recorded by a video camera and monitored by a heart rate sensor. The games were carefully designed to have a linear progression from a boring to a stressful state. Self-reported answers indicate participants perceived the games as being boring at the beginning and stressful at the end. The 6 hours of recordings of all subjects were manually analyzed and FA were annotated. We annotated FA that appeared in the recordings at least twice; annotations were categorized by the period when they happened (boring/stressful part of the games) and analysed on a group and on an individual level. Group level analysis revealed that FA patterns were related to no more than 25\% of the subjects. The individual level analysis revealed particular patterns for 50\% of the subjects. More FA annotations were made during the stressful part of the games. We conclude that, for the context of our experiment, FA provide an unclear foundation for detection of boredom/stressful states when observed from a group level perspective, while the individual level perspective might produce more information.},
+}
+
+@Article{takano2007heart,
+  author    = {Chihiro Takano and Yuji Ohta},
+  title     = {Heart rate measurement based on a time-lapse image},
+  journal   = {Medical Engineering {\&} Physics},
+  year      = {2007},
+  volume    = {29},
+  number    = {8},
+  pages     = {853--857},
+  month     = {oct},
+  abstract  = {Using a time-lapse image acquired from a CCD camera, we developed a non-contact and non-invasive device, which could measure both
+the respiratory and pulse rate simultaneously. The time-lapse image of a part of the subject’s skin was consecutively captured, and the changes
+in the average image brightness of the region of interest (ROI) were measured for 30 s. The brightness data were processed by a series of
+operations of interpolation as follows a first-order derivative, a low pass filter of 2 Hz, and a sixth-order auto-regressive (AR) spectral analysis.
+Fourteen sound and healthy female subjects (22–27 years of age) participated in the experiments. Each subject was told to keep a relaxed
+seating posture with no physical restriction. At the same time, heart rate was measured by a pulse oximeter and respiratory rate was measured
+by a thermistor placed at the external naris. Using AR spectral analysis, two clear peaks could be detected at approximately 0.3 and 1.2 Hz.
+The peaks were thought to correspond to the respiratory rate and the heart rate. Correlation coefficients of 0.90 and 0.93 were obtained for
+the measurement of heart rate and respiratory rate, respectively.
+© 2006 IPEM. Published by Elsevier Ltd. All rights reserved.},
+  doi       = {10.1016/j.medengphy.2006.09.006},
+  file      = {:takano2007heart - Heart rate measurement based on a time-lapse image.pdf:PDF},
+  publisher = {Elsevier {BV}},
+  review    = {- One of the first PPG initiatives;
+- Able to rudimentary detect HR and RR signals, however no HR nor RR (e.g. bpm) is provided.
+- ROI is selected manually
+- Tests were performed for 30 seconds.},
+  timestamp = {2016-08-25},
+  url       = {http://dx.doi.org/10.1016/j.medengphy.2006.09.006},
+}
+
+@Article{bousefsaf2013continuous,
+  author    = {Fr{\'{e}}d{\'{e}}ric Bousefsaf and Choubeila Maaoui and Alain Pruski},
+  title     = {Continuous wavelet filtering on webcam photoplethysmographic signals to remotely assess the instantaneous heart rate},
+  journal   = {Biomedical Signal Processing and Control},
+  year      = {2013},
+  volume    = {8},
+  number    = {6},
+  pages     = {568--574},
+  month     = {nov},
+  abstract  = {Photoplethysmographic signals obtained from a webcam are analyzed through a continuous wavelettransform to assess the instantaneous heart rate. The measurements are performed on human faces.Robust image and signal processing are introduced to overcome drawbacks induced by light and motionartifacts. In addition, the respiration signal is recovered using the heart rate series by respiratory sinusarrhythmia, the natural variation in heart rate driven by the respiration. The presented algorithms areimplemented on a mid-range computer and the overall method works in real-time. The performanceof the proposed heart and breathing rates assessment method was evaluated using approved contactprobes on a set of 12 healthy subjects. Results show high degrees of correlation between physiologi-cal measurements even in the presence of motion. This paper provides a motion-tolerant method thatremotely measures the instantaneous heart and breathing rates. These parameters are particularly usedin telemedicine and affective computing, where the heart rate variability analysis can provide an indexof the autonomic nervous system.},
+  doi       = {10.1016/j.bspc.2013.05.010},
+  file      = {:bousefsaf2013continuous - Continuous wavelet filtering on webcam photoplethysmographic signals to remotely assess the instantaneous heart rate.pdf:PDF},
+  publisher = {Elsevier {BV}},
+  url       = {http://dx.doi.org/10.1016/j.bspc.2013.05.010},
+}
+
+@Article{verkruysse2008remote,
+  author    = {Wim Verkruysse and Lars O Svaasand and J Stuart Nelson},
+  title     = {Remote plethysmographic imaging using ambient light},
+  journal   = {Opt. Express},
+  year      = {2008},
+  volume    = {16},
+  number    = {26},
+  pages     = {21434},
+  month     = {dec},
+  abstract  = {Plethysmographic signals were measured remotely (>1m) using ambient light and a simple consumer level digital camera in movie mode. Heart and respiration rates could be quantified up to several harmonics. Although the green channel featuring the strongest plethysmographic signal, corresponding to an absorption peak by (oxy-) hemoglobin, the red and blue channels also contained plethysmographic information. The results show that ambient light photo-plethysmography may be useful for medical purposes such as characterization of vascular skin lesions (e.g., port wine stains) and remote sensing of vital signs (e.g., heart and respiration rates) for triage or sports purposes.},
+  doi       = {10.1364/oe.16.021434},
+  file      = {:verkruysse2008remote - Remote plethysmographic imaging using ambient light.pdf:PDF},
+  publisher = {The Optical Society},
+  timestamp = {2016-08-24},
+  url       = {http://dx.doi.org/10.1364/oe.16.021434},
+}
+
+@Article{sun2012noncontact,
+  author    = {Yu Sun and Sijung Hu and Vicente Azorin-Peris and Roy Kalawsky and Stephen Greenwald},
+  title     = {Noncontact imaging photoplethysmography to effectively access pulse rate variability},
+  journal   = {J. Biomed. Opt},
+  year      = {2012},
+  volume    = {18},
+  number    = {6},
+  pages     = {061205},
+  month     = {oct},
+  abstract  = {Noncontact imaging photoplethysmography (PPG) can provide physiological assessment at various anatomical locations with no discomfort to the patient. However, most previous imaging PPG (iPPG) systems have been limited by a low sample frequency, which restricts their use clinically, for instance, in the assessment of pulse rate variability (PRV). In the present study, plethysmographic signals are remotely captured via an iPPG system at a rate of 200 fps. The physiological parameters (i.e., heart and respiration rate and PRV) derived from the iPPG datasets yield statistically comparable results to those acquired using a contact PPG sensor, the gold standard. More importantly, we present evidence that the negative influence of initial low sample frequency could be compensated via interpolation to improve the time domain resolution. We thereby provide further strong support for the low-cost webcam-based iPPG technique and, importantly, open up a new avenue for effective noncontact assessment of multiple physiological parameters, with potential applications in the evaluation of cardiac autonomic activity and remote sensing of vital physiological signs.},
+  doi       = {10.1117/1.jbo.18.6.061205},
+  file      = {:sun2012noncontact - Noncontact imaging photoplethysmography to effectively access pulse rate variability.pdf:PDF},
+  publisher = {{SPIE}-Intl Soc Optical Eng},
+  review    = {- Support that low-end camera  (e.g. 20 FPS) is as good as a 200 FPS camera
+- Low sample frequency (e.g. 20 fps) can be compensated using Interpolation to improve time domain resolution},
+  url       = {http://dx.doi.org/10.1117/1.jbo.18.6.061205},
+}
+
+@Article{valenza2014revealing,
+  author    = {Gaetano Valenza and Luca Citi and Antonio Lanat{\'{a}} and Enzo Pasquale Scilingo and Riccardo Barbieri},
+  title     = {Revealing Real-Time Emotional Responses: a Personalized Assessment based on Heartbeat Dynamics},
+  journal   = {Sci. Rep.},
+  year      = {2014},
+  volume    = {4},
+  month     = {may},
+  doi       = {10.1038/srep04998},
+  file      = {:valenza2014revealing - Revealing Real-Time Emotional Responses a Personalized Assessment based on Heartbeat Dynamics.pdf:PDF},
+  publisher = {Nature Publishing Group},
+  url       = {http://dx.doi.org/10.1038/srep04998},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
