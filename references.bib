@@ -1,4 +1,15 @@
 % Encoding: UTF-8
+
+@Article{dlib09,
+  author        = {Davis E. King},
+  title         = {Dlib-ml: A Machine Learning Toolkit},
+  journal       = {Journal of Machine Learning Research},
+  year          = {2009},
+  volume        = {10},
+  pages         = {1755-1758},
+  __markedentry = {[bevf:6]},
+  crossref      = {a},
+}
 @article{lai2015deep,
   title={Deep Cascaded Regression for Face Alignment},
   author={Lai, Hanjian and Xiao, Shengtao and Cui, Zhen and Pan, Yan and Xu, Chunyan and Yan, Shuicheng},
@@ -525,15 +536,18 @@ of the two signal categories, the accuracy raised up to 63%.},
   url       = {http://dx.doi.org/10.1109/TSMCA.2011.2116000},
 }
 
-@INPROCEEDINGS{mcduff2014remote, 
-    author={McDuff, D. and Gontarek, S. and Picard, R.}, 
-    booktitle={Engineering in Medicine and Biology Society (EMBC), 2014 36th Annual International Conference of the IEEE}, 
-    title={Remote measurement of cognitive stress via heart rate variability}, 
-    year={2014}, 
-    month={Aug}, 
-    pages={2957-2960}, 
-    doi={10.1109/EMBC.2014.6944243}, 
-    ISSN={1557-170X}
+@InProceedings{mcduff2014remote,
+  author    = {Daniel McDuff and Sarah Gontarek and Rosalind Picard},
+  title     = {Remote measurement of cognitive stress via heart rate variability},
+  booktitle = {2014 36th Annual International Conference of the {IEEE} Engineering in Medicine and Biology Society},
+  year      = {2014},
+  pages     = {2957-2960},
+  month     = {aug},
+  publisher = {Institute of Electrical and Electronics Engineers ({IEEE})},
+  doi       = {10.1109/embc.2014.6944243},
+  file      = {:mcduff2014remote - Remote measurement of cognitive stress via heart rate variability.pdf:PDF},
+  issn      = {1557-170X},
+  url       = {http://dx.doi.org/10.1109/EMBC.2014.6944243},
 }
 
 
@@ -1058,16 +1072,6 @@ processes.},
   publisher={Wiley Online Library}
 }
 
-@Article{dlib09,
-  author        = {Davis E. King},
-  title         = {Dlib-ml: A Machine Learning Toolkit},
-  journal       = {Journal of Machine Learning Research},
-  year          = {2009},
-  volume        = {10},
-  pages         = {1755-1758},
-  __markedentry = {[bevf:6]},
-}
-
 @Article{giannakakis2017stress,
   author    = {G. Giannakakis and M. Pediaditis and D. Manousos and E. Kazantzaki and F. Chiarugi and P.G. Simos and K. Marias and M. Tsiknakis},
   title     = {Stress and anxiety detection using facial cues from videos},
@@ -1080,7 +1084,6 @@ processes.},
   doi       = {10.1016/j.bspc.2016.06.020},
   file      = {:giannakakis2017stress - Stress and anxiety detection using facial cues from videos.pdf:PDF},
   publisher = {Elsevier},
-  review    = {This study develops a framework for the detection and analysis of stress/anxiety emotional states throughvideo-recorded facial cues. A thorough experimental protocol was established to induce systematic vari-ability in affective states (neutral, relaxed and stressed/anxious) through a variety of external and internalstressors. The analysis was focused mainly on non-voluntary and semi-voluntary facial cues in orderto estimate the emotion representation more objectively. Features under investigation included eye-related events, mouth activity, head motion parameters and heart rate estimated through camera-basedphotoplethysmography. A feature selection procedure was employed to select the most robust featuresfollowed by classification schemes discriminating between stress/anxiety and neutral states with refer-ence to a relaxed state in each experimental phase. In addition, a ranking transformation was proposedutilizing self reports in order to investigate the correlation of facial parameters with a participant per-ceived amount of stress/anxiety. The results indicated that, specific facial cues, derived from eye activity,mouth activity, head movements and camera based heart activity achieve good accuracy and are suitableas discriminative indicators of stress and anxiety.},
   url       = {http://dx.doi.org/10.1016/j.bspc.2016.06.020},
 }
 
@@ -1632,6 +1635,83 @@ the measurement of heart rate and respiratory rate, respectively.
   file      = {:fauquet2016heart - Heart Rate vs Stress Indicator for Short Term Mental Stress.pdf:PDF},
   publisher = {Sciencedomain International},
   url       = {http://dx.doi.org/10.9734/bjmmr/2016/27593},
+}
+
+@InProceedings{mcduff2016discovering,
+  author       = {Daniel McDuff},
+  title        = {Discovering facial expressions for states of amused, persuaded, informed, sentimental and inspired},
+  booktitle    = {Proceedings of the 18th {ACM} International Conference on Multimodal Interaction - {ICMI} 2016},
+  year         = {2016},
+  pages        = {71--75},
+  organization = {ACM},
+  publisher    = {Association for Computing Machinery ({ACM})},
+  abstract     = {Facial expressions play a significant role in everyday interactions. A majority of the research on facial expressions of emotion has focused on a small set of "basic" states. However, in real-life the expression of emotions is highly context dependent and prototypic expressions of "basic" emotions may not always be present. In this paper we attempt to discover expressions associated with alternate states of informed, inspired, persuaded, sentimental and amused based on a very large dataset of observed facial responses. We used a curated set of 395 everyday videos that were found to reliably elicit the states and recorded 49,869 facial responses as viewers watched the videos in their homes. Using automated facial coding we quantified the presence of 18 facial actions in each of the 23.4 million frames. Lip corner pulls, lip sucks and inner brow raises were prominent in sentimental responses. Outer brow raises and eye widening were prominent in persuaded and informed responses. More brow furrowing distinguished informed from persuaded responses potentially indicating higher cognition.},
+  doi          = {10.1145/2993148.2993192},
+  file         = {:mcduff2016discovering - Discovering facial expressions for states of amused, persuaded, informed, sentimental and inspired.pdf:PDF},
+  url          = {http://dx.doi.org/10.1145/2993148.2993192},
+}
+
+@InCollection{samara2016sensing,
+  author       = {Anas Samara and Leo Galway and Raymond Bond and Hui Wang},
+  title        = {Sensing Affective States Using Facial Expression Analysis},
+  booktitle    = {Ubiquitous Computing and Ambient Intelligence},
+  publisher    = {Springer Nature},
+  year         = {2016},
+  pages        = {341--352},
+  abstract     = {An important factor for the next generation of Human Computer Interaction is the implementation of an interaction model that automatically reasons in context of the users goals, attitudes, affective characteristics and capabilities, and adapts the system accordingly. Although various techniques have been proposed for automatically detecting affective states using facial expression, this is still a research challenge in terms of classification accuracy. This paper investigates an extensible automatic affective state detection approach via the analysis of facial expressions from digital photographs. The main contribution of this study can be summarised in two points. Firstly, utilising facial point distance vectors within the representation of facial expressions is shown to be more accurate and robust in comparison to using standard Cartesian coordinates. Secondly, employing a two-stage Support Vector Machine-based classification model, entitled Hierarchical Parallelised Binary Support Vector Machines (HPBSVM), is shown to improve classification performance over other machine learning techniques. The resulting classification model has been evaluated using two different facial expression datasets (namely CKPLUS and KDEF), yielding accuracy rates of 96.9% and 96.2% over each dataset respectively.},
+  doi          = {10.1007/978-3-319-48746-5_35},
+  file         = {:samara2016sensing - Sensing Affective States Using Facial Expression Analysis.pdf:PDF},
+  organization = {Springer},
+}
+
+@InProceedings{arroyo2008towards,
+  author    = {Arroyo-Palacios, J and Romano, DM},
+  title     = {Towards a standardization in the use of physiological signals for affective recognition systems},
+  booktitle = {Measuring Behavior},
+  year      = {2008},
+  abstract  = {The implementation of physiological signals, as an approach for emotion recognition in computer systems, is not a straight forward task. This paper discusses five main areas that lack of standards and guided principles, which have led Human-Computer Interaction (HCI) researchers to take critical decisions about (i) models, (ii) stimulus, (iii) measures, (iv) features and (v) algorithms with some degree of uncertainty about their results. Methodology standardization would allow comparison of results, reusability of findings and easier integration of the various affective recognition systems created. The background theory is given for each of the five areas and the related work from psychology is briefly reviewed. A comparison table of the HCI common approaches of the five discussed areas is presented, and finally some considerations to take the best decisions are discussed. The aim of this paper is to provide directions on which the future research efforts for affective recognition in HCI should be focused on.},
+  file      = {:arroyo2008towards - Towards a standardization in the use of physiological signals for affective recognition systems.pdf:PDF},
+}
+
+@InProceedings{brogni2006variations,
+  author       = {Andrea Brogni and Vinoba Vinayagamoorthy and Anthony Steed and Mel Slater},
+  title        = {Variations in physiological responses of participants during different stages of an immersive virtual environment experiment},
+  booktitle    = {Proceedings of the {ACM} symposium on Virtual reality software and technology - {VRST} {\textquotesingle}06},
+  year         = {2006},
+  pages        = {376--382},
+  organization = {ACM},
+  publisher    = {Association for Computing Machinery ({ACM})},
+  abstract     = {This paper presents a study of the fine grain physiological responses of participants to an immersive virtual simulation of an urban environment. The analysis of differences in participant responses at various stages of the experiment (baseline recordings, training, first half and second half of the urban simulation) are examined in detail. It was found that participants typically show a stress response during the training phase and a stress response towards the end of the simulation of the urban experience. There is also some evidence that variations in the level of visual realism based the texture strategy used was associated with changes in mental stress.},
+  doi          = {10.1145/1180495.1180572},
+  file         = {:brogni2006variations - Variations in physiological responses of participants during different stages of an immersive virtual environment experiment.pdf:PDF},
+}
+
+@InProceedings{lin2008using,
+  author       = {Tao Lin and Akinobu Maejima and Shigeo Morishima},
+  title        = {Using subjective and physiological measures to evaluate audience-participating movie experience},
+  booktitle    = {Proceedings of the working conference on Advanced visual interfaces - {AVI} {\textquotesingle}08},
+  year         = {2008},
+  pages        = {49--56},
+  organization = {ACM},
+  publisher    = {Association for Computing Machinery ({ACM})},
+  abstract     = {In this paper we subjectively and physiologically investigate the effects of the audiences 3D virtual actor in a movie on their movie experience, using the audience participating movie DIM as the object of study. In DIM, the photo-realistic 3D virtual actors of audience are constructed by combining current computer graphics (CG) technologies and can act different roles in a pre-rendered CG movie. To facilitate the investigation, we presented three versions of a CG movie to an audience - a Traditional version, its Self-DIM (SDIM) version with the participation of the audience’s virtual actor, and its Self-Friend-DIM (SFDIM) version with the co-participation of the audience and his friends virtual actors. The results show that the participation of audience’s 3D virtual actors indeed cause increased subjective sense of presence and engagement, and emotional reaction; moreover, SFDIM performs significantly better than SDIM, due to increased social presence. Interestingly, when watching the three movie versions, subjects experienced not only significantly different galvanic skin response (GSR) changes on average - changing trend over time, and number of fluctuations - but they also experienced phasic GSR increase when watching their own and friends virtual 3D actors appearing on the movie screen. These results suggest that the participation of the 3D virtual actors in a movie can improve interaction and communication between audience and the movie.},
+  doi          = {10.1145/1385569.1385580},
+  file         = {:lin2008using - Using subjective and physiological measures to evaluate audience-participating movie experience.pdf:PDF},
+}
+
+@Article{meehan2002physiological,
+  author    = {Michael Meehan and Brent Insko and Mary Whitton and Frederick P. Brooks},
+  title     = {Physiological measures of presence in stressful virtual environments},
+  journal   = {{ACM} Transactions on Graphics},
+  year      = {2002},
+  volume    = {21},
+  number    = {3},
+  pages     = {645--652},
+  month     = {jul},
+  abstract  = {A common measure of the quality or effectiveness of a virtual environment (VE) is the amount of presence it evokes in users. Presence is often defined as the sense of being there in a VE. There has been much debate about the best way to measure presence, and presence researchers need, and have sought, a measure that is reliable, valid, sensitive, and objective. We hypothesized that to the degree that a VE seems real, it would evoke physiological responses similar to those evoked by the corresponding real environment, and that greater presence would evoke a greater response. To examine this, we conducted three experiments, the results of which support the use of physiological reaction as a reliable, valid, sensitive, and objective presence measure. The experiments compared participants’ physiological reactions to a non-threatening virtual room and their reactions to a stressful virtual height situation. We found that change in heart rate satisfied our requirements for a measure of presence, change in skin conductance did to a lesser extent, and that change in skin temperature did not. Moreover, the results showed that inclusion of a passive haptic element in the VE significantly increased presence and that for presence evoked: 30FPS > 20FPS > 15FPS.},
+  doi       = {10.1145/566654.566630},
+  file      = {:meehan2002physiological - Physiological measures of presence in stressful virtual environments.pdf:PDF},
+  publisher = {Association for Computing Machinery ({ACM})},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
