@@ -1,0 +1,51 @@
+%%
+%% Copyright 2016-2017 by Thomas Fischer <thomas.fischer@his.se>
+%%
+%% This file has been released under the following license:
+%% Creative Commons Attribution-Share Alike 4.0 Unported
+%% (CC-BY-SA 4.0)
+%%
+
+\NeedsTeXFormat{LaTeX2e}
+
+\ProvidesPackage{histitlepage}[2016/11/30 HiS Title Page]
+
+\newcommand{\@coatofarmsimagefilename}{CoatOfArms/HiSCoatOfArms-grafit-median-english}
+\newcommand{\@localizeddoctoraldissertation}{Doctoral Dissertation}
+\newcommand{\@localizedlicentiatethesis}{Licentiate Thesis}
+
+\DeclareOption{swedish}{%
+\renewcommand{\@coatofarmsimagefilename}{CoatOfArms/HiSCoatOfArms-grafit-median-swedish}
+\renewcommand{\@localizeddoctoraldissertation}{Doktorsavhandling}
+\newcommand{\@localizedlicentiatethesis}{Licentiatexamen}
+}
+
+\PassOptionsToPackage{table,svgnames,dvipsnames}{xcolor}
+
+\ProcessOptions
+
+\RequirePackage{tikz}
+
+% Import user's metadata such as title, name, ISBN, ...
+\RequirePackage{hismetadata}
+
+\renewcommand{\maketitle}{%
+\pagestyle{empty}
+\cleardoublepage%
+\begingroup%
+\centering%
+\vspace*{2cm plus 2cm minus 2cm}%
+{\fontgeorgia{11.5}{11.5}%
+\ifthenelse{\equal{\@publicationtype}{licentiate}}{\MakeUppercase{\@localizedlicentiatethesis}}{\MakeUppercase{\@localizeddoctoraldissertation}}%
+\par}%
+\vspace*{4mm}
+{\fontarial{14}{17}\@titleUC\par}%
+\vspace*{5mm}
+{\fontarial{9.5}{11.5}\@subtitleUC\par}%
+\vspace*{1cm}
+{\fontarial{8.5}{10}\@authorUC\par}%
+{\fontgeorgia{8}{9}\textit{\@subject}\par}%
+\vspace*{3cm plus 1cm minus 1cm}
+\includegraphics[width=3.4cm,height=3.4cm,keepaspectratio]{\@coatofarmsimagefilename}\par%
+\endgroup%
+}% END \newcommand{\maketitle}

@@ -1,0 +1,82 @@
+%%
+%% Copyright 2016-2017 by Thomas Fischer <thomas.fischer@his.se>
+%%
+%% This file has been released under the following license:
+%% Creative Commons Attribution-Share Alike 4.0 Unported
+%% (CC-BY-SA 4.0)
+%%
+%% hismetadata.sty is a package that defines commands
+%% metadata like author's name, thesis title, etc
+%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{hismetadata}[2016/11/30 University of Skovde Thesis Metadata by Thomas Fischer]
+
+\RequirePackage{ifthen}
+\RequirePackage[table,svgnames,dvipsnames]{xcolor}
+\RequirePackage[unicode=true,pdfborder={0 0 0}]{hyperref}% used to set a PDF file's title and author
+
+\newcommand{\missingparam}[1]{\colorbox{red!30}{{\normalfont\textbf{\textbackslash{}#1}\ not set}}}
+
+\newcommand{\@year}{\missingparam{date}}
+\newcommand{\@month}{\missingparam{date}}
+\newcommand{\@day}{\missingparam{date}}
+\renewcommand\date[3]{%
+\renewcommand{\@year}{#1}%
+\renewcommand{\@month}{#2}%
+\renewcommand{\@day}{#3}%
+}
+
+\newcommand{\@seriesnumber}{\missingparam{seriesnumbe}}
+\newcommand{\seriesnumber}[1]{\renewcommand\@seriesnumber{#1}}
+
+\newcommand{\@subtitle}{~}% subtitle cannot be empty, would give compilation errors
+\newcommand{\@subtitleUC}{~}% subtitle cannot be empty, would give compilation errors
+\newcommand{\subtitle}[1]{\renewcommand{\@subtitleUC}{\MakeUppercase{#1}}\renewcommand\@subtitle{#1}}
+
+\newcommand\@subject{\missingparam{subject}}
+\newcommand\subject[1]{\renewcommand\@subject{#1}}
+
+\renewcommand{\@title}{\missingparam{title}}
+\newcommand{\@titleUC}{\missingparam{title}}
+\renewcommand{\title}[1]{\renewcommand{\@titleUC}{\MakeUppercase{#1}}\renewcommand{\@title}{#1}%
+\hypersetup{pdftitle={#1}}%
+}
+%
+\renewcommand{\@author}{\missingparam{author}}
+\newcommand{\@authorUC}{\missingparam{author}}
+\renewcommand{\author}[1]{\renewcommand{\@authorUC}{\MakeUppercase{#1}}\renewcommand{\@author}{#1}%
+\hypersetup{pdfauthor={#1}}%
+}
+%
+\newcommand{\@spokenlanguage}{\missingparam{spokenlanguage}}
+\newcommand{\spokenlanguage}[1]{\renewcommand{\@spokenlanguage}{#1}}
+%
+\newcommand{\@opponent}{\missingparam{opponent}}
+\newcommand{\opponent}[1]{\renewcommand{\@opponent}{#1}}
+%
+\newcommand{\@dissertationtype}{\missingparam{disserationtype}}
+\newcommand{\dissertationtype}[1]{\renewcommand{\@dissertationtype}{#1}}
+%
+\newcommand{\@dissertationarea}{\missingparam{dissertationarea}}
+\newcommand{\dissertationarea}[1]{\renewcommand{\@dissertationarea}{#1}}
+%
+\newcommand{\@decidedby}{}% no warning here, this value is optional
+\newcommand{\decidedby}[1]{\renewcommand{\@decidedby}{#1}}
+%
+\newcommand{\@defensedaytimeroom}{\missingparam{defensedaytimeroom}}
+\newcommand{\defensedaytimeroom}[6]{\renewcommand\@defensedaytimeroom{#1dagen den #2\ #3\ #4 kl.~#5, #6}}
+%
+\newcommand{\@isbn}{\missingparam{isbn}}
+\newcommand{\isbn}[1]{\renewcommand{\@isbn}{#1}}
+
+%% To differ between doctoral dissertations (default) and licentiates:
+%% Use either
+%%    \publicationtype{dissertation}
+%% or
+%%    \publicationtype{licentiate}
+\newcommand{\@publicationtype}{}
+\newcommand{\publicationtype}[1]{%
+\renewcommand{\@publicationtype}{#1}%
+\ifthenelse{\equal{\@publicationtype}{licentiate}}{\definecolor{specialpagebackground}{RGB}{68,72,78}}{\definecolor{specialpagebackground}{RGB}{86,34,97}}% update color for special pages' background
+}

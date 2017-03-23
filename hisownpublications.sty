@@ -1,0 +1,80 @@
+%%
+%% Copyright 2013-2017 by Thomas Fischer <thomas.fischer@his.se>
+%%
+%% This file has been released under the following license:
+%% Creative Commons Attribution-Share Alike 4.0 Unported
+%% (CC-BY-SA 4.0)
+%%
+
+\NeedsTeXFormat{LaTeX2e}
+
+\ProvidesPackage{hisownpublications}[2016/12/27 HiS Doctoral Candidate's Own Publications]
+
+\RequirePackage{hisbibliography}
+\RequirePackage{pdfpages}
+\RequirePackage{biblatex}
+
+\newcounter{ownpublicationsenumi}
+\setcounter{ownpublicationsenumi}{0}
+
+%% In theory, using \enumerate and \endenumerate should work,
+%% but there are some compilation issues with the default
+%% implementation. Using this one instead:
+\def\enumerate{\ifnum \@enumdepth >3 \@toodeep\else
+      \advance\@enumdepth \@ne
+      \edef\@enumctr{enum\romannumeral\the\@enumdepth}\list
+      {\csname label\@enumctr\endcsname}{\usecounter
+        {\@enumctr}\itemsep 0pt\parsep 0pt
+         \def\makelabel##1{\hss\llap{##1}}}\fi}
+\let\endenumerate =\endlist
+
+
+\defbibenvironment{ownpublicationsbibenvironment}%
+{\enumerate\setcounter{enumi}{\value{ownpublicationsenumi}}}%
+{\setcounter{ownpublicationsenumi}{\value{enumi}}\endenumerate}%
+{\item}
+
+\DeclareBibliographyCategory{ownpublicationshighrelevance}
+\DeclareBibliographyCategory{ownpublicationslowrelevance}
+
+\newcommand{\ownpublications}[3][]{%
+\clearpage%
+\chapter*{Publications}%
+
+#1
+
+\begin{refcontext}[sorting=none]
+\addtocategory{ownpublicationshighrelevance}{#2}\nocite{#2}
+\printbibliography[heading=subbibliography,title=Publications with High Relevance,env=ownpublicationsbibenvironment,category=ownpublicationshighrelevance]
+\end{refcontext}
+
+\begin{refcontext}[sorting=none]
+\addtocategory{ownpublicationslowrelevance}{#3}\nocite{#3}
+\printbibliography[heading=subbibliography,title=Publications with Low Relevance,env=ownpublicationsbibenvironment,category=ownpublicationslowrelevance]
+\end{refcontext}
+
+\clearpage%
+}
+
+
+% Retrieving a publication's title, without quotation marks or any other 'candy'.
+% Title can be retrieved 'verbatim' (as it is) or in uppercase.
+\DeclareFieldFormat{verbatim}{#1}
+\DeclareFieldFormat{uppercase}{\MakeUppercase{#1}}
+\DeclareCiteCommand{\citetitleverbatim}{}{\printfield[verbatim]{title}}{}{}
+\DeclareCiteCommand{\citetitleuppercase}{}{\printfield[uppercase]{title}}{}{}
+
+\newcommand{\fullarticle}[3][pages=-]{%
+\addcontentsline{toc}{section}{\citetitleverbatim{#2}}% section-like line in ToC, but does not appear in main text body
+\partlike{\citetitleuppercase{#2}}% nice purple page with article's title, like special page for parts, but does not appear in ToC and does not try to make it uppercase
+% FIXME scaling gets messed up when activating the 'final' document option, as the paper size changes
+\includepdf[#1]{#3}% include article's PDF
+}%
+
+\newenvironment{fullarticles}[1][Previously Published Articles]{%
+\markboth{}{}% no page header
+\cleardoublepage%
+\addcontentsline{toc}{part}{#1}% part-like line in ToC, but does not appear in main text body
+}{%
+\cleardoublepage%
+}

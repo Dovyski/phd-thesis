@@ -1,0 +1,32 @@
+\documentclass[english]{hiscover}
+
+% The file 'metadata.tex' contains the user's metadata
+% such as title, name, ISBN, ...
+\input{metadata}
+
+\begin{document}
+\cover{%
+% First argument: your cover image, e.g. \includegraphics{..} or \begin{tikzpicture}...\end{tikzpicture}
+% Image should be 13.75cm x 8cm (ratio of 55:32)
+\includegraphics[width=13.75cm,height=8cm]{foto}%
+}{%
+% Second argument: filename of a photo of you
+face%
+}{%
+% Third argument: the abstract to be shown on the back of the book
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut
+purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
+Curabitur dictum gravida mauris. Nam arcu libero, nonummy
+eget, consectetuer id, vulputate a, magna. Donec vehicula
+augue eu neque. Pellentesque habitant morbi tristique senectus
+et netus et malesuada fames ac turpis egestas. Mauris ut leo.
+Cras viverra metus rhoncus sem. Nulla et lectus vestibulum
+urna fringilla ultrices. Phasellus eu tellus sit amet tortor gravida
+placerat. Integer sapien est, iaculis in, pretium quis, viverra
+ac, nunc. Praesent eget sem vel leo ultrices bibendum. Aenean
+}{%
+% Fourth argument: filename of an image/logo for the organization
+% you worked in collaboration; leave blank if not applicable
+%
+}% end of \cover
+\end{document}

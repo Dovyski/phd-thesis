@@ -1,0 +1,138 @@
+%%
+%% Copyright 2014-2017 by Thomas Fischer <thomas.fischer@his.se>
+%%
+%% This file has been released under the following license:
+%% Creative Commons Attribution-Share Alike 4.0 Unported
+%% (CC-BY-SA 4.0)
+%%
+
+\NeedsTeXFormat{LaTeX2e}
+
+\ProvidesPackage{hisfont}[2017/01/15 HiS Font]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% More Symbols
+
+\RequirePackage{MnSymbol}
+
+% Avoid "LaTeX Error: Command `\mathdollar' already defined." error
+\makeatletter%
+\let\mathdollar\@undefined%
+\makeatother%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% General font definition
+
+% Will work with LuaLaTeX and XeLaTeX (?), but not classical LaTeX
+% !!! [no-math] is required to avoid issues in combination with package MnSymbol
+% !!! see here for details: http://tex.stackexchange.com/questions/171286/big-brackets-are-always-opening-and-square-when-using-fontspec-with-mnsymbol
+\RequirePackage[no-math]{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+
+%% Missing Georgia or Arial? Linux users may want to look into
+%% http://corefonts.sourceforge.net/
+%% https://packages.debian.org/wheezy/ttf-mscorefonts-installer
+%% Windows users should have the fonts in any case
+\setmainfont{Georgia}
+\setsansfont{Arial}
+
+%% Free replacements for the Windows fonts Georgia and Arial are
+%% "Droid Serif" (by Google, licensed under the Apache License) or
+%% "Linux Libertine" (licensed under the GNU General Public License
+%% and the SIL Open Font License), and "Crimson" (Open Font License)
+%% as serif fonts (for main text body) and "Nimbus Sans L" (by
+%% URW++, with selected styles licensed under GPL, AFPL, and LPPL)
+%% as sans font.
+
+%% Download all DroidSerif-*.ttf from
+%% https://github.com/android/platform_frameworks_base/tree/master/data/fonts
+%\setmainfont{Droid Serif}
+%% Follow instructions for Libertine at http://www.linuxlibertine.org/
+% \setmainfont{Linux Libertine O}
+
+%\setmainfont[   Path              = fonts/droid/,
+%                Extension         = .ttf,
+%                BoldFont          = DroidSerif-Bold,
+%                ItalicFont        = DroidSerif-Italic,
+%                BoldItalicFont    = DroidSerif-BoldItalic,
+%                SmallCapsFeatures = {Letters = SmallCaps},
+%                Numbers           = OldStyle
+%            ]{DroidSerif}
+
+%% Crimson is available at https://github.com/skosch/Crimson/releases
+%% Either use the version shipped with TeX Live ...
+% \RequirePackage{crimson}
+%% ... or the OTF variant from git.nsa.his.se:latex/fonts.git
+% \RequirePackage{crimson-otf}
+%% A variant of DejaVu Sans which is "slightly enhanced for use with TeX"
+% \RequirePackage{berasans}
+
+%% Get this font legally at
+%% http://sourceforge.net/projects/sourcecodepro.adobe/files/
+%% Look for file SourceCodePro_FontsOnly-n.mmm.zip
+%% (where n.mmm is the most recent version)
+%% Installation instructions and more information in general:
+%% https://github.com/adobe/source-code-pro
+%% Either use the version shipped with TeX Live ...
+% \RequirePackage{sourcecodepro}
+%% ... or the OTF variant from git.nsa.his.se:latex/fonts.git
+% \RequirePackage{adobesourcecodepro-otf}
+%% The DejaVu font family has been derieved from Bitstream's Vera
+%% font family. Download this font legally at:
+%% https://github.com/dejavu-fonts/dejavu-fonts/releases
+%% DejaVu Sans Mono or Beramono should be shipped with your *TeX
+%% installation, but this font works only with the classical 'pdflatex',
+%% but not 'lualatex'. Therefore, the TTF variant from
+%%    git.nsa.his.se:latex/fonts.git
+%% must be used.
+%\RequirePackage{dejavu-mono-ttf}
+
+
+%% Nimbus Sans L should be shipped with your *TeX installation,
+%% but this font works only with the classical 'pdflatex', but not
+%% 'lualatex'. Therefore, the OTF variant from
+%%    git.nsa.his.se:latex/fonts.git
+%% must be used.
+%\RequirePackage{nimbussansl-otf}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Commands to switch btwn serif/sans-serif and to set font size
+
+\newcommand{\fontarial}[2]{%
+\fontsize{#1}{#2}\selectfont%
+\sffamily%
+}
+
+\newcommand{\fontgeorgia}[2]{%
+\fontsize{#1}{#2}\selectfont%
+\rmfamily%
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Definition for Source Code Listings
+
+% To allow relative font sizes as used below for listings
+\RequirePackage{relsize}
+
+% Nice source code listings
+\RequirePackage{listings}
+\lstset{%
+basicstyle=\ttfamily\relsize{-1},% default font formatting
+keywordstyle=\textbf,% how to format recognized keywords
+breaklines=true,% allow to break long lines
+breakindent=5pt,% indent wrapped/broken lines
+prebreak={\mbox{\ensuremath{\rhookswarrow}}},% show a nice symbol when breaking lines
+postbreak=\space,% ???
+showtabs=false,% show tabulators?
+tabsize=4,% step widths of tabulators
+numbers=left,% show line numbers on the left
+numberstyle=\relsize{-2},% small font size for numbers
+numberblanklines=false,% no line numbers for empty lines
+numbersep=2ex,% horizontal spacing between numbers and code
+xleftmargin=2em,% ???
+floatplacement=t,% ask LaTeX to place float on the top of a page
+}

@@ -1,0 +1,97 @@
+%%
+%% Copyright 2014-2017 by Thomas Fischer <thomas.fischer@his.se>
+%%
+%% This file has been released under the following license:
+%% Creative Commons Attribution-Share Alike 4.0 Unported
+%% (CC-BY-SA 4.0)
+%%
+
+\NeedsTeXFormat{LaTeX2e}
+
+\ProvidesPackage{histextformatting}[2016/10/19 HiSTextFormatting]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tabular
+
+% Nice tabular rules
+\RequirePackage{booktabs}
+
+% The pack­age de­fines new com­mands \Cen­ter­ing, \RaggedLeft,
+% and \RaggedRight and new en­vi­ron­ments Cen­ter, FlushLeft,
+% and FlushRight, which set ragged text and are eas­ily
+% con­fig­urable to al­low hy­phen­ation (the cor­re­spond­ing
+% com­mands in LATEX, all of whose names are lower-case,
+% pre­vent hy­phen­ation al­to­gether).
+\RequirePackage{ragged2e}
+
+% To be able to define new tabular column types
+\RequirePackage{array}
+% Left-aligned, fixed width column
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+% Right-aligned, fixed width column
+\newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
+% Centered, fixed width column
+\newcolumntype{C}[1]{>{\Centering\arraybackslash}p{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ????
+
+%% For letter-spacing
+\RequirePackage{soulutf8}
+% ???
+\sodef\an{}{.095em}{0.35em plus0.35em}{2em plus.5em minus.5em}
+\newcommand*\MyUpperCase[1]{\MakeUppercase{\an {#1}}}
+% ???
+\sodef\coverpagesubjectspacing{}{3pt}{8pt}{0pt}
+\sodef\coverpagetitlespacing{}{3pt}{8pt}{0pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Draft Mode
+
+%% In draft mode, an orange-colored bar is drawn next to text
+%% which is too wide for the current box. Usually, the author
+%% has to fix that manually.
+%%
+%% Based on
+%% http://tex.stackexchange.com/questions/28294/can-i-have-the-overfullrule-rule-colored-in-pdflatex
+%% https://github.com/raphink/overcolored
+\ifluatex
+\RequirePackage{luatexbase,luacode}
+\begin{luacode}
+
+orangebox = function(head)
+  while head do
+    if head.id == 0 or head.id == 1 then
+      -- go through the hlists (the rows)
+      orangebox(head.head)
+
+    -- if there's a rule after the rightskip, this is the overfull box
+    -- node id 10 == glue, glue subtype 9 is rightskip, node id 2 is a rule
+
+    elseif head.id == 10 and head.subtype == 9 and head.next and head.next.id == 2 then
+       -- this must be an overfull box
+       local w1, w2
+       w1 = node.new("whatsit","pdf_literal")
+       w1.data = "q 1 0.6667 0.3333 rg"
+       w1.mode = 1
+       w2 = node.new("whatsit","pdf_literal")
+       w2.data = " Q"
+       w2.mode = 1
+
+       w1.next = head.next -- the rule
+       head.next = w1      -- color start
+       w1.next.next = w2   -- color end
+
+       node.slide(head)    -- adjust prev pointers
+    end
+    head = head.next
+  end
+  return true
+end
+luatexbase.add_to_callback("post_linebreak_filter",orangebox,"orangebox")
+
+\end{luacode}
+\fi
+
