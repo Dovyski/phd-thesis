@@ -1,0 +1,57 @@
+\chapter{Introduction}
+\label{chap_introduction}
+
+Some \textbf{interesting} \textsf{introduction} and some \emph{interesting} reference.
+\par\textbf{Bold} \textit{Italic} \textbf{\textit{BoldItalic}}
+\par\textsf{Sans \textbf{Bold} \textit{Italic} \textbf{\textit{BoldItalic}}}
+\par\texttt{Mono \textbf{Bold} \textit{Italic} \textbf{\textit{BoldItalic}}}
+
+\begin{equation*}
+    \begin{pmatrix}
+      1 & 2 & 3  \\
+      1 & 2 & 3  \\
+      1 & 2 & 3
+    \end{pmatrix}
+    = \left( \sum_{i=1}^{n-1} i \right)
+    = \left( n \right)
+\end{equation*}
+
+\textcite{Walley2000} writes that \LaTeX\ is really good.
+
+\begin{table}
+\begin{tabular}{L{.6\linewidth}L{.3\linewidth}}%
+\toprule%
+\lstinline|\cite{Walley2000}| & \cite{Walley2000} \\[0.5em]%
+\lstinline|\cite{Walley2000,knauth2003prevcompmeasuresshiftwrk,yang2010wikipediacontrib}| & \cite{Walley2000,knauth2003prevcompmeasuresshiftwrk,yang2010wikipediacontrib} \\
+\midrule%
+\lstinline|\parencite{Walley2000}| & \parencite{Walley2000} \\[0.5em]%
+\lstinline|\parencite{Walley2000,knauth2003prevcompmeasuresshiftwrk,yang2010wikipediacontrib}| & \parencite{Walley2000,knauth2003prevcompmeasuresshiftwrk,yang2010wikipediacontrib} \\
+\midrule%
+\lstinline|\autocite{Walley2000}| & \autocite{Walley2000} \\[0.5em]%
+\lstinline|\autocite{Walley2000,knauth2003prevcompmeasuresshiftwrk,yang2010wikipediacontrib}| & \autocite{Walley2000,knauth2003prevcompmeasuresshiftwrk,yang2010wikipediacontrib} \\
+\midrule%
+\lstinline|\textcite{Walley2000}| & \textcite{Walley2000} \\[0.5em]%
+\lstinline|\textcite{Walley2000,knauth2003prevcompmeasuresshiftwrk,yang2010wikipediacontrib}| & \textcite{Walley2000,knauth2003prevcompmeasuresshiftwrk,yang2010wikipediacontrib} \\
+\bottomrule%
+\end{tabular}%
+\caption{Various literature citations.}
+\end{table}
+
+\begin{figure}
+\centering
+A figure with a long caption.
+\par
+\caption{Sed commodo posuere pede. Mauris ut est. Ut quis purus. Sed ac odio.
+Sed vehicula hendrerit sem. Duis non odio. Morbi ut dui. Sed accumsan risus eget odio.
+In hac habitasse platea dictumst. Pellentesque non elit. Fusce sed justo eu urna porta tincidunt.
+Mauris felis odio, sollicitudin sed, volutpat a, ornare ac, erat.
+Morbi quis dolor.
+Donec pellentesque, erat ac sagittis semper, nunc dui lobortis purus, quis congue purus metus ultricies tellus.
+Proin et quam.
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos.
+Praesent sapien turpis, fermentum vel, eleifend faucibus, vehicula eu, lacus.%
+}
+\end{figure}
+
+\section{Outline}
+\label{sec_outline}
