@@ -1,0 +1,151 @@
+\section{Study 2: variations of heart rate}
+
+\subsection{Introduction}
+
+In order to explore the relation among facial actions, HR and emotional states, particularly stress and boredom, we designed and carried out an experiment involving games that were deliberately designed to cause the aforementioned emotional states. Our approach consists of recording participants while they play three different games that were carefully designed and developed to have a very similar difficulty balance that linearly progresses from a boring to a stressful state. Our experiment has two main goals. The first one is to measure the variations of the HR mean to test the hypothesis that the mean of the differences of HR during boring and stressful parts of the games is different. The second goal is to empirically explore how facial actions (FA), defined by us as being any facial movement different from a neutral face, e.g. lips contraction, manually detected and annotated with observations, relate to emotional states. Our experiment allows the investigation of variations of HR and FA in a context where boredom and stress were induced on purpose. As a result of our experiment, we present information regarding the changes in the HR mean of subjects while they play games that are deliberately boring and stressful; additionally we present a set of annotated FA that happened during the phases of the games that were perceived as being boring and stressful. Our main contribution is twofold: firstly we introduce information about the variations of HR that occurred during the interaction with the games, specially under situations that were designed to provoke boredom and stress. Our results indicate with statistical significance that the HR mean is different during boring and stressful situations in our games. Secondly we present information regarding the frequency which the annotations of naked-eye recognizable FA happened during specific phases of the games, all obtained from the analysis of about 6 hours of recordings from 20 subjects. We include an analysis and discussion of the gathered information. We believe that this paper contributes with information regarding HR and FA in the context of games, which can be combined to create user-tailored models for emotion detection based on different data sources. Additionally we highlight the heterogeneous nature of our group of subjects that have significantly different ages and gaming experiences, which produces a diverse sample for the investigation of changes in HR, FA and emotional states. In the remainder of this paper we will: summarize related works regarding the mapping of facial and physiological signals to emotional states; explain our experiment; show and discuss the results; finally we present a conclusion.
+
+\subsection{Analysis and methods}
+
+Firstly we removed from the set of all HR readings obtained during the experiment values that were equal to zero assuming they were miss-readings. After we calculated the baseline HR value for each subject ($B_s$) as:
+
+\begin{equation} \label{eq:baseline}
+B_s = \frac{1}{2}(\overline{HR}_{r1,s} + \overline{HR}_{r2,s})
+\end{equation}
+
+where $s$ indicates the subject and $\overline{HR}_{r1,s}$, $\overline{HR}_{r2,s}$ are the mean HR during the first and the second resting period (for subject $s$), respectively. $B_s$ is assumed to be the ``expected" HR of a given subject while resting. The average difference between $\overline{HR}_{r1,s}$ and $\overline{HR}_{r2,s}$ for each subject was 2.34 bpm.
+
+We then calculated the HR mean coefficient $C_s^{g,t}$, which is the HR mean of a subject while playing a game during a given period of 60 seconds:
+
+\begin{equation} \label{eq:variation}
+C_s^{g,t} = \frac{1}{60}\sum_{n=1}^{60} HR_{s,g}(t\cdot 60 + n)
+\end{equation}
+
+where $s$ is the subject, $g$ is the game being played ($M$ for \underline{M}ushroom, $P$ for \underline{P}latformer or $T$ for \underline{T}etris), $t$ is the period and $HR_{s,g}(k)$ is the HR measured from subject $s$, in game $g$ at the mark of $k$ seconds. Since each subject played each game for more than 60 seconds, there is more than one period for each subject for a given game. The $t$ component of $C_s^{g,t}$ specifies which of such periods the HR mean refers to. For instance, $t=0$ comprehends the period from time 0:00 until time 1:00 of a given game, $t=1$ is the period from time 1:01 until 2:00, and so on. As an example, the HR mean coefficient $C_2^{P,1}$ is the HR mean of subject $2$ while playing the Platformer game from time 1:01 to 2:00.
+
+HR values are specific to each individual, so we calculated the relativized HR mean coefficient, $V_s^{g,t}$, by subtracting $C_s^{g,t}$ from $B_s$ as:
+
+\begin{equation} \label{eq:variation-normalized}
+V_s^{g,t} = C_s^{g,t} - B_s
+\end{equation}
+
+$V_s^{g,t}$ accounts for values that are related to changes instead of absolute HR measurements, which are significantly more suitable for comparison among different subjects, or within the same subject.
+
+Based on previous work regarding variations of HR and emotions, we state the following hypothesis: the HR mean during the last minute of gameplay is greater than the HR mean during the second minute of gameplay. More specifically, the true difference in means between $V^{g,n}$ (i.e. HR means when $t=n$, where $n$ is the last minute of gameplay) and $V^{g,1}$ (i.e. HR means when $t=1$, the second minute of gameplay) is greater than zero. The dependent variable is $V$ and the null hypothesis is that the true difference in means between $V^{g,n}$ and $V^{g,1}$ is less than or equal to zero. The reason why we choose $t=1$ (second minute of gameplay) instead of $t=0$ (first minute of gameplay) for our hypothesis is because we believe the first minute of the game might not be ideal for a fair comparison. Firstly during the first minute of gameplay, subjects are less likely to be in their usual neutral emotional state. They are more likely to be stimulated by the excitement of the initial contact with a game soon to be played, which interferes with any feelings of boredom. Secondly subjects need a basic understanding and experimentation with the game in order to judge if it is boring or not. As per our understanding, such conjecture is less likely to be fulfilled during the first minute of gameplay then it is to be during the second minute of gameplay.
+
+\subsection{Results}
+
+\begin{table*}[!t]
+\renewcommand{\arraystretch}{1.0}
+\caption{Values of $V_s^{g,t}$, the relativized HR mean coefficient, for all subjects ($s$) in a given game $g$ (M is for Mushroom, P for Platformer and T for Tetris), grouped by intervals ($t$) of 1 minute}
+\label{table:hr}
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\multicolumn{2}{|c|}{} & \multicolumn{20}{|c|}{$s$} \\
+\hline
+$g$                   & $t$ & 1    & 2    & 3    & 4    & 5     & 6    & 7    & 8    & 9    & 10   & 11    & 12    & 13   & 14   & 15    & 16   & 17   & 18   & 19   & 20 \\
+\hline
+\multirow{7}{*}{M}    & 0   & -3.8 & 2.2  & -2.5 & -3.1 & -3.4  & -2.5 & 0.4  & 3.5  & -4.9 & -2.8 & -3.4  & -0.2  & -1.8 & 5.9  & -4.9  & 6.5  & -0.4 & -3.3 & 4.4  & 2.1  \\
+                      & 1   & -9.1 & -1.4 & 0.3  & -2.6 & 0.2   & -3.7 & -1.5 & 2.7  & -4.9 & -4.1 & -10.3 & 0.0   & -3.1 & -3.1 & 0.2   & 5.6  & 2.5  & -0.8 & 0.5  & 3.2  \\
+                      & 2   & -4.8 & -1.3 & -0.1 & -0.6 & 7.0   & 0.9  & 2.0  & 4.5  & -0.8 & -3.0 & -9.2  & 4.1   & 0.1  & -0.5 & -0.1  & 5.4  & 2.8  & 2.4  & 2.6  & 4.8  \\
+                      & 3   & -4.9 & -0.7 & -2.8 & -1.5 & 1.5   & 0.3  & 2.4  & 5.1  & -2.4 & 1.7  & -4.6  & 2.4   & 0.4  & -0.2 & 0.7   & 4.5  & 3.4  & 3.8  & 2.4  & 3.5  \\
+                      & 4   & -3.9 & -1.1 & 0.9  & 1.5  & 5.3   & 0.8  & 4.5  & 6.3  & 2.0  & 1.3  & -3.6  & 3.3   & 1.6  & 6.9  & 0.0   & 4.5  & 2.9  & 3.4  & 9.9  & 9.1  \\
+                      & 5   & 0.3  & 2.4  & 1.4  & 1.7  & 11.9  & -1.2 & -    & -    & 4.4  & 10.2 & 1.6   & 6.2   & -    & -    & 3.2   & -    & 5.9  & 3.2  & 17.9 & 5.8 \\
+                      & 6   & -    & -    & -1.2 & -0.1 & -     & -    & -    & -    & -    & -    & -     & -     & -    & -    & -     & -    & 3.3  & -    & -    & 6.7     \\
+\hline
+\multirow{5}{*}{P}    & 0   & -1.7 & 1.3  & 0.4  & -0.2 & 0.1   & 9.9  & 2.4  & -1.7 & -\textsuperscript{a}   & -1.9 & -2.7  & 0.8    & 5.7  & 19.7 & 6.0  & 0.2  & 5.9  & -1.2 & 4.2  & 5.5  \\
+                      & 1   & -1.6 & -0.4 & 3.4  & -0.9 & -0.3  & 2.2  & 2.4  & 5.5  & -\textsuperscript{a}   & 2.4  & -4.4  & 0.7    & -1.5 & 4.1  & 4.9  & -1.0 & 0.8  & -0.2 & 3.7  & 7.7  \\
+                      & 2   & 1.9  & 9.7  & 0.8  & -0.6 & 3.0   & -1.1 & 1.3  & 3.9  & -\textsuperscript{a}   & 15.1 & 0.2   & 3.5    & 3.9  & 3.8  & 11.7 & -0.7 & 2.8  & 0.4  & 4.0  & 10.6 \\
+                      & 3   & 3.0  & 9.3  & 2.5  & -2.6 & 2.8   & 10.3 & 4.9  & 5.2  & -\textsuperscript{a}   & 21.6 & 3.2   & 5.4    & 9.2  & 4.6  & 9.9  & -    & 2.1  & 2.6  & 7.9  & 10.4 \\
+                      & 4   & 5.9  & 6.8  & -    & 8.0  & 5.3   & -    & -    & -    & -\textsuperscript{a}   & -    & -     & -      & 4.9  & -    & 13.5 & -    & -    & -    & -    & -     \\
+\hline
+\multirow{6}{*}{T}    & 0   & 2.1  & 6.5  & -2.1 & -1.3 & -4.0  & 5.7  & 3.4  & 4.2  & 8.3  & 3.2  & 2.1   & -0.1  & 3.5  & 3.4  & 4.4  & -1.2 & 7.8  & -3.9 & 5.8  & 4.7  \\
+                      & 1   & -2.7 & 0.0  & -3.3 & -1.2 & -4.9  & -0.1 & 4.3  & 4.2  & 2.7  & 2.9  & 0.0   & 2.6   & 2.2  & -2.5 & 5.9  & -1.3 & 4.2  & -0.4 & 5.7  & 0.0 \\
+                      & 2   & -1.7 & 2.6  & 2.4  & -0.1 & -2.3  & 4.3  & 3.5  & -0.4 & 2.7  & 5.1  & 2.6   & 5.9   & 1.1  & -1.1 & 5.3  & -1.8 & 7.4  & 0.1  & 8.1  & 4.3  \\
+                      & 3   & -1.9 & -0.2 & 0.3  & -2.2 & 0.8   & 5.4  & 2.1  & 3.8  & -    & 5.2  & 2.2   & 5.4   & -0.5 & -2.5 & 4.7  & -1.2 & 10.6 & 1.5  & 3.8  & 2.3  \\
+                      & 4   & -0.8 & 3.0  & -    & 0.9  & -     & -    & -    & 7.8  & -    & 9.2  & 0.2   & 6.6   & -    & 3.4  & 5.6  & -1.2 & -    & 2.0  & 6.8  & 4.3  \\
+                      & 5   & 1.5  & 7.4  & -    & -0.4 & -     & -    & -    & -    & -    & 12.9 & 7.4   & 4.5   & -    & 3.5  & 6.7  & -    & -    & -    & 6.9  & -    \\
+\hline
+\end{tabular}
+}
+\raggedright{\textsuperscript{a} Subject 9 had problems playing the Platformer game, so data from this subject during this game was excluded.}
+\end{table*}
+
+\begin{table}
+    \caption{Mean of the differences of $V^{g,t}$ at the periods $t=1$ (second minute of gameplay) and $t=n$ (last minute of gameplay), for all subjects in each game ($g$). Values in bpm (beats per minute). Significance was tested with a one-tailed paired t-test}
+    \label{table:proof}
+    \centering
+  \begin{threeparttable}
+     \begin{tabular}{|c|>{\centering\arraybackslash}p{5.2cm}|}
+        \hline
+        \textbf{Game ($g$)} & \textbf{Mean of the differences between\newline $V^{g,n}$ and $V^{g,1}$} \\
+        \hline
+        Mushroom (M) & 6.11 ***  \\
+        \hline
+        Platformer (P) & 5.10 ***  \\
+        \hline
+        Tetris (T) & 3.33 *** \\
+        \hline
+     \end{tabular}
+    \begin{tablenotes}
+      \small
+      \item[***]{$p < 0.001$}
+    \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.2}
+\caption{Mean of the differences of $V^{g,t}$ at key periods, for all subjects in a given game $g$ (M is for Mushroom, P for Platformer and T for Tetris). Values in bpm (beats per minute)}
+\label{table:mean}
+\centering
+\begin{tabular}{|>{\centering\arraybackslash}p{0.5cm}|>{\centering\arraybackslash}p{1.3cm}|>{\centering\arraybackslash}p{1.3cm}|>{\centering\arraybackslash}p{1.3cm}|>{\centering\arraybackslash}p{1.3cm}|}
+\cline{2-5}
+\multicolumn{1}{c|}{} & \multicolumn{4}{|c|}{\textbf{Pairs}} \\
+\hline
+\textbf{$g$} & \textbf{$V^{g,1}$,\newline$V^{g,0}$} & \textbf{$V^{g,n}$,\newline$V^{g,n-1}$} & \textbf{$V^{g,n}$,\newline$V^{g,0}$} & \textbf{$V^{g,n-1}$,\newline$V^{g,1}$} \\
+\hline
+M & -0.87   & 2.39 & 5.23 & 3.71 \\
+\hline
+P & -1.31   & 2.57 & 3.78  & 2.52  \\
+\hline
+T & -1.71 & 1.22  & 1.62    & 2.10 \\
+\hline
+\end{tabular}
+\end{table}
+
+Table \ref{table:hr} presents the values of $V$, the relativized HR mean coefficient, for all subjects in all games, grouped by intervals of 1 minute, calculated according to the description in Section \ref{s:methodology}. Column $g$ is the game being played, $t$ is the period in the game and $s$ is the subject. Since all games were constantly changing in difficulty and subjects have different gaming skills, there are subjects with no data entry for some $t$ intervals, which means he/she was defeated by the game earlier than other subjects were. Subject 9 had problems playing the Platformer game, so data for that subject in that game was not used in the calculations.
+
+A positive value in Table \ref{table:hr} represents a $V$ (HR mean) that is above the subject's baseline $B_s$ (mean HR while resting) for an specific period $t$. A negative value indicates that $V$ in that period is below the subject's baseline $B_s$. Assuming $n$ as the last minute of gameplay of a given subject in a game, by comparing the values at $t=0$ (first minute of the gameplay, perceived as boring) and $t=n$ (last minute of gameplay, perceived as stressful) in the Mushroom game, 19 subjects (95\%) presented $V^{M,n}$ greater than $V^{M,0}$. The same comparison regarding the Platformer game indicates that 16 subjects (84.2\%) had higher $V^{P,n}$ than $V^{P,0}$. In the Tetris game 13 subjects (65\%) presented higher $V^{T,n}$ than $V^{T,0}$.
+
+As previously mentioned, our null hypothesis is that the true difference in means between $V$ at the last minute of gameplay ($t=n$) and at the second minute of gameplay ($t=1$) is less than or equal to zero. Table \ref{table:proof} shows the mean of the differences of a one-tailed paired t-test on the values of $V^{g,n}$, i.e. last minute of gameplay for a given game $g$, and $V^{g,1}$, i.e. second minute of gameplay for a given game $g$, for all games and subjects. Results indicate the difference is greater than zero with statistical significance for all games. For the Mushroom game, the mean of the differences between the last ($V^{M,n}$) and the second ($V^{M,1}$) minutes of gameplay is $6.11$ bpm ($p < 0.001$). For the Platformer game, the mean of the differences of $V^{P,n}$ and $V^{P,1}$ is $5.1$ bpm ($p < 0.001$). Finally, for the Tetris game, the mean of the differences of $V^{T,n}$ and $V^{T,1}$ is $3.33$ bpm ($p < 0.001$). Those numbers reject the null hypothesis, thus supporting our experimental hypothesis that the HR mean during the last minute of gameplay is greater than the HR mean during the second minute of gameplay, for all games.
+
+In order to further explore the mean variation of HR at key periods other than the ones in our hypothesis, we calculated the mean of the differences involving $V^{g,0}$, $V^{g,1}$, $V^{g,n}$ and $V^{g,n-1}$, for all games and subjects. Results are shown in Table \ref{table:mean}. $V^{g,0}$ and $V^{g,1}$ are the values of $V$ for a given game $g$ during the first and the second minute of gameplay, respectively. $V^{g,n}$ and $V^{g,n-1}$ represent the values of $V$ for a given game $g$ during the last and the immediately before the last minute of gameplay, respectively. As previously mentioned, the value of $n$, the last minute of gameplay, is different for each subject since subjects might have been defeated by the game at different moments due to personal skill levels.
+
+In the first two minutes of gameplay ($t=0$ and $t=1$), the mean of the differences between $V^{g,1}$ and $V^{g,0}$ is negative for all games. The mean of the differences is $-0.87$ bpm for the Mushroom game ($V^{M,1}$ and $V^{M,0}$), $-1.31$ bpm for the Platformer game ($V^{P,1}$ and $V^{P,0}$) and $-1.71$ bpm for the Tetris game ($V^{T,1}$ and $V^{T,0}$). Those numbers suggest a higher HR mean during the first minute of the games ($t=0$) than during the second minute ($t=1$). At the last two minutes of gameplay ($t=n$ and $t=n-1$), the mean of the differences between $V^{g,n}$ and $V^{g,n-1}$ is positive for all games. The mean of the differences is $2.39$ bpm for the Mushroom game ($V^{M,n}$ and $V^{M,n-1}$), $2.57$ bpm for the Platformer game ($V^{P,n}$ and $V^{P,n-1}$) and $1.22$ bpm for the Tetris game ($V^{T,n}$ and $V^{T,n-1}$). Those numbers suggest a higher HR mean during the last minute of the game ($t=n$) compared to the penultimate minute ($t=n-1$).
+
+Regarding the last ($t=n$) and the first ($t=0$) minutes of gameplay, the mean of the differences between $V^{g,n}$ and $V^{g,0}$ is $5.23$ bpm for the Mushroom game ($V^{M,n}$ and $V^{M,0}$), $3.78$ bpm for the Platformer game ($V^{P,n}$ and $V^{P,0}$) and $1.62$ bpm for the Tetris game ($V^{T,n}$ and $V^{T,0}$). Regarding the penultimate ($t=n-1$) and the second ($t=1$) minutes of gameplay, results show that the mean of the differences between $V^{g,n-1}$ and $V^{g,1}$ is $3.71$ bpm for the Mushroom game ($V^{M,n-1}$ and $V^{M,1}$), $2.52$ bpm for the Platformer game ($V^{P,n-1}$ and $V^{P,1}$) and $2.1$ bpm for the Tetris game ($V^{T,n-1}$ and $V^{T,1}$). Both sets of numbers suggest a higher HR mean during the last minute of the game ($t=n$) compared to the first minute ($t=0$), as well as a higher HR mean during the penultimate minute of gameplay ($t=n-1$) compared to the second minute ($t=1$).
+
+\subsection{Discussion}
+
+A number of subjects presented a higher value for $V$, the relativized HR mean coefficient, towards the end of the Mushroom and the Platformer games when compared to the same period of the Tetris game, as shown by Table \ref{table:hr}. Both the Mushroom and the Platformer game were completely new to the subjects, since they were developed exclusively for the experiment. For the self-reported 5-point Likert scale regarding familiarity with the games/genres, the mean value was 2.75 for the Mushroom, 2.8 for the Platformer and 3.35 for the Tetris game (5 being extremely familiar). Such numbers could indicate that subjects were less likely to predict what was going to happen in the Mushroom and the Platformer when compared to the Tetris game. It could explain the greater number of subjects with higher $V$ during the end (stressful) part of those two games when compared to the smaller number of subjects with higher $V$ at the end of Tetris. The later is a popular game and subjects were more familiarized with it, so they might be more likely to guess what is about to happen in the game, reducing anxiety levels. This is specially true if the subject is trained to deal with the inherent stress of the mechanic, for instance.
+
+A significant number of subjects presented a negative value for $V$ in some periods. In total 16 subjects (80\%) in the Mushroom game, 11 (57.8\%) in the Platformer and 12 (60\%) in the Tetris game presented negative values. A negative value indicates that the subjects had a lower HR mean while playing the game at specific periods than while resting. After the experiment, some subjects reported discomfort during the resting period, mentioning that it was too long and boring. We believe the resting period might have been stressful for some subjects, as they were required to rest while being seated without any entertainment, e.g. mobile phones. Another explanation for such negative values is that our calculation of the subject's baseline $B_s$ might be a weak approximation of the real HR mean of each subject during rest, since we only measured two 140-seconds long resting situations for each subject. We believe, however, that our baseline calculation is still a good parameter, since the average difference between the mean HR of the two resting periods was significantly low, as explained in Section \ref{s:methodology}.
+
+Regarding the confirmation of our hypothesis, the mean of the differences between $V$ at the last ($t=n$) and the second ($t=1)$ minutes of gameplay, presented in Table \ref{table:proof}, shows statistical significance in the difference for all games. It reinforces findings of previously mentioned works \parencite{vandeput2009heart, garde2002effects, bousefsaf2013remote, rodriguez2015vr, yamakoshi2007preliminary} which indicate that HR tends to be higher (above the subject's baseline) during stressful moments and lower (closer to subject's baseline) during boring moments in a gaming context. As previously described, the reason why we used $t=1$ (second minute of gameplay) instead of $t=0$ (first minute of gameplay) for our main comparison is because we believe the first minute of all games might not be ideal for a fair comparison. During the first minute, subject are less likely to be in their usual neutral emotional state. Such line of reasoning is supported by the exploratory analysis of the mean of the differences of $V$ at periods other than the ones used in our hypothesis, as presented in Table \ref{table:mean}. In the beginning of the games, the HR mean during $t=0$ (0:00 to 1:00) was higher than during $t=1$ (1:01 to 2:00) for all three games. It could indicate that subjects were more stimulated at the very beginning, probably caused by the excitement of the initial contact with a game to be played. We believe that such difference during $t=1$ and $t=0$ could also be explained as a response to the fact that subjects probably understood the game mechanic. During the first minute of gameplay, subject are probably still working to understand the game, so an opinion regarding boredom is still being formed. After the one minute mark, subject are more likely to have fully understood the game, so they could judge it was boring. Additionally, a better understanding of the mechanic combined with the fact that subjects were not allowed to change the game pace, e.g. to make it more interesting, probably increased the feeling of boredom.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Limitations}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+One potential limitation of our work is the internal validity. As previously described, the experiment was based on a one-group posttest design, which does not use a control group to measure the effects of the treatment. Such design could be criticized for having low internal validity, since it is not possible to unambiguously attribute cause and effect \parencite{kirk1982experimental}. A two-group approach could be suggested as having stronger internal validity, since it contains a control group and allows a less ambiguous conclusion. In the context of our research, however, any multiple group design implies the comparison of physiological signals and emotional perceptions among different people. Given the social and cultural background of the participants, it is virtually impossible to compare two groups of people regarding stress/boredom. People have different preferences, culture and expectations, which cause maturation and history threats to internal validity \parencite{trochim2001research}. Additionally the process of comparing variations of physiological signals among different subjects is a complex task, even when subjects are similar, e.g. same age and sex. As a consequence, a subject in a control group might present a set of variations of signals and classify a game as boring, while a similar subject in another group might classify the same game as not boring at all, presenting a different set of variations of signals. In that light, our experiment relies on a one-group experimental design to increase internal validity, since subjects were compared with themselves, which removes inter-subject differences.
+
+\subsection{Conclusions}
+
+This paper presented the description and results of an experiment aimed at exploring the variations of heart rate (HR) and facial actions (FA) during gaming sessions with induced boredom and stress. In total twenty adults of different ages and gaming experiences participated in the experiment, where they played three different games while being recorded by a video camera and monitored by a HR sensor. The games used in the experiment were carefully designed and implemented to have a difficulty level that linearly increases over time, from a boring to a stressful point. According to self-reported answers in post-games questionnaires, participants perceived the games as being boring at the beginning and stressful at the end. Such configuration gives our experiment a novel approach for the exploration of HR and FA regarding their connection to emotional states, since information can be categorized according to the induced (and theoretically known) emotional states.
+
+The HR data related to the game session of each subject was divided in periods of 1 minute each, whose HR mean was calculated and compared to a baseline value obtained from the HR mean of the subject during rest. Based on the self-reported answers regarding stress and boredom, we analysed the HR mean at specific periods, such as the second minute of gameplay (perceived as boring) and the last minute of gameplay (perceived as stressful). Our results indicate that the average HR mean for all subjects during the last minute of gameplay was greater than the average HR mean during the second minute of gameplay, for all games with statistical significance ($p<0.001$). Our findings are aligned with and reinforce previous research that indicate higher HR mean during stressful situations in a gaming context. The design of our games permitted a more elaborated analysis of boring and stressful periods, which contributes information regarding variations of HR mean during such conditions in gaming sessions. Additionally we performed an exploratory investigation regarding HR mean during other key periods in the games, e.g. first and penultimate minutes of gameplay. Further analysis is still required, however our numbers suggest that the average HR mean during the first minute of gameplay was greater than during the second minute of gameplay, probably as a consequence of unusual excitement during the first minute, e.g. the idea of playing a new game.
+
+Our findings suggest that changes in the HR during gaming sessions is a promising indicator of stress, which could be incorporated into a model aimed at emotion detection. As pointed out by previous work, a user-tailored model based on several signals, e.g. HR and FA, is more likely to detect emotional states of users. In the context where the measurement of physiological signals by physical and contact-based sensors is intrusive or not desired, e.g. remote estimation of HR, information from different channels is required. One of such additional channels of information might be facial expressions, such as the FA analysis performed in this paper. For the context of our experiment, FA analysis on an individual level produced more information to connect FA and stress/boredom emotional states. We believe that this paper contributes with information regarding HR and FA in the context of games, which can be combined to create user-tailored models for emotion detection based on different data sources.
