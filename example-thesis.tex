@@ -14,6 +14,11 @@
 % Import functionality for "own publications" page
 \usepackage{hisownpublications}
 
+% For image manipulation
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
 % For generating dummy text.
 % Only necessary for the example document, remove for "real dissertations"
 \hyphenation{vesti-bulum sce-leris-que}
@@ -44,16 +49,16 @@
 \setcounter{page}{1}% Start page numbers from '1'
 \pagestyle{headings}
 
-%\input{texts/introduction}
-%\input{texts/method}
+\input{texts/introduction}
+\input{texts/method}
 \part{Literature review}
 \input{texts/literature}
 \part{Experiments}
 \input{texts/experiment1}
-\part{Outcomes and implications}
-\input{texts/tool}
-\input{texts/closing}
-\input{texts/appendix}
+%\part{Outcomes and implications}
+%\input{texts/tool}
+%\input{texts/closing}
+%\input{texts/appendix}
 
 \begin{fullarticles}
 %\fullarticle{bergmarklund2013gamesformaleducationalsettings}{manual.pdf}
