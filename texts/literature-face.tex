@@ -26,16 +26,15 @@ Gaze direction & &\\
 \label{table:stress-facial-features}
 \end{table}
 
-There have been reports indicating that blinking increases with emotional arousal, including stress and anxiety levels \parencite{dinges2005optical}. Gaze direction, gaze congruence and the size of the gaze-cuing effect are also influenced by the level of anxiety or stress \parencite{staab2014influence}. Similarly mouth activity is influenced by conditions of stress, particularly lip movement \parencite{dinges2005optical} and asymmetric lip deformation \parencite{metaxas2004image}. Finally the frequency of mouth openenings has been measured as inversely proportional to the stress level under high cognitive load \parencite{liao2005decision}.
+There are indications that blinking increases with emotional arousal, including stress and anxiety levels \parencite{dinges2005optical}. Gaze direction, gaze congruence and the size of the gaze-cuing effect are also influenced by the level of anxiety or stress \parencite{staab2014influence}. Similarly mouth activity is influenced by conditions of stress, particularly lip movement \parencite{dinges2005optical} and asymmetric lip deformation \parencite{metaxas2004image}. Finally the frequency of mouth openenings has been measured as inversely proportional to the stress level under high cognitive load \parencite{liao2005decision}.
 
-Regarding facial expressions, most of the works in the literature focus on detecting or classifing emotional states based on the six basic emotions proposed by \textcite{ekman1971constants}, i.e. happiness, surprise, sadness, fear, anger and disgust. The process usually involves the mapping of such emotion from facial Action Units (AU), which are indenfigied according to schemes such as the Facial Action Coding System (FACS) \parencite{ekman1977facial,cohn2007observer}. FACS aims to standardize the measurements of facial expression by defining highly regulated procedural techniques to detect facial actions/movements, which are decomposed into 46 different AUs anatomically related to facial muscles. When analyzed in defined contexts, such mapped actions can present a correlation between determined facial features and emotional states, e.g. stress and boredom.
-
-The following sections present in more detail works related to face detection, including the analysis and relation to emotional states.
+Different approaches have been used to connect facial analysis to emotional states of users. Initiatives include manual or automated face detection, use of machine learning models to map facial features to emotions and so on. The following sections present in more detail works related to face detection, including the approch used for analysis and connection to emotional states.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Automated face detection}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The automated detection of faces is performed by techniques of Computer Vision, a subarea of Computer Graphics, whose aim is to make computers perceive the world in a similar way that humans do. Computer vision systems usually rely on image processing, artificial intelligence (e.g. machine learning) and decision making techniques to detect and classify objects from images or videos. A class of such objects is human faces, detected and analyzed by a process called facial alignment.
+
+A significant number of works in the literature use automated face dection techniques based on Computer Vision. Computer vision systems usually rely on image processing, artificial intelligence (e.g. machine learning) and decision making techniques to detect and classify objects from images or videos. A class of such objects is human faces, detected and analyzed by a process called facial alignment.
 
 \begin{figure}[h]
     \centering
@@ -54,7 +53,7 @@ The Constrained Local Model (CLM) approach consists of locating a set of points 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.6\linewidth]{figures/clm-model-variation.jpg}
+    \includegraphics[width=0.5\linewidth]{figures/clm-model-variation.jpg}
     \caption{Configuration of the shape models with different variations \parencite{yu2010facial}.}
     \label{fig:clm-model-variation}
 \end{figure}
@@ -89,7 +88,7 @@ The shape-indexed features are differences in pixel intensities. The calculation
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.6\linewidth]{figures/shape-indexed.png}
+    \includegraphics[width=0.5\linewidth]{figures/shape-indexed.png}
     \caption{Pixels used in the calculation of a shape-indexed feature \parencite{maris2015}.}
     \label{fig:shape-indexed}
 \end{figure}
@@ -108,30 +107,19 @@ Different variations are used to handle the training, the extraction of features
 \section{Facial-based emotion prediction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Detection based on facial expressions}
+Works involving facial-based emotion prediction commonly focus on detecting or classifing emotional states based on the six basic emotions proposed by \textcite{ekman1971constants}, i.e. happiness, surprise, sadness, fear, anger and disgust. The process usually involves the mapping of such emotion from facial Action Units (AU), which are indentified according to schemes such as the Facial Action Coding System (FACS) \parencite{ekman1977facial,cohn2007observer}. FACS aims to standardize the measurements of facial expression by defining highly regulated procedural techniques to detect facial actions/movements, which are decomposed into 46 different AUs anatomically related to facial muscles. When analyzed in defined contexts, such mapped actions can present a correlation between determined facial features and emotional states, e.g. stress and boredom.
 
-\textcite{bailenson2008real} present a machine learning model built from the previously mentioned idea of combining facial expressions and physiological signals to predict emotion (sadness or amusement). Subjects are recorded by a camera while they watched a video composed of segments of different emotions (neutral, amusement and sadness). Additionally 15 physiological signals are also recorded, among them HR, skin conductance level and finger temperature. The video recordings are annotated by professional coders; the annotated video frames are used in conjunction with the physiological signals to produce the predicting model. The authors compare the performance of models built from different data sources, such as the data from all subjects (general model), from the female/male population (gender-specific model) or from a single individual (person-specific model). The model performs better when categorizing emotions instead of predicting its intensities and when detecting amusement instead of sadness. Additionally the pinserson-specific model outperformes the other two variations, suggesting that a person-tailored model might be more effective in identifying features (even the more subtle ones) than a general-purpose model. The results also state that a model built from a combination of facial and physiological information is more efficient than a model built with either one alone.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{figures/samara2016sensing-distances.png}
+    \caption{Distance-based facial feature descriptors. Left: detected facial landmarks. Right: highlight of the distance among facial landmarks. Reproduced from \parencite{samara2016sensing}.}
+    \label{fig:distance-samara}
+\end{figure}
 
-\textcite{grafsgaard2013automatically} present an experiment where only facial expression information is used. The experiment is an automated analysis of FA during computer mediated tutoring sessions among students. Subjects and tutors interact through a tutoring software related to computer programming, while subjects are recorded. After each session, subjects answer a questionnaire related to measurements of cognitive load and engagement. The recordings are analyzed in an automated way with manual verification of the results. A predictive model is constructed using the questionnaire answers and the recording analysis, which results in correlations of FA and emotional states. The authors compare their findings against other research, which differ significantly. For instance, brow lowering has been correlated with confusion in previous work, however the authors found that it was a positive predictor of student frustration in the context of their experiment. Such difference in results is expected due to the variational nature of facial expressions among different individuals and contexts, however it underlines the complexity of correlating facial features and emotions. \textcite{heylen2005facial} also present a similar investigation in a pilot experiment of a tutoring session related to the application of subcutaneous injection. Students interact with a virtual patient while using a physical haptic device to administrate an injection. The recordings of the students are analyzed by the researchers to make annotations of the expressions based on their own interpretation of the context. The researchers use a compilation of literature components to guide the evaluation of the collected data. As the authors point out, a variety of expressions occur, but most of the time students remain with a neutral facial expression. The annotated features are (ordered from most to less frequent): smile (total 22), raise eyebrows (11), pull down mouth corners (2) and frown (1).
+\textcite{grafsgaard2013automatically} present an experiment where only facial expression information is used. The experiment is an automated analysis of facial AU during computer mediated tutoring sessions among students. Subjects and tutors interact through a tutoring software related to computer programming, while subjects are recorded. After each session, subjects answer a questionnaire related to measurements of cognitive load and engagement. The recordings are analyzed in an automated way with manual verification of the results. A predictive model is constructed using the questionnaire answers and the recording analysis, which results in correlations of facial AU and emotional states. The authors compare their findings against other research, which differ significantly. For instance, brow lowering has been correlated with confusion in previous work, however the authors found that it was a positive predictor of student frustration in the context of their experiment. Such difference in results is expected due to the variational nature of facial expressions among different individuals and contexts, however it underlines the complexity of correlating facial features and emotions. \textcite{heylen2005facial} also present a similar investigation in a pilot experiment of a tutoring session related to the application of subcutaneous injection. Students interact with a virtual patient while using a physical haptic device to administrate an injection. The recordings of the students are analyzed by the researchers to make annotations of the expressions based on their own interpretation of the context. The researchers use a compilation of literature components to guide the evaluation of the collected data. As the authors point out, a variety of expressions occur, but most of the time students remain with a neutral facial expression. The annotated features are (ordered from most to less frequent): smile (total 22), raise eyebrows (11), pull down mouth corners (2) and frown (1).
 
 %As opposed to previously mentioned works, our approach consists of using induced boring to stressful mechanics in games to produce variations in the emotional state of participants. Our experiment has a linear progression from a boring to a stressful state that should be perceived by the subjects. We believe such configuration gives our experiment a novel approach for the exploration of facial actions and HR regarding their connection to emotional states, since we can categorize information according to the induced (and theoretically known) emotional states. To the best of our knowledge, this is the first experiment where games with linear boring-to-stressful progression are used to deliberately induce emotional reactions.
 
-\subsection{Detection based on facial movement}
+Differently than previously mentioned works, initiatives aim to detect emotions based on the analysis of facial landmarks and their distances or changes originated during movement. \textcite{joho2009exploiting} uses facial analysis for affective video summarisation. The authors use an automated face tracking approach to obtain a vector of motion features of certain regions of the face, named Motion Units (MU). MUs are classified by a Bayesian network, which is trained from labeled data. Results indicate promicing correlation between the manually annotated content of the videos and the automatically classified one. Somewhat similarly \textcite{akakin2010spatiotemporal} detects facial landmarks over consecutive frames of videos, whose trajectories (time series) during head gestures and facial expressions are organized in a spatiotemporal matrix. Discriminative features are extracted from the trajectory matrix, which are used to train machine learning models, i.e. Adaboost and SVM. Classification accuracy is reported to be around 90\% for the detection of 7 face and head gestures in a datased composed of 210 videos of 4 subjects). The detection of emotions, however, is limited to only two states, i.e. hapiness and sadness.
 
-\textcite{giannakakis2017stress} present an approach for detection of stress/anxiety based on eye blink, mouth/head movements and HR.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\linewidth]{figures/giannakakis2017stress-eye.png}
-    \caption{Highlight of average distance calculation regarding eye apperture \parencite{giannakakis2017stress}.}
-    \label{fig:distance-samara}
-\end{figure}
-
-\textcite{samara2016sensing} use Euclidian distance among face points to train an SVM model to detect expressions.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\linewidth]{figures/samara2016sensing-distances.png}
-    \caption{Distance-based facial feature descriptors \parencite{samara2016sensing}.}
-    \label{fig:distance-samara}
-\end{figure}
+Finally \textcite{samara2016sensing} present the sensing of affective states based on the analysis of the distances of facial landmarks. Automated face detection is employed to detect facial landmarks, however no coding scheme is used to identify the detected points. Instead the authors use the Euclidian distance among facial landmarks, represented as distance vectors, to train a SVM model to detect expressions. Figure \ref{fig:distance-samara} illustrated the process. Detection accuracy is improved by a two-state SVM classification model, entitled by the authors as Hierarchical Parallelised Binary Support Machines (HPBSVM). Accuracy rates of about 96\% were achieved on two facial expression datasets.
