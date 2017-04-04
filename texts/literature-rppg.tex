@@ -1,19 +1,22 @@
 \chapter{Remote photoplethysmography}
 
-Physical photoplethysmographic (PPG) is a technique commonly used to measure HR based on the variations of light absortion in the human skin. The pressure of the cardiac activity causes the blood vessels to change volume and light absorbtion rate because of the levels of oxigen in the blood flow. Such differences make the light absorption on the skin surface change accordingly. PPG is a time-varying signal resulted from such differences in the light absorption in live human tissue, which can be processed to calculate the HR. It requires a physical sensor, e.g. finger pressor, in order to perform the measurements.
+Photoplethysmography (PPG) is a technique commonly used to measure HR based on the variations of light absortion in the human skin. The pressure of the cardiac activity causes the blood vessels to change volume and light absorbtion rate because of the levels of oxigen in the blood flow. Such differences make the light absorption on the skin surface change accordingly. PPG is a time-varying signal resulted from such differences in the light absorption in live human tissue, which can be processed to calculate the HR. The process is illustrated in Figure \ref{fig:ppg}. The employment of PPG requires a physical sensor, e.g. finger pulse oximeter, in order to be performed.
 
-% TODO: add figure of Chwyl_Brendan, page 7, Figure 2.2 about PPG devices.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{figures/ppg.png}
+\caption{General structure of a physical photoplethysmographic system. Adapted from \textcite{chwyl2016statistical}.}
+\label{fig:ppg}
+\end{figure}
 
-Further research on PPG \parencite{mcduff2015survey} evolved the technique to allow it to be performed remotely based on the analysis of a video of a person, which removes the requirement of a sensor or any physical contact. The remotely measurement of HR by analyzing a video of a subject is known as remote photoplethysmography (rPPG) \parencite{allen2007photoplethysmography}.
+Further research on PPG \parencite{mcduff2015survey} evolved the technique to allow it to be performed remotely based on the analysis of a video of a person. The remote approach is commonly refered in the literature as remote photoplethysmography (rPPG)  \parencite{allen2007photoplethysmography}. Such improvement removed the requirement of a physical sensor or any physical contact for the estimation of HR and its derivates. A literature review shows the existence of a variety of different rPPG approaches, including thermal-, image-, and movement-based ones \parencite{kranjec2014non, Sereevoravitgul}. The following sections present the common structure of an rPPG technique, a survey of existing rPPG techniques and information regarding accuracy and limitations of such technology.
 
-rPPG-based methods for HR measurement are tools that can be used by the HCI community, particularly in games research.
-
-A literature review shows a variety of different approaches regarding HR and HRV, including thermal-, image-, and movement-based ones \parencite{kranjec2014non, Sereevoravitgul}. The following sections present the common structure of an rPPG technique, a survey of existing rPPG techniques and information regarding accuracy and limitations of such technology.
+%rPPG-based methods for HR measurement are tools that can be used by the HCI community, particularly in games research.
 
 %The use of physiological signals to infer information about users is a recurrent research topic \parencite{kivikangas2011review,jerritta2011physiological, kukolja2014comparative}. However the methods employed to obtain such signals are commonly based on physical contact, e.g. ECG, and few initiatives have been carried out relying on non-contact approaches, e.g. rPPG. In the computer vision domain, on the other hand, an increasing number of works is concerned with creating new (or improving already existing) techniques for rPPG. To provide an introduction for readers unfamiliar with rPPG, we introduce its general structure and the core techniques in the field. Additionally we present works involving physiological signals, in particular HR, and game-related materials commonly used for detection of emotional states of users.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Structure of an rPPG technique}
+\section{Structure of the technique}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 There exist initiatives to classify \parencite{rouast2016remote, mcduff2015survey} and formally model the algorithmic principles \parencite{Wang_2016algorithmic} of rPPG techniques. In that light, \textcite{rouast2016remote} propose a general algorithm framework composed of three phases that are common to all rPPG techniques (see Figure \ref{fig:rppg}): signal extraction, signal estimation and heart rate estimation.
@@ -48,13 +51,11 @@ Finally the estimated plethysmographic signal is analyzed and the HR is extracte
 In the peak detection step, however, the signal is not converted into the frequency domain, instead it is interpolated and peaks are detected (usually with a local maxima algorithm). The distances among the peaks correspond to the inter-beat interval (IBI), which is then used to calculate the HR (as $60/\overline{IBI}$) and/or the heart rate variability (HRV).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{rPPG techniques}
+\section{Consolidated techniques}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The previously described general algorithm framework for rPPG techniques illustrates the wide range of variations possible by different combinations of approaches within each step of the process. Early initiatives regarding rPPG, for instance, used manually detected/defined ROI, few or no use of signal filtering and signal extraction based on the average of image brightness \parencite{takano2007heart} or colors \parencite{verkruysse2008remote}.
 %Additionally the authors presented findings regarding the process: PPG signal is stronger in the green channel of an RGB video, which is aligned with the fact that hemoglobin absorbs green light better; each pixel in the ROI contributes to the HR signal detection, which implies that the selection/size of the ROI is not critical for HR determination; lighter areas in the video often feature a higher pulse signal; and the PPG signal obtained from facial regions, specially the forehead, are stronger than other body parts.
-
-%Regarding the image-based techniques, they do not require specialized hardware to be performed, so an ordinary RGB camera can be used. It has been proved \parencite{sun2012noncontact} that the low sample frequency of a camera (e.g. 20 fps) can be compensated in the PPG signal detection by using interpolation to improve time domain resolution. The loss of PPG data in a reduction of sample frequency from 200 to 20 fps, for instance, is negligible.
 
 The work of \textcite{poh2010non} was the first in the field to rely on BSS. The authors extracted the signal using automatic definition/tracking of the ROI (based on 60\% width of a VJ bounding box) and the average of the color channels. The three raw signals (derived from R, G and B) were filtered, detrended and decomposed using ICA. The second component generated by ICA was interpolated and a custom algorithm detected peaks to identify the HR. The authors further improved the technique by selecting the ICA component whose power spectrum contained the highest peak \parencite{poh2011advancements} and by incorporating alternate frequency bands (i.e. orange and cyan) into the extraction phase \parencite{mcduff2014improvements}.
 
@@ -71,35 +72,30 @@ The different settings in each phase of an rPPG technique result in a trade-off 
 \section{Accuracy and limitations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The structure of rPPG techniques, as previously described, requires the analysis of each frame of a video to estimate the HR. As a consequence, any rPPG technique is influenced by the frame rate of the video, which accounts for the number of frames displayed per second (expressed in frames per second, or FPS), the resolution of each of those frames and the number of subsequent frames required to allow an estimation. Additionally rPPG techniques are influenced by natural movements of users, such as facial expressions and head movement.
+The structure of rPPG techniques, as previously described, requires the analysis of each frame of a video to estimate the HR. As a consequence, any rPPG technique is influenced by the frame rate of the video, which accounts for the number of frames displayed per second (expressed in frames per second, or FPS), the resolution of each of those frames and the number of subsequent frames required to allow an estimation.
 
-The following sections present and discuss topics related to accuracy and limitations of rPPG techniques.
-
-\subsection{Sampling frequency and estimation error}
-
-The FPS of the video used in the estimation is directly connected to the sampling frequency, named $F_s$. Assuming that all frames of a video are used by an rPPG technique, a video running at 30 FPS allows a $F_s$ of 30 Hz, since each frames generates a sample. The minumum FPS required for the estimation must adhere to the Nyquist limit, which states that the sampling frequency must be at least twice as high as the highest frequency being measured:
+The frame rate of the video used in the estimation is directly connected to the sampling frequency, named $F_s$. Assuming that all frames of a video are used by an rPPG technique, a video running at 30 FPS allows a $F_s$ of 30 Hz, since each frames generates a sample. The minumum FPS required for the estimation must adhere to the Nyquist limit, which states that the sampling frequency must be at least twice as high as the highest frequency being measured:
 
 \begin{equation*}
     F_s \geq 2 \cdot f_{Max}
 \end{equation*}
 
-where $f_{Max}$ denotes the highest frequency being measured. Since rPPG techniques are applied to estimate the HR, the value for $f_{Max}$ can be derived from the frequency interval of the HR. As previously described, a normal person presents a HR between the interval [45 bpm, 240 bpm], which is equivalent to the interval of [0.75 Hz, 4 Hz]. As a consequence, $f_{Max}$ is 4Hz (240 bpm) and $F_s$ is calculated as $F_s \geq 2 \cdot 4$, resulting in a minumum $F_s$ of 8 Hz, which requires a video of 8 FPS.
+where $f_{Max}$ denotes the highest frequency being measured. Since rPPG techniques are used to estimate HR, the value for $f_{Max}$ can be derived from a valid HR frequency interval. As previously described, a normal person presents a HR between the interval [45 bpm, 240 bpm], which is equivalent to the interval of [0.75 Hz, 4 Hz]. As a consequence, $f_{Max}$ is 4Hz (240 bpm) and $F_s$ is calculated as $F_s \geq 2 \cdot 4$, resulting in a minumum $F_s$ of 8 Hz, which translates to a video with frame rate of 8 FPS.
 
-A fourier transform, e.g. FFT, is usually employed in rPPG techniques. An FFT divides the frequency spectrum of the input signal into $N$ number of discrete frequency blocks equal to the number of samples in the input signal. The number of samples $N$ used for the estimation is commonly refered to as window size. The smallest frequency that can be differentiated within that spectrum is named frequency resolusion, $\Delta f$, which is calculated as:
+A fourier transform, e.g. FFT, is usually employed in rPPG techniques. The FFT divides the frequency spectrum of the input signal into $N$ number of discrete frequency blocks equal to the number of samples in the input signal. The number of samples $N$ used for the estimation is commonly refered to as window size. The smallest frequency that can be differentiated within that spectrum is named frequency resolusion, $\Delta f$, which is calculated as:
 
 \begin{equation}
     \Delta f = \frac{F_s}{N}
     \label{eq:frequency-resolution}
 \end{equation}
 
-The frequency resolution $\Delta f$ influences the error rate in the estimation of the HR. For instance, if $\Delta f$ is 0.1 Hz, the HR will be estimated with an error of $\pm 3$ bpm. A low HR estimation error is desired, so a low value for $\Delta f$ is desired as well. By analysis of equation \ref{eq:frequency-resolution}, it is noted that $\Delta f$ descreases when $F_s$ descreases or when the $N$ increases.
+The frequency resolution $\Delta f$ influences the error rate in the estimation of the HR. For instance, if $\Delta f$ is 0.1 Hz, the HR will be estimated with an error of $\pm 3$ bpm. A low HR estimation error is desired, so a low value for $\Delta f$ is desired as well. By analysis of equation \ref{eq:frequency-resolution}, it is noted that $\Delta f$ descreases when $F_s$ descreases or when $N$ increases.
 
-The value for $F_s$ is usually dependent on the camera device being used, which follows certain standards, e.g. 30FPS. As a consequence, $\Delta f$ can be altered by changes on the window size $N$. Such changes, however, directly impact the estimations, since there is trade-off between the window size and the estimation error. The higher the window size, the longer the video segment required for the estimation. Longer video segments are likely to contain movement of the subject being analyzed, which adds noise to the rPPG estimation.
+The value for $F_s$ is usually dependent on the camera device being used, which follows certain standards, e.g. 30 FPS. As a consequence, $\Delta f$ can be altered by changes on the window size $N$. Such changes, however, directly impact the estimations, since there is a trade-off between the window size and the estimation error. The higher the window size, the longer the video segment required for the estimation. Longer video segments are likely to contain movement of the subject being analyzed, which adds noise to the rPPG estimation.
 
 \textcite{roald2013estimation} presents this trade-off by detailing the frequency resolution as a function of window size and video frame rate, as demonstrated in Table \ref{table:frequency-resolution}.
 
 \begin{table}[h!]
-%\renewcommand{\arraystretch}{1.3}
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|}%
 \hline%
@@ -127,20 +123,4 @@ Window size & 10 FPS & 15 FPS & 25 FPS & 30 FPS & 50 FPS & 60 FPS \\
 \label{table:frequency-resolution}
 \end{table}
 
-As an example, assuming a video of 50 FPS and a frequency resolution of 0.07 Hz (which corresponds to an estimation error of $\pm 2.1$ bpm), a window size of 700 samples is required (equivalent of a video segment of 14 seconds).
-
-\subsection{Natural behavior and emotion stimuli}
-
-, however its reliability within a context involving natural behavior must be checked. The methods are sensitive to noise caused by movement, facial expressions or changes in illumination (e.g. screen activity reflected on user's face), which are all likely to happen in such sessions with natural behavior. Those interferences might produce unreliable measurements of the HR signal, resulting in misleading investigations. It is important to establish the reliability of remote HR measurements under situations with natural behavior, where users are not instructed to behave differently than what they usually do. In that light this paper presents an analysis of the remotely obtained HR signal of users within such natural context. We developed a set of casual-themed, similar to off-the-shelf games that were carefully designed to present stressful and boring moments, which should induce players to present variations of HR. During the gaming sessions, the player's HR signal was remotely estimated using the work by \textcite{poh2011advancements}, an established rPPG technique for HR estimation. A physical sensor was used as ground truth. A comparison and analysis of the accuracy of remote HR estimations are presented and discussed. The main contribution of this paper is the accuracy evaluation of an established rPPG technique within the context of gaming sessions where users behave naturally instead of following movement constraint rules, e.g. remain still. Our results provide researchers with information related to the reliability of a remote HR measurement technique when applied to contexts where users behave more naturally
-
-The use of remote measurement of physiological signals, such as rPPG, has already been applied to emotion detection. Signals as HR and HRV were used to remotely detect stress \parencite{mcduffcogcam, mcduff2014improvements, bousefsaf2013remote}, for instance. Since the estimations of rPPG techniques are significantly affected by external noise, e.g. subject's movement, experimental results are usually accompanied by accuracy evaluations regarding the estimations of the employed rPPG technique. In the majority of the cases, subjects are typically instructed to stay still \parencite{rouast2016remote}, which improves the accuracy of the rPPG technique. In some other cases, however, authors evaluate the accuracy of the HR estimation under scenarios where subjects are instructed to act naturally. Despite the fact that such works present experiments where subjects are told to behave naturally, their accuracy evaluation is based on artificial or simple human-computer interactions. Subjects are idly staring at the camera \parencite{zhao2013remote,hsu2014learning}, faking an interaction with a computer \parencite{poh2010non}, working on a task, i.e. make a website \parencite{monkaresi2014machine} or mentally subtract numbers \parencite{mcduff2014remote}, or performing arbitrary movements \parencite{tran2015robust}, e.g. head rotation in different degrees.
-
-Another important factor is the material used to produce the emotional stimuli. Subjects are not interacting with a complete digital game in any of the experiments, which hinders the accuracy evaluation of rPPG techniques within the context of games research, for instance. Authors commonly use images, videos or text as content to produce the emotional stimuli. When game-like materials are used, however, they are often gamified cognitive tests, e.g. Stroop test \parencite{golden1978stroop}. Additionally the experiment duration varies from 20 seconds to 10 minutes and the non-game stimuli content is less likely to produce the reactions of a real gaming session, for instance spontaneous body movement and facial actions.
-
-In that context, we designed and carried out an experiment focused on the accuracy evaluation of an rPPG technique applied to real gaming sessions, using custom made games as emotion stimuli. Our experiment is based on the previously mentioned findings that HR varies according to stress/frustration and that facial expressions can convey contextual information about emotional state \parencite{giannakakis2017stress}. As opposed to those previously mentioned works, in our experiment each subject spends an average of 25 minutes in the session, playing three different games that were custom-made to provoke the emotional reactions similar to off-the-shelf games. Subjects were also not instructed regarding how they should move, so body and facial reactions are likely to be the ones the subject would normally perform under a gaming context. Our approach consists of using induced boring to stressful mechanics in the games to produce variations in the emotional state and HR of participants, based on the previously mentioned findings that HR varies according to stress/frustrations. We aim to explore the accuracy of rPPG-estimated HR readings of subjects while playing under such circumstances. To the best of our knowledge, this is the first experiment to measure the accuracy of an rPPG technique with the use of three boredom/stress-inducing games with subjects behaving naturally.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Emotion estimation}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%The remote detection of HR proved a promising approach to infer boredom/stress levels \parencite{kukolja2014comparative} or cognitive stress \parencite{mcduff2014remote} of a person. Experiments regarding such approaches, however, were performed under extremely controlled situations with few game-related stimuli. A significant limitation of such approaches was that subjects were asked to remain still during the experiment. Another problem is that subjects had limited interaction with the content being presented: they performed tasks mentally (e.g. counting), watched videos/images or performed gamified cognitive tests for a short period of time. Those are artificial situations that are unlikely to happen in real-life situations, especially in a gaming session with a challenging game lasting for several minutes. In that situation, the subject will probably move and present variations of facial actions during the gaming session \parencite{bevilacqua2016variations}.
+As an example, assuming a video of 50 FPS and a frequency resolution of 0.07 Hz (which corresponds to an estimation error of $\pm 2.1$ bpm), a window size of 700 samples is required (equivalent of a video segment of 14 seconds). Additionally it has been proved that diferences in the sampling frequency, e.g. low $F_s$, can be compensated in the PPG signal detection by the use of interpolation \parencite{sun2012noncontact}.
