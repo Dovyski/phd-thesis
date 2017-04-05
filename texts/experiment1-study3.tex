@@ -1,16 +1,21 @@
 \section{Study 3: heart rate and accuracy of rPPG measurements}
 
-\subsection{Introduction}
+This study presents information regarding the accuracy evaluation of a remote photoplethysmography (rPPG) technique in a gaming context. The technique was applied to estimate the HR of subjects behaving naturally in gaming sessions with induced boredom and stress. Previous work with experiments involving emotions and rPPG were performed under extremely controlled situations with few game-related stimuli. Subjects were not interacting with a complete digital game in any of the experiments, which hindered the accuracy evaluation of rPPG techniques within the context of games research, for instance. Authors commonly used images, videos or text as content to produce the emotional stimuli, in experimental sessions lasting from 20 seconds to 10 minutes.
 
-however its reliability within a context involving natural behavior must be checked. The methods are sensitive to noise caused by movement, facial expressions or changes in illumination (e.g. screen activity reflected on user's face), which are all likely to happen in such sessions with natural behavior. Those interferences might produce unreliable measurements of the HR signal, resulting in misleading investigations. It is important to establish the reliability of remote HR measurements under situations with natural behavior, where users are not instructed to behave differently than what they usually do. In that light this paper presents an analysis of the remotely obtained HR signal of users within such natural context. We developed a set of casual-themed, similar to off-the-shelf games that were carefully designed to present stressful and boring moments, which should induce players to present variations of HR. During the gaming sessions, the player's HR signal was remotely estimated using the work by \textcite{poh2011advancements}, an established rPPG technique for HR estimation. A physical sensor was used as ground truth. A comparison and analysis of the accuracy of remote HR estimations are presented and discussed. The main contribution of this paper is the accuracy evaluation of an established rPPG technique within the context of gaming sessions where users behave naturally instead of following movement constraint rules, e.g. remain still. Our results provide researchers with information related to the reliability of a remote HR measurement technique when applied to contexts where users behave more naturally
+The aforementioned non-game stimuli content is less likely to produce the reactions of a real gaming session, e.g. spontaneous body movement and facial actions. As opposed to such works, in this study each subject spent an average of 25 minutes in the session, playing three different games that were custom-made to provoke the emotional reactions similar to a natural play session. Subjects were also not instructed regarding how they should move, so body and facial reactions are likely to be the ones the subject would normally perform under a gaming context.
 
-The use of remote measurement of physiological signals, such as rPPG, has already been applied to emotion detection. Signals as HR and HRV were used to remotely detect stress \parencite{mcduffcogcam, mcduff2014improvements, bousefsaf2013remote}, for instance. Since the estimations of rPPG techniques are significantly affected by external noise, e.g. subject's movement, experimental results are usually accompanied by accuracy evaluations regarding the estimations of the employed rPPG technique. In the majority of the cases, subjects are typically instructed to stay still \parencite{rouast2016remote}, which improves the accuracy of the rPPG technique. In some other cases, however, authors evaluate the accuracy of the HR estimation under scenarios where subjects are instructed to act naturally. Despite the fact that such works present experiments where subjects are told to behave naturally, their accuracy evaluation is based on artificial or simple human-computer interactions. Subjects are idly staring at the camera \parencite{zhao2013remote,hsu2014learning}, faking an interaction with a computer \parencite{poh2010non}, working on a task, i.e. make a website \parencite{monkaresi2014machine} or mentally subtract numbers \parencite{mcduff2014remote}, or performing arbitrary movements \parencite{tran2015robust}, e.g. head rotation in different degrees.
+The recordings of game sessions of each subject were divided in video segments of 1 minute each. The rPPG technique by Poh et al. \parencite{poh2011advancements} was applied to each of those video segments to estimate the HR of subjects. An accuracy evaluation of the estimated HR obtained from the video segments was performed in relation to the HR calculated from ground truth.
 
-Another important factor is the material used to produce the emotional stimuli. Subjects are not interacting with a complete digital game in any of the experiments, which hinders the accuracy evaluation of rPPG techniques within the context of games research, for instance. Authors commonly use images, videos or text as content to produce the emotional stimuli. When game-like materials are used, however, they are often gamified cognitive tests, e.g. Stroop test \parencite{golden1978stroop}. Additionally the experiment duration varies from 20 seconds to 10 minutes and the non-game stimuli content is less likely to produce the reactions of a real gaming session, for instance spontaneous body movement and facial actions.
+%however its reliability within a context involving natural behavior must be checked. The methods are sensitive to noise caused by movement, facial expressions or changes in illumination (e.g. screen activity reflected on user's face), which are all likely to happen in such sessions with natural behavior. Those interferences might produce unreliable measurements of the HR signal, resulting in misleading investigations. It is important to establish the reliability of remote HR measurements under situations with natural behavior, where users are not instructed to behave differently than what they usually do. In that light this paper presents an analysis of the remotely obtained HR signal of users within such natural context. We developed a set of casual-themed, similar to off-the-shelf games that were carefully designed to present stressful and boring moments, which should induce players to present variations of HR. During the gaming sessions, the player's HR signal was remotely estimated using the work by \textcite{poh2011advancements}, an established rPPG technique for HR estimation. A physical sensor was used as ground truth. A comparison and analysis of the accuracy of remote HR estimations are presented and discussed. The main contribution of this paper is the accuracy evaluation of an established rPPG technique within the context of gaming sessions where users behave naturally instead of following movement constraint rules, e.g. remain still. Our results provide researchers with information related to the reliability of a remote HR measurement technique when applied to contexts where users behave more naturally
 
-In that context, we designed and carried out an experiment focused on the accuracy evaluation of an rPPG technique applied to real gaming sessions, using custom made games as emotion stimuli.  We aim to explore the accuracy of rPPG-estimated HR readings of subjects while playing under such circumstances. To the best of our knowledge, this is the first experiment to measure the accuracy of an rPPG technique with the use of three boredom/stress-inducing games with subjects behaving naturally.
+%The use of remote measurement of physiological signals, such as rPPG, has already been applied to emotion detection. Signals as HR and HRV were used to remotely detect stress \parencite{mcduffcogcam, mcduff2014improvements, bousefsaf2013remote}, for instance. Since the estimations of rPPG techniques are significantly affected by external noise, e.g. subject's movement, experimental results are usually accompanied by accuracy evaluations regarding the estimations of the employed rPPG technique. In the majority of the cases, subjects are typically instructed to stay still \parencite{rouast2016remote}, which improves the accuracy of the rPPG technique. In some other cases, however, authors evaluate the accuracy of the HR estimation under scenarios where subjects are instructed to act naturally. Despite the fact that such works present experiments where subjects are told to behave naturally, their accuracy evaluation is based on artificial or simple human-computer interactions. Subjects are idly staring at the camera \parencite{zhao2013remote,hsu2014learning}, faking an interaction with a computer \parencite{poh2010non}, working on a task, i.e. make a website \parencite{monkaresi2014machine} or mentally subtract numbers \parencite{mcduff2014remote}, or performing arbitrary movements \parencite{tran2015robust}, e.g. head rotation in different degrees.
+
+%Another important factor is the material used to produce the emotional stimuli. Subjects are not interacting with a complete digital game in any of the experiments, which hinders the accuracy evaluation of rPPG techniques within the context of games research, for instance. Authors commonly use images, videos or text as content to produce the emotional stimuli. When game-like materials are used, however, they are often gamified cognitive tests, e.g. Stroop test \parencite{golden1978stroop}. Additionally the experiment duration varies from 20 seconds to 10 minutes and the non-game stimuli content is less likely to produce the reactions of a real gaming session, for instance spontaneous body movement and facial actions.
+
+%In that context, we designed and carried out an experiment focused on the accuracy evaluation of an rPPG technique applied to real gaming sessions, using custom made games as emotion stimuli.  We aim to explore the accuracy of rPPG-estimated HR readings of subjects while playing under such circumstances. To the best of our knowledge, this is the first experiment to measure the accuracy of an rPPG technique with the use of three boredom/stress-inducing games with subjects behaving naturally.
 
 \subsection{Analysis and methods}
+
 Firstly we divided the videos of each game session into several video segments of 60 seconds each, denoted as $V_i$, where $i \in [1, 2, ..., n]$ represents the interval (1 comprehends the time from 0:00 until 1:00, 2 comprehends the time from 1:00 until 2:00, and so on). The use of 60 seconds as the duration of each video segment is based on the work by \textcite{poh2011advancements}. Since the games have a constantly increasing difficulty level, different subjects might have played the same game for longer or shorter periods of time. As a consequence, the interval $n$ represents the last available interval for each subject and it is likely to be different among subjects. Any remaining video segment of less than 60 seconds was discarded, i.e. if the duration of a game session was not multiple of 60. We then calculated $HR_{gt}(V_i)$, which is the mean HR of a subject while playing during the video segment $V_i$, calculated from ground truth. We excluded from the calculation any HR values equal to zero assuming they were miss-readings.
 
 As previously mentioned in Section \ref{sec:related}, the rPPG technique proposed by \textcite{poh2011advancements} is consolidated, extensively mentioned in the literature and presents the best SNR for HR estimation under non-exercising situations. For those reasons, we selected such technique (refereed as the rPPG technique from now on) to perform the extraction of HR from the video segments. We calculated $HR_{video}(V_i)$, which is the estimated HR from video segment $V_i$ obtained with the rPPG technique. The evaluation of the accuracy of $HR_{video}$ when compared to $HR_{gt}$ was based on statistical methods used by previous works \parencite{poh2011advancements, rouast2016remote, li2014remote}. The measurement error is calculated as:
@@ -35,32 +40,46 @@ The selected rPPG technique was implemented in Matlab R2016a according to the or
 The implementation of the rPPG technique was validated with a procedure similar to the one described by \textcite{li2014remote}. Firstly we manually inspected all video recordings from the experiment and exerted a segment $V'_i$ of 30 seconds (1500 frames) from each video where the subject presented the least amount of body motion and facial activity. We obtained a testing set of 20 video segments of 30 seconds each, totalizing 30000 frames of data. The mean HR calculated from ground truth for the testing set was 76.8 bpm (SD 13.4 bpm, min. 55 bpm, max. 110 bpm). We then applied the rPPG technique to each of those $V'_i$ segments to estimate the HR, evaluating the estimated values using ground truth and the statistical methods previously described. Results are present in Table \ref{table:rppg-validation}. The numbers indicate the implemented rPGG technique produces accurate and statistically significant results for the estimations, which are aligned with those reported in the original paper. Therefore we assume the rPPG technique is correctly implemented and further accuracy measurements obtained during our analysis are due to subject activity, not implementation errors.
 
 \begin{table}
-%\tbl{Performance of the rPPG technique applied to the testing set}
-%{\begin{tabular}[l]{@{}ccccc}\toprule
-%  $M_e$ (bpm) & $SD_e$ (bpm) & RMSE (bpm) & $M_{eRate}$ (\%) & $r$ \\
-%\colrule
-%  -0.25 & 1.41 & 1.40 & 1.52 & 0.99* \\
-%\botrule
-%\end{tabular}}
-%\tabnote{* $p < 0.001$}
+\centering
+\begin{threeparttable}
+  %\begin{tabular*}{\textwidth}{ccccc}
+  \begin{tabular}{ccccc}
+  \toprule
+    $M_e$ (bpm) & $SD_e$ (bpm) & RMSE (bpm) & $M_{eRate}$ (\%) & $r$ \\
+  \midrule
+    -0.25 & 1.41 & 1.40 & 1.52 & 0.99* \\
+  \bottomrule
+  \end{tabular}
+  \begin{tablenotes}
+    \small
+    \item[*]{$p < 0.001$}
+  \end{tablenotes}
+\end{threeparttable}
+\caption{Performance of the rPPG technique applied to the testing set}
 \label{table:rppg-validation}
 \end{table}
 
 \subsection{Results}
 The performance of the rPPG technique regarding the extraction of the HR is presented on Table \ref{table:rppg-validation-games}. The first three rows of the table present the performance evaluation calculated with data from each game, while the last row presents the same performance evaluation calculated with data from all games combined. Regarding the analysis of all games combined, the mean estimation error $M_e$ was 2.99 bpm ($SD_e$ 18.83 bpm), RMSE was 19.03 bpm and $M_{eRate}$ was 10.31\%. The low value for $M_e$ suggests feasible overall accuracy of the technique, however the high values for $SD_e$ and $M_{eRate}$ suggest significant variation among the estimations. As demonstrated by $M_{eRate}$, which is the mean of error-rate percentage, the estimation error of the rPPG technique was equivalent to 10.31\% of the expected HR value calculated from ground truth, on average. On a game level, the mean estimation error $M_e$ was 2.96 bpm ($SD_e$ 19.45 bpm) in the Mushroom game, 0.31 bpm (13.51 bpm) in the Platformer game and 5.18 bpm (21.45 bpm) in the Tetris game. RMSE and $M_{eRate}$ were 19.59 bpm and 10.88\% in the Mushroom game, 13.43 bpm and 7.82\% in the Platformer game, and 21.97 bpm and 11.64\% in the Tetris game, respectively. All three games presented acceptable values for $M_e$ and significantly higher values for $SD_e$ and $M_{eRate}$, which also suggests feasible results with considerable variations in the estimation error during the analysis of subjects for each game. In particular, the estimations performed during the Platformer game presented the lowest values for $M_e$, RMSE and $M_{eRate}$, which indicates the rPPG technique performed with lower errors and fewer variations among subjects in the Platformer game than it did in the other two games.
 
-\begin{table}
-%\tbl{Accuracy measurements of the rPPG technique when applied to the video segments of a given game and of all games}
-%{\begin{tabular}[l]{@{}cccccc}\toprule
-%  Game & $M_e$ (bpm) & $SD_e$ (bpm) & RMSE (bpm) & $M_{eRate}$ (\%) & $r$ \\
-%\colrule
-%    Mushroom & 2.96 & 19.45 & 19.59 & 10.88 & 0.45* \\
-%    Platformer & 0.31 & 13.51 & 13.43 & 7.82 & 0.55* \\
-%    Tetris & 5.18 & 21.45 & 21.97 & 11.64 & 0.37* \\
-%    All & 2.99 & 18.83 & 19.03 & 10.31 & 0.43* \\
-%\botrule
-%\end{tabular}}
-%\tabnote{* $p < 0.001$}
+\begin{table}[!h]
+\begin{threeparttable}
+  \begin{tabular}{cccccc}%
+  \toprule
+     Game & $M_e$ (bpm) & $SD_e$ (bpm) & RMSE (bpm) & $M_{eRate}$ (\%) & $r$ \\
+  \midrule
+      Mushroom & 2.96 & 19.45 & 19.59 & 10.88 & 0.45* \\
+      Platformer & 0.31 & 13.51 & 13.43 & 7.82 & 0.55* \\
+      Tetris & 5.18 & 21.45 & 21.97 & 11.64 & 0.37* \\
+      All & 2.99 & 18.83 & 19.03 & 10.31 & 0.43* \\
+  \bottomrule
+  \end{tabular}
+  \begin{tablenotes}
+    \small
+    \item[*]{$p < 0.001$}
+  \end{tablenotes}
+\end{threeparttable}
+\caption{Accuracy measurements of the rPPG technique when applied to the video segments of a given game and of all games}
 \label{table:rppg-validation-games}
 \end{table}
 
@@ -76,19 +95,19 @@ The Pearson's correlation coefficient $r$ regarding $HR_{gt}$ (mean HR calculate
 To better analyze the variations regarding estimation errors among subjects, figures \ref{fig:chart-hists-me} and \ref{fig:chart-hists} show a distribution of values of $M_e$, RMSE and $M_{eRate}$ for all games combined and individually. The x-axis represents intervals of values of $M_e$, RMSE or $M_{eRate}$ while the y-axis represents the percentage of subjects that presented an estimation error within the interval informed in the x-axis. Regarding the distribution of values of $M_e$, shown in Figure \ref{fig:chart-hists-me}, overall 66.1\% of the subjects presented estimations with $M_e$ within the interval [-5 bpm, 5 bpm]. For the remaining 33.9\% of the subjects, $M_e$ was spread within the interval [-20 bpm, 35 bpm]. On a game level, $M_e$ was within the interval [-5 bpm, 5 bpm] for 65\%, 68.4\% and 65\% of the subjects of the Mushroom, Platformer and Tetris game, respectively. The values for $M_e$ are more equally distributed for the Platformer game, which explains the lower values of $SD_e$ for that game when compared to the Mushroom and the Tetris game, which present less equally distributed values of $M_e$.
 The distribution of values of RMSE, shown in Figure \ref{fig:chart-hists} in the first row, indicate that overall values were lower then 10 bpm for 59.4\% of the subjects, while the remaining of the subjects had RMSE varying from 10 bpm to 50 bpm. On a game level, RMSE was lower than 10 bpm for 50\%, 68.5\% and 60\% of the subjects of the Mushroom, Platformer and Tetris game, respectively. Regarding $M_{eRate}$, shown in Figure \ref{fig:chart-hists} in the second row, overall 69.5\% of subjects had HR estimations that were up to 10\% different than the expected HR from ground truth. On a game level, in total 73.7\% and 70\% of the estimations performed by the rPPG technique during the Platformer and the Tetris game, respectively, presented $M_{eRate}$ interior or equal to 10\%. Those values are slightly better than the 65\% of the subjects with $M_{eRate}$ up to 10\% in the Mushroom game. Despite the fact that $M_{eRate}$ was similar for both the Platformer and Tetris games, the former presented no subjects whose $M_{eRate}$ was greater than 30\%, while the later presented 10\% of the subjects with $M_{eRate}$ greater than 30\%.
 
-\begin{figure*}[!h]
+\begin{figure}[!h]
 \centering
-\includegraphics[width=\textwidth]{figures/hist-me.pdf}
+\includegraphics[width=1.0\textwidth]{figures/hist-me.pdf}
 \caption{Distribution of values of $M_e$ for all games. The x-axis represents intervals of values of $M_e$ while the y-axis represents the percentage of subjects that presented an estimation error within the interval informed in the x-axis.}
 \label{fig:chart-hists-me}
-\end{figure*}
+\end{figure}
 
-\begin{figure*}[!h]
+\begin{figure}[!h]
 \centering
-\includegraphics[width=\textwidth]{figures/hist-rmse-mrate.pdf}
+\includegraphics[width=1.0\textwidth]{figures/hist-rmse-mrate.pdf}
 \caption{Distribution of values of RMSE and $M_{eRate}$ for all games. The x-axis represents intervals of values of RMSE or $M_{eRate}$ while the y-axis represents the percentage of subjects that presented an estimation error within the interval informed in the x-axis.}
 \label{fig:chart-hists}
-\end{figure*}
+\end{figure}
 
 \subsection{Discussion}
 The results obtained indicate that the use of the selected rPPG technique to estimate HR from videos of gaming sessions is feasible. When the technique was applied to a testing set of 20 manually selected 30 seconds long video segments, whose subject's facial activity and body movement were minimal, the estimations were significantly accurate. As demonstrated by Table \ref{table:rppg-validation}, the mean of error-rate $M_{eRate}$ was 1.52\% and the Pearson's correlation coefficient was $r = 0.99$ for that testing set. Those results were expected since the videos featured an unrealistic condition where subjects remained mostly still with a neutral face. When the rPPG technique was applied to all gaming sessions, however, body movement and facial activity significantly impacted the estimation performance. It is aligned with previously described works in the literature, which indicate the estimation error increases when subject activities increase \parencite{Wang_2016novel}.
@@ -117,31 +136,31 @@ Figure \ref{fig:chart-roi-anomalies-diagonal} illustrates the same subjects rega
 
 An inspection of the videos of subjects with patterns similar to the ones of subjects 3 and 1 revealed sensitive amount of movement and facial activity, including occlusion of the face by the subject's hand, as illustrated by Figure \ref{fig:face-variation}. Any facial occlusion influences the face tracking algorithm used (Viola\&Jones), since it might wrongly detect the face position or do not detect it at all. A flawed face detection step affects the extraction of the plethysmographic signal, because noise is extracted along with the raw signal, making the rPPG technique unable to separate it properly. Despite our efforts to create games that prevented face occlusion by the subject's hand, such behavior seems to be natural in boring situations. Both Mushroom and Tetris games were more likely to allow players to place a hand in the face to express boredom, since the games could still be played with a single hand when the gameplay speed was not elevated. The Platformer game, on the other hand, is less likely to allow players to use only a single hand to play, which reduced chances of face oclusion inferering with the face tracking algorithm. This could also explain why estimations made during the Platformer game were more accurate than those performed during the other two games. Those extreme cases with facial occlusion are probably affecting the error rates in our analysis, producing less accurate estimations. We could have removed such extreme and flawed cases from our analysis, however our aim is to test how the selected rPPG technique performs in natural gaming situations. A dataset with untreated videos of gaming sessions with natural interactions might produce sub-optimal HR estimations, however it is our understanding that stressing the rPPG technique with less artificial videos provides researchers with insights about possible problems and accuracy limits of such tool.
 
-\begin{figure}[!h]
-%\begin{center}
-%\begin{minipage}{150mm}
-%\subfigure[]{
-%\resizebox*{7cm}{!}{\includegraphics{figures/face-occlusion}}}\hspace{6pt}
-%\subfigure[]{
-%\resizebox*{7cm}{!}{\includegraphics{figures/head-tilt}}}
-%\caption{Examples of body movement and facial activity during gaming sessions. (a) Partial face occlusion by subject's hand; (b) Head tilt and movement during laugh action.}
-\label{fig:face-variation}
-%\end{minipage}
-%\end{center}
+\begin{figure}
+\centering
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=0.95\textwidth]{figures/face-occlusion}
+    \caption{}
+    \label{fig:face-occlusion}
+  \end{subfigure}%
+  \begin{subfigure}[b]{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/head-tilt}
+    \caption{}
+    \label{fig:head-tilt}
+  \end{subfigure}
+  \caption{Examples of body movement and facial activity during gaming sessions. (a) Partial face occlusion by subject's hand; (b) Head tilt and movement during laugh action.}
+  \label{fig:face-variation}
 \end{figure}
 
 We speculate that the variations regarding movement and size of the ROI, which directly influence estimation accuracy of the rPPG technique, seem to be connected to the unique behavior of each user as well. As illustrated by Figures \ref{fig:chart-roi-anomalies-center} and \ref{fig:chart-roi-anomalies-diagonal}, subjects present different movement patterns. Previous analysis of the videos indicates significant differences regarding facial activities among subjects \parencite{bevilacqua2016variations}. It strengthens the idea of a user-tailored model able to deal with such peculiarities, which is more likely to produce better estimations. A method that operates its estimations based on the average user behavior is prone to be significantly affected by specific user behavior outside the expected mean pattern, causing skewed distribution of estimation errors such as the ones presented on Figure \ref{fig:chart-hists} regarding $M_{eRate}$ and RMSE.
 
-\subsection{Limitations}
+%\subsection{Limitations}
 
-Some limitations of the experimental procedure and analysis should be noted. The 1-minute long duration of each video segment used for the estimation of HR may affect the results. The ideal length of the video segment used for estimation (called window size) is not agreed upon in the literature \parencite{rouast2016remote}. In general, it depends on the characteristics of the rPPG technique being applied as well as the hardware configuration, such as camera framerate \parencite{roald2013estimation}. We selected a 1 min analysis window based on the information of the original work by \textcite{poh2011advancements}. Additionally our experimental procedure consists of games whose difficulty level changes every 1 minute, so that value is aligned with the window size used for HR estimation. As previously described, the statistical nature of ICA, part of the selected rPPG employed in the experiment, demands longer video samples to produce accurate results. The longer the video, however, the higher the chances of subject motion, which increases noise. A trade-off between the duration of the video segments and the estimation accuracy could be better investigated. Our experimental setup used an external light source to minimize noise caused by changes in illumination, which should narrow the estimation error to causes as subject movement and/or facial activity. It is likely, however, that other factors might impact the estimation accuracy, such as facial hair, e.g. beard and hair over the forehead area, use of glasses, and skin color.
+%Some limitations of the experimental procedure and analysis should be noted. The 1-minute long duration of each video segment used for the estimation of HR may affect the results. The ideal length of the video segment used for estimation (called window size) is not agreed upon in the literature \parencite{rouast2016remote}. In general, it depends on the characteristics of the rPPG technique being applied as well as the hardware configuration, such as camera framerate \parencite{roald2013estimation}. We selected a 1 min analysis window based on the information of the original work by \textcite{poh2011advancements}. Additionally our experimental procedure consists of games whose difficulty level changes every 1 minute, so that value is aligned with the window size used for HR estimation. As previously described, the statistical nature of ICA, part of the selected rPPG employed in the experiment, demands longer video samples to produce accurate results. The longer the video, however, the higher the chances of subject motion, which increases noise. A trade-off between the duration of the video segments and the estimation accuracy could be better investigated. Our experimental setup used an external light source to minimize noise caused by changes in illumination, which should narrow the estimation error to causes as subject movement and/or facial activity. It is likely, however, that other factors might impact the estimation accuracy, such as facial hair, e.g. beard and hair over the forehead area, use of glasses, and skin color.
 
 \subsection{Conclusions}
 
-This paper presented the description and results of an experiment focused on the accuracy evaluation of a remote photoplethysmography (rPPG) technique in a gaming context. The technique was applied to estimate the HR of subjects behaving naturally in gaming sessions with induced boredom and stress. In total twenty adults of different ages and gaming experiences participated in the experiment, where they played three different games while being recorded by a video camera and monitored by a HR sensor. The games used in the experiment were carefully designed and implemented to have a difficulty level that linearly increases over time, from a boring to a stressful point.
-
-Previous work with experiments involving emotions and rPPG were performed under extremely controlled situations with few game-related stimuli. Subjects were not interacting with a complete digital game in any of the experiments, which hindered the accuracy evaluation of rPPG techniques within the context of games research, for instance. Authors commonly used images, videos or text as content to produce the emotional stimuli, in experimental sessions lasting from 20 seconds to 10 minutes. The aforementioned non-game stimuli content is less likely to produce the reactions of a real gaming session, e.g. spontaneous body movement and facial actions. As opposed to such works, in our experiment each subject spent an average of 25 minutes in the session, playing three different games that were custom-made to provoke the emotional reactions similar to a natural play session. Subjects were also not instructed regarding how they should move, so body and facial reactions are likely to be the ones the subject would normally perform under a gaming context.
-
-The recordings of game sessions of each subject were divided in video segments of 1 minute each. The rPPG technique by Poh et al. \parencite{poh2011advancements} was applied to each of those video segments to estimate the HR of subjects. We performed an accuracy evaluation of the estimated HR obtained from the video segments in relation to the HR calculated from ground truth. Overall the estimation of the rPPG was feasible, showing mean estimation error of 2.99 bpm (SD 18.83 bpm), RMSE of 19.03 bpm and a positive and medium strength Pearson correlation of $r=0.43$, $p < 0.001$. On average, the estimation error of the rPPG technique was up to 10.31\% of the expected value calculated from ground truth. Additionally we performed an exploratory investigation regarding factors that impacted the accuracy of the rPPG technique, such as variations in the region of interest (ROI) used to remotely extract the HR signal. Further analysis is still required, however our numbers suggest factors connected to the type of the game being played and the unique behavior of each subject influenced the estimations. Among the causes of such influence we identified body movement, e.g. head tilt and rotation, and facial occlusion by subjects hand.
+Overall the estimation of the rPPG was feasible, showing mean estimation error of 2.99 bpm (SD 18.83 bpm), RMSE of 19.03 bpm and a positive and medium strength Pearson correlation of $r=0.43$, $p < 0.001$. On average, the estimation error of the rPPG technique was up to 10.31\% of the expected value calculated from ground truth. Additionally we performed an exploratory investigation regarding factors that impacted the accuracy of the rPPG technique, such as variations in the region of interest (ROI) used to remotely extract the HR signal. Further analysis is still required, however our numbers suggest factors connected to the type of the game being played and the unique behavior of each subject influenced the estimations. Among the causes of such influence we identified body movement, e.g. head tilt and rotation, and facial occlusion by subjects hand.
 
 Our results provide researchers with information related to the reliability of a remote HR measurement technique when applied to the context of games research. We believe our experimental setup is a novel approach in the exploration of the accuracy of rPPG-estimated HR readings of subjects in a gaming context. To the best of our knowledge, our experiment is the first to measure the accuracy of an rPPG technique with the use of three boredom/stress-inducing games with subjects behaving naturally. Future work involves investigation of facial activity as well as body movement as a complementary source of information to be used along with remote HR estimation in a multimodal analysis for the identification of stress and boredom in games. As demonstrated, subject movement affects rPPG estimations, however it is an inherent characteristic of a gaming session with natural behavior. We will analyse the use of such signals in a user-tailored approach, focusing on the particular behavior of each user instead of the average pattern.
