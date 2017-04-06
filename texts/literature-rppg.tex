@@ -104,31 +104,23 @@ The value for $F_s$ is usually dependent on the camera device being used, which 
 \textcite{roald2013estimation} presents this trade-off by detailing the frequency resolution as a function of window size and video frame rate, as demonstrated in Table \ref{table:frequency-resolution}.
 
 \begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|}%
-\hline%
-Window size & 10 FPS & 15 FPS & 25 FPS & 30 FPS & 50 FPS & 60 FPS \\
-\hline
-\hline
-100 & 0.1 & 0.15 & 0.25 & 0.3 & 0.5 & 0.6 \\
-\hline
-200 & 0.05 & 0.075 & 0.125 & 0.15 & 0.25 & 0.3 \\
-\hline
-300 & 0.033 & 0.05 & 0.083 & 0.1 & 0.17 & 0.2 \\
-\hline
-400 & 0.025 & 0.037 & 0.062 & 0.075 & 0.12 & 0.15 \\
-\hline
-500 & 0.02 & 0.03 & 0.05 & 0.06 & 0.1 & 0.12 \\
-\hline
-600 & 0.017 & 0.025 & 0.042 & 0.05 & 0.08 & 0.1 \\
-\hline
-700 & 0.014 & 0.02 & 0.03 & 0.04 & 0.07 & 0.08 \\
-\hline
-1000 & 0.01 & 0.015 & 0.025 & 0.03 & 0.05 & 0.06 \\
-\hline%
-\end{tabular}%
 \caption{Frequency resolution $\Delta f$ (in Hz) as a function of window size (in samples) and frame rate (in FPS) \parencite{roald2013estimation}.}
 \label{table:frequency-resolution}
+\centering
+\begin{tabular}{ccccccc}%
+\toprule%
+Window size & 10 FPS & 15 FPS & 25 FPS & 30 FPS & 50 FPS & 60 FPS \\
+\midrule
+100 & 0.1 & 0.15 & 0.25 & 0.3 & 0.5 & 0.6 \\
+200 & 0.05 & 0.075 & 0.125 & 0.15 & 0.25 & 0.3 \\
+300 & 0.033 & 0.05 & 0.083 & 0.1 & 0.17 & 0.2 \\
+400 & 0.025 & 0.037 & 0.062 & 0.075 & 0.12 & 0.15 \\
+500 & 0.02 & 0.03 & 0.05 & 0.06 & 0.1 & 0.12 \\
+600 & 0.017 & 0.025 & 0.042 & 0.05 & 0.08 & 0.1 \\
+700 & 0.014 & 0.02 & 0.03 & 0.04 & 0.07 & 0.08 \\
+1000 & 0.01 & 0.015 & 0.025 & 0.03 & 0.05 & 0.06 \\
+\bottomrule%
+\end{tabular}%
 \end{table}
 
 As an example, assuming a video of 50 FPS and a frequency resolution of 0.07 Hz (which corresponds to an estimation error of $\pm 2.1$ bpm), a window size of 700 samples is required (equivalent of a video segment of 14 seconds). Additionally it has been proved that limitations in the sampling frequency, e.g. low $F_s$, can be compensated in the PPG signal detection by the use of interpolation \parencite{sun2012noncontact}.
