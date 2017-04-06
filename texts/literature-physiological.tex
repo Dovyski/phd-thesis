@@ -7,28 +7,28 @@ The empowerment of computers with the understanding of emotions is one of the fo
 % TODO: add table info from Thesis - AIZoubi, page 45 (paper) or 62 (digital PDF indicator).
 
 \begin{table}[h]
+\caption{Most common psychophysiological measurements used in human interaction studies \parencite{jerritta2011physiological}.}
+\label{table:physiological-signals}
 \begin{tabular}{L{.4\linewidth}L{.5\linewidth}}%
 \toprule%
-Respiratiry system & Breaths per minute\\
+\textbf{Respiratiry system} & Breaths per minute\\
  & Respiration volume \\
 \midrule
- Electrodermal activity & Skin conductance (SC) \\
+ \textbf{Electrodermal activity} & Skin conductance (SC) \\
  & Galvanic skin response (GSR) \\
 \midrule
-Brain activity & Electroencephalography (EEG) \\
+\textbf{Brain activity} & Electroencephalography (EEG) \\
 & Brain imaging methods \\
 \midrule
-Muscular system & Electromyography \\
+\textbf{Muscular system} & Electromyography \\
 \midrule
-Cardiovascular system & Heart rate variability (HRV) \\
+\textbf{Cardiovascular system} & Heart rate variability (HRV) \\
 & Respiratory Sinus Arrhythmia (RSA)  \\
 & Cardiact output  \\
 & Inter beat interval (IBI) \\
 & Blood pressure (BP)  \\
 \bottomrule%
 \end{tabular}%
-\caption{Most common psychophysiological measurements used in human interaction studies \parencite{jerritta2011physiological}.}
-\label{table:physiological-signals}
 \end{table}
 
 One of the reasong why physiological signals are interesting for emotion recongnition is because supressing emotions or social masking through physiological signals is impossible \parencite{kim2004emotion}. In the games research field, there have been studies aiming at using such theory and psychophysiological methods applied to game research \parencite{kivikangas2011review}. It has been demonstrated that it is possible to use physiological signals to automatically assess different emotional states in the context of games using a variety of signals \parencite{bousefsaf2013remote,yun2009game,rani2006empirical,tijs2008dynamic}.
@@ -50,14 +50,14 @@ The cardiac cycle is periodic and it contains a set of waves that reflect depola
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/rr-interval.png}
-    \caption{Two cardiac cycles with highlights on each its electrical waves. The X axis represents time in milliseconds and the Y axis represent the wave amplitude. A heartbeat is connected to the Q, R and S waves, known as the QRS complex. Reproduced from \parencite{ahmed2010heart}.}
+    \includegraphics[width=1.0\linewidth]{figures/rr-interval.png}
+    \caption{Two cardiac cycles with highlights on each its electrical waves. The X axis represents time in milliseconds and the Y axis represent the wave amplitude. A heartbeat is connected to the Q, R and S waves, known as the QRS complex. Reproduced from \textcite{ahmed2010heart}.}
     \label{fig:rr-interval}
 \end{figure}
 
-The tracing of the QRS complex allows the monitoring of the heart rate. The peak of the R wave, refered to as R peak, marks an specific time in the cardiac cycle. The difference between two R wave peaks is the RR interval, also known as inter-beat interval (IBI). The RR interval reflects the entire duration of each heart beat. As a consequence, the amount of R waves within one minute is used to calculate the HR.
+The tracing of the QRS complex allows the monitoring of the heart rate. The peak of the R wave, refered to as R peak, marks an specific time in the cardiac cycle. The difference between two R wave peaks is the RR interval, also known as inter-beat interval (IBI). The RR interval reflects the entire duration of each heart beat. As a consequence, the amount of R waves within one minute is used to calculate the HR. The variations in time between R peaks, which is the beat-to-beat variability of HR, is refered to as heart rate variability (HRV).
 
-The variations in time between R peaks, which is the beat-to-beat variability of HR, is refered to as heart rate variability (HRV).
+The HR is connected to the central nervous system and it can be influenced by a series of different elements, including modifiable and non-modifiable ones \parencite{valentini2009variables}. Modifiables elements are those related to external influence, such as mental stress or physical activity. Non-modifiable elements are related to physiology, such as age, gender and race. A healthy human adult has a HR within the interval of [45 bpm, 240 bpm], the equivalent of [0.75 Hz, 4 Hz] \parencite{li2014remote}.
 
 % A healthy human adult has a HR between 45 - 240 bpm (0.75 - 4 Hz) [1]. There are many factors influencing the HR of a person, both modifiable (e.g. physical activity, mental stress, smoking) and non-modifiable (e.g. age, gender) [12]. The HR can change rapidly from activities such as postural changes [13] and also from uncontrolled events such as cardiac arrhythmia and sudden cardiac arrest [14, 15].
 
@@ -73,9 +73,9 @@ The variations in time between R peaks, which is the beat-to-beat variability of
 \section{Heart rate, stress and frustration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The foundation of HR-based approaches for emotional estimation draws on the theory that physiological signals are linked to emotion regulation \parencite{appelhans2006heart,fenton2012emotion,schubert2009effects}. The automatic nervous system (ANS), a key system in the generation of physiological arousal \parencite{appelhans2006heart}, is subdivided into the sympathetic nervous system (SNS) and the parasympathetic nervous system (PNS). Those systems interact (often antagonistically) to produce variations in the physiological signals to prepare a person to react to a situation. The SNS is dominant during physical and psychological stress, triggering the body to alertness, increasing HR, for instance. This is commonly referred to as "fight or flight" response. The PNS, on the other hand, is dominant in periods of stability and relative safety, maintaining physiological signals at a lower degree of arousal, e.g. decreasing HR. The continuous changes between SNS and PNS impulses cause variations of HR and HRV \parencite{schubert2009effects}, which refers to beat-to-beat alternations in HR intervals.
+The foundation of HR-based approaches for emotional estimation draws on the theory that physiological signals are linked to emotion regulation \parencite{appelhans2006heart,fenton2012emotion,schubert2009effects}. The automatic nervous system (ANS), a key system in the generation of physiological arousal \parencite{appelhans2006heart}, is subdivided into the sympathetic nervous system (SNS) and the parasympathetic nervous system (PNS). Those systems interact (often antagonistically) to produce variations in the physiological signals to prepare a person to react to a situation. The SNS is dominant during physical and psychological stress, triggering the body to alertness, increasing HR, for instance. This is commonly referred to as ``fight or flight'' response. The PNS, on the other hand, is dominant in periods of stability and relative safety, maintaining physiological signals at a lower degree of arousal, e.g. decreasing HR. The continuous changes between SNS and PNS impulses cause variations of HR and HRV \parencite{schubert2009effects}, which refers to beat-to-beat alternations in HR intervals.
 
-Physiological signals, such as HR, are hard to fake because of their link with the ANS, differently from facial expressions \parencite{Landowska}, for instance. As a consequence, HR and its derivatives, such as HRV, have been used as reliable sources of information in different emotion estimation methods \parencite{kukolja2014comparative}. Additionally it has been used as an indication of perceived interest and confusion in mobile applications \parencite{xiao2015towards}, as player input for games \parencite{stockhausen2013beats}, and as triangulation of phychophysiological emotional reactions to digital media stimuli \cite{nogueira2015annotation}. The significant variation of physiological signals, however, is an obstacle to its use in emotional estimation. Signals increase during emotional arousal, but decrease in response to attention engagement, which makes the measurement of engagement, for instance, a non-trivial process \parencite{ravaja20051}. Despite such challenges, the use of HR and HRV has been demonstrated in a continuous arousal monitor \parencite{grundlehner2009design} as well as a detection mechanism for mental and physical stress based on physical and mental tasks \parencite{vandeput2009heart,garde2002effects}. Results indicate higher HR during the mentally demanding task when compared to the rest period. The HR mean alone also has been shown to be a measurement of frustration in a game \parencite{rodriguez2015vr}.
+Physiological signals, such as HR, are hard to fake because of their link with the ANS, differently from facial expressions \parencite{Landowska}, for instance. As a consequence, HR and its derivatives, such as HRV, have been used as reliable sources of information in different emotion estimation methods \parencite{kukolja2014comparative}. Additionally it has been used as an indication of perceived interest and confusion in mobile applications \parencite{xiao2015towards}, as player input for games \parencite{stockhausen2013beats}, and as triangulation of phychophysiological emotional reactions to digital media stimuli \parencite{nogueira2015annotation}. The significant variation of physiological signals, however, is an obstacle to its use in emotional estimation. Signals increase during emotional arousal, but decrease in response to attention engagement, which makes the measurement of engagement, for instance, a non-trivial process \parencite{ravaja20051}. Despite such challenges, the use of HR and HRV has been demonstrated in a continuous arousal monitor \parencite{grundlehner2009design} as well as a detection mechanism for mental and physical stress based on physical and mental tasks \parencite{vandeput2009heart,garde2002effects}. Results indicate higher HR during the mentally demanding task when compared to the rest period. The HR mean alone also has been shown to be a measurement of frustration in a game \parencite{rodriguez2015vr}.
 
 %As previously mentioned, however, the use of sensors that require physical contact might disturb the user experience or be sensitive to noise. Even when users state they forgot about the use of physical sensors during a gaming session, researchers still face noisy data due to subject motion affecting the sensors \parencite{brogni2006variations}.
 
