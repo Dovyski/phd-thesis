@@ -33,7 +33,18 @@ In summary, a significant part of those studies focus on models trained from dat
 
 \section{Research aim}
 
-This research presents an approach for remotely detecting and measuring the changes in stress and boredom levels of a player during the interaction with a game. The process is based on a non-contact, multifactorial analysis of user signals, e.g. HR and facial expressions, obtained from a video stream. The foundation is based on the construction of a user-tailored model, built on information obtained from the user while he/she played a set of calibration games. The model uses the remotely obtained signals from the user in conjunction with the calibration data to detect the player's changes regarding stress and boredom levels in any other game.
+This research presents an approach for remotely detecting the changes in stress and boredom levels of a player during the interaction with a game. The process is based on a non-contact, multifactorial analysis of user signals, e.g. HR and facial expressions, obtained from a video stream. The foundation is based on the construction of a user-tailored machine learning model, trained with information obtained from the user while he/she played a set of games in a novel calibration phase. The model uses the remotely obtained signals from the user in conjunction with the calibration data to detect the player's changes regarding stress and boredom levels in any other game.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.8]{figures/calibration-game-linear.png}
+    \caption{Calibration game linear}
+    \label{fig:calibration-game-linear}
+\end{figure}
+
+The process starts with a calibration phase, which is composed of a set of novel emotion elicitation games. Each of those games are carefully designed to trigger two distinct emotions: boredom and stress, as illustrated by Figure \ref{fig:calibration-game-linear}. At the begining of the game, the difficulty level is significantly low and the user is required to perform few or no actions. The games are designed in a way that the user is not able to increase the pace of the gameplay nor make it faster based on personal skills. As a consequence the user is forced to play a low-paced gameplay, which leads to an emotional state of boredom. As times progresses, the pace of the gameplay and its difficulty level increase lineraly. The increase happens at fixed time intervals, e.g. every 60 seconds. At some point in time, which is different for each user depending on gaming skills and personal preferences, the pace of the gameplay and the difficulty level will be overwhelming, leading the user to an emotional state of stress. As the difficulty level continues to increase, the stress level of the user will increase as well. Finally the difficulty level will increase until the point where the user is unable to couple with the game, which will lead to consecutive mistakes in the game that will eventually terminate it, e.g. heathbar of the main character reaches zero.
+
+The user-tailored machine learning model is trained according to the process presented in Figure \ref{fig:user-tailored-calibration}. Each user will play the previously described calibration games while being recorded by a camera. Computer vision is used to process the video feed and remotely extract signals from the user, such as HR and facial actions. Those signals are used as input to train a machine learning model for that particular user (user-tailored model). Since the calibration games are designed to trigger specific emotions and vary them over time, the collected information will contain a detailed variation profile of the person being analyzed, including the changes of each signal and the theoretically known emotional state the user is at the moment. If a person has a better response to a certain physiological signal instead of another, e.g. HR over facial expressions, then the variation of that signal will account more weight in the training of the model. Since the training process is completely based on the signals of a single user, nuances and individual behavior are likely to be registered and learned. The calibration phase needs to be performed once per person.
 
 \begin{figure}[h]
     \centering
@@ -41,6 +52,8 @@ This research presents an approach for remotely detecting and measuring the chan
     \caption{Current state of this research. The thesis chapters are coupled with the research objetives they cover.}
     \label{fig:user-tailored-calibration}
 \end{figure}
+
+After the calibration phase, the person can play any other game and be monitored, as illustrated by Figure \ref{fig:user-tailored-use}. As the user play any other game, signals are remotely acquired via computer vision. Those signals are used as input to the trained model of that particular person, which produces as a result an estimation of the emotional state regarding stress and boredom for that person in that game. The analysis process relies on the same remotely aquired signals and the predictions performed by the model according to the training performed during the calibration phase.
 
 \begin{figure}[h]
     \centering
