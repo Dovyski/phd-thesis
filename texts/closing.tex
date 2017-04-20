@@ -1,20 +1,133 @@
-\chapter{Closing remarks}
+\chapter{Future work}
 \label{ch:closing}
+
+This chapter describes the plan of tasks to be performed in order to complete the proposed research aim. The tasks are related to at least one research objective, which are also related to each one of the parts that compose this research. Figure \ref{fig:future-work-objectives} illustrates the parts and the research objectives whose tasks will be conducted.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/components-objectives.png}
+    \caption{Parts and research objectives whose tasks will be conducted as future work.}
+    \label{fig:future-work-objectives}
+\end{figure}
+
+The tasks involve the refinement of process of remote acquisition of signals, fefinition of inputs for the user-tailored model, investigation of machine learning models, execution of an experiment involving emotion detection, refinement of the process of user-tailored emotion detection and finally the construction of a software that uses the proposed method. The schedule below shows the time progression of the tasks. The following sections describe the tasks in detail.
+
+\begin{landscape}
+
+\begin{center}
+\begin{tabular}{ |p{6.5cm}|c|c|c|c|c|c|c|c|c|c|c|c|c|c| }
+\hline
+\textbf{Activity} & \multicolumn{2}{|c|}{2015} & \multicolumn{4}{|c|}{2016} & \multicolumn{4}{|c|}{2017} & \multicolumn{4}{|c|}{2018} \\
+\hline
+ & 3 & 4 & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4 \\
+\hline
+Literature review & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} &  &  &  &  &  &  &  &  \\
+\hline
+Planning and design of calibration games &  &  & \cellcolor{Gray} & \cellcolor{Gray} &  &  &  &  &  &  &  &  &  &  \\
+\hline
+Implementation of calibration games &  &  &  & \cellcolor{Gray} & \cellcolor{Gray} &  &  &  &  &  &  &  &  &  \\
+\hline
+Experiments with calibration games &  &  &  & \cellcolor{Gray} & \cellcolor{Gray} &  &  &  &  &  &  &  &  &  \\
+\hline
+Investigation of calibration games data &  &  &  &  & \cellcolor{Gray} & \cellcolor{Gray} &  &  &  &  &  &  &  &  \\
+\hline
+Identification of signals to be remotely read &  &  &  &  &  & \cellcolor{Gray} & \cellcolor{Gray} &  &  &  &  &  &  &  \\
+\hline
+Investigation of signals and their relation with stress/boredom &  &  &  &  &  &  & \cellcolor{Gray} & \cellcolor{Gray} &  &  &  &  &  &  \\
+\hline
+Planning of computer vision software &  &  &  &  &  &  &  & \cellcolor{Gray} &  &  &  &  &  &  \\
+\hline
+Implementation of computer vision software &  &  &  &  &  &  &  &  & \cellcolor{Gray} & \cellcolor{Gray} &  &  &  &  \\
+\hline
+Design of prediction model &  &  &  &  &  &  &  & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} &  &  &  &  \\
+\hline
+Validation of prediction model &  &  &  &  &  &  &  &  &  &  & \cellcolor{Gray} & \cellcolor{Gray} &  &  \\
+\hline
+Field test with game development studio &  &  &  &  &  &  &  &  &  &  &  & \cellcolor{Gray} &  &  \\
+\hline
+Thesis writing &  &  &  &  &  &  &  & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} &  \\
+\hline
+Disputation &  &  &  &  &  &  &  &  &  &  &  &  &  & \cellcolor{Gray} \\
+\hline
+\hline
+\end{tabular}
+\end{center}
+
+\end{landscape}
+
+\section{Refinement of remote acquisition of signals}
+
+The information presented in chapter \ref{ch:literature-rppg} suggests that techniques for remote extraction of physiological signals of users are significantly affected by natural behavior, e.g. head movement and facial activity. The results of the first experiment also support that, indicating that users indeed behave in a way that directly affect the accuracy of measurements. Preliminary analysis \parencite{bevilacqua2017accuracy} suggests that the accuracy of the rPPG technique is feasable under such circustances, however it is still not clear how the accuracy problems interfer with a predictive model.
+
+As a consequence, studies will be conducted to investigate how the selected rPPG technique are affected by the natural behavior of user and how it can be improved to mitigate or elimitate those problems. Figure \ref{fig:rppg-accuracy-study} illustrates the process to be conducted to evaluate and improve the accuracy of the rPPG technique.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/components-objectives.png}
+    \caption{Parts and research objectives whose tasks will be conducted as future work.}
+    \label{fig:rppg-accuracy-study}
+\end{figure}
+
+The video recordings of the first experiment will be used in the analysis. All videos will be analysed using a moving window of size $N$ seconds, which will be moved along the videos with a 1 second offset, producing a set $S$ of video segments with $N$ seconds each. For example, assuming a 1 minute long video and a 30 seconds moving window ($N=30$), the analysis process will result in 30 segments ($S=30$) of 30 seconds each (0 to 30, 1 to 31, ..., 29 to 59).
+
+Each segment of $S$ will be used as the input for the HR estimation of the rPPG technique. The estimated HR value will be compared to the average HR calculated from ground truth for the duration of the segment. Additionally facial movement information will be calculated for each segment, such as variations of ROI size, ROI position the and variations of the central point of the detected face. Similar calculations were already conducted in study 3 (section \ref{s:study3}).
+
+Different values for the window size $N$ will be used in the analysis, which will identify a correlation among the size of $N$, the effect of user movements and the accuracy of HR estimations. Those values will guide the employment of adaptations proposed by previous work \parencite{li2014remote} into the selected rPPG technique to improve its accuracy within the context of this research.
+
+\section{Definition of inputs for the user-tailored model}
+\label{sec:closing-definition-inputs}
+
+The literature presented in chapters \ref{ch:literature-physiological}, \ref{ch:literature-face} and \ref{ch:literature-multifactorial} indicates that a model based on several user signals, which is a multifactorial analysis, is more efficient for emotion detection. The mentioned chapters also highlight which of those signals can be remotely acquired within the context of this research via computer vision techniques.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/components-objectives.png}
+    \caption{Input user-tailored model}
+    \label{fig:model-input-definition}
+\end{figure}
+
+The user-tailored model proposed for this research might have $N$ input signals, varying from physiological ones, e.g. HR, to non-physiological ones, e.g. facial actions and head movements. Figure \ref{fig:model-input-definition} illustrates the process. Each one of those signals, however, needs to be supported by previous work regarding emotion detection, as well as be validated within the process of the proposed game-based calibration phase. Time and scope constraints limit the amount of input signals that can be implemented, evaluated and used in this research. As a consequence, a study will be conducted to investigate, validate and initially implement two of those signals into the proposed model: HR and facial activity (which includes head movement, lips activity, etc).
+
+The techniques and works presented in chapter \ref{ch:literature-face}, which relate to face detection and emotion estimation, suggest that facial analysis is an important component of a multifactorial emotion detection model. Empirical analysis of the data from the first experiment also suggest that individualities regarding facial activities do exist and could be used to estimate emotional states on a user-tailored basis \parencite{bevilacqua2016variations}. As described in section \ref{ch:literature-face-emotion-prediction}, facial actions, head movement, lips/eye/mouth activity and distance measurements of detected facial landmarks are viable and proved sources of information for emotion detection.
+
+Regarding physiological signals, results indicate that the average HR mean for players during the last minute of gameplay is greater than the average HR mean during the second minute of gameplay. The findings are aligned with and reinforce previous research that indicate higher HR mean during stressful situations in a gaming context. The findings also suggest that changes in the HR during gaming sessions is a promising indicator of stress.
+
+The study will involve the definition of how those two signals will be used as inputs for the model. Facial actions will be detected and measured by the euclidian distance of the facial landmarks. A vector containing the distances will be evaluated as the input for the model. Regarding the HR, its mean and standard variation during a particular analysis window will be evaluated as input for the model. A software for the detection of those two signals will be created and used to analyse the video recordings of the first experiment. The inclusion or exclusion of a component of a signal, e.g. variations of the distance of the lips landmark points, will be based on the accuracy to detect them and the frequency they appear in boring and stressful part of the calibration games.
+
+\section{Investigation of machine learning models}
+
+The majority of the previous work found in the literature mention the use of machine learning models to map user signals into emotional states. Different models and accuracy results are mentioned, which dependent on several particularities of the approach used by the authors. A machine learning model will also be used by this research as a user-tailored emotion detection model.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/components-objectives.png}
+    \caption{Input user-tailored model}
+    \label{fig:machine-learning-investigation}
+\end{figure}
+
+A systematic study and accuracy evaluation will be performed to select the proper machine learning technique to be used in the model. The evaluation process, illustrated in Figure \ref{fig:machine-learning-investigation}, will be conducted for all selected (and competing) machine learning techniques using the video recordings of experiment 1. The evaluation is based on a 3 fold cross validation process. Initially the input signals for the emotion detection model (defined in the previous tasks, section \ref{sec:closing-definition-inputs}) will be extracted from two of the three games played by a user and used to train the emotion detection model. The thrid game that was left out will be used as a testing set: user signals will be extracted and fed into the trained emotion detection model, which will output the predicted emotional state of the user. The process will be repeated three times, each one of them leaving a different game out of the training.
+
+Following the described procedure, each machine learning technique will have three accuracy scores. The technique whose scores present the lowest standard deviation (more stable across tests) and the higher mean (better accuracy across tests) will be selected. The following machine learning and classification techniques will be initially used in the tests: Support Vector Machine (SVM) using a radial basis, C-Support Vector Classification (C-SVC) using a linear kernel, K-nearest neighbours (K-nn), AdaBoost using nearest mean classifiers, Naive Bayers and neural networks represented by convolution networks (convnets). Previous work suggest a process involving decision fusion or a hierarchy of two or more classifiers working on different feature sets in order to improve prediction rates. Those approaches will probably be investigated as well.
+
+\section{Emotion detection experiment}
+
+The experiment design will be based on a within-subject approach \cite{lane2015online}. In such approach, all participants perform at all levels of the treatment and there are no control groups. It is the opposite of a between-subjects approach, where subjects are divided in more than one group that receive different treatments. In that approach there are special groups, called control groups, that receive no treatment. The comparison between the control groups and the treatment groups ensures internal validity. In the context of this research, physiological signals will be measured, so the division of subjects into more than one group poses a comparison problem. Each individual will inevitably differ from one another regarding physiological signals, such as variations in average HR during rest, for instance. When measuring HR, for instance, some subjects will have higher/lower HR mean than others, independent of the group they are in or the treatment they undergo. To counter that problem, the experiment will use a one-group posttest design \cite{kirk1982experimental}, as illustrated by Figure \ref{fig:experiment}. Using the first row as an example, subject $S_0$ played game $G_a$ as the first level of the treatment, followed by a post-test of that game ($PT_a$), then a rest period. In the second level of the treatment, the subject played game $G_b$, followed by a post-test of that game ($PT_b$), then another rest period. Finally in the third level of the treatment, the subject played game $G_c$ followed by a post-test of that game ($PT_c$).
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.5]{figures/experiment-design.png}
+    \caption{One-group posttest experiment design used in this research. $S_j$ represents the $j^{\text{th}}$ subject, $G_i$ represents a game of type $i$, $PT_i$ is the post-test for game $G_i$ and $rest$ is a resting period.}
+    \label{fig:experiment}
+\end{figure}
+
+By using a one-group posttest design, each individual will perform on all levels of the treatment (play a set of different games). The within-subjects approach ensures that the differences between subjects are not interfering in the comparison, since a subject is being compared to his/herself in the different levels of the treatment. Subjects are not being compared among each other. In essence, each subject is serving as his/her own control group. According to Kirk \cite{kirk1982experimental}, the one-group posttest design should only be used when the researcher knows the mean value of the independent variable when no treatment is in effect. Such information will be obtained during the resting periods of the experiment, where the baseline value for all measured signals can be established for each subject.
+
+The process of sampling a group of participants for each experiment will follow the convenience sampling approach, a non-probability sampling technique where participants are recruited because of their convenient accessibility/proximity to the researcher. Volunteers will be randomly recruited for each experiment. A probability sampling approach, where each individual of the population has an equal chance of being selected, would be ideal and would strength the external validity of the research. However the costs, logistics and time constraints associated with it makes such approach impractical in the context of this research.
+
+\section{Refinement of user-tailored emotion detection model}
+
+\section{Software validation}
 
 Questionnaires and physiological measurements are the most common approach used to obtain data for emotion estimation in the field of HCI and games research. Both approaches interfere with the natural behavior of users, which affects any research procedure. Initiaties based on computer vision and remote extraction of user signals for emotion estimation exist, however they are limited. Experiments of such initiatives were performed under extremely controlled situations with few game-related stimuli. Users had a passive role with limited possibilities for interaction or emotional involvement, differently than game-based emotion stimuli, where users take an active role in the process, making decision and directly interacting with the media. Previous works also focus on predictive models based on a group perspective. As a consequece, a model is usually trained from data of several users, which in practice describes the average behavior of the group, excluding or diluting key individualities of each user. In that light, there is a lack of initiatives focusing on non-obtrusive, user-tailored emotion detection models, in particular regarding stress and boredom, within the context of games research that are based on emotion data generated from game stimuli.
 
-This thesis presented a research that aims to fill that gap, providing the HCI and the games research community with tools to remotely study users emotions in a non-obtrusive way within the context of games. Current results of this research show that individualities can be detected regarding facial activity, e.g. increased number of facial actions during the stressful part of games. Regarding physiological signals, results indicate that the average HR mean for players during the last minute of gameplay is greater than the average HR mean during the second minute of gameplay. The findings are aligned with and reinforce previous research that indicate higher HR mean during stressful situations in a gaming context. The findings also suggest that changes in the HR during gaming sessions is a promising indicator of stress, which can be incorporated into a model aimed at emotion detection. As pointed out by previous work, a user-tailored model based on several signals, e.g. HR and facial activity, is more likely to detect emotional states of users.
-
-The remote measurement of physiological signals via rPPG within the context of games research proved a feasible solution. On average, the estimation error of the rPPG technique is up to 10.31\% of the expected value calculated from ground truth. Investigations suggest factors connected to the type of the game being played and the unique behavior of each subject influenced the estimations. Among the causes of such influence are body movement, e.g. head tilt and rotation, and facial occlusion by subjects hand.
-
-The literature reviews and the experiments conducted so far support the idea of using facial activity and body movement as source of information. It can be combined with remote HR estimations in a multifactorial analysis for the identification of stress and boredom in games. It will produce a user-tailored approach for emotion detection focused on the behavioral particularities of each user instead of the average group pattern.
-
-\section{Future work}
-
-The literature reviews conducted on emotion detection and computer vision techniques, along with the results from the first experiment, support the following course of action. As the theories presented in chapter \ref{ch:literature-physiological} suggest, techniques for remote extraction of physiological signals of users are significantly affected by natural behavior, e.g. head movement and facial activity. The results of the first experiment also support that, indicating that users indeed behave in a way that directly affect the accuracy of measurements. Preliminary analysis \parencite{bevilacqua2017accuracy} suggests that the accuracy of the rPPG technique is feasable under such circustances, however it is still not clear how the accuracy problems interfer with a predictive model. As a consequence, studies will be conducted to investigate how the selected rPPG technique can be improved to mitigate or elimitate those problems, which will allow a correct extraction of user signals, leading to a working emotion detection model. The data obtained from the first experiment is enough to conduct such investigation.
-
-The techniques and works presented in chapter \ref{ch:literature-face}, which relate to face detection and emotion estimation, suggest that facial analysis is an important component of a multifactorial emotion detection model. Empirical analysis of the data from the first experiment also suggest that individualities regarding facial activities do exist and could be used to estimate emotional states on a user-tailored basis \parencite{bevilacqua2016variations}. As described in section \ref{ch:literature-face-emotion-prediction}, facial actions, head movement, lips/eye/mouth activity and distance measurements of detected facial landmarks are viable and proved sources of information for emotion detection. Additionally related works suggest that a combination of facial analysis and physiological signals is a more accurate approach regarding emotion detection, in particular the use of individually-based user data instead of group-based information. In that sense, studies will be conducted to investigate how such facial activity can be used for emotion detection along with the measurements performed by the rPPG technique.
-
-After the rPPG technique has been improved and the facial analysis has been structured, a fourth study will be conducted on the data of the first experiment. It will guide the process of refining the remote detection of physiological signals along with facial analysis, which is the foundation for the predictive model proposed in this thesis. At the present moment, the software required to perform such study is almost finished and ready to be deployed. The results of this study should lead to another publication, which will describe the improvements applied to the rPPG technique and how they affect remote estimation of physiological signals.
-
-At some point in the near future, an investigation will be conducted regarding the mathematical techniques to be used as the foundation for the model proposed in this thesis. As detailed in chapters \ref{ch:literature-face}, \ref{ch:literature-rppg} and \ref{ch:literature-multifactorial}, the most commonly employed method is machine learning. The investigation will probably test different machine learning techniques in the process of translating the extracted user signals into an indication of stress and boredom. It is likely that such investigation will be performed on the data collected with the first experiment. When the model is deemed mature enough, a new experiment will be conducted. It will validate both the improvents performed on the selected computer vision technique, the concept of calibration games and the model itself. As described in section \ref{sec:research-process}, the results of the experiment and their evaluation will guide future work on the model. The model itself will be re-valided, refined and improved with another experiment, following a cycle of experimental research.
+%After the rPPG technique has been improved and the facial analysis has been structured, a fourth study will be conducted on the data of the first experiment. It will guide the process of refining the remote detection of physiological signals along with facial analysis, which is the foundation for the predictive model proposed in this thesis. At the present moment, the software required to perform such study is almost finished and ready to be deployed. The results of this study should lead to another publication, which will describe the improvements applied to the rPPG technique and how they affect remote estimation of physiological signals.
