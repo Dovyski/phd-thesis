@@ -92,7 +92,7 @@ The techniques and works presented in chapter \ref{ch:literature-face}, which re
 
 Regarding physiological signals, results indicate that the average HR mean for players during the last minute of gameplay is greater than the average HR mean during the second minute of gameplay. The findings are aligned with and reinforce previous research that indicate higher HR mean during stressful situations in a gaming context. The findings also suggest that changes in the HR during gaming sessions is a promising indicator of stress.
 
-The study will involve the definition of how those two signals will be used as inputs for the model. Facial actions will be detected and measured by the euclidian distance of the facial landmarks. A vector containing the distances will be evaluated as the input for the model. Regarding the HR, its mean and standard variation during a particular analysis window will be evaluated as input for the model. A software for the detection of those two signals will be created and used to analyse the video recordings of the first experiment. The inclusion or exclusion of a component of a signal, e.g. variations of the distance of the lips landmark points, will be based on the accuracy to detect them and the frequency they appear in boring and stressful part of the calibration games.
+The study will involve the definition of how those two signals will be used as inputs for the model. Facial actions will be detected and measured by the euclidian distance of the facial landmarks. A vector containing the distances will be evaluated as the input for the model. Regarding the HR, its mean and standard variation during a particular analysis window will be evaluated as input for the model. A software for the detection of those two signals will be created and used to analyse the video recordings of the first experiment. The inclusion or exclusion of a component of a signal, e.g. variations of the distances of the lips landmark points, will be based on the accuracy to detect them and the frequency they appear in boring and stressful part of the calibration games.
 
 \section{Investigation of machine learning models}
 
@@ -101,13 +101,38 @@ The majority of the previous work found in the literature mention the use of mac
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/components-objectives.png}
-    \caption{Input user-tailored model}
+    \caption{machine-learning-investigation}
     \label{fig:machine-learning-investigation}
 \end{figure}
 
-A systematic study and accuracy evaluation will be performed to select the proper machine learning technique to be used in the model. The evaluation process, illustrated in Figure \ref{fig:machine-learning-investigation}, will be conducted for all selected (and competing) machine learning techniques using the video recordings of experiment 1. The evaluation is based on a 3 fold cross validation process. Initially the input signals for the emotion detection model (defined in the previous tasks, section \ref{sec:closing-definition-inputs}) will be extracted from two of the three games played by a user and used to train the emotion detection model. The thrid game that was left out will be used as a testing set: user signals will be extracted and fed into the trained emotion detection model, which will output the predicted emotional state of the user. The process will be repeated three times, each one of them leaving a different game out of the training.
+A systematic study and accuracy evaluation will be performed to select the proper machine learning technique to be used in the model. The evaluation process, illustrated in Figure \ref{fig:machine-learning-investigation}, will be conducted on each one of the selected (and competing) machine learning techniques using the video recordings of experiment 1. The evaluation is based on a 3 fold cross validation process. Initially the input signals for the emotion detection model (defined in the previous tasks, section \ref{sec:closing-definition-inputs}) will be extracted from two of the three games played by a user and used to train the emotion detection model. The thrid game that was left out of the training will be used as a testing set: user signals will be extracted and fed into the trained emotion detection model, which will output the predicted emotional state of the user. The 3 fold cross validation process is repeated three times, each one of them leaving a different game out of the training phase.
 
-Following the described procedure, each machine learning technique will have three accuracy scores. The technique whose scores present the lowest standard deviation (more stable across tests) and the higher mean (better accuracy across tests) will be selected. The following machine learning and classification techniques will be initially used in the tests: Support Vector Machine (SVM) using a radial basis, C-Support Vector Classification (C-SVC) using a linear kernel, K-nearest neighbours (K-nn), AdaBoost using nearest mean classifiers, Naive Bayers and neural networks represented by convolution networks (convnets). Previous work suggest a process involving decision fusion or a hierarchy of two or more classifiers working on different feature sets in order to improve prediction rates. Those approaches will probably be investigated as well.
+The video recordings that will be used in the tasks are related to experiment 1, whose games were designed to work as calibration games. As previously described in section \ref{sec:research-aim}, those calibration games feature a progression from a boring to a stressful state. That configuration will be used as the foundation for the labeling process of emotional states during the training of the model, as well as ground truth for its testing.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/components-objectives.png}
+    \caption{machine-learning-labeling-approach}
+    \label{fig:machine-learning-labeling-approach}
+\end{figure}
+
+The training of the emotion detection model will be conducted according to two different strategies illustrated in Figure \label{fig:machine-learning-labeling-approach}. In both approaches, the two games used as training sets will have their user signals sampled at a fixed interval of $T$ seconds, being $T$ empirically defined. The labeling of the sample as boredom or stress, however, will be different. In approach \textbf{A}, assuming that $P$ represents the time progression of each game, e.g. $P=0$ is the starting point of the game and $P=1$ is its end point, each game will be divided in two equal parts ($P=0.5$). Samples from the first half of the game will be labeled as boredom, while samples from the second half will be labeled as stress. The division is based on the assumption that the middle of the games accurately separates in time the self-reported perceptions of boredom and stress made by the subjects. In approach \textbf{B}, the self-reported levels of boredom and stress associated with the beginning and the end of each game will be used. Assuming that $S_i$ and $B_i$ represent the self-reported stress and boredom levels of a given subject, respectively, where $i=0$ represents the beginning part of a game, and $i=1$ represents the ending part of a game. Two distinc division points will be calculated for boredom and stress labelings. The division point for stress, $P_s$, will be calculated as:
+
+\begin{equation}
+P_s = 1 - \frac{S_1 - S_0}{5}
+\end{equation}
+
+and the division point for boredom, $P_b$, will be calculated as:
+
+\begin{equation}
+P_b = \frac{B_1 - B_0}{5}
+\end{equation}
+
+where 5 is the maximum value allowed for the self-reported answers. The values of $P_s$ and $P_b$ will range within the interval [0,1], which will be used as the division point similarly to the one described for approach \textbf{A}. For example, a subject that reported $S_0=0$ and $S_1=5$ will have $P_s=0.5$ (middle point of the game), while a subject with $S_0=3$ and $S_1=4$ will have $P_s=0.8$. Samples from the second half of the division $P_s$ will be labeled as stress, while the samples from the first half of $P_b$ will be labeled as boredom.
+
+The testing process will be similar for both approaches \textbf{A} and \textbf{B}. Samples from the game used as a testing set will be collected at a fixed internal of $K$ seconds, which will be larger than $T$ and also defined empirically. The associated labeling of the samples will be based on their position in the two parts calculated according to the rules of division points for each approach. Sample points that eventually are not labeled, e.g. middle points in approach \textbf{B}, will be labeled as neutral.
+
+Following the described procedure, after all machine learning techniques are tested, they will have several resulting accuracy scores, i.e. $3 \cdot K \cdot 20$, where 20 is the number of subjects of experiment 1. The technique with the highest mean for the accuracy score will be selected. The following machine learning and classification techniques will be initially used in the tests: Support Vector Machine (SVM) using a radial basis, C-Support Vector Classification (C-SVC) using a linear kernel, K-nearest neighbours (K-nn), AdaBoost using nearest mean classifiers, Naive Bayers, and neural networks probably represented by convolution networks (convnets). Previous work also suggest a process involving decision fusion or a hierarchy of two or more classifiers working on different feature sets to improve prediction rates. Those approaches will probably be investigated as well.
 
 \section{Emotion detection experiment}
 
