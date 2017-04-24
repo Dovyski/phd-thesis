@@ -151,7 +151,7 @@ The experiment design will be based on a within-subject approach \cite{lane2015o
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.5]{figures/time-series-design-breakwell.png}
+    \includegraphics[width=0.85\textwidth]{figures/time-series-design-breakwell.png}
     \caption{\textcite{breakwell1994research}}
     \label{fig:time-series-design-breakwell}
 \end{figure}
@@ -162,7 +162,7 @@ The experiment will use a multiple treatment design which involves the implement
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.5]{figures/closing-experiment2-design.png}
+    \includegraphics[width=0.6\textwidth]{figures/closing-experiment2-design.png}
     \caption{Time series experiment design used in experiment 2. $S_j$ represents the $j^{\text{th}}$ subject, $G_i$ are calibration games, $H$ is an off the shelf game, and $rest$ is a resting period.}
     \label{fig:closing-experiment2-design}
 \end{figure}
@@ -198,23 +198,16 @@ Additionally to the self-assessment of the emotional state, during the whole exp
 
 This tasks comprehends another iteration in the research of orchestrating and validating the remote acquisition of signals, machine learning models and calibration games. The results of previously described tasks (sections \ref{sec:closing-definition-inputs}, \ref{closing:investigation-machine-learning} and \ref{closing:emotion-detection-experiment}) should better clarify the relation among input signals and emotional states, as well as how they can be mapped using a machine learning model.
 
-The goal of this tasks is to iterate on the data collected from experiment 1 and 2 to refine the inputs to be used in the emotion detection model. The process will be similar to the work described in section \ref{closing:investigation-machine-learning}, where a machine learning model was selected based on its accuracy. The set of the features that are remotely obtained via computer vision will be re-evaluated as input for the emotion detection mode based on the findings of experiment 2. The machine learning model used for the mapping process will also be re-evaluated in a process similar to the one described in section \ref{closing:investigation-machine-learning}. The data used for training and testing of the model, however, will be directly based on the data points collected from the time series in experiment 2. Those data points contain information regarding the emotional state of users at specific points in time, which was not the case of the data points of experiment 1. Figure \ref{fig:closing-refinment-specific-points} illustrates such differences. The data from experiment 1 contained information regarding emotional states at key moments in the game, e.g. beginning, middle and end, however those points are limited to perceptions of time, e.g. a subject can understand that the end part of a game lasts for 10 seconds, while another subject might understand it as lasting for 2 minutes. Data from experiment 2, in the other hand, are bound to time marks, e.g. questionnaire every 60 seconds, so they present a better representation of emotional states throughout the gaming session. As a consequence, both the training and testing of the machine learning model can be oriented towards those points instead of relying on assumptions, i.e. the middle point of a game session produces a part representing boredom and another representing stress.
+The goal of this tasks is to iterate on the data collected from experiment 1 and 2 to refine the inputs to be used in the emotion detection model. The process will be similar to the work described in section \ref{closing:investigation-machine-learning}, where a machine learning model was selected based on its accuracy. The set of the features that are remotely obtained via computer vision will be re-evaluated as input for the emotion detection mode based on the findings of experiment 2. The machine learning model used for the mapping process will also be re-evaluated in a process similar to the one described in section \ref{closing:investigation-machine-learning}. The data used for training and testing of the model, however, will be directly based on the data points collected from the time series in experiment 2. Those data points contain information regarding the emotional state of users at specific points in time, which was not the case of the data points of experiment 1. The data from experiment 1 contained information regarding emotional states at key moments in the game, e.g. beginning, middle and end, however those points are limited to perceptions of time, e.g. a subject can understand that the end part of a game lasts for 10 seconds, while another subject might understand it as lasting for 2 minutes. Data from experiment 2, in the other hand, are bound to time marks, e.g. questionnaire every 60 seconds, so they present a better representation of emotional states throughout the gaming session. As a consequence, both the training and testing of the machine learning model can be oriented towards those points instead of relying on assumptions, i.e. the middle point of a game session produces a part representing boredom and another representing stress.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.5]{figures/experiment-design.png}
-    \caption{fig:closing-refinment-specific-points}
-    \label{fig:closing-refinment-specific-points}
+    \includegraphics[width=0.75\textwidth]{figures/closing-around-time-series.png}
+    \caption{Training set will use samples immediately preceeding and following an emotional data point by $V$ seconds.}
+    \label{fig:closing-around-time-series}
 \end{figure}
 
 A systematic refinement the machine learning model will be performed following the structure previously described in \ref{closing:investigation-machine-learning}. The training and testing of the model will not be based on samples collected with a division point $P$, instead they will be based on the points of the time series obtained from experiment 2. Figure \ref{fig:closing-around-time-series} illustrates the new training and testing approach. Samples immediately preceeding and following an emotional state point by $V$ seconds will be used for the training process. A value of 15 seconds for $V$ means that all the samples within 30 seconds (15 seconds before the point, 15 seconds after it) of a point will be used for training. The value of $V$ will be empirically defined.
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[scale=0.5]{figures/experiment-design.png}
-    \caption{fig:closing-around-time-series}
-    \label{fig:closing-around-time-series}
-\end{figure}
 
 The testing of the model will also be based on the points of the time series. In the 3 fold cross validation process, the game being used as a testing set will have its points of the time series as inputs to the model. Since the emotional state of those points is known, the accuracy evaluation of the model will be more precise, providing more information regarding which adaptations and refinements are necessary.
 
