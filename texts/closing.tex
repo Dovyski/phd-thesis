@@ -5,8 +5,8 @@ This chapter describes the plan of tasks to be performed in order to complete th
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{figures/components-objectives.png}
-    \caption{Parts and research objectives whose tasks will be conducted as future work.}
+    \includegraphics[width=\textwidth]{figures/future-work-objectives.png}
+    \caption{Highlight of research objectives and related parts of the solution whose tasks will be conducted as future work.}
     \label{fig:future-work-objectives}
 \end{figure}
 
@@ -63,16 +63,16 @@ As a consequence, studies will be conducted to investigate how the selected rPPG
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{figures/components-objectives.png}
-    \caption{Parts and research objectives whose tasks will be conducted as future work.}
+    \includegraphics[width=\textwidth]{figures/rppg-accuracy-study}
+    \caption{Process to evaluate the accuracy of HR estimations performed by rPPG when influenced by natural behavior.}
     \label{fig:rppg-accuracy-study}
 \end{figure}
 
-The video recordings of the first experiment will be used in the analysis. All videos will be analysed using a moving window of size $N$ seconds, which will be moved along the videos with a 1 second offset, producing a set $S$ of video segments with $N$ seconds each. For example, assuming a 1 minute long video and a 30 seconds moving window ($N=30$), the analysis process will result in 30 segments ($S=30$) of 30 seconds each (0 to 30, 1 to 31, ..., 29 to 59).
+The video recordings of the first experiment will be used in the analysis. All videos will be analysed using a moving window of size $N$ seconds, which will be moved along the videos with a 1 second offset, producing a set $S$ of video segments $s_i$ with $N$ seconds each. For example, assuming a 1 minute long video and a 30 seconds moving window ($N=30$), the analysis process will result in 30 $s_i$ segments ($S=30$) of 30 seconds each (0 to 30, 1 to 31, ..., 29 to 59).
 
-Each segment of $S$ will be used as the input for the HR estimation of the rPPG technique. The estimated HR value will be compared to the average HR calculated from ground truth for the duration of the segment. Additionally facial movement information will be calculated for each segment, such as variations of ROI size, ROI position the and variations of the central point of the detected face. Similar calculations were already conducted in study 3 (section \ref{s:study3}).
+Each segment $s_i$ will be used as the input for the rPPG technique for HR estimation. The estimated HR value will be compared to the average HR calculated from ground truth for the duration of the segment $s_i$. Additionally facial movement information will be calculated for each segment, such as variations of ROI size, ROI position the and variations of the central point of the detected face. Similar calculations were already conducted in study 3 (section \ref{s:study3}).
 
-Different values for the window size $N$ will be used in the analysis, which will identify a correlation among the size of $N$, the effect of user movements and the accuracy of HR estimations. Those values will guide the employment of adaptations proposed by previous work \parencite{li2014remote} into the selected rPPG technique to improve its accuracy within the context of this research.
+Different values for the window size $N$ will be used in the analysis, which will identify a correlation among the size of $N$, the effect of user movements and the accuracy of HR estimations. Those values will guide the adaptations proposed by previous work \parencite{li2014remote} to be applied into the selected rPPG technique to improve its accuracy within the context of this research.
 
 \section{Definition of inputs for the user-tailored model}
 \label{sec:closing-definition-inputs}
