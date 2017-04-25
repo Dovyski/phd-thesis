@@ -102,7 +102,7 @@ The majority of the previous work found in the literature mention the use of mac
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/machine-learning-investigation.png}
-    \caption{Iteration of a 3 fold cross validation performed for each subject on the videos of experiment 1. The videos of two calibration games, e.g. A and B, are used to train the machine learning model, while the video of the third calibration game, e.g. C, is used to test the model.}
+    \caption{Iteration of a 3 fold cross validation performed on the video of a gaming sessions with 3 games, i.e. A, B and C. The videos of two calibration games, e.g. A and B, are used to train the machine learning model, while the video of the third calibration game, e.g. C, is used to test the model.}
     \label{fig:machine-learning-investigation}
 \end{figure}
 
@@ -141,6 +141,14 @@ where 5 is the maximum value allowed for the self-reported answers. The values o
 The testing process will be similar for both approaches \textbf{A} and \textbf{B}. Samples from the game used as a testing set will be collected at a fixed internal of $K$ seconds, which will be larger than $T$ and also defined empirically. The associated labeling of the samples will be based on their position in the two parts calculated according to the rules of division points for each approach. Sample points that eventually are not labeled, e.g. middle points in approach \textbf{B}, will be labeled as neutral.
 
 Following the described procedure, after all machine learning techniques are tested, they will have several resulting accuracy scores, i.e. $3 \cdot K \cdot 20$, where 20 is the number of subjects of experiment 1. The technique with the highest mean for the accuracy score will be selected. The following machine learning and classification techniques will be initially used in the tests: Support Vector Machine (SVM) using a radial basis, C-Support Vector Classification (C-SVC) using a linear kernel, K-nearest neighbours (K-nn), AdaBoost using nearest mean classifiers, Naive Bayers, and neural networks probably represented by convolution networks (convnets). Previous work also suggest a process involving decision fusion or a hierarchy of two or more classifiers working on different feature sets to improve prediction rates. Those approaches will probably be investigated as well.
+
+\subsection{Challenges and unresolved issues}
+
+One of the main unresolved issues regarding the use of a machine learning model is regarding its input features. Computer vision will be used to remotely extract a set of signals from the users, e.g. HR and the position of facial landmarks, however how those signals will be packeged as inputs for the machine learning model is still undefined.
+
+The current idea is to use a direct and discrete approach where the set of extracted signals from each frame of the video being analyzed is used as is. This approach does not explicitly feed the model with information regarding the variations of the extracted signals, e.g. HR decreased 5 bpm in the last 10 seconds, instead current information from each frame is used as input, e.g. HR is 60 bpm now. The approach relies on the principle that the machine learning model will recognize any patterns regarding the variation of signals among the different samples over time, modeling those patterns as the desired mapping of emotion states.
+
+Another possible solution is to provide the model with the variations of the signals, which demands a pre-processing of the extracted signals before feeding them into the model. In such scenario, each extracted signal will be accompanied by additional data, e.g. standard deviation, mean, etc. Ideally the machine learning model will better account for the variations of the signals and the emotional states. If a convolutional neural network is used as a machine learning solution, for instance, each signal can be used as input to the model in the form of a matrix. In that case each row of the matrix contains a segment of the signal at different times and the convnet will automatically find a way to model such changes into emotional states.
 
 \section{Emotion detection experiment}
 \label{closing:emotion-detection-experiment}
