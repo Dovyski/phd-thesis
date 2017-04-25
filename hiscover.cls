@@ -12,7 +12,7 @@
 \ProvidesClass{hiscover}[2016/12/22 University of Skovde Thesis Cover class by Thomas Fischer]
 
 \newcommand{\@coatofarmsimagefilename}{CoatOfArms/HiSCoatOfArms-white-english}
-\newcommand{\@localizeddoctoraldissertation}{Doctoral Dissertation}
+\newcommand{\@localizeddoctoraldissertation}{Doctoral Thesis Proposal}
 \newcommand{\@localizedlicentiatethesis}{Licentiate Thesis}
 
 \DeclareOption{english}{%
