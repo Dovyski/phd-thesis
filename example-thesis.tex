@@ -25,6 +25,10 @@
 \usepackage{ragged2e}
 \usepackage{multirow}
 
+% Allow landscape pages
+%\usepackage{lscape} % No rotation of PDF pages
+\usepackage{pdflscape} % Procude rotation of PDF pages
+
 % For generating dummy text.
 % Only necessary for the example document, remove for "real dissertations"
 \hyphenation{vesti-bulum sce-leris-que}
@@ -44,7 +48,7 @@
 %\input{texts/summary}
 %\input{texts/acknowledgements}
 
-\ownpublications[During this project, a number of papers have been published with varying relevance to the core aims of this thesis.]{bevilacqua2016variations,bevilacqua2017changes,bevilacqua2017accuracy}{bevilacqua2015proposal}
+\ownpublications[During this project, a number of papers have been published with varying relevance to the core aims of this thesis proposal.]{bevilacqua2016variations,bevilacqua2017changes,bevilacqua2017accuracy}{bevilacqua2015proposal}
 
 \tableofcontents
 \listoffigures
@@ -55,15 +59,16 @@
 \setcounter{page}{1}% Start page numbers from '1'
 \pagestyle{headings}
 
+\part{Introduction and methodology}
 \input{texts/introduction}
 \input{texts/method}
 \part{Literature review}
 \input{texts/literature}
-\part{Experiments}
+\part{Conducted work}
 \input{texts/experiment1}
-%\part{Outcomes and implications}
 %\input{texts/tool}
-%\input{texts/closing}
+\part{Work plan}
+\input{texts/closing}
 %\input{texts/appendix}
 
 %\begin{fullarticles}
