@@ -14,50 +14,52 @@ The software contains six main components: face detector, signal estimator, face
 
 \section{Face detector}
 
-The face detector component locates a human face in a frame of the of input video being analyzed. It performs the face alignment process using one of the two avaiable algorithms: Constrained Local Models (CLM) \parencite{cristinacce2006feature} and Ensemble of Regression Trees (ERT) \parencite{kazemi2014one}. The implementation of those techniques is provided by the OpenFace library \parencite{openface} for the former and dlib \parencite{dlib} by the latter.
+The face detector component locates a human face in a frame of the of input video being analyzed. It performs the face alignment process using one of the two avaiable algorithms: Constrained Local Neural Fields (CLNF) \parencite{baltrusaitis2013constrained} and Ensemble of Regression Trees (ERT) \parencite{kazemi2014one}. The implementation of those techniques is provided by the OpenFace library \parencite{baltruvsaitis2016openface} and dlib (http://​dlib.​net) respectively.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/tool-ui-face-detector.png}
-    \caption{tool-ui-face-detector}
+    \caption{Visual representation of detected facial landmark points.}
     \label{fig:tool-ui-face-detector}
 \end{figure}
 
-The output of the face detector is a vector containing 2D points, each one representing a facial landmark. Figure \ref{fig:tool-ui-face-detector} shows a visual representation of the mentioned vector and its points.
+The output of the face detector is a vector containing 68 2D points, each one representing a facial landmark. Figure \ref{fig:tool-ui-face-detector} shows a visual representation of the mentioned vector and its points.
 
 \section{Face analyzer}
 
-The face analyzer component uses a frame of the input video and the located face information to extract data regarding facial activity. It contains several different analyzers, each one responsible for extracting specific activity patterns, e.g. eye blink, FACS facial action units, etc. Analyzers are based on the computer vision OpenCV.
+The face analyzer component uses a frame of the input video and the located face information to extract data regarding facial activity. It contains several different analyzers, each one responsible for extracting specific activity patterns, e.g. eye blink. Analyzers are based on the computer vision OpenCV.
 
-Currently the implemented analyzers extract information regarding eye area (for blinking rate), mouth area (for lips/mouth activity), facial center of mass (mean position of all detected landmarks), distance among facial landmarks, face stability (measurement of movement/rotation of the face), and head movement. Figure \ref{fig:tool-ui-face-analyzer} shows the user interface regarding the data provided by the face analyzer.
+Currently the implemented analyzers extract information regarding eye area (for blinking rate), mouth area (for lips/mouth activity), facial center of mass (mean position of all detected landmarks), distance among facial landmarks, face stability (measurement of movement/rotation of the face), head movement, FACS facial action units (based on the implementation of \textcite{baltruvsaitis2015cross}), and eye gaze tracking (based on the implementation of \textcite{wood2015rendering}).
+
+Figure \ref{fig:tool-ui-face-analyzer} shows the user interface regarding the data provided by the face analyzer.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/tool-ui-face-analyzer.png}
-    \caption{fig:tool-ui-face-analyzer}
+    \caption{Visualization of data provided by the face analyzer. Information includes FACS AUs, currently detected face, motion and instability of the face, and variations of eye/mouth areas over time.}
     \label{fig:tool-ui-face-analyzer}
 \end{figure}
 
 \section{Signal estimator}
 
-The signal estimator component uses the frames of the input video and the located face information to estimate user signals, e.g. HR. It contains different estimators, each one responsible for estimating a single signals. Currently two HR estimators are implemented according to the techniques by \textcite{poh2010non} and by \textcite{poh2011advancements}.
+The signal estimator component uses the frames of the input video and the located face information to estimate user signals, e.g. HR. It contains different estimators, each one responsible for estimating a single signals. Currently the HR estimator is implemented according to two ICA-based rPPG techniques \parencite{poh2010non,poh2011advancements}.
 
 Figure \ref{fig:tool-ui-signal-estimator} shows the user interface regarding the data provided by the signal estimator.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/tool-ui-signal-estimator.png}
-    \caption{fig:tool-ui-signal-estimator}
+    \caption{Visualization of data provided by the signal estimator.}
     \label{fig:tool-ui-signal-estimator}
 \end{figure}
 
 \section{Report manager}
 
-The report compoment aggregates the information produced by other components, generating a CSV report file as its output. The report files contains information regarding the video, e.g. time, as well as estimated signals and extracted facial activity. Figure \ref{fig:tool-ui-report-manager} shows part of the content of a report file.
+The report compoment aggregates the information produced by other components, generating a CSV report file as its output. The report files contains information regarding the video, e.g. time, as well as estimated signals and extracted facial activity. Figure \ref{fig:tool-ui-report-csv} shows part of the content of a report file.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/method-components-dependency.png}
-    \caption{fig:tool-ui-report-manager}
-    \label{fig:tool-ui-report-manager}
+    \includegraphics[width=\textwidth]{figures/tool-ui-report-csv.png}
+    \caption{Part of the content of a CSV file generated by the report component.}
+    \label{fig:tool-ui-report-csv}
 \end{figure}
