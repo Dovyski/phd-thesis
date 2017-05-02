@@ -10,7 +10,7 @@ This chapter describes the plan of tasks to be performed in order to complete th
     \label{fig:future-work-objectives}
 \end{figure}
 
-The tasks involve the refinement of the process of remote acquisition of signals, definition of inputs for the user-tailored model, investigation of machine learning techniques, execution of an experiment involving emotion detection, refinement of the process of user-tailored emotion detection and finally the construction of a software that uses the proposed method. Table \ref{tab:schedule} illustrates the schedule regarding the progression of the tasks. The following sections describe the tasks in detail.
+The tasks involve the refinement of the process of remote acquisition of signals, definition of inputs for the user-tailored model, investigation of machine learning techniques, execution of an experiment involving emotion detection and finally the construction of a software that uses and validates the proposed method. Table \ref{tab:schedule} illustrates the schedule regarding the progression of the tasks. The following sections describe the tasks in detail.
 
 \begin{landscape}
 
@@ -27,17 +27,15 @@ The tasks involve the refinement of the process of remote acquisition of signals
 \hline
 Refinement of remote acquisition of signals & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & & & & & & & & & & & & & & & & & & \\
 \hline
-Experiment involving emotion detection &  &  &  & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \\
+Definition of inputs for the user-tailored model & & & & \cellcolor{Gray} & \cellcolor{Gray} & & & & & & & & & & & & &  & & & & \\
 \hline
-Definition of inputs for the user-tailored model & & & & & & & \cellcolor{Gray} & \cellcolor{Gray} & & & & & & & & & &  & & & & \\
+Investigation of machine learning techniques & & & & & & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & & & & & & & & & & \\
 \hline
-Investigation of machine learning techniques & & & & & & & & & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & & & & & & & & & \\
+Experiment involving emotion detection & & & & & & & & & & & & & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & & & & & & & \\
 \hline
-Refinement of user-tailored emotion detection model & & & & & & & & & & & & & & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & & & & & \\
+Development of software to validate the approach & & & & & & & & & & & & & & & & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & & \\
 \hline
-Software deployment & & & & & & & & & & & & & & & & & & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & & \\
-\hline
-Thesis writing & & & & & & & & & & & & & & & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & & \\
+Thesis writing & & & & & & & & \cellcolor{Gray} & & & & \cellcolor{Gray} & & & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & \cellcolor{Gray} & & \\
 \hline
 Disputation & & & & & & & & & & & & & & & & & & & & & & \cellcolor{Gray} \\
 \hline
@@ -145,7 +143,7 @@ Another possible solution is to provide the model with the variations of the sig
 \section{Experiment involving emotion detection}
 \label{closing:emotion-detection-experiment}
 
-An experiment involving emotion detection and games will be planned and executed. The experiment will be similar to the first one conducted, however it will test the hypotesis that all defined components, i.e. computer vision technique, machine learning model and calibration games, work in combination to detect emotional states.
+An experiment involving emotion detection and games will be planned and executed to validate the proposed approach. The experiment will be similar to the first one conducted, however it will test the hypotesis that all defined components, i.e. computer vision technique, machine learning model and calibration games, work in combination to detect emotional states.
 
 The experiment design will be based on a within-subject approach \parencite{lane2015online} where all participants perform at all levels of the treatment and there are no control groups. In the context of this research, user signals, e.g. HR, facial actions and self-reported emotional state, will be measured and used in a user-tailored model, so the division of subjects into more than one group poses a comparison problem. Each individual will inevitably differ from one another regarding signals and emotions, such as variations in average HR during rest, for instance. Additionally the emotional state of users regarding boredom and stress must be measured constantly during the experiment, so the accuracy of the user-tailored model can be tested against those points where the emotional state is known. People present different perceptions regarding stress and boredem, so a division of subjects into groups also poses comparison problems.
 
@@ -193,25 +191,6 @@ Additionally to the self-assessment of the emotional state, during the whole exp
 %By using a one-group posttest design, each individual will perform on all levels of the treatment (play a set of different games). The within-subjects approach ensures that the differences between subjects are not interfering in the comparison, since a subject is being compared to his/herself in the different levels of the treatment. Subjects are not being compared among each other. In essence, each subject is serving as his/her own control group. According to Kirk \cite{kirk1982experimental}, the one-group posttest design should only be used when the researcher knows the mean value of the independent variable when no treatment is in effect. Such information will be obtained during the resting periods of the experiment, where the baseline value for all measured signals can be established for each subject.
 
 %The process of sampling a group of participants for each experiment will follow the convenience sampling approach, a non-probability sampling technique where participants are recruited because of their convenient accessibility/proximity to the researcher. Volunteers will be randomly recruited for each experiment. A probability sampling approach, where each individual of the population has an equal chance of being selected, would be ideal and would strength the external validity of the research. However the costs, logistics and time constraints associated with it makes such approach impractical in the context of this research.
-
-\section{Refinement of user-tailored emotion detection model}
-
-This tasks comprehends another iteration in the research of orchestrating and validating the remote acquisition of signals, machine learning models and calibration games. The results of previously described tasks (sections \ref{sec:closing-definition-inputs}, \ref{closing:investigation-machine-learning} and \ref{closing:emotion-detection-experiment}) should better clarify the relation among input signals and emotional states, as well as how they can be mapped using a machine learning model.
-
-The goal of this tasks is to iterate on the data collected from experiments 1 and 2 to refine the inputs to be used in the emotion detection model. The process will be similar to the work described in section \ref{closing:investigation-machine-learning}, where a machine learning model was selected based on its accuracy. The set of the features that are remotely obtained via computer vision will be re-evaluated as input for the emotion detection model based on the findings of experiment 2. The machine learning model used for the mapping process will also be re-evaluated in a process similar to the one described in section \ref{closing:investigation-machine-learning}. The data used for training and testing of the model, however, will be directly based on the data points collected from the time series in experiment 2. Those data points contain information regarding the emotional state of users at specific points in time, which was not the case of the data points of experiment 1. The data from experiment 1 contained information regarding emotional states at key moments in the game, e.g. beginning, middle and end, however those periods are limited to perceptions of time, e.g. a subject can understand that the end part of a game lasts for 10 seconds, while another subject might understand it as lasting for 2 minutes. Data from experiment 2, in the other hand, are bound to time marks, e.g. questionnaire every 60 seconds, so they present a better representation of emotional states throughout the gaming session. As a consequence, both the training and testing of the machine learning model can be oriented towards those points instead of relying on assumptions, i.e. the middle point of a game session produces a part representing boredom and another representing stress.
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.75\textwidth]{figures/closing-around-time-series.png}
-    \caption{Training set will use samples immediately preceeding and following an emotional data point by $V$ seconds.}
-    \label{fig:closing-around-time-series}
-\end{figure}
-
-A systematic refinement of the machine learning model will be performed following the structure previously described in section \ref{closing:investigation-machine-learning}. The training and testing of the model will not be based on samples collected with a division point $P$, instead they will be based on the points of the time series obtained from experiment 2. Figure \ref{fig:closing-around-time-series} illustrates the new training and testing approach. Samples immediately preceeding and following an emotional state point by $V$ seconds will be used for the training process. A value of 15 seconds for $V$ means that all the samples within 30 seconds of a point (15 seconds before the point, 15 seconds after it) will be used for training. The value of $V$ will be empirically defined.
-
-The testing of the model will also be based on the points of the time series. The off the shelf game being used as a testing set will have its points of the time series used as inputs to the model. Since the emotional state of those points is known, the accuracy evaluation of the model will be more precise, providing more information regarding which adaptations and refinements are necessary to improve the detection process.
-
-The cycle involving training, testing and refinement of the model will be conducted until the model presents acceptable accuracy results. This tasks will probably involve the refinement of input signals, as the process described in section \ref{sec:closing-definition-inputs}.
 
 \section{Software deployment}
 
