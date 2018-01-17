@@ -2936,4 +2936,47 @@ the measurement of heart rate and respiratory rate, respectively.
   doi       = {10.5962/bhl.title.30272},
 }
 
+@InProceedings{shaker2011feature,
+  author       = {Noor Shaker and Georgios N. Yannakakis and Julian Togelius},
+  title        = {Feature analysis for modeling game content quality},
+  booktitle    = {2011 {IEEE} Conference on Computational Intelligence and Games ({CIG}{\textquotesingle}11)},
+  year         = {2011},
+  pages        = {126--133},
+  month        = {aug},
+  organization = {IEEE},
+  publisher    = {{IEEE}},
+  abstract     = {One promising avenue towards increasing player entertainment for individual game players is to tailor player experience in real-time via automatic game content generation. Modeling the relationship between game content and player preferences or affective states is an important step towards this type of game personalization. In this paper we analyse the relationship between level design parameters of platform games and player experience. We introduce a method to extract the most useful information about game content from short game sessions by investigating the size of game session that yields the highest accuracy in predicting players’ preferences, and by defining the smallest game session size for which the model can still predict reported emotion with acceptable accuracy. Neuroevolutionary preference learning is used to approximate the function from game content to reported emotional preferences. The experiments are based on a modified version of the classic Super Mario Bros game. We investigate two types of features extracted from game levels; statistical level design parameters and extracted frequent sequences of level elements. Results indicate that decreasing the size of the feature window lowers prediction accuracy, and that the models built on selected features derived from the whole set of extracted features (combining the two types of features) outperforms other models constructed on partial information about game content.},
+  doi          = {10.1109/cig.2011.6031998},
+  file         = {:shaker2011feature - Feature Analysis for Modeling Game Content Quality.pdf:PDF},
+}
+
+@InProceedings{pedersen2009modeling,
+  author       = {Chris Pedersen and Julian Togelius and Georgios N. Yannakakis},
+  title        = {Modeling player experience in Super Mario Bros},
+  booktitle    = {2009 {IEEE} Symposium on Computational Intelligence and Games},
+  year         = {2009},
+  pages        = {132--139},
+  month        = {sep},
+  organization = {IEEE},
+  publisher    = {{IEEE}},
+  abstract     = {This paper investigates the relationship between level design parameters of platform games, individual playing characteristics and player experience. The investigated design parameters relate to the placement and sizes of gaps in the level and the existence of direction changes; components of player experience include fun, frustration and challenge. A neural network model that maps between level design parameters, playing behavior characteristics and player reported emotions is trained using evolutionary preference learning and data from 480 platform game sessions. Results show that challenge and frustration can be predicted with a high accuracy (77.77 percent and 88.66 percent respectively) via a simple single-neuron model whereas model accuracy for fun (69.18 percent) suggests the use of more complex non-linear approximators for this emotion. The paper concludes with a discussion on how the obtained models can be utilized to automatically generate game levels which will enhance player experience. },
+  doi          = {10.1109/cig.2009.5286482},
+  file         = {:pedersen2009modeling - Modeling Player Experience in Super Mario Bros.pdf:PDF},
+}
+
+@Article{pedersen2010modeling,
+  author    = {Pedersen, Christopher and Togelius, Julian and Yannakakis, Georgios N},
+  title     = {Modeling Player Experience for Content Creation},
+  journal   = {{IEEE} Transactions on Computational Intelligence and {AI} in Games},
+  year      = {2010},
+  volume    = {2},
+  number    = {1},
+  pages     = {54--67},
+  month     = {mar},
+  abstract  = {In this paper, we use computational intelligence techniques to built quantitative models of player experience for a platform game. The models accurately predict certain key affective states of the player based on both gameplay metrics that relate to the actions performed by the player in the game, and on parameters of the level that was played. For the experiments presented here, a version of the classic Super Mario Bros game is enhanced with parameterizable level generation and gameplay metrics collection. Player pairwise preference data is collected using forced choice questionnaires, and the models are trained using this data and neuroevolutionary preference learning of multilayer perceptrons (MLPs). The derived models will be used to optimize design parameters for particular types of player experience, allowing the designer to automatically generate unique levels that induce the desired experience for the player.},
+  doi       = {10.1109/tciaig.2010.2043950},
+  file      = {:pedersen2010modeling - Modeling Player Experience for Content Creation.pdf:PDF},
+  publisher = {Institute of Electrical and Electronics Engineers ({IEEE})},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
