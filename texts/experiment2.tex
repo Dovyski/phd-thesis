@@ -2,23 +2,34 @@
 \label{ch:experiment2}
 
 \section{Introduction}
-This chapter details the software developed to be an instanciation of the artifact produced as the outcome of this research, which is an approach for remotely detecting the changes in stress and boredom levels of a player during the interaction with a game.
+This chapter will detail my second experiment. The focus will be on the validation of the approach proposed in the thesis (which is "use calibration games, train a machine learning model on a user level, use it to detect the emotional state on any game, i.e. COTS Mario in this case").
 
 \section{Method}
   \subsection{Experimental setup}
+  Describe the experiment.
   \subsection{Experimental procedure}
     \subsubsection{Calibration games}
+    Explain the calibration games.
     \subsubsection{Evaluation game}
+    Explain the Mario game.
     \subsubsection{Data collection}
+    Explain how data was collected.
   \subsection{Data preprocessing}
+    Explain how the data from the calibration games were split into 3 pieces and the middle one was discarded. Also explain that Mario levels whose stress/boredom levels were equal were discarded.
   \subsection{Emotion estimation}
     \subsubsection{Relevant feature extraction}
+    Explain about how the features used to train the machine learning model were extracted, e.g. facial features, remote HR.
     \subsubsection{Emotion classification}
-    \subsubsection{Predicting emotions}
+    Explain how the machine learning model, i.e. neural network, was trained and designed.
+    \subsubsection{Evaluation of emotion classification}
+    Explain how the machine learning model was applied to the COTS levels to estimate their emotional state.
 \section{Results}
   \subsection{Self-reported emotional state}
+  Show some analysis and statistics regarding the games. I can mention the average stress level reported for some Mario legels, which confirms that our design of the game meets our expectations (some levels must be boring and others must be stressful).
   \subsection{Emotion classification}
+  Show the results of applying the machine learning model to classify the emotional state of subjects.
 \section{Discussion}
+Discussion will be focused on the following: 1) was the machine learning model able to detect emotions with accuracy better than chance? 2) was the use of a multimodal approach (foundation of my thesis) better than the use of only facial features (or only HR)?. This section will almost be a replication of the "Study 5", however using the data from the second experiment instead of the first.
 \section{Conclusion}
 
 %The experiment design will be based on a within-subject approach \cite{lane2015online}. In such approach, all participants perform at all levels of the treatment and there are no control groups. It is the opposite of a between-subjects approach, where subjects are divided in more than one group that receive different treatments. In that approach there are special groups, called control groups, that receive no treatment. The comparison between the control groups and the treatment groups ensures internal validity. In the context of this research, physiological signals will be measured, so the division of subjects into more than one group poses a comparison problem. Each individual will inevitably differ from one another regarding physiological signals, such as variations in average HR during rest, for instance. When measuring HR, for instance, some subjects will have higher/lower HR mean than others, independent of the group they are in or the treatment they undergo. To counter that problem, the experiment will use a one-group posttest design \cite{kirk1982experimental}, as illustrated by Figure \ref{fig:experiment}. Using the first row as an example, subject $S_0$ played game $G_a$ as the first level of the treatment, followed by a post-test of that game ($PT_a$), then a rest period. In the second level of the treatment, the subject played game $G_b$, followed by a post-test of that game ($PT_b$), then another rest period. Finally in the third level of the treatment, the subject played game $G_c$ followed by a post-test of that game ($PT_c$).

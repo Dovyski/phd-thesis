@@ -1,7 +1,14 @@
 \chapter{Software for emotion detection}
 \label{ch:software}
 
-This chapter details the software developed to be an instanciation of the artifact produced as the outcome of this research, which is an approach for remotely detecting the changes in stress and boredom levels of a player during the interaction with a game. The software is developed in C++ and its overall structure is illustrated in Figure \ref{fig:tool-overall-structure}.
+This chapter will mention the software I developed for all the analysis conducted during the PhD. As Henrik mentioned, I did not download a software and applied it. I created my own from scratch. The idea is not to extensively describe the software and its architecture, but to mention it here to highlight the amount of work put into this part as well. I will also mention how this software could be used in games research, for instance. 
+
+
+%This chapter details the software developed to be an instanciation of the artifact produced as the outcome of this research, which is an approach for remotely detecting the changes in stress and boredom levels of a player during the interaction with a game.
+
+\section{Architecture}
+
+The software is developed in C++ and its overall structure is illustrated in Figure \ref{fig:tool-overall-structure}.
 
 \begin{figure}[h]
     \centering
@@ -12,7 +19,7 @@ This chapter details the software developed to be an instanciation of the artifa
 
 The software contains six main components: face detector, signal estimator, face analyzer, emotion model manager, emotion estimator and finally report manager. The two components marked in red, the emotion model and the emotion estimator, are responsible for emotion estimation. Those components are unfinished and will be implemented in the future. The remaining of the components is finished and working. The following sections detail those components.
 
-\section{Architecture}
+
 
 \paragraph{Face detector}
 
