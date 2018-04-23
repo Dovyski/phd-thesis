@@ -14,7 +14,7 @@ This study presents information regarding the accuracy evaluation of a remote ph
 %The focus will be on the features used and the accuracy achieved. I imagine a plausiable hypothesis for this study is "is the model able to detect emotions with an accuracy that is better than chance?". In the discussion, I will present how some features influence the results, e.g. facial features only versus HR only. I will not mention the idea of user-tailored versus group-tailored, because it will make things too complex to describe and argue about. My idea is to save that discussion for upcoming papers.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Analysis and methods}
+\subsection{Method}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Relevant feature extraction}
@@ -48,15 +48,20 @@ Features $F_1$ to $F_7$ are mostly calculated using the Euclidian distance of au
 
 Feature $F_8$ is calculated based on remote estimations of HR (see Section \ref{s:study3}, on page \pageref{s:study3}, for a detailed description of the process). As previously mentioned in Chapter \ref{ch:literature-physiological}, HR and its derivatives, such as HRV, have been used as reliable sources of information in different emotion estimation methods \parencite{kukolja2014comparative}. Reports in the literature show the use of HR and derivates for continuous arousal monitoring \parencite{grundlehner2009design}, measurement of confusion \parencite{xiao2015towards}, triangulation of phychophysiological emotional reactions to digital media stimuli \parencite{nogueira2015annotation}, detection of mental and physical stress \parencite{vandeput2009heart,garde2002effects}, and measurement of frustration \parencite{rodriguez2015vr}.
 
-\subsubsection{Emotion classification}
+\subsubsection{Training and evaluation of emotion classification}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Describe how the model was trained, which includes how the calibration games were grouped, e.g. two for training, one for testing. Explain that neural networks were used because they are widely mentioned in the literature.
+The classification procedure uses the previously mentioned feature set and a neural network trained to identify two emotional states: boredom and stress. Both the training and evaluation of the neural network are performed on a user tailored fashion: data from a given subject $S_i$ is used to train and evaluate the emotion classification of that given subject $S_i$.
 
-\subsubsection{Evaluation of emotion classification}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+A Leave One Session Out Cross Validation (LOSOCV) is used to evaluate each user-tailored model. In LOSOCV, a data instance is left out and a model is constructed on all other data instances. A given subject $S_i$ played 3 calibration games, so data from one calibration game is left out and a model is trained on the data of the other two calibration games for that subject $S_i$. This is repeated for all three calibration games. The use of LOSOCV will produce 3 models per subject, which results in 3 accuracy measurements per subject (one for each model being evaluated). The model is tested in terms of classification accuracy, so the mean of those three values is used as the final accuracy evaluation for a given subject $S_i$. In other words, each subject contributes a single accuracy value, which is calculated based on the mean accuracy of his/her three models in the LOSOCV.
 
-Describe how the machine learning model was tested and evaluated, e.g. mean accuracy of each subject, etc.
+In the training process, the hyper-parameters of each user-tailored neural network, e.g. number of neurons, is optimized using random search \parencite{bergstra2012random}. A 10-fold cross validation method repeated 3 times is applied and the area under the ROC curve (AUC) is used as a metric to select the best model for each subject. In a repeated k-fold cross validation, the dataset is split into k-subsets and each of those subset is held out while the model is trained on all others. The process is repeated N times and the final metric for the model is the mean from the number of repeats.
+
+
+
+%, which finds models as good or beter then ones configured by a pure grid search
+
+%Describe how the model was trained, which includes how the calibration games were grouped, e.g. two for training, one for testing. Explain that neural networks were used because they are widely mentioned in the literature.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Results}
