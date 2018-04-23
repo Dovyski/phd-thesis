@@ -1,23 +1,75 @@
 \section{Study 5: remote emotion detection}
 \label{s:study5}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-This study will describe my tests regarding the use of machine learning to detect the emotional state of subjects in my first experiment. The idea is to present this study as a planning for the second experiment. I will present the features used in the machine learning model, e.g. remote HR, eyebrow movement, etc, as a consequence of the previous studies.
+This study presents information regarding the use of machine learning to remotely detect the emotional state of subjects while they play a game. A set of features, including automatically detected facial cues and remote-estimated HR, are used to  A neural network is trained from
 
-The focus will be on the features used and the accuracy achieved. I imagine a plausiable hypothesis for this study is "is the model able to detect emotions with an accuracy that is better than chance?". In the discussion, I will present how some features influence the results, e.g. facial features only versus HR only. I will not mention the idea of user-tailored versus group-tailored, because it will make things too complex to describe and argue about. My idea is to save that discussion for upcoming papers.
+This study presents information regarding the accuracy evaluation of a remote photoplethysmography (rPPG) technique in a gaming context. The technique was applied to estimate the HR of subjects behaving naturally in gaming sessions with induced boredom and stress. Previous work with experiments involving emotions and rPPG were performed under extremely controlled situations with few game-related stimuli. Subjects were not interacting with a complete digital game in any of the experiments, which hindered the accuracy evaluation of rPPG techniques within the context of games research, for instance. Authors commonly used images, videos or text as content to produce the emotional stimuli, in experimental sessions lasting from 20 seconds to 10 minutes.
 
+%This study will describe my tests regarding the use of machine learning to detect the emotional state of subjects in my first experiment. The idea is to present this study as a planning for the second experiment. I will present the features used in the machine learning model, e.g. remote HR, eyebrow movement, etc, as a consequence of the previous studies.
+
+%The focus will be on the features used and the accuracy achieved. I imagine a plausiable hypothesis for this study is "is the model able to detect emotions with an accuracy that is better than chance?". In the discussion, I will present how some features influence the results, e.g. facial features only versus HR only. I will not mention the idea of user-tailored versus group-tailored, because it will make things too complex to describe and argue about. My idea is to save that discussion for upcoming papers.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Analysis and methods}
-  \subsubsection{Relevant feature extraction}
-  Describe how the features are calculated and why they were selected (based on the info found in the literature and the results from previous studies).
-  \subsubsection{Emotion classification}
-  Describe how the model was trained, which includes how the calibration games were grouped, e.g. two for training, one for testing. Explain that neural networks were used because they are widely mentioned in the literature.
-  \subsubsection{Evaluation of emotion classification}
-  Describe how the machine learning model was tested and evaluated, e.g. mean accuracy of each subject, etc.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Relevant feature extraction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The classification efficiency of a machine learning model is related to the number of features able to accurately discriminate the elements being classified. The use of more features does not necessarely produces a better model, since some features might not accurately contribute to the classification, which leads to degradation of results.
+
+Features and their classification potential are highly dependent on the type of data being used. In the present study, the set of features used for classification was extracted and selected based on previous reports of said features to differentiate emotional states in games. In total 8 features are used: 7 extracted from an automated facial analysis and one based on remote estimations of HR. Table \ref{table:study5-features-list} presents all features and their description.
+
+\begin{table*}
+    \centering
+    \caption{Classification features}
+    \label{table:study5-features-list}
+    \begin{tabular}[l]{@{}lcp{6.5cm}}
+        \hline
+            \textbf{Name} & \textbf{Notation} & \textbf{Description} \\
+        \hline
+            Mouth outer & $F_1$ & Monitor the zygomatic muscle.  \\
+            Mouth corner & $F_2$ & Monitor the zygomatic muscle. \\
+            Eye area & $F_3$ & Monitor the orbicularis oculi muscle. \\
+            Eyebrow activity & $F_4$ & Monitor the corrugator muscle.  \\
+            Face area & $F_5$ & Monitor facial movement to and away from the camera  \\
+            Face motion & $F_6$ & Describe the total distance the head has moved in any direction in a short period of time.  \\
+            Facial COM & $F_7$ & Describe the overall movement of all facial landmarks. \\
+            Remote HR & $F_8$ & Average HR estimated using the remote photoplethysmography technique proposed by \textcite{poh2011advancements}.  \\
+        \hline
+    \end{tabular}
+\end{table*}
+
+Features $F_1$ to $F_7$ are mostly calculated using the Euclidian distance of automatically detected facial landmarks (see Section \ref{s:study4}, on page \pageref{s:study4}, for a detailed description of the process). The landmarks used in the calculation are related to facial elements that express a connection with emotional states. As previsouly mentioned in Chapter \ref{ch:literature-face}, there is evidence of more frequent corrugator activity when positive game events occur \parencite{hazlett2006measuring} and increased activity of zygomatic muscle associated with self-reported positive emotions \parencite{tijs2008dynamic}. Positive and rewarding game events are also connected to increase in zygomatic and orbicularis oculi activity \parencite{ravaja20051}. Detection of stress is also related to blinking rate \parencite{giannakakis2017stress,dinges2005optical}, lip movement \parencite{dinges2005optical} and lips deformation \parencite{metaxas2004image,giannakakis2017stress}, mouth activity \parencite{liao2005decision}, and head movement/velocity \parencite{giannakakis2017stress}.
+
+Feature $F_8$ is calculated based on remote estimations of HR (see Section \ref{s:study3}, on page \pageref{s:study3}, for a detailed description of the process). As previously mentioned in Chapter \ref{ch:literature-physiological}, HR and its derivatives, such as HRV, have been used as reliable sources of information in different emotion estimation methods \parencite{kukolja2014comparative}. Reports in the literature show the use of HR and derivates for continuous arousal monitoring \parencite{grundlehner2009design}, measurement of confusion \parencite{xiao2015towards}, triangulation of phychophysiological emotional reactions to digital media stimuli \parencite{nogueira2015annotation}, detection of mental and physical stress \parencite{vandeput2009heart,garde2002effects}, and measurement of frustration \parencite{rodriguez2015vr}.
+
+\subsubsection{Emotion classification}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Describe how the model was trained, which includes how the calibration games were grouped, e.g. two for training, one for testing. Explain that neural networks were used because they are widely mentioned in the literature.
+
+\subsubsection{Evaluation of emotion classification}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Describe how the machine learning model was tested and evaluated, e.g. mean accuracy of each subject, etc.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Discussion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Discussion will be focused on the following: 1) was the machine learning model able to detect emotions with accuracy better than chance? 2) was the use of a multimodal approach (foundation of my thesis) better than the use of only facial features (or only HR)?.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Conclusions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %\section{Definition of inputs for the user-tailored model}
