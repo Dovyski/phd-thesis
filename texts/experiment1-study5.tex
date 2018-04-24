@@ -7,7 +7,7 @@
 
 This study presents information regarding the use of machine learning to remotely detect the emotional state of subjects while they play a game. A set of features, including automatically detected facial cues and remote-estimated HR, are used to  A neural network is trained from
 
-This study presents information regarding the accuracy evaluation of a remote photoplethysmography (rPPG) technique in a gaming context. The technique was applied to estimate the HR of subjects behaving naturally in gaming sessions with induced boredom and stress. Previous work with experiments involving emotions and rPPG were performed under extremely controlled situations with few game-related stimuli. Subjects were not interacting with a complete digital game in any of the experiments, which hindered the accuracy evaluation of rPPG techniques within the context of games research, for instance. Authors commonly used images, videos or text as content to produce the emotional stimuli, in experimental sessions lasting from 20 seconds to 10 minutes.
+%This study presents information regarding the accuracy evaluation of a remote photoplethysmography (rPPG) technique in a gaming context. The technique was applied to estimate the HR of subjects behaving naturally in gaming sessions with induced boredom and stress. Previous work with experiments involving emotions and rPPG were performed under extremely controlled situations with few game-related stimuli. Subjects were not interacting with a complete digital game in any of the experiments, which hindered the accuracy evaluation of rPPG techniques within the context of games research, for instance. Authors commonly used images, videos or text as content to produce the emotional stimuli, in experimental sessions lasting from 20 seconds to 10 minutes.
 
 %This study will describe my tests regarding the use of machine learning to detect the emotional state of subjects in my first experiment. The idea is to present this study as a planning for the second experiment. I will present the features used in the machine learning model, e.g. remote HR, eyebrow movement, etc, as a consequence of the previous studies.
 
@@ -17,51 +17,130 @@ This study presents information regarding the accuracy evaluation of a remote ph
 \subsection{Method}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Relevant feature extraction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Data pre-processing}
+
+The pre-processing of video recordings involved extraction of the parts containing the interaction with the games and the discard of noisy frames. Firstly the periods where subjects were playing each one of the available games were extracted from the video recordings. It resulted in three videos per subject, denoted as $V_{s,i}$ where $s$ is the $s$-th subject and $i \in \{1, 2, 3\}$ represents the game.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{figures/pre-processing}
+\caption{Extraction of video segments $H_0$ and $H_1$ containing boring and stressful game interactions, respectively. Initial 60 seconds of any video $V_{s,i}$ are ignored and the remaining is divided into three pieces, from which the first and the last ones are selected. Stripes highlight discarded video segments.}
+\label{fig:preprocessing}
+\end{figure}
+
+As previously mentioned, the games used as emotional elicitation material in the experiment induced variations of physiological signals on subjects, who perceived them as being boring at the beginning and stressful at the end. Since the aim of the present study is to test the potential of facial features to differentiate emotional states of boredom and stress, two video segments were extracted from each video $V_{s,i}$, named $H_0$ and $H_1$, whose subject's emotional state is assumed to be known and related to boredom and stress. In order to achieve that, the following extraction procedure was performed, illustrated in Figure \ref{fig:preprocessing}. Firstly the initial 60 seconds of any given video $V_{s,i}$ were ignored. The remaining of the video was then divided into three pieces, from which the first and the last were selected as $H_0$ and $H_1$, respectively.
+
+The reason why the initial part of all game videos was discarded is because the first minute might not be ideal for a fair analysis. During the first minute of gameplay, subjects are less likely to be in their usual neutral emotional state. They are more likely to be stimulated by the excitement of the initial contact with a game soon to be played, which interferes with any feelings of boredom. Additionally subjects need basic experimentation with the game to learn how to play it and judge if it is boring or not. Such claim is supported by empirical analysis of the first minute of the video recordings that show repeated head and eye movements from and towards the keyboard/display. Consequently, the second minute and onward in the videos is more likely to portrait facial activity related to emotional reactions to the game instead of facial activity connected to gameplay learning. Regarding the division of the remaining part of the video into three segments, from which two were selected as $H_0$ and $H_1$, it followed the reasoning that the emotional state of subjects was unknown in the middle part of $V_{s,i}$. Based on self-reported emotional states, subjects reported the beginning part of the games as boring and the final part as stressful; additionally there are significant differences in the HR mean between the second and the last minute of gameplay in the games \parencite{bevilacqua2018changes}. As a consequence it is assumed that video segments $H_0$ and $H_1$ accurately portray interaction of subjects during boring and stressful periods of the games, respectively.
+
+The pre-processing of the recordings resulted in 6 video segments per subjects: 3 segments $H_0$ (one per game) and 3 segments $H_1$ (one per game). A given game $i$ contains $N=20$ pairs of $H_0$ and $H_1$ video segments (20 segments $H_0$, one per subject, and 20 segments $H_1$, one per subject). When considering all subjects and games, there are $N=60$ pairs of $H_0$ and $H_1$ video segments (3 games $\times$ 20 subjects, resulting in 60 segments $H_0$ and 60 segments $H_1$). Subject 9 had problems playing the Platformer game, so segments $H_0$ and $H_1$ from subject 9 in the Platformer game were discarded. Consequentially the Platformer game contains $N=19$ pairs of $H_0$ and $H_1$ video segments; regarding all games and subjects, there are $N=59$ pairs of $H_0$ and $H_1$ video segments.
+
+\subsubsection{Classification features}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The classification efficiency of a machine learning model is related to the number of features able to accurately discriminate the elements being classified. The use of more features does not necessarely produces a better model, since some features might not accurately contribute to the classification, which leads to degradation of results.
 
-Features and their classification potential are highly dependent on the type of data being used. In the present study, the set of features used for classification was extracted and selected based on previous reports of said features to differentiate emotional states in games. In total 8 features are used: 7 extracted from an automated facial analysis and one based on remote estimations of HR. Table \ref{table:study5-features-list} presents all features and their description.
+Features and their classification potential are highly dependent on the type of data being used. In the present study, the set of features used for classification was extracted and selected based on previous reports of said features to differentiate emotional states in games. In total 8 features, denoted $F_1$ to $F_8$, are used: $F_1$ to $F_7$ are related to facial activity and $F_8$ is related to HR activity, estimated remotely. Table \ref{table:study5-features-list} presents a description of all features.
 
 \begin{table*}
     \centering
-    \caption{Classification features}
+    \caption{Description of features used for classification}
     \label{table:study5-features-list}
-    \begin{tabular}[l]{@{}lcp{6.5cm}}
+    \begin{tabular}[l]{@{}llp{6.5cm}}
         \hline
-            \textbf{Name} & \textbf{Notation} & \textbf{Description} \\
+            \textbf{Notation} & \textbf{Name} & \textbf{Description} \\
         \hline
-            Mouth outer & $F_1$ & Monitor the zygomatic muscle.  \\
-            Mouth corner & $F_2$ & Monitor the zygomatic muscle. \\
-            Eye area & $F_3$ & Monitor the orbicularis oculi muscle. \\
-            Eyebrow activity & $F_4$ & Monitor the corrugator muscle.  \\
-            Face area & $F_5$ & Monitor facial movement to and away from the camera  \\
-            Face motion & $F_6$ & Describe the total distance the head has moved in any direction in a short period of time.  \\
-            Facial COM & $F_7$ & Describe the overall movement of all facial landmarks. \\
-            Remote HR & $F_8$ & Average HR estimated using the remote photoplethysmography technique proposed by \textcite{poh2011advancements}.  \\
+            $F_1$ & Mouth outer & Monitor the zygomatic muscle.  \\
+            $F_2$ & Mouth corner & Monitor the zygomatic muscle. \\
+            $F_3$ & Eye area & Monitor the orbicularis oculi muscle. \\
+            $F_4$ & Eyebrow activity & Monitor the corrugator muscle.  \\
+            $F_5$ & Face area & Monitor facial movement to and away from the camera  \\
+            $F_6$ & Face motion & Describe the total distance the head has moved in any direction in a short period of time.  \\
+            $F_7$ & Facial COM & Describe the overall movement of all facial landmarks. \\
+            $F_8$ & Remote HR & HR estimated using the rPPG technique proposed by \textcite{poh2011advancements}.  \\
         \hline
     \end{tabular}
 \end{table*}
 
-Features $F_1$ to $F_7$ are mostly calculated using the Euclidian distance of automatically detected facial landmarks (see Section \ref{s:study4}, on page \pageref{s:study4}, for a detailed description of the process). The landmarks used in the calculation are related to facial elements that express a connection with emotional states. As previsouly mentioned in Chapter \ref{ch:literature-face}, there is evidence of more frequent corrugator activity when positive game events occur \parencite{hazlett2006measuring} and increased activity of zygomatic muscle associated with self-reported positive emotions \parencite{tijs2008dynamic}. Positive and rewarding game events are also connected to increase in zygomatic and orbicularis oculi activity \parencite{ravaja20051}. Detection of stress is also related to blinking rate \parencite{giannakakis2017stress,dinges2005optical}, lip movement \parencite{dinges2005optical} and lips deformation \parencite{metaxas2004image,giannakakis2017stress}, mouth activity \parencite{liao2005decision}, and head movement/velocity \parencite{giannakakis2017stress}.
+Features $F_1$ to $F_7$ are based on automatically detected facial landmarks related to facial elements that express a connection with emotional states. As previsouly mentioned in Chapter \ref{ch:literature-face}, there is evidence of more frequent corrugator activity when positive game events occur \parencite{hazlett2006measuring} and increased activity of zygomatic muscle associated with self-reported positive emotions \parencite{tijs2008dynamic}. Positive and rewarding game events are also connected to increase in zygomatic and orbicularis oculi activity \parencite{ravaja20051}. Detection of stress is also related to blinking rate \parencite{giannakakis2017stress,dinges2005optical}, lip movement \parencite{dinges2005optical} and lips deformation \parencite{metaxas2004image,giannakakis2017stress}, mouth activity \parencite{liao2005decision}, and head movement/velocity \parencite{giannakakis2017stress}.
 
-Feature $F_8$ is calculated based on remote estimations of HR (see Section \ref{s:study3}, on page \pageref{s:study3}, for a detailed description of the process). As previously mentioned in Chapter \ref{ch:literature-physiological}, HR and its derivatives, such as HRV, have been used as reliable sources of information in different emotion estimation methods \parencite{kukolja2014comparative}. Reports in the literature show the use of HR and derivates for continuous arousal monitoring \parencite{grundlehner2009design}, measurement of confusion \parencite{xiao2015towards}, triangulation of phychophysiological emotional reactions to digital media stimuli \parencite{nogueira2015annotation}, detection of mental and physical stress \parencite{vandeput2009heart,garde2002effects}, and measurement of frustration \parencite{rodriguez2015vr}.
+Feature $F_8$ is based on remote estimations of HR performed using the rPPG technique proposed by \textcite{poh2011advancements}. As previously mentioned in Chapter \ref{ch:literature-physiological}, HR and its derivatives, such as HRV, have been used as reliable sources of information in different emotion estimation methods \parencite{kukolja2014comparative}. Reports in the literature show the use of HR and derivates for continuous arousal monitoring \parencite{grundlehner2009design}, measurement of confusion \parencite{xiao2015towards}, triangulation of phychophysiological emotional reactions to digital media stimuli \parencite{nogueira2015annotation}, detection of mental and physical stress \parencite{vandeput2009heart,garde2002effects}, and measurement of frustration \parencite{rodriguez2015vr}.
 
-\subsubsection{Training and evaluation of emotion classification}
+\subsubsection{Features extraction and calculation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The classification procedure uses the previously mentioned feature set and a neural network trained to identify two emotional states: boredom and stress. Both the training and evaluation of the neural network are performed on a user tailored fashion: data from a given subject $S_i$ is used to train and evaluate the emotion classification of that given subject $S_i$.
+The process of extracting and calculating features is performed using a moving window applied on the videos of all subjects. The moving window has a size of 15 seconds and a step of 1 second (93.33\% overlap). For each window in the video, computer vision techniques are applied to all frames within that window to detect facial landmarks and to collect information regarding pixel values, e.g. mean value of pixels in the blue channel. The detected landmarks are used to calculate the features related to facial activity, while pixel values are used to estimate the HR.
 
-A Leave One Session Out Cross Validation (LOSOCV) is used to evaluate each user-tailored model. In LOSOCV, a data instance is left out and a model is constructed on all other data instances. A given subject $S_i$ played 3 calibration games, so data from one calibration game is left out and a model is trained on the data of the other two calibration games for that subject $S_i$. This is repeated for all three calibration games. The use of LOSOCV will produce 3 models per subject, which results in 3 accuracy measurements per subject (one for each model being evaluated). The model is tested in terms of classification accuracy, so the mean of those three values is used as the final accuracy evaluation for a given subject $S_i$. In other words, each subject contributes a single accuracy value, which is calculated based on the mean accuracy of his/her three models in the LOSOCV.
+Features $F_1$ to $F_7$, which represent facial activity, are mostly calculated using the Euclidian distance of automatically detected facial landmarks for each frame. A detailed description of the process is presented in Section \ref{s:study4} (page \pageref{s:study4}). Feature $F_8$, which represent HR activity, is calculated based on remote estimations of HR. A detailed description of the process is presented in Section \ref{s:study3} (page \pageref{s:study3}).
 
-In the training process, the hyper-parameters of each user-tailored neural network, e.g. number of neurons, is optimized using random search \parencite{bergstra2012random}. A 10-fold cross validation method repeated 3 times is applied and the area under the ROC curve (AUC) is used as a metric to select the best model for each subject. In a repeated k-fold cross validation, the dataset is split into k-subsets and each of those subset is held out while the model is trained on all others. The process is repeated N times and the final metric for the model is the mean from the number of repeats.
+Even though all frames within the window are analyzed, only a single, final value is assigned to each feature per window. For features $F_1$ to $F_7$, the final value of a given feature is calculated by aggregating the values of all frames within the window of that given feature using mean, standard deviation or sum. From now on, $F_i^\mu$, $F_i^\sigma$, and $F_i^\Sigma$ will be used to denote feature $F_i$ whose values in a window were aggregated using mean, standard deviation and sum, respectively. Feature $F_8$ does not require any aggregation of values since all frames within the window are used to produce a single value, i.e. the estimation of the mean HR in that window.
 
+\subsubsection{Training and evaluation of an emotion classifier}
+\label{s:study5-training-evaluation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+The classification procedure uses the previously mentioned feature set and a neural network trained to identify two emotional states: boredom and stress. Both the training and evaluation of the neural network are performed on a user tailored fashion: data from a given subject $S_i$ is used to train and evaluate the emotion classification of that given subject $S_i$. Figure \ref{fig:study5-training-evaluation} illustrates the process.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1.0\textwidth]{figures/hist-me.pdf}
+\caption{Something about training and evaluation}
+\label{fig:study5-training-evaluation}
+\end{figure}
+
+Leave One Session Out Cross Validation (LOSOCV) is used to evaluate each trained user-tailored model, as illustrated in Figure \ref{fig:study5-training-evaluation}(a). In LOSOCV, data from one session instance is left out and a model is constructed on data from all other session instances. In the present study, a given subject $S_i$ played 3 calibration games, so data from one calibration game is left out and a model is trained on the data of the other two calibration games for that subject $S_i$. This is repeated for all three calibration games of that subject $S_i$. Consequentially the use of LOSOCV will produce 3 models per subject, which results in 3 measurements of classificaiton accuracy per subject (one for each model being evaluated). The final classification accuracy for a given subject $S_i$, named $A_i$, is the mean of those three values, which were obtained from the iterations in the LOSOCV. In other words, each subject contributes a single classification accuracy value $A_i$, which is calculated based on the mean classification accuracy of his/her three models in the LOSOCV iterations.
+
+In the training process of each model, which is performed 3 times per user as illustrated in Figure \ref{fig:study5-training-evaluation}(b), the hyper-parameters of each neural network, e.g. number of neurons, is optimized using random search \parencite{bergstra2012random}. A 10-fold cross validation method repeated 3 times is applied, so the dataset is split into 10-subsets and each of those subset is held out while the model is trained on all others. The process is repeated 3 times and the final metric for the model is the mean from the number of repeats. Area under the ROC curve (AUC) is used as a metric to select the best model for each subject.
+
+According to previous analysis, subjects perceived the games as boring at the beginning and stressful at the end. As a consequence, it is assumed that subject's emotional state in $H_0$ and $H_1$ is boredom and stress, respectively. Based on that assumption, both training and evaluation data obtained from video segments in $H_0$ and $H_1$ were labeld as boredom and stress, respectively.
 
 %, which finds models as good or beter then ones configured by a pure grid search
 
 %Describe how the model was trained, which includes how the calibration games were grouped, e.g. two for training, one for testing. Explain that neural networks were used because they are widely mentioned in the literature.
+
+\subsubsection{Analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In order to test the effectiveness of the neural network in classifying evaluation samples as either boredom or stress, each trained neural network was evaluated on a subject level. As described in the previous section, each subject's model was evaluated using LOSOCV, which produced a classification accuracy $A_i$ for any given subject $S_i$. The minimum, maximum and mean value of $A_i$ was calculated as a metric for accuracy. The same process was also applied to other three metrics obtained during the LOSOCV evaluation: precision, recall and F1 score.
+
+Aiming to better understand the contribution of each feature for the classification process, the training/evaluation process mentioned early was also performed using different feature sets. Each of those different feature set was evaluated in an independent tested, denoted $T_i$. Table \ref{table:study5-different-feature-sets} shows the different feature sets used on each test $T_i$
+
+\begin{table*}
+    \centering
+    \caption{Tests and their respective feature sets}
+    \label{table:study5-different-feature-sets}
+    \begin{tabular}[l]{@{}lp{6.5cm}}
+        \hline
+            \textbf{Test} & \textbf{Feature set} \\
+        \hline
+            $T_1$ & Mouth outer Monitor the zygomatic muscle.  \\
+            $T_2$ & Mouth corner Monitor the zygomatic muscle. \\
+            $T_3$ & Eye area Monitor the orbicularis oculi muscle. \\
+            $T_4$ & Eyebrow activity Monitor the corrugator muscle.  \\
+            $T_5$ & Face area Monitor facial movement to and away from the camera  \\
+            $T_6$ & Face motion Describe the total distance the head has moved in any direction in a short period of time.  \\
+            $T_7$ & Facial COM Describe the overall movement of all facial landmarks. \\
+            $T_8$ & Remote HR HR estimated using the rPPG technique proposed by \textcite{poh2011advancements}.  \\
+        \hline
+    \end{tabular}
+\end{table*}
+
+%As previously mentioned, both training and evaluation data for each subject were labeled as either boredom or stress according to the assumed emotional state during the interaction with the games. According to previous analysis, the value of the classification features during boring periods of the games are expected to be different than those during stressful periods.
+
+Subjects perceived the games as boring at the beginning and stressful at the end, so it is expected that values in $H_0$ and $H_1$, for all features, are likely to correlate with an emotional state of boredom and stress, respectively. Such difference should make a trained neural network capable of properly classifying evaluation samples as either boredom or stress. Additionally the use of a multifactorial approach, where facial analysis and HR information are used in combination instead of either one alone, is expected to produce better classification results \parencite{zacharatos2014automatic}.
+
+Consequentially, the following hypotheses are stated:
+
+\begin{itemize}
+  \item[] \textbf{$u_1$} features are likely to correlate with an emotional state of boredom and stress, respectively.
+  \item[] \textbf{$u_2$} features are likely to correlate with an emotional state of boredom and stress, respectively.
+  \item[] \textbf{$u_3$} features are likely to correlate with an emotional state of boredom and stress, respectively.
+\end{itemize}
+
+%the mean value of features in $H_0$ is different than the mean value in $H_1$, for all subjects and games. More specifically, the overarching hypothesis can be described as 7 sub-hypotheses, denoted $u_i$, where $i \in \{1, 2, ..., 7\}$. Hypothesis $u_i$ states that the true difference in means between the value of a given feature $F_i$ in $H_0$ and $H_1$, for all subjects, is greater than zero. The dependent variable of $u_i$ is $F_i$ and the null hypothesis is that the true difference in means between $H_0$ and $H_1$ for feature $F_i$, for all subjects and games, is equal to zero.
+
+%Hypothesis $u_i$ were tested by performing a paired two-tail t-test on the values $H_0$ and $H_1$ of feature $F_i$. In total 7 tests were performed: $u_1$ (mouth outer), $u_2$ (mouth corner), $u_3$ (eye area), $u_4$ (eyebrow activity), $u_5$ (face area), $u_6$ (face motion), and $u_7$ (facial COM).
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Results}
