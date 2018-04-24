@@ -1,5 +1,5 @@
 \section{Study 5: remote emotion detection}
-\label{s:study5}
+\label{s:experiment1-study5}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Introduction}
@@ -14,7 +14,8 @@ This study presents information regarding the use of machine learning to remotel
 %The focus will be on the features used and the accuracy achieved. I imagine a plausiable hypothesis for this study is "is the model able to detect emotions with an accuracy that is better than chance?". In the discussion, I will present how some features influence the results, e.g. facial features only versus HR only. I will not mention the idea of user-tailored versus group-tailored, because it will make things too complex to describe and argue about. My idea is to save that discussion for upcoming papers.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Method}
+\subsection{Method and analysis}
+\label{s:experiment1-study5-method}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -46,7 +47,7 @@ Features and their classification potential are highly dependent on the type of 
     \centering
     \caption{Description of features used for classification}
     \label{table:study5-features-list}
-    \begin{tabular}[l]{@{}llp{6.5cm}}
+    \begin{tabular}[l]{@{}clp{6.5cm}}
         \hline
             \textbf{Notation} & \textbf{Name} & \textbf{Description} \\
         \hline
@@ -76,7 +77,7 @@ Features $F_1$ to $F_7$, which represent facial activity, are mostly calculated 
 Even though all frames within the window are analyzed, only a single, final value is assigned to each feature per window. For features $F_1$ to $F_7$, the final value of a given feature is calculated by aggregating the values of all frames within the window of that given feature using mean, standard deviation or sum. From now on, $F_i^\mu$, $F_i^\sigma$, and $F_i^\Sigma$ will be used to denote feature $F_i$ whose values in a window were aggregated using mean, standard deviation and sum, respectively. Feature $F_8$ does not require any aggregation of values since all frames within the window are used to produce a single value, i.e. the estimation of the mean HR in that window.
 
 \subsubsection{Training and evaluation of an emotion classifier}
-\label{s:study5-training-evaluation}
+\label{s:experiment1-study5-training-evaluation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The classification procedure uses the previously mentioned feature set and a neural network trained to identify two emotional states: boredom and stress. Both the training and evaluation of the neural network are performed on a user tailored fashion: data from a given subject $S_i$ is used to train and evaluate the emotion classification of that given subject $S_i$. Figure \ref{fig:study5-training-evaluation} illustrates the process.
@@ -88,7 +89,7 @@ The classification procedure uses the previously mentioned feature set and a neu
 \label{fig:study5-training-evaluation}
 \end{figure}
 
-Leave One Session Out Cross Validation (LOSOCV) is used to evaluate each trained user-tailored model, as illustrated in Figure \ref{fig:study5-training-evaluation}(a). In LOSOCV, data from one session instance is left out and a model is constructed on data from all other session instances. In the present study, a given subject $S_i$ played 3 calibration games, so data from one calibration game is left out and a model is trained on the data of the other two calibration games for that subject $S_i$. This is repeated for all three calibration games of that subject $S_i$. Consequentially the use of LOSOCV will produce 3 models per subject, which results in 3 measurements of classificaiton accuracy per subject (one for each model being evaluated). The final classification accuracy for a given subject $S_i$, named $A_i$, is the mean of those three values, which were obtained from the iterations in the LOSOCV. In other words, each subject contributes a single classification accuracy value $A_i$, which is calculated based on the mean classification accuracy of his/her three models in the LOSOCV iterations.
+Leave One Session Out Cross Validation (LOSOCV) is used to evaluate each trained user-tailored model, as illustrated in Figure \ref{fig:study5-training-evaluation}(a). In LOSOCV, data from one session instance is left out and a model is constructed on data from all other session instances. In the present study, a given subject $S_i$ played 3 calibration games, so data from one calibration game is left out and a model is trained on the data of the other two calibration games for that subject $S_i$. This is repeated for all three calibration games of that subject $S_i$. Consequentially the use of LOSOCV will produce 3 models per subject, which results in 3 measurements of classificaiton accuracy per subject (one for each model being evaluated). The final classification accuracy for a given subject $S_i$, named $A_i$, is the mean of those three values that were obtained from the iterations in the LOSOCV. In other words, each subject contributes a single classification accuracy value $A_i$, which is calculated based on the mean classification accuracy of his/her three models in the LOSOCV iterations.
 
 In the training process of each model, which is performed 3 times per user as illustrated in Figure \ref{fig:study5-training-evaluation}(b), the hyper-parameters of each neural network, e.g. number of neurons, is optimized using random search \parencite{bergstra2012random}. A 10-fold cross validation method repeated 3 times is applied, so the dataset is split into 10-subsets and each of those subset is held out while the model is trained on all others. The process is repeated 3 times and the final metric for the model is the mean from the number of repeats. Area under the ROC curve (AUC) is used as a metric to select the best model for each subject.
 
@@ -98,23 +99,25 @@ According to previous analysis, subjects perceived the games as boring at the be
 
 %Describe how the model was trained, which includes how the calibration games were grouped, e.g. two for training, one for testing. Explain that neural networks were used because they are widely mentioned in the literature.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Analysis}
+\label{s:experiment1-study5-analysis}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In order to test the effectiveness of the neural network in classifying evaluation samples as either boredom or stress, each trained neural network was evaluated on a subject level. As described in the previous section, each subject's model was evaluated using LOSOCV, which produced a classification accuracy $A_i$ for any given subject $S_i$. The minimum, maximum and mean value of $A_i$ was calculated as a metric for accuracy. The same process was also applied to other three metrics obtained during the LOSOCV evaluation: precision, recall and F1 score.
+In order to test the effectiveness of the neural network in classifying samples as either boredom or stress, all trained neural networks were evaluated in conjunction. As described in the previous section, each subject's model was evaluated using LOSOCV, which produced a classification accuracy $A_i$ for any given subject $S_i$. The minimum, maximum and mean value of $A_i$ was calculated as a metric for accuracy. The same process was also applied to other three metrics obtained during the LOSOCV evaluation: precision, recall and F1 score.
 
-Aiming to better understand the contribution of each feature for the classification process, the training/evaluation process mentioned early was also performed using different feature sets. Each of those different feature set was evaluated in an independent tested, denoted $T_i$. Table \ref{table:study5-different-feature-sets} shows the different feature sets used on each test $T_i$
+Aiming to better understand the contribution of each feature for the classification process, the training/evaluation process mentioned early was also performed using different feature sets. Each of those different feature sets was evaluated in an independent test, denoted $T_i$. Table \ref{table:study5-different-feature-sets} shows the tests $T_i$ and the corresponding feature sets used in the process.
 
 \begin{table*}
     \centering
     \caption{Tests and their respective feature sets}
     \label{table:study5-different-feature-sets}
-    \begin{tabular}[l]{@{}lp{6.5cm}}
+    \begin{tabular}[l]{@{}lp{9cm}}
         \hline
-            \textbf{Test} & \textbf{Feature set} \\
+            \textbf{Test ($T_i$)} & \textbf{Feature set} \\
         \hline
-            $T_1$ & Mouth outer Monitor the zygomatic muscle.  \\
-            $T_2$ & Mouth corner Monitor the zygomatic muscle. \\
+            1 & Mouth outer Monitor the zygomatic muscle.  \\
+            2 & Mouth corner Monitor the zygomatic muscle. \\
             $T_3$ & Eye area Monitor the orbicularis oculi muscle. \\
             $T_4$ & Eyebrow activity Monitor the corrugator muscle.  \\
             $T_5$ & Face area Monitor facial movement to and away from the camera  \\
@@ -127,24 +130,51 @@ Aiming to better understand the contribution of each feature for the classificat
 
 %As previously mentioned, both training and evaluation data for each subject were labeled as either boredom or stress according to the assumed emotional state during the interaction with the games. According to previous analysis, the value of the classification features during boring periods of the games are expected to be different than those during stressful periods.
 
-Subjects perceived the games as boring at the beginning and stressful at the end, so it is expected that values in $H_0$ and $H_1$, for all features, are likely to correlate with an emotional state of boredom and stress, respectively. Such difference should make a trained neural network capable of properly classifying evaluation samples as either boredom or stress. Additionally the use of a multifactorial approach, where facial analysis and HR information are used in combination instead of either one alone, is expected to produce better classification results \parencite{zacharatos2014automatic}.
-
-Consequentially, the following hypotheses are stated:
+Subjects perceived the games as boring at the beginning and stressful at the end, so it is expected that values in $H_0$ and $H_1$, for all features, are likely to correlate with an emotional state of boredom and stress, respectively. Such difference should make a trained neural network capable of properly classifying evaluation samples as either boredom or stress. Additionally the use of a multifactorial approach, where facial analysis and HR information are used in combination instead of either one alone, is expected to produce better classification results \parencite{zacharatos2014automatic}. Based on those expectations, the following hypotheses are stated:
 
 \begin{itemize}
-  \item[] \textbf{$u_1$} features are likely to correlate with an emotional state of boredom and stress, respectively.
-  \item[] \textbf{$u_2$} features are likely to correlate with an emotional state of boredom and stress, respectively.
-  \item[] \textbf{$u_3$} features are likely to correlate with an emotional state of boredom and stress, respectively.
+  \item[] $u_1$: a user-tailored neural network trained on data samples from two calibration games of a given subject $S_i$ is able to classify samples from a third calibration game of that same subject $S_i$ with an accuracy greater than 50\% (random guessing);
+  \item[] $u_2$: a user-tailored neural network using a multifactorial feature set, i.e. facial and HR features, performs with greater accuracy than an user-tailored neural network using facial features only;
+  \item[] $u_3$: a user-tailored neural network using a multifactorial feature set, i.e. facial and HR features, performs with greater accuracy than an user-tailored neural network using HR features only;
 \end{itemize}
 
-%the mean value of features in $H_0$ is different than the mean value in $H_1$, for all subjects and games. More specifically, the overarching hypothesis can be described as 7 sub-hypotheses, denoted $u_i$, where $i \in \{1, 2, ..., 7\}$. Hypothesis $u_i$ states that the true difference in means between the value of a given feature $F_i$ in $H_0$ and $H_1$, for all subjects, is greater than zero. The dependent variable of $u_i$ is $F_i$ and the null hypothesis is that the true difference in means between $H_0$ and $H_1$ for feature $F_i$, for all subjects and games, is equal to zero.
-
-%Hypothesis $u_i$ were tested by performing a paired two-tail t-test on the values $H_0$ and $H_1$ of feature $F_i$. In total 7 tests were performed: $u_1$ (mouth outer), $u_2$ (mouth corner), $u_3$ (eye area), $u_4$ (eyebrow activity), $u_5$ (face area), $u_6$ (face motion), and $u_7$ (facial COM).
-
+Hypothesis $u_1$ was tested by checking if the mean value of the classification accuracy, i.e. calculated from all $A_i$ values, is greater than 0.5. Hypotheses $u_2$ and $u_3$ were tested by performing a Wilcoxon signed-rank test on the $A_i$ values of the two competing models.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Results}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Table \ref{table:study5-tests-metrics} presents the mean of differences of all features between periods $H_0$ and $H_1$, calculated for all subjects in all games and analyzed according to the procedures described in Section \ref{s:experiment1-study5-method}.
+
+\begin{table*}
+    \centering
+    \caption{Mean value of resulting classification metrics}
+    \label{table:study5-result-metrics-mean}
+    \begin{tabular}[l]{@{}ccccc}
+        \hline
+            \textbf{Test} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1}\\
+        \hline
+            1 & 0.31 & 0.92 & 0.6143 & 0.6143 \\
+            2 & 0.31 & 0.92 & 0.6143 & 0.6143 \\
+            3 & 0.31 & 0.92 & 0.6143 & 0.6143 \\
+        \hline
+    \end{tabular}
+\end{table*}
+
+\begin{table}[!htbp]
+\centering
+\caption{Minumum and maximum values of resulting classification metrics}
+\label{table:study5-result-metrics-minmax}
+\begin{tabular}{ccccccccc}
+\hline
+{}   & \multicolumn{2}{c}{Accuracy} & \multicolumn{2}{c}{Precision} & \multicolumn{2}{c}{Recall} & \multicolumn{2}{c}{F1} \\
+Test & min & max & min & max & min & max & min & max \\
+\hline
+1  & 31 & 92 & 61.43 & 32 & 90 & 62.50 & 32 & 90 \\
+3  & 31 & 92 & 61.43 & 32 & 90 & 62.50 & 32 & 90 \\
+\hline
+\end{tabular}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Discussion}
