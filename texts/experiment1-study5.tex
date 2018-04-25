@@ -39,9 +39,9 @@ The pre-processing of the recordings resulted in 6 video segments per subjects: 
 \subsubsection{Classification features}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The classification efficiency of a machine learning model is related to the number of features able to accurately discriminate the elements being classified. The use of more features does not necessarely produces a better model, since some features might not accurately contribute to the classification, which leads to degradation of results.
+The classification efficiency of a machine learning model is related to the number of features able to accurately discriminate the elements being classified. The use of more features does not necessarely produce a better model. Some features might not accurately contribute to the classification, which leads to degradation of results if they are included.
 
-Features and their classification potential are highly dependent on the type of data being used. In the present study, the set of features used for classification was extracted and selected based on previous reports of said features to differentiate emotional states in games. In total 8 features, denoted $F_1$ to $F_8$, are used: $F_1$ to $F_7$ are related to facial activity and $F_8$ is related to HR activity, estimated remotely. Table \ref{table:study5-features-list} presents a description of all features.
+Features and their classification potential are highly dependent on the type of data being used. In the present study, the set of features used for classification was extracted and selected based on previous reports of the potential of said features to differentiate emotional states in games. In total 8 features, denoted $F_1$ to $F_8$, are available for use: $F_1$ to $F_7$ are related to facial activity and $F_8$ to $F_11$ are related to HR activity, including remote estimations (rPPG). Table \ref{table:study5-features-list} presents a description of all features.
 
 \begin{table*}
     \centering
@@ -59,6 +59,9 @@ Features and their classification potential are highly dependent on the type of 
             $F_6$ & Face motion & Describe the total distance the head has moved in any direction in a short period of time.  \\
             $F_7$ & Facial COM & Describe the overall movement of all facial landmarks. \\
             $F_8$ & Remote HR & HR estimated using the rPPG technique proposed by \textcite{poh2011advancements}.  \\
+            $F_9$ & Ground HR & HR estimated   \\
+            $F_10$ & Normalized remote HR & HR estimated   \\
+            $F_11$ & Normalized ground HR & HR estimated   \\
         \hline
     \end{tabular}
 \end{table*}
@@ -89,11 +92,11 @@ The classification procedure uses the previously mentioned feature set and a neu
 \label{fig:study5-training-evaluation}
 \end{figure}
 
-Leave One Session Out Cross Validation (LOSOCV) is used to evaluate each trained user-tailored model, as illustrated in Figure \ref{fig:study5-training-evaluation}(a). In LOSOCV, data from one session instance is left out and a model is constructed on data from all other session instances. In the present study, a given subject $S_i$ played 3 calibration games, so data from one calibration game is left out and a model is trained on the data of the other two calibration games for that subject $S_i$. This is repeated for all three calibration games of that subject $S_i$. Consequentially the use of LOSOCV will produce 3 models per subject, which results in 3 measurements of classificaiton accuracy per subject (one for each model being evaluated). The final classification accuracy for a given subject $S_i$, named $A_i$, is the mean of those three values that were obtained from the iterations in the LOSOCV. In other words, each subject contributes a single classification accuracy value $A_i$, which is calculated based on the mean classification accuracy of his/her three models in the LOSOCV iterations.
+Leave One Session Out Cross Validation (LOSOCV) is used to evaluate each trained user-tailored model, as illustrated in Figure \ref{fig:study5-training-evaluation}(a). In LOSOCV, data from one session instance is left out and a model is constructed on data from all other session instances. In the present study, a given subject $S_i$ played 3 calibration games, so data from one calibration game is left out and a model is trained on the data of the other two calibration games for that subject $S_i$. This is repeated for all three calibration games of that subject $S_i$. Consequentially the use of LOSOCV will produce 3 models per subject, resulting in 3 measurements of classificaiton accuracy per subject (one for each model being evaluated). The final classification accuracy for a given subject $S_i$, named $A_i$, is the mean of those three values that were obtained from the iterations in the LOSOCV. In other words, each subject contributes a single classification accuracy value $A_i$, which is calculated based on the mean classification accuracy of his/her three models in the LOSOCV iterations.
 
-In the training process of each model, which is performed 3 times per user as illustrated in Figure \ref{fig:study5-training-evaluation}(b), the hyper-parameters of each neural network, e.g. number of neurons, is optimized using random search \parencite{bergstra2012random}. A 10-fold cross validation method repeated 3 times is applied, so the dataset is split into 10-subsets and each of those subset is held out while the model is trained on all others. The process is repeated 3 times and the final metric for the model is the mean from the number of repeats. Area under the ROC curve (AUC) is used as a metric to select the best model for each subject.
+In the training process of each model, which is performed 3 times per user as illustrated in Figure \ref{fig:study5-training-evaluation}(b), the hyper-parameters of each neural network, e.g. number of neurons, is optimized using random search \parencite{bergstra2012random}. A 10-fold cross validation method repeated 3 times is applied, so the dataset is split into 10-subsets and each of those subset is held out while the model is trained on all others. The process is repeated 3 times and the final metric for the model is the mean from the number of repeats. Area under the ROC curve (AUC) is used as a metric to select the best model in the 10-fold cross validation.
 
-According to previous analysis, subjects perceived the games as boring at the beginning and stressful at the end. As a consequence, it is assumed that subject's emotional state in $H_0$ and $H_1$ is boredom and stress, respectively. Based on that assumption, both training and evaluation data obtained from video segments in $H_0$ and $H_1$ were labeld as boredom and stress, respectively.
+According to previous analysis, subjects perceived the games as being boring at the beginning and stressful at the end. As a consequence, it is assumed that subject's emotional state in $H_0$ and $H_1$ is boredom and stress, respectively. Based on that assumption, training and evaluation data obtained from video segments in $H_0$ and $H_1$ were labeld as boredom and stress, respectively.
 
 %, which finds models as good or beter then ones configured by a pure grid search
 
@@ -112,33 +115,33 @@ Aiming to better understand the contribution of each feature for the classificat
     \centering
     \caption{Tests and their respective feature sets}
     \label{table:study5-different-feature-sets}
-    \begin{tabular}[l]{@{}lp{9cm}}
+    \begin{tabular}[l]{@{}cp{9cm}}
         \hline
             \textbf{Test ($T_i$)} & \textbf{Feature set} \\
         \hline
             1 & Mouth outer Monitor the zygomatic muscle.  \\
             2 & Mouth corner Monitor the zygomatic muscle. \\
-            $T_3$ & Eye area Monitor the orbicularis oculi muscle. \\
-            $T_4$ & Eyebrow activity Monitor the corrugator muscle.  \\
-            $T_5$ & Face area Monitor facial movement to and away from the camera  \\
-            $T_6$ & Face motion Describe the total distance the head has moved in any direction in a short period of time.  \\
-            $T_7$ & Facial COM Describe the overall movement of all facial landmarks. \\
-            $T_8$ & Remote HR HR estimated using the rPPG technique proposed by \textcite{poh2011advancements}.  \\
+            3 & Eye area Monitor the orbicularis oculi muscle. \\
+            4 & Eyebrow activity Monitor the corrugator muscle.  \\
+            5 & Face area Monitor facial movement to and away from the camera  \\
+            6 & Face motion Describe the total distance the head has moved in any direction in a short period of time.  \\
+            7 & Facial COM Describe the overall movement of all facial landmarks. \\
+            8 & Remote HR HR estimated using the rPPG technique proposed by \textcite{poh2011advancements}.  \\
         \hline
     \end{tabular}
 \end{table*}
 
 %As previously mentioned, both training and evaluation data for each subject were labeled as either boredom or stress according to the assumed emotional state during the interaction with the games. According to previous analysis, the value of the classification features during boring periods of the games are expected to be different than those during stressful periods.
 
-Subjects perceived the games as boring at the beginning and stressful at the end, so it is expected that values in $H_0$ and $H_1$, for all features, are likely to correlate with an emotional state of boredom and stress, respectively. Such difference should make a trained neural network capable of properly classifying evaluation samples as either boredom or stress. Additionally the use of a multifactorial approach, where facial analysis and HR information are used in combination instead of either one alone, is expected to produce better classification results \parencite{zacharatos2014automatic}. Based on those expectations, the following hypotheses are stated:
+Subjects perceived the games as boring and stressful, so such difference should make a trained neural network capable of properly classifying evaluation samples as either boredom or stress. Additionally the use of a multifactorial approach, where facial analysis and HR information are used in combination instead of either one alone, is expected to produce better classification results \parencite{zacharatos2014automatic}. Based on those expectations, the following hypotheses are stated:
 
 \begin{itemize}
   \item[] $u_1$: a user-tailored neural network trained on data samples from two calibration games of a given subject $S_i$ is able to classify samples from a third calibration game of that same subject $S_i$ with an accuracy greater than 50\% (random guessing);
-  \item[] $u_2$: a user-tailored neural network using a multifactorial feature set, i.e. facial and HR features, performs with greater accuracy than an user-tailored neural network using facial features only;
-  \item[] $u_3$: a user-tailored neural network using a multifactorial feature set, i.e. facial and HR features, performs with greater accuracy than an user-tailored neural network using HR features only;
+  \item[] $u_2$: a user-tailored neural network using a multifactorial feature set, i.e. facial and HR features, performs with greater accuracy than a user-tailored neural network using facial features only;
+  \item[] $u_3$: a user-tailored neural network using a multifactorial feature set, i.e. facial and HR features, performs with greater accuracy than a user-tailored neural network using HR features only;
 \end{itemize}
 
-Hypothesis $u_1$ was tested by checking if the mean value of the classification accuracy, i.e. calculated from all $A_i$ values, is greater than 0.5. Hypotheses $u_2$ and $u_3$ were tested by performing a Wilcoxon signed-rank test on the $A_i$ values of the two competing models.
+Hypothesis $u_1$ was tested by checking if the mean value of the classification accuracy, i.e. calculated from all $A_i$ values, is greater than 0.5. Hypotheses $u_2$ and $u_3$ were tested by performing a Wilcoxon signed-rank test on all $A_i$ values of the two competing models.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Results}
@@ -167,11 +170,12 @@ Table \ref{table:study5-tests-metrics} presents the mean of differences of all f
 \label{table:study5-result-metrics-minmax}
 \begin{tabular}{ccccccccc}
 \hline
-{}   & \multicolumn{2}{c}{Accuracy} & \multicolumn{2}{c}{Precision} & \multicolumn{2}{c}{Recall} & \multicolumn{2}{c}{F1} \\
-Test & min & max & min & max & min & max & min & max \\
+\textbf{Test} & \multicolumn{2}{c}{\textbf{Accuracy}} & \multicolumn{2}{c}{\textbf{Precision}} & \multicolumn{2}{c}{\textbf{Recall}} & \multicolumn{2}{c}{\textbf{F1}} \\
+{} & min & max & min & max & min & max & min & max \\
 \hline
-1  & 31 & 92 & 61.43 & 32 & 90 & 62.50 & 32 & 90 \\
-3  & 31 & 92 & 61.43 & 32 & 90 & 62.50 & 32 & 90 \\
+1  & 0.31 & 0.31 & 0.43 & 0.32 & 0.90 & 0.62 & 0.32 & 0.90 \\
+2  & 0.31 & 0.31 & 0.43 & 0.32 & 0.90 & 0.62 & 0.32 & 0.90 \\
+3  & 0.31 & 0.31 & 0.43 & 0.32 & 0.90 & 0.62 & 0.32 & 0.90 \\
 \hline
 \end{tabular}
 \end{table}
