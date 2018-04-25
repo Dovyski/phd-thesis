@@ -107,7 +107,7 @@ According to previous analysis, subjects perceived the games as being boring at 
 \label{s:experiment1-study5-analysis}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In order to test the effectiveness of the neural network in classifying samples as either boredom or stress, all trained neural networks were evaluated in conjunction. As described in the previous section, each subject's model was evaluated using LOSOCV, which produced a classification accuracy $A_i$ for any given subject $S_i$. The minimum, maximum and mean value of $A_i$ was calculated as a metric for accuracy. The same process was also applied to other three metrics obtained during the LOSOCV evaluation: precision, recall and F1 score.
+In order to test the effectiveness of the neural network in classifying samples as either boredom or stress, all trained neural networks were evaluated in conjunction. As described in the previous section, each subject's model was evaluated using LOSOCV, which produced a classification accuracy $A_i$ for any given subject $S_i$. The minimum, maximum and mean value of $A_i$ was calculated as a metric for accuracy. In order to provide better contextualization of the classification results, the same process was also applied to other three metrics obtained during the LOSOCV evaluation: precision, recall and F1 score.
 
 Aiming to better understand the contribution of each feature for the classification process, the training/evaluation process mentioned early was also performed using different feature sets. Each of those different feature sets was evaluated in an independent test, denoted $T_i$. Table \ref{table:study5-different-feature-sets} shows the tests $T_i$ and the corresponding feature sets used in the process.
 
@@ -119,14 +119,15 @@ Aiming to better understand the contribution of each feature for the classificat
         \hline
             \textbf{Test ($T_i$)} & \textbf{Feature set} \\
         \hline
-            1 & Mouth outer Monitor the zygomatic muscle.  \\
-            2 & Mouth corner Monitor the zygomatic muscle. \\
-            3 & Eye area Monitor the orbicularis oculi muscle. \\
-            4 & Eyebrow activity Monitor the corrugator muscle.  \\
-            5 & Face area Monitor facial movement to and away from the camera  \\
-            6 & Face motion Describe the total distance the head has moved in any direction in a short period of time.  \\
-            7 & Facial COM Describe the overall movement of all facial landmarks. \\
-            8 & Remote HR HR estimated using the rPPG technique proposed by \textcite{poh2011advancements}.  \\
+            1 & 5278d175-3a129bb2  \\ % HR_poh2011_normalized, mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
+            2 & 5278d175-1f720cb8 \\ % mean_HR_ground_normalized, mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
+            3 & 5278d175-71e752ce \\ % HR_poh2011, mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
+            4 & 5278d175-9fa716ee  \\ % mean_HR_ground, mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
+            5 & 5278d175-826512b2  \\ % mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
+            6 & 5278d175-97a38001  \\ % HR_poh2011
+            7 & 5278d175-ad2580a5 \\ % mean_HR_ground
+            8 & 5278d175-88d66d17  \\ % HR_poh2011_normalized
+            9 & 5278d175-0206eb20  \\ % mean_HR_ground_normalized
         \hline
     \end{tabular}
 \end{table*}
@@ -147,19 +148,25 @@ Hypothesis $u_1$ was tested by checking if the mean value of the classification 
 \subsection{Results}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Table \ref{table:study5-tests-metrics} presents the mean of differences of all features between periods $H_0$ and $H_1$, calculated for all subjects in all games and analyzed according to the procedures described in Section \ref{s:experiment1-study5-method}.
+Table \ref{table:study5-tests-metrics} presents the mean values of resulting classification metrics accuracy, precision, recall and F1 score, calculated and analyzed according to the procedures described in Section \ref{s:experiment1-study5-method}.
 
 \begin{table*}
     \centering
-    \caption{Mean value of resulting classification metrics}
+    \caption{Mean values of resulting classification metrics}
     \label{table:study5-result-metrics-mean}
     \begin{tabular}[l]{@{}ccccc}
         \hline
-            \textbf{Test} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1}\\
+            \textbf{Test ($T_i$)} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1}\\
         \hline
-            1 & 0.31 & 0.92 & 0.6143 & 0.6143 \\
-            2 & 0.31 & 0.92 & 0.6143 & 0.6143 \\
-            3 & 0.31 & 0.92 & 0.6143 & 0.6143 \\
+            1 & 0.6143 & \textbf{0.6597} & \textbf{0.6433} & \textbf{0.5810} \\ % 5278d175-3a129bb2
+            2 & 0.6153 & 0.5834 & 0.5847 & 0.5146 \\ % 5278d175-1f720cb8
+            3 & 0.6049 & 0.6127 & 0.5995 & 0.5214 \\ % 5278d175-71e752ce
+            4 & \textbf{0.6235} & 0.5838 & 0.6071 & 0.5146 \\ % 5278d175-9fa716ee
+            5 & 0.5943 & 0.6016 & 0.5853 & 0.5074 \\ % 5278d175-826512b2
+            6 & 0.5477 & 0.5412 & 0.5450 & 0.4978 \\ % 5278d175-97a38001
+            7 & 0.6087 & 0.6569 & 0.6249 & 0.5812 \\ % 5278d175-ad2580a5
+            8 & 0.5549 & 0.5556 & 0.5339 & 0.4912 \\ % 5278d175-88d66d17
+            9 & 0.6064 & 0.6519 & 0.6214 & 0.5809 \\ % 5278d175-0206eb20
         \hline
     \end{tabular}
 \end{table*}
@@ -170,12 +177,19 @@ Table \ref{table:study5-tests-metrics} presents the mean of differences of all f
 \label{table:study5-result-metrics-minmax}
 \begin{tabular}{ccccccccc}
 \hline
-\textbf{Test} & \multicolumn{2}{c}{\textbf{Accuracy}} & \multicolumn{2}{c}{\textbf{Precision}} & \multicolumn{2}{c}{\textbf{Recall}} & \multicolumn{2}{c}{\textbf{F1}} \\
+\textbf{Test ($T_i$)} & \multicolumn{2}{c}{\textbf{Accuracy}} & \multicolumn{2}{c}{\textbf{Precision}} & \multicolumn{2}{c}{\textbf{Recall}} & \multicolumn{2}{c}{\textbf{F1}} \\
 {} & min & max & min & max & min & max & min & max \\
 \hline
-1  & 0.31 & 0.31 & 0.43 & 0.32 & 0.90 & 0.62 & 0.32 & 0.90 \\
-2  & 0.31 & 0.31 & 0.43 & 0.32 & 0.90 & 0.62 & 0.32 & 0.90 \\
-3  & 0.31 & 0.31 & 0.43 & 0.32 & 0.90 & 0.62 & 0.32 & 0.90 \\
+1  & 0.31 & 0.92 & 0.28 & 0.97 & 0.33 & 0.87 & 0.00 & 0.91 \\ % 5278d175-3a129bb2
+2  & 0.18 & 0.97 & 0.00 & 0.97 & 0.00 & 0.96 & 0.00 & 0.97 \\ % 5278d175-1f720cb8
+3  & 0.19 & 0.91 & 0.00 & 0.95 & 0.19 & 0.87 & 0.00 & 0.91 \\ % 5278d175-71e752ce
+4  & 0.25 & 0.98 & 0.00 & 0.97 & 0.13 & 0.98 & 0.00 & 0.98 \\ % 5278d175-9fa716ee
+5  & 0.26 & 0.90 & 0.00 & 0.95 & 0.12 & 0.90 & 0.00 & 0.89 \\ % 5278d175-826512b2
+6  & 0.36 & 0.72 & 0.00 & 0.79 & 0.18 & 0.77 & 0.00 & 0.67 \\ % 5278d175-97a38001
+7  & 0.38 & 0.82 & 0.26 & 0.85 & 0.23 & 0.87 & 0.00 & 0.81 \\ % 5278d175-ad2580a5
+8  & 0.37 & 0.70 & 0.00 & 0.83 & 0.18 & 0.83 & 0.00 & 0.68 \\ % 5278d175-88d66d17
+9  & 0.37 & 0.80 & 0.26 & 0.85 & 0.19 & 0.89 & 0.00 & 0.78 \\ % 5278d175-0206eb20
+
 \hline
 \end{tabular}
 \end{table}
