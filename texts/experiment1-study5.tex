@@ -117,34 +117,38 @@ Aiming to better understand the contribution of each feature for the classificat
     \label{table:study5-different-feature-sets}
     \begin{tabular}[l]{@{}cp{9cm}}
         \hline
-            \textbf{Test ($T_i$)} & \textbf{Feature set} \\
+            \textbf{Name} & \textbf{Feature set} \\
         \hline
-            1 & 5278d175-71e752ce \\ % HR_poh2011, mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
-            2 & 5278d175-9fa716ee  \\ % mean_HR_ground, mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
-            3 & 5278d175-826512b2  \\ % mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
-            4 & 5278d175-97a38001  \\ % HR_poh2011
-            5 & 5278d175-ad2580a5 \\ % mean_HR_ground
+            \texttt{MULTI\_R} & 5278d175-71e752ce \\ % HR_poh2011, mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
+            \texttt{MULTI\_G} &  5278d175-9fa716ee  \\ % mean_HR_ground, mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
+            \texttt{FACE} &  5278d175-826512b2  \\ % mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
+            \texttt{HR\_R} &  5278d175-97a38001  \\ % HR_poh2011
+            \texttt{HR\_G} &  5278d175-ad2580a5 \\ % mean_HR_ground
         \hline
     \end{tabular}
 \end{table*}
+
+\todo[inline]{Better describe each test and their features.}
 
 %As previously mentioned, both training and evaluation data for each subject were labeled as either boredom or stress according to the assumed emotional state during the interaction with the games. According to previous analysis, the value of the classification features during boring periods of the games are expected to be different than those during stressful periods.
 
 Subjects perceived the games as boring and stressful, so such difference should make a trained neural network capable of properly classifying evaluation samples as either boredom or stress. Additionally the use of a multifactorial approach, where facial analysis and HR information are used in combination instead of either one alone, is expected to produce better classification results \parencite{zacharatos2014automatic}. Based on those expectations, the following hypotheses are stated:
 
 \begin{itemize}
-  \item[] \textit{$u_1$: a user-tailored neural network trained on data samples from two calibration games of a given subject $S_i$ is able to classify samples from a third calibration game of that same subject $S_i$ with an accuracy greater than 50\% (random guessing);}
+  \item[] \textit{$u_1$: a user-tailored neural network trained on data samples from two calibration games of a given subject $S_i$ is able to classify samples from a third calibration game of that same subject $S_i$ with an accuracy greater than chance-level rate (random guessing);}
   \item[] \textit{$u_2$: a user-tailored neural network using a multifactorial feature set, i.e. facial and HR features, performs with greater accuracy than a user-tailored neural network using facial features only;}
   \item[] \textit{$u_3$: a user-tailored neural network using a multifactorial feature set, i.e. facial and HR features, performs with greater accuracy than a user-tailored neural network using HR features only.}
 \end{itemize}
 
-Hypothesis $u_1$ was tested by checking if the mean value of the classification accuracy, i.e. calculated from all $A_i$ values, is greater than 0.5. Hypotheses $u_2$ and $u_3$ were tested by performing a Wilcoxon signed-rank test on all $A_i$ values of the two competing models.
+Hypothesis $u_1$ was tested by checking if the mean value of the classification accuracy, i.e. calculated from all $A_i$ values, is greater than 0.5. In such case it is assumed that an accuracy rate of 0.5 (50\%) is the theoretical probabilistic chance level achieved by totally random classification performed by a classifier evaluated on an infinite number of data samples. Hypotheses $u_2$ and $u_3$ were tested by performing a Wilcoxon Signed Ranks test on all $A_i$ values of the two competing models.
+
+\todo[inline]{Say that wilcoxon test was performed on all metrics (3 per subject), so N=57, not on their means.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Results}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Table \ref{table:study5-tests-metrics} presents the mean values of resulting classification metrics accuracy, precision, recall and F1 score, calculated and analyzed according to the procedures described in Section \ref{s:experiment1-study5-method}.
+Table \ref{table:study5-result-metrics-mean} presents the mean values of the resulting classification metrics for accuracy, precision, recall and F1 score, calculated and analyzed according to the procedures described in Section \ref{s:experiment1-study5-method}. Regarding the accuracy metric, the highest mean value achieved was 62.3\% in test \texttt{MULTI\_G}, whose model used a combination of facial and HR features. The HR feature in that case was calculated from the physical sensor, not remotely estimated. The second and third highest accuracy rates were 60.8\% in test \texttt{HR\_G} (HR from physical sensor only) and 60.4\% in test \texttt{MULTI\_R} (facial and remotely-estimared HR features), respectively. The highest values achieved for precision, recall and F1 score were 65.6\%, 62.4\%, and 58.1\%, respectively, all in test \texttt{HR\_G}.
 
 \begin{table*}
     \centering
@@ -152,16 +156,18 @@ Table \ref{table:study5-tests-metrics} presents the mean values of resulting cla
     \label{table:study5-result-metrics-mean}
     \begin{tabular}[l]{@{}ccccc}
         \hline
-            \textbf{Test ($T_i$)} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1}\\
+            \textbf{Test} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1}\\
         \hline
-            1 & 0.6049 & 0.6127 & 0.5995 & 0.5214 \\ % 5278d175-71e752ce
-            2 & \textbf{0.6235} & 0.5838 & 0.6071 & 0.5146 \\ % 5278d175-9fa716ee
-            3 & 0.5943 & 0.6016 & 0.5853 & 0.5074 \\ % 5278d175-826512b2
-            4 & 0.5477 & 0.5412 & 0.5450 & 0.4978 \\ % 5278d175-97a38001
-            5 & 0.6087 & \textbf{0.6569} & \textbf{0.6249} & \textbf{0.5812} \\ % 5278d175-ad2580a5
+            \texttt{MULTI\_R} & 0.604 & 0.612 & 0.599 & 0.521 \\ % 5278d175-71e752ce
+            \texttt{MULTI\_G} & \textbf{0.623} & 0.583 & 0.607 & 0.514 \\ % 5278d175-9fa716ee
+            \texttt{FACE} & 0.594 & 0.601 & 0.585 & 0.507 \\ % 5278d175-826512b2
+            \texttt{HR\_R} & 0.547 & 0.541 & 0.545 & 0.497 \\ % 5278d175-97a38001
+            \texttt{HR\_G} & 0.608 & \textbf{0.656} & \textbf{0.624} & \textbf{0.581} \\ % 5278d175-ad2580a5
         \hline
     \end{tabular}
 \end{table*}
+
+Table \ref{table:study5-result-metrics-minmax} presents a discrimination of the minumum and maximum values for the resulting classification metrics. At least one subject in test \texttt{MULTI\_G} has been classified with an accuracy of 98\%, the highest value for that metric in all tests. The worst accuracy value was 19\% for at least one subject in test \texttt{MULTI\_R}. Regarding precision, the highest value was 97\% in test \texttt{MULTI\_G}. In all tests but \texttt{HR\_G}, at least one subject has been classified with zero precision (all samples were classified wrongly). Regarding precision, the highest and lowest values were 98\% and 12\% in tests \texttt{MULTI\_G} and \texttt{FACE}, respectively. Finally regarding F1 score, the highest value was 98\% for at least one subject in test \texttt{MULTI\_G}. All tests presented zero as the lowest F1 score.
 
 \begin{table}[!htbp]
   \centering
@@ -169,22 +175,36 @@ Table \ref{table:study5-tests-metrics} presents the mean values of resulting cla
   \label{table:study5-result-metrics-minmax}
   \begin{tabular}{ccccccccc}
     \hline
-      \textbf{Test ($T_i$)} & \multicolumn{2}{c}{\textbf{Accuracy}} & \multicolumn{2}{c}{\textbf{Precision}} & \multicolumn{2}{c}{\textbf{Recall}} & \multicolumn{2}{c}{\textbf{F1}} \\
+      \textbf{Test} & \multicolumn{2}{c}{\textbf{Accuracy}} & \multicolumn{2}{c}{\textbf{Precision}} & \multicolumn{2}{c}{\textbf{Recall}} & \multicolumn{2}{c}{\textbf{F1}} \\
       {} & min & max & min & max & min & max & min & max \\
     \hline
-      1  & 0.19 & 0.91 & 0.00 & 0.95 & 0.19 & 0.87 & 0.00 & 0.91 \\ % 5278d175-71e752ce
-      2  & 0.25 & \textbf{0.98} & 0.00 & \textbf{0.97} & 0.13 & \textbf{0.98} & 0.00 & \textbf{0.98} \\ % 5278d175-9fa716ee
-      3  & 0.26 & 0.90 & 0.00 & 0.95 & 0.12 & 0.90 & 0.00 & 0.89 \\ % 5278d175-826512b2
-      4  & 0.36 & 0.72 & 0.00 & 0.79 & 0.18 & 0.77 & 0.00 & 0.67 \\ % 5278d175-97a38001
-      5  & 0.38 & 0.82 & 0.26 & 0.85 & 0.23 & 0.87 & 0.00 & 0.81 \\ % 5278d175-ad2580a5
+      \texttt{MULTI\_R}  & 0.19 & 0.91 & 0.00 & 0.95 & 0.19 & 0.87 & 0.00 & 0.91 \\ % 5278d175-71e752ce
+      \texttt{MULTI\_G}  & 0.25 & \textbf{0.98} & 0.00 & \textbf{0.97} & 0.13 & \textbf{0.98} & 0.00 & \textbf{0.98} \\ % 5278d175-9fa716ee
+      \texttt{FACE}  & 0.26 & 0.90 & 0.00 & 0.95 & 0.12 & 0.90 & 0.00 & 0.89 \\ % 5278d175-826512b2
+      \texttt{HR\_R}  & 0.36 & 0.72 & 0.00 & 0.79 & 0.18 & 0.77 & 0.00 & 0.67 \\ % 5278d175-97a38001
+      \texttt{HR\_G}  & 0.38 & 0.82 & 0.26 & 0.85 & 0.23 & 0.87 & 0.00 & 0.81 \\ % 5278d175-ad2580a5
     \hline
   \end{tabular}
 \end{table}
 
+% data_multi_r and data_hr_r: p = 0.04488, Zstat = -2.0058, effect = 0.2657
+% data_multi_r and data_face: p = 0.26797, Zstat = -1.1077, effect = 0.1467
+
+Finally there are indications that a multifactorial model, which uses a combination of facial and HR features, performs with greater accuracy than a model using either facial or HR features. A Wilcoxon Signed Ranks test indicated that the accuracy was greater for a multifactorial model using facial and remotely estimated HR features, i.e. \texttt{MULTI\_R}, than for a model using only remotely estimated HR, i.e. \texttt{HR\_R}, $Z=-2.00$, $p=0.044$, $r=0.26$. However there are no indications that the accuracy of such multifactorial model, i.e. \texttt{MULTI\_R}, was statistically significantly greater than the accuracy of a model using only facil features, i.e. \texttt{FACE}, $Z=-1.10$, $p=0.267$, $r=0.14$.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Discussion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Discussion will be focused on the following: 1) was the machine learning model able to detect emotions with accuracy better than chance? 2) was the use of a multimodal approach (foundation of my thesis) better than the use of only facial features (or only HR)?.
+
+% data_multi_g and data_face: p = 0.03343, Zstat = -2.1269, effect = 0.2817
+% data_multi_g and data_hr_g: p = 0.27802, Zstat = -1.0848, effect = 0.1437
+% data_multi_g and data_multi_r: p = 0.07836, Zstat = -1.7603, effect = 0.2332
+
+%The overarching hypothesis states that the mean value of features in $H_0$ is different than the mean value in $H_1$. The overarching hypothesis is composed of 7 sub-hypotheses. i.e. $u_i$, one for each feature $F_i$, where $u_i$ states that the true difference in means between the value of a given feature $F_i$ in $H_0$ and $H_1$, is greater than zero. The majority of the calculated facial features, i.e. mouth outer ($F_1$), mouth corner ($F_2$), eye area ($F_3$), eyebrow activity ($F_4$), and face area ($F_5$), presented statistically significant differences in their mean values when compared between two distinct parts of the games, i.e. $H_0$ and $H_1$. As previously mentioned, subjects perceived the first part of the games, i.e. $H_0$, as being boring and the second part, i.e. $H_1$, as being stressful. Results support the claim of sub-hypotheses $u_1$ to $u_5$, which indicate that facial features $F_1$ to $F_5$ can be differentiated between periods $H_0$ and $H_1$ and consequentially have the potential to unobtrusively differentiate emotional states of boredom and stress of players in gaming sessions. Results refute sub-hypotheses $u_6$ and $u_7$, since features $F_6$ and $F_7$ lack statistical significance to be differentiated between periods $H_0$ and $H_1$.
+
+$u_2$ a user-tailored neural network using a multifactorial feature set, i.e. facial and HR features, performs with greater accuracy than a user-tailored neural network using facial features only.
+
+$u_3$ a user-tailored neural network using a multifactorial feature set, i.e. facial and HR features, performs with greater accuracy than a user-tailored neural network using HR features only.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Conclusions}
