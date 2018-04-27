@@ -19,12 +19,12 @@ The video recordings used in the present study are related to games designed to 
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/machine-learning-labeling-approach-B.png}
+    \includegraphics[width=0.95\textwidth]{figures/machine-learning-labeling-approach-B.png}
     \caption{Labeling approach for training/evauation of the user-tailored model based on varying points of division: $P_b$ (boredom samples) and $P_s$ (stress samples).}
     \label{fig:machine-learning-labeling-approach-B}
 \end{figure}
 
-Data used for training and evaluation of the emotion detection model is obtained according to the procedure illustrated in Figure \ref{fig:machine-learning-labeling-approach-B}. Each game is divided in two parts: boredom, i.e. $P_b$, and stress, i.e. $P_s$. Samples from the $P_s$ part will be labeled as stress, while the samples from the $P_b$ part will be labeled as boredom. The approach accounts for the informed levels of boredom and stress of the subject, labeling only the samples within the areas more likely to accurately reflect the self-reported emotional states.
+Data used for training and evaluation of the emotion detection model is obtained according to the procedure illustrated in Figure \ref{fig:machine-learning-labeling-approach-B}. Each game is divided in two parts: boredom, i.e. $P_b$, and stress, i.e. $P_s$. Samples from the $P_s$ part are labeled as stress, while the samples from the $P_b$ part are labeled as boredom. The approach accounts for the informed levels of boredom and stress of the subject, labeling only the samples within the areas more likely to accurately reflect the self-reported emotional states.
 
 In order to acomplish such division of data, a pre-processing step is applied. The pre-processing of video recordings involves the extraction of the parts containing the interaction with the games and the discard of noisy frames. The process is explained in details in Section \ref{s:experiment1-study4-feature-analysis} (on page \pageref{s:experiment1-study4-feature-analysis}). Firstly the periods where subjects were playing each one of the available games were extracted from the video recordings. It resulted in three videos per subject, denoted as $V_{s,i}$ where $s$ is the $s$-th subject and $i \in \{1, 2, 3\}$ represents the game. Then the initial 45 seconds of any given video $V_{s,i}$ were ignored. The remaining of the video was then divided into three pieces, from which the first and the last were selected as $H_0$ and $H_1$, respectively. Segment $H_0$ represents the boredom part, i.e. $P_b$, while $H_1$ represents the stressful part, i.e. $P_s$.
 
@@ -47,7 +47,7 @@ Features and their classification potential are highly dependent on the type of 
         \hline
             $F_1$ & Mouth outer & Monitor the zygomatic muscle.  \\
             $F_2$ & Mouth corner & Monitor the zygomatic muscle. \\
-            $F_3$ & Eye area & Monitor the orbicularis oculi muscle. \\
+            $F_3$ & Eye area & Monitor the orbicularis oculi muscle, e.g. blinking. \\
             $F_4$ & Eyebrow activity & Monitor the corrugator muscle.  \\
             $F_5$ & Face area & Monitor facial movement to and away from the camera  \\
             $F_6$ & Face motion & Describe the total distance the head has moved in any direction in a short period of time.  \\
@@ -69,7 +69,7 @@ The process of extracting and calculating features is performed using a moving w
 
 Features $F_1$ to $F_7$, which represent facial activity, are mostly calculated using the Euclidian distance of automatically detected facial landmarks for each frame. A detailed description of the process is presented in Section \ref{s:study4} (page \pageref{s:study4}). Features $F_8$ and $F_9$, which represent HR activity, are calculated based on rPPG estimations of HR and on HR measurements of a physical sensor, respectively. A detailed description of the rPPG estimation process is presented in Section \ref{s:study3} (page \pageref{s:study3}).
 
-Even though all frames within the window are analyzed, only a single, final value is assigned to each feature per window. For features $F_1$ to $F_7$, the final value of a given feature is calculated by aggregating the values of all frames within the window of that given feature using mean or standard deviation. From now on, $F_i^\mu$ and $F_i^\sigma$ will be used to denote feature $F_i$ whose values in a window were aggregated using mean and standard deviation, respectively. Feature $F_8$ does not require any aggregation of values since all frames within the window are used to produce a single value, i.e. the estimation of the mean HR in that window. Finally feature $F_9$ is aggregated using the mean of all HR values provided by the physical sensor within the window.
+Even though all frames within the window are analyzed, only a single, final value is assigned to each feature per window. For features $F_1$ to $F_7$, the final value of a given feature is calculated by aggregating the values of all frames within the window of that given feature using mean or standard deviation. From now on, $F_i^\mu$ and $F_i^\sigma$ will be used to denote feature $F_i$ whose values in a window were aggregated using mean and standard deviation, respectively. Empirical tests have shown that features connected to facial regions with fast changes within the window, e.g. eye area and face motion, are better represented with an aggregation using the standard deviation. Facial features with slower changes, e.g. face area and mouth activity, are better represented with an aggregation using the mean. Feature $F_8$ does not require any aggregation of values since all frames within the window are used to produce a single value, i.e. the estimation of the mean HR in that window. Finally feature $F_9$ is aggregated using the mean of all HR values provided by the physical sensor within the window, i.e. mean HR within the window.
 
 \subsubsection{Training and evaluation of an emotion classifier}
 \label{s:experiment1-study5-training-evaluation}
@@ -101,26 +101,26 @@ According to previous analysis, subjects perceived the games as being boring at 
 
 In order to test the effectiveness of the neural network in classifying samples as either boredom or stress, all trained neural networks were evaluated in conjunction. As described in the previous section, each subject's model was evaluated using LOSOCV, which produced a classification accuracy $A_i$ for any given subject $S_i$. The minimum, maximum and mean value of $A_i$ was calculated as a metric for accuracy. In order to provide better contextualization of the classification results, the same process was also applied to other three metrics obtained during the LOSOCV evaluation: precision, recall and F1 score.
 
-Aiming to better understand the contribution of each feature for the classification process, the training/evaluation process mentioned early was also performed using different feature sets. Each of those different feature sets was evaluated in an independent test, denoted $T_i$. Table \ref{table:study5-different-feature-sets} shows the tests $T_i$ and the corresponding feature sets used in the process.
+Aiming to better understand the contribution of each feature for the classification process, the training/evaluation process mentioned early was also performed using different feature sets. Each of those different feature sets was evaluated in an independent test, denoted $T_i$. Table \ref{table:study5-different-feature-sets} shows tests $T_i$ and the corresponding feature sets used in the process.
 
 \begin{table*}
     \centering
     \caption{Tests and their respective feature sets}
     \label{table:study5-different-feature-sets}
-    \begin{tabular}[l]{@{}ccp{9cm}}
+    \begin{tabular}[l]{@{}cclp{4.0cm}}
         \hline
-            \textbf{$T_i$} & \textbf{Name} & \textbf{Feature set} \\
+            \textbf{$T_i$} & \textbf{Name} & \textbf{Feature set} & \textbf{Note} \\
         \hline
-            1 & \texttt{MULTI\_R} & 5278d175-71e752ce \\ % HR_poh2011, mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
-            2 & \texttt{MULTI\_G} & 5278d175-9fa716ee  \\ % mean_HR_ground, mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
-            3 & \texttt{FACE} & 5278d175-826512b2  \\ % mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
-            4 & \texttt{HR\_R} & 5278d175-97a38001  \\ % HR_poh2011
-            5 & \texttt{HR\_G} & 5278d175-ad2580a5 \\ % mean_HR_ground
+            1 & \texttt{MULTI\_R} & $F_1^\mu$, $F_2^\mu$, $F_3^\sigma$, $F_4^\sigma$, $F_5^\mu$, $F_6^\sigma$, $F_8$ & Facial analysis, rPPG-estimated HR.\\ % 5278d175-71e752ce: HR_poh2011, mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
+            2 & \texttt{MULTI\_G} & $F_1^\mu$, $F_2^\mu$, $F_3^\sigma$, $F_4^\sigma$, $F_5^\mu$, $F_6^\sigma$, $F_9^\mu$ & Facial analysis, HR from physical sensor.\\ % 5278d175-9fa716ee: mean_HR_ground, mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
+            3 & \texttt{FACE} & $F_1^\mu$, $F_2^\mu$, $F_3^\sigma$, $F_4^\sigma$, $F_5^\mu$, $F_6^\sigma$ & Facial analysis only. \\ % 5278d175-826512b2: mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
+            4 & \texttt{HR\_R} & $F_8$ & rPPG-estimated HR only.\\ % 5278d175-97a38001: HR_poh2011
+            5 & \texttt{HR\_G} & $F_9^\mu$ & HR from physical sensor only. \\ % 5278d175-ad2580a5: mean_HR_ground
         \hline
     \end{tabular}
 \end{table*}
 
-\todo[inline]{Better describe each test and their features.}
+Tests \texttt{MULTI\_R} and \texttt{MULTI\_G} use multifactorial set of features for their neural network, where facial and HR information are used in combination. The difference between \texttt{MULTI\_R} and \texttt{MULTI\_G} is that the former uses rPPG estimated HR, while the latter uses HR obtained from the physical sensor. Test \texttt{FACE} uses a set of features based solely on facial information. Finally tests \texttt{HR\_R} and \texttt{HR\_G} use only HR information as a feature. Similarly to \texttt{MULTI\_R} and \texttt{MULTI\_G}, tests \texttt{HR\_R} and \texttt{HR\_G} use HR readings from rPPG estimatations and from a physical sensor, respectively.
 
 Subjects perceived the games as boring and stressful, so such difference should make a trained neural network capable of properly classifying evaluation samples as either boredom or stress. Additionally the use of a multifactorial approach, where facial analysis and HR information are used in combination instead of either one alone, is expected to produce better classification results \parencite{zacharatos2014automatic}. Based on those expectations, the following hypotheses are stated:
 
@@ -130,7 +130,7 @@ Subjects perceived the games as boring and stressful, so such difference should 
   \item[] \textit{$u_3$: a user-tailored neural network using a multifactorial feature set, i.e. facial and HR features, performs with greater accuracy than a user-tailored neural network using HR features only.}
 \end{itemize}
 
-Hypothesis $u_1$ was tested by checking if the mean value of the classification accuracy, i.e. calculated from all $A_i$ values, is greater than 0.5. In such case it is assumed that an accuracy rate of 0.5 (50\%) is the theoretical probabilistic chance level achieved by totally random classification performed by a classifier evaluated on an infinite number of data samples. Hypotheses $u_2$ and $u_3$ were tested by performing a Wilcoxon Signed Ranks test on all $J_i$ values of the two competing tests $T_i$. As previously mentioned, the use of LOSOCV produces 57 $J_i$ accuracy measuraments per test $T_i$.
+Hypothesis $u_1$ was tested by checking if the mean value of the classification accuracy, i.e. calculated from all $A_i$ values, is greater than 0.5. In such case it is assumed that an accuracy rate of 0.5 (50\%) is the theoretical probabilistic chance level achieved by totally random classification performed by a classifier evaluated on an infinite number of data samples. Hypotheses $u_2$ and $u_3$ were tested by performing a Wilcoxon Signed Ranks test on all $J_i$ values of the two competing tests $T_i$. As previously mentioned, the use of LOSOCV produces 57 accuracy measuraments $J_i$ per test $T_i$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Results}
@@ -204,10 +204,6 @@ Finally it is important to highlight the possible limitations of using the theor
 \subsection{Conclusions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\subsection{Challenges and unresolved issues}
+The method has been applied to video recordings of an experiment involving games as emotion elicitation sources, which were deliberately designed to cause emotional states of boredom and stress. Results show statistically significant differences in the values of facial features detected during boring and stressful periods of gameplay for features: mouth outer ($F_1$), mouth corner ($F_2$), eye area ($F_3$), eyebrow activity ($F_4$), and face area ($F_5$). Features face motion ($F_6$) and facial COM ($F_7$) presented variations that were not statistically significant.
 
-%One of the main unresolved issues regarding the use of a machine learning model is regarding its input features. Computer vision will be used to remotely extract a set of signals from the users, e.g. HR and the position of facial landmarks, however how those signals will be packeged as inputs for the machine learning model is still undefined.
-
-%The current idea is to use a direct and discrete approach where the set of extracted signals from each frame of the video being analyzed is used as is. This approach does not explicitly feed the model with information regarding the variations of the extracted signals, e.g. HR decreased 5 bpm in the last 10 seconds, instead current information from each frame is used as input, e.g. HR is 60 bpm now. The approach relies on the principle that the machine learning model will recognize any patterns regarding the variation of signals among the different samples over time, modeling those patterns as the desired mapping of emotional states.
-
-%Another possible solution is to provide the model with the variations of the signals, which demands a pre-processing of the extracted signals before feeding them into the model. In such scenario, each extracted signal will be accompanied by additional data, e.g. standard deviation, mean, etc. Ideally the machine learning model will better account for the variations of the signals and the emotional states. If a convolutional neural network is used as a machine learning solution, for instance, each signal can be used as input to the model in the form of a matrix. In that case each row of the matrix contains a segment of the signal at different times and the convnet will automatically find a way to model such changes into emotional states.
+Results support the claim that the proposed method for automated analysis of facial cues has the potential to be used to differentiate emotional states of boredom and stress of players. The utilization of such method is unobtrusive and video-based, which eliminates the need of physical sensors to be attached to subjects.
