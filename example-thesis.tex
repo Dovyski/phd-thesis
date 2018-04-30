@@ -33,6 +33,13 @@
 %\usepackage{lscape} % No rotation of PDF pages
 \usepackage{pdflscape} % Procude rotation of PDF pages
 
+% Allow fancy TODO notes in the text
+\usepackage{todonotes}
+
+% Include a command to render nice quotation blocks.
+\usepackage{epigraph}
+\include{quote}
+
 % For generating dummy text.
 % Only necessary for the example document, remove for "real dissertations"
 \hyphenation{vesti-bulum sce-leris-que}
@@ -49,14 +56,16 @@
 \pagestyle{headings}
 
 \input{texts/abstract}
-%\input{texts/summary}
-%\input{texts/acknowledgements}
+\input{texts/summary}
+\input{texts/acknowledgements}
 
 \ownpublications[During this project, a number of papers have been published with varying relevance to the core aims of this thesis proposal.]{bevilacqua2018changes,bevilacqua2018automated,bevilacqua2018accuracy}{bevilacqua2016variations,bevilacqua2015proposal,hellkvist2017reading}
 
 \tableofcontents
 \listoffigures
 \listoftables
+
+\input{texts/epigraph}
 
 \cleardoublepage
 \pagenumbering{arabic}% Switch to Arabic page numbers
@@ -71,7 +80,7 @@
 \part{Experiments}
 \input{texts/experiment1}
 \input{texts/experiment2}
-\part{Outcomes and implications}
+\part{Results and implications}
 \input{texts/discussion}
 \input{texts/tool}
 \input{texts/ethics}
