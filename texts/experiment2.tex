@@ -1,21 +1,34 @@
 \chapter{Experiment 2: validation of remote detection of emotions}
 \label{ch:experiment2}
 
-The first conducted experiment aimed at gathering data and exploring the relations regarding facial actions (FA), HR and emotional states, particularly stress and boredom. The experiment is based on the previously mentioned findings that HR varies according to stress/frustration and that facial expressions can convey contextual information about emotional state \parencite{giannakakis2017stress}. As opposed to previously mentioned works, in this experiment each subject spends an average of 25 minutes in the session, playing three different games that were custom-made to provoke the emotional reactions similar to off-the-shelf games. Subjects were also not instructed regarding how they should move, so body and facial reactions are likely to be the ones the subject would normally perform under a gaming context. The approach consists of using induced boring to stressful mechanics in the games to produce variations in the emotional state and HR of participants. %, based on the previously mentioned findings that HR varies according to stress/frustrations.
+This experiment aims to validate the method mentioned on my thesis proposal which aims to remotely detect stress and boredom levels of players during the interaction with games. The method uses remotely acquired signals, namely heart rate (HR) and facial actions, to create a model (more precisely a machine learning model, or a "trained machine") able to detect emotional states of boredom and stress of subjects. The method is composed of two phases: training (or calibration) and testing. Figure 1 illustrates the first phase. In the training phase, a model is trained using a user-tailored approach, i.e. data from subject A playing 3 calibration games (Mushroom, Platformer and Tetris) is used to create model A. The trained model ("trained machine"), i.e. model A in this example, is the result of the training phase. The testing phase, illustrated in Figure 2, happens in a game session of subject A playing any other ordinary, non-calibration game, i.e. Infinite Mario in the case of this experiment. Subject’s A signals are remotely acquired and input into the previously trained model A, which outputs the estimated emotional state of subject A for that particular game. The accuracy and precision of the model during the testing phase will serve as a validation proof for the proposed method.
+
+This experiment intendeds to answer the following research question:
+
+\textit{How accurate is an emotion detection method which uses remotely acquired signals, i.e. heart rate and facial actions, as input of a machine learning model that was trained on a user-tailored basis (one subject produces one machine learning model) using calibration games as emotion elicitation sources?}
+
+
+%The first conducted experiment aimed at gathering data and exploring the relations regarding facial actions (FA), HR and emotional states, particularly stress and boredom. The experiment is based on the previously mentioned findings that HR varies according to stress/frustration and that facial expressions can convey contextual information about emotional state \parencite{giannakakis2017stress}. As opposed to previously mentioned works, in this experiment each subject spends an average of 25 minutes in the session, playing three different games that were custom-made to provoke the emotional reactions similar to off-the-shelf games. Subjects were also not instructed regarding how they should move, so body and facial reactions are likely to be the ones the subject would normally perform under a gaming context. The approach consists of using induced boring to stressful mechanics in the games to produce variations in the emotional state and HR of participants. %, based on the previously mentioned findings that HR varies according to stress/frustrations.
 
 %FA were manually detected and annotated based on observations.
-In total, three studies were performed on the data obtained from the experiment. The first study focuses on empirical exploration of how FA, defined as being any facial movement different from a neutral face, e.g. lips contraction, relate to emotional states. The second study focuses on the variations of HR that occurred during the interaction with the games, specially under situations that were designed to provoke boredom and stress. It should confirm the hypothesis that the HR during boring and stressful parts of a game is in fact different. Finally the third study focuses on the accuracy evaluation of an rPPG technique when applied to gaming sessions where subjects behave naturally.
+%In total, three studies were performed on the data obtained from the experiment. The first study focuses on empirical exploration of how FA, defined as being any facial movement different from a neutral face, e.g. lips contraction, relate to emotional states. The second study focuses on the variations of HR that occurred during the interaction with the games, specially under situations that were designed to provoke boredom and stress. It should confirm the hypothesis that the HR during boring and stressful parts of a game is in fact different. Finally the third study focuses on the accuracy evaluation of an rPPG technique when applied to gaming sessions where subjects behave naturally.
 
-The following sections present information regarding the participants, the experiment structure and each one of the mentioned studies.
+The following sections present information regarding participants, the experiment structure, results, and a discussion.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Participants}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Twenty adult participants of both genders (10 female) with different ages (22 to 59, mean 35.4, SD 10.79) and different gaming experience gave their informed and written consent to participate in the experiment. The study population consisted of staff members and students of the University of Sk\"ovde, as well as citizens of the community/city. When asked how skilled subjects believe they are at playing video games, 1 subject (5\%) reported no skill, 10 (50\%) reported not very skilled, 7 (35\%) reported moderately skilled and 2 (10\%) reported very skilled. When asked the number of hours per week they had played any type of video game over the last year, 2 subjects (10\%) reported more than 10, 6 (30\%) reported 5 to 10, 2 (10\%) reported 3 to 4, 2 (10\%) reported 1 to 3, 4 (20\%) reported 0 to 1, and 4 (20\%) reported no activity. Those numbers indicate that the population has a diversity of gaming experience and playing frequency, which provides the experiment with information that is less skewed towards specific profile of players, e.g. hardcore players.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Method}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+The following sections present the experiment structure, as well as the methods employed to collect and analyse data.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Experimental procedure}
-
-Twenty adult participants of both genders (10 female) with different ages (22 to 59, mean 35.4, SD 10.79) and different gaming experience gave their informed and written consent to participate in the experiment. The study population consisted of staff members and students of the University of Sk\"ovde, as well as citizens of the community/city. When asked how skilled subjects believe they are at playing video games, 1 subject (5\%) reported no skill, 10 (50\%) reported not very skilled, 7 (35\%) reported moderately skilled and 2 (10\%) reported very skilled. When asked the number of hours per week they had played any type of video game over the last year, 2 subjects (10\%) reported more than 10, 6 (30\%) reported 5 to 10, 2 (10\%) reported 3 to 4, 2 (10\%) reported 1 to 3, 4 (20\%) reported 0 to 1, and 4 (20\%) reported no activity. Those numbers indicate that the population has a diversity of gaming experience and playing frequency, which provides the experiment with information that is less skewed towards specific profile of players, e.g. hardcore players.
 
 Subjects were seated in front a computer, alone in the room, while being recorded by a camera and measured by a heart rate sensor. The camera was attached to a tripod placed in front of the subjects at approximately 0.6m of distance; the camera was slightly tilted up. A spotlight, tilted 45$^{\circ}$ up, placed at a distance of 1.6m from the subject and 45cm higher than the camera level, was used for illumination; no other light source was active during the experiment. Figure \ref{fig:setup} illustrates the setup.
 
@@ -27,6 +40,18 @@ Subjects were seated in front a computer, alone in the room, while being recorde
 \end{figure}
 
 The participants were each recorded for about 25 minutes, during which they played three games. Each game was followed by a questionnaire related to the game and stress/boredom. The first two games were followed by a 138 seconds rest period, where the subjects listened to calm classic music. The last game was followed by an additional questionnaire about age and gaming experience/profile. The order which the games were played was randomized among subjects. Participants received instructions from a researcher that they should play three games, answer a questionnaire after each game and rest; they were told that their gaming performance was not being analyzed, that they should not give up in the middle of the games and that they should remain seated during the whole process.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{figures/experiment2-parts}
+\caption{Experiment setup}
+\label{fig:experiment2-parts}
+\end{figure}
+
+Part 1: subject will play 3 calibration games (the order of such games will be randomized among subjects). After the end (game over) of each game, the subject will answer a digital questionnaire (using the computer for that) regarding boredom/stress levels at the beginning and at the end of the calibration game just played. Following the questionnaire is a rest period of 2.3 minutes.
+Each calibration game was carefully designed to start with a difficulty level that is significantly low, which is expected to lead the player to an immediate state of boredom. As the time progresses, the difficulty level increases linearly. As the difficulty level continues to rise, at certain point the game will become too hard to be managed by the subject, which will eventually result in the "game over" state. Seconds before that point the subject should reach his/her stress peak during the gameplay. It is expected that each player will experience three distinct states during the gameplay of each game: boredom (low challenge/stress) at the beginning, flow (ideal challenge/stress) after the beginning and before the final moments, and stress (high challenge/stress) at the end moments.
+
+Part 2: subject will play 7 levels of Infinite Mario (A with 3 levels, B with 3 levels, and C with 1 level). Each batch is designed to present a progression in the difficulty level. The order in which the levels will be played will not be randomized among subjects. The order is defined as: A1, A2, A3, B1, B2, B3, C1. Level A1 is designed to be easy (intended to be boring), A2 is designed to be more challenging than A1 (less boring), A3 is more challenging than A2 (more stressful). Levels B1 and C1 are designed using Mario’s auto-scrolling camera mechanics. In such configuration, the player has no control of the speed of the level. This mechanic is expected to induce boredom, since the player experienced “challenging and fun” levels previously and is now unable to move using any desired speed. Level B2 is designed to be more challenging than B1 (less boring), B3 is more challenging than B2 (more stressful). After each level, the subject will answer a digital questionnaire (using the computer for that) about how bording/stressful was the game level just played. After all levels are played, the subject will answer a digital questionnaire (using the computer for that) with demographic questions.
 
 \subsubsection{Calibration games}
 
@@ -46,7 +71,24 @@ The \textbf{Platformer}, illustrated in Figure \ref{fig:mushroom-platformer-tetr
 Finally the game \textbf{Tetris}, shown in Figure \ref{fig:mushroom-platformer-tetris} (right), is a modification of the original Tetris game. In our version of the game, the next block to be added to the screen is not displayed, so the player is unable to predict future moves. Additionally, the down key, usually used to speed up the descendant trajectory of the current piece, is disabled. The keyboard controls are the arrow keys to move the piece left/right and the R key to rotate the piece. The game is also modified to ensure that all subjects received the same sequence of pieces (we use the same seed for the generation of random numbers). The speed that the pieces fall ($S$) is used to control boredom and stress; at the beginning of the game, boredom is induced by using a low value for $S$, which makes the game slow since the pieces are falling slowly and the player is unable to speed them up. As time progresses, $S$ increases linearly making the game faster and harder to play, which should induce stress. At the mark of 5 minutes, for instance, a single piece takes almost 1 second to traverse the whole screen.
 
 \subsubsection{Evaluation game}
-Explain the Mario game.
+
+The test-bed platform game used for this experiment is a modified version of Markus Persson’s Infinite Mario Bros, illustrated below. The game is a public domain clone of Nintendo’s classic platform game Super Mario Bros.
+
+Infinite Mario has been widely used in the literature, including studies involving emotions and games. The boring and stressful levels to be used in this experiment will be designed and instrumented according to the results presented in the following publications:
+
+%Blom, P. M.; Bakkes, S.; Tan, C. T.; Whiteson, S.; Roijers, D. M.; Valenti, R.; Gevers, T. & others Towards Personalised Gaming via Facial Expression Recognition. AIIDE, 2014
+
+%Pedersen, C.; Togelius, J. & Yannakakis, G. N. Modeling player experience in Super Mario Bros. 2009 IEEE Symposium on Computational Intelligence and Games, IEEE, 2009, 132-139
+
+%Pedersen, Christopher, Julian Togelius, and Georgios N. Yannakakis. "Modeling player experience for content creation." IEEE Transactions on Computational Intelligence and AI in Games 2.1 (2010): 54-67.
+
+%Shaker, N.; Asteriadis, S.; Yannakakis, G. N. & Karpouzis, K. A game-based corpus for analysing the interplay between game context and player experience. Affective Computing and Intelligent Interaction, Springer, 2011, 547-556
+
+% Shaker, N.; Yannakakis, G. N. & Togelius, J. Feature analysis for modeling game content quality. 2011 IEEE Conference on Computational Intelligence and Games (CIG'11), IEEE, 2011, 126-133
+
+% Shaker, N.; Yannakakis, G. N. & Togelius, J. Feature analysis for modeling game content quality. 2011 IEEE Conference on Computational Intelligence and Games (CIG'11), IEEE, 2011, 126-133
+
+Tracked information: When Mario dies (fall, or killed by enemy, or timeout), when a power-up is applied or removed (fire, mushroom), when a new life is earned, when a coin is collected, when an enemy is killed (and how it was killed), when a level starts/ends, when Mario bumps into a block, when Mario starts/stops running.
 
 \subsubsection{Data collection}
 
@@ -70,11 +112,21 @@ Explain how the machine learning model, i.e. neural network, was trained and des
 \subsubsection{Evaluation of emotion classification}
 Explain how the machine learning model was applied to the COTS levels to estimate their emotional state.
 
+After the experiment is over, the gathered data will be processed and used offline as follows. The video recordings of the calibration games will be analyzed via computer vision, resulting in the extraction of signals as HR and facial actions. Those signals will be used to train a user-tailored machine learning model, i.e. subject A’s calibration games will be used to train model A, which will be used to predict the emotional state of subject A.
+
+The 20 video clips of Infinite Mario of a given subject will then be analyzed via computer vision, resulting in the extraction of signals as HR and facial actions. For each video clip (level) of Infinite Mario of a that given subject, the extracted signals will be sampled every 5 seconds and input into the previously trained machine learning model of that given subject. The model will output the estimated emotional state of that subject during that level. That output will be labeled correct or incorrect according to the questionnaire data associated with that particular video clip, which will serve as ground truth.
+
+As it has been reported in the literature, HR-based emotion estimation is possible every 10 seconds, however changes in HR peak at 4 seconds after in-game event. Since facial actions are also part of my method and it is reasonable to believe they could significantly change within a time span of 10 seconds, I’ve selected a short time span for sampling: 5 seconds. A sampling of 5 seconds is expected to cover changes in HR and facial actions as often as possible without risking to collect samples that are not independent.
+
+Additionally, the validation sampling is every 5 seconds based on \parencite{ravaja20051} (IBI with a peak decrease 4 sec after event onset) and \parencite{valenza2014revealing} (estimating emotions each 10 seconds achieve an overall accuracy in recognizing four emotional states based on the circumplex model of affect of 79.29\%, with 79.15\% on the valence axis, and 83.55\% on the arousal axis).
+
+The accuracy and precision of the estimations will determine the feasibility of my proposed method.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Analysis}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Additionally, the validation sampling is every 5 seconds based on \parencite{ravaja20051} (IBI with a peak decrease 4 sec after event onset) and \parencite{valenza2014revealing} (estimating emotions each 10 seconds achieve an overall accuracy in recognizing four emotional states based on the circumplex model of affect of 79.29\%, with 79.15\% on the valence axis, and 83.55\% on the arousal axis).
+Describe how everything was analyzed.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
@@ -94,6 +146,8 @@ Discussion will be focused on the following: 1) was the machine learning model a
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
+
+Conclude everything beautifuly, showing the amount of good we are doing for the world.
 
 %The experiment design will be based on a within-subject approach \cite{lane2015online}. In such approach, all participants perform at all levels of the treatment and there are no control groups. It is the opposite of a between-subjects approach, where subjects are divided in more than one group that receive different treatments. In that approach there are special groups, called control groups, that receive no treatment. The comparison between the control groups and the treatment groups ensures internal validity. In the context of this research, physiological signals will be measured, so the division of subjects into more than one group poses a comparison problem. Each individual will inevitably differ from one another regarding physiological signals, such as variations in average HR during rest, for instance. When measuring HR, for instance, some subjects will have higher/lower HR mean than others, independent of the group they are in or the treatment they undergo. To counter that problem, the experiment will use a one-group posttest design \cite{kirk1982experimental}, as illustrated by Figure \ref{fig:experiment}. Using the first row as an example, subject $S_0$ played game $G_a$ as the first level of the treatment, followed by a post-test of that game ($PT_a$), then a rest period. In the second level of the treatment, the subject played game $G_b$, followed by a post-test of that game ($PT_b$), then another rest period. Finally in the third level of the treatment, the subject played game $G_c$ followed by a post-test of that game ($PT_c$).
 
