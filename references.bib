@@ -1341,9 +1341,9 @@ is estimated through frequency domain analysis. Experimental
 results acquired from a set of thirty videos indicate
 significantly improved performance in comparison to stateof-the-art
 methods},
+  comment      = {t pf},
   doi          = {10.1109/icip.2016.7532554},
   file         = {:chwyl2016sapphire - SAPPHIRE_ Stochastically acquired photoplethysmogram for heart rate inference in realistic environments.pdf:PDF},
-  review       = {t pf},
   url          = {http://dx.doi.org/10.1109/icip.2016.7532554},
 }
 
@@ -1366,13 +1366,13 @@ by a thermistor placed at the external naris. Using AR spectral analysis, two cl
 The peaks were thought to correspond to the respiratory rate and the heart rate. Correlation coefficients of 0.90 and 0.93 were obtained for
 the measurement of heart rate and respiratory rate, respectively.
 © 2006 IPEM. Published by Elsevier Ltd. All rights reserved.},
-  doi       = {10.1016/j.medengphy.2006.09.006},
-  file      = {:takano2007heart - Heart rate measurement based on a time-lapse image.pdf:PDF},
-  publisher = {Elsevier {BV}},
-  review    = {- One of the first PPG initiatives;
+  comment   = {- One of the first PPG initiatives;
 - Able to rudimentary detect HR and RR signals, however no HR nor RR (e.g. bpm) is provided.
 - ROI is selected manually
 - Tests were performed for 30 seconds.},
+  doi       = {10.1016/j.medengphy.2006.09.006},
+  file      = {:takano2007heart - Heart rate measurement based on a time-lapse image.pdf:PDF},
+  publisher = {Elsevier {BV}},
   timestamp = {2016-08-25},
   url       = {http://dx.doi.org/10.1016/j.medengphy.2006.09.006},
 }
@@ -1420,11 +1420,11 @@ the measurement of heart rate and respiratory rate, respectively.
   pages     = {061205},
   month     = {oct},
   abstract  = {Noncontact imaging photoplethysmography (PPG) can provide physiological assessment at various anatomical locations with no discomfort to the patient. However, most previous imaging PPG (iPPG) systems have been limited by a low sample frequency, which restricts their use clinically, for instance, in the assessment of pulse rate variability (PRV). In the present study, plethysmographic signals are remotely captured via an iPPG system at a rate of 200 fps. The physiological parameters (i.e., heart and respiration rate and PRV) derived from the iPPG datasets yield statistically comparable results to those acquired using a contact PPG sensor, the gold standard. More importantly, we present evidence that the negative influence of initial low sample frequency could be compensated via interpolation to improve the time domain resolution. We thereby provide further strong support for the low-cost webcam-based iPPG technique and, importantly, open up a new avenue for effective noncontact assessment of multiple physiological parameters, with potential applications in the evaluation of cardiac autonomic activity and remote sensing of vital physiological signs.},
+  comment   = {- Support that low-end camera  (e.g. 20 FPS) is as good as a 200 FPS camera
+- Low sample frequency (e.g. 20 fps) can be compensated using Interpolation to improve time domain resolution},
   doi       = {10.1117/1.jbo.18.6.061205},
   file      = {:sun2012noncontact - Noncontact imaging photoplethysmography to effectively access pulse rate variability.pdf:PDF},
   publisher = {{SPIE}-Intl Soc Optical Eng},
-  review    = {- Support that low-end camera  (e.g. 20 FPS) is as good as a 200 FPS camera
-- Low sample frequency (e.g. 20 fps) can be compensated using Interpolation to improve time domain resolution},
   url       = {http://dx.doi.org/10.1117/1.jbo.18.6.061205},
 }
 
@@ -3205,6 +3205,30 @@ the measurement of heart rate and respiratory rate, respectively.
   doi       = {10.1016/j.jneumeth.2015.01.010},
   file      = {:combrisson2015exceeding - Exceeding Chance Level by Chance_ the Caveat of Theoretical Chance Levels in Brain Signal Classification and Statistical Assessment of Decoding Accuracy.pdf:PDF},
   publisher = {Elsevier {BV}},
+}
+
+@Article{kassraian2016promises,
+  author    = {Pegah Kassraian-Fard and Caroline Matthis and Joshua H. Balsters and Marloes H. Maathuis and Nicole Wenderoth},
+  title     = {Promises, Pitfalls, and Basic Guidelines for Applying Machine Learning Classifiers to Psychiatric Imaging Data, with Autism as an Example},
+  journal   = {Frontiers in Psychiatry},
+  year      = {2016},
+  volume    = {7},
+  pages     = {177},
+  month     = {dec},
+  abstract  = {Most psychiatric disorders are associated with subtle alterations in brain function and are subject to large interindividual differences. Typically, the diagnosis of these disorders requires time-consuming behavioral assessments administered by a multidisciplinary team with extensive experience. While the application of Machine Learning classification methods (ML classifiers) to neuroimaging data has the potential to speed and simplify diagnosis of psychiatric disorders, the methods, assumptions, and analytical steps are currently opaque and not accessible to researchers and clinicians outside the field. In this paper, we describe potential classification pipelines for autism spectrum disorder, as an example of a psychiatric disorder. The analyses are based on resting-state fMRI data derived from a multisite data repository (ABIDE). We compare several popular ML classifiers such as support vector machines, neural networks, and regression approaches, among others. In a tutorial style, written to be equally accessible for researchers and clinicians, we explain the rationale of each classification approach, clarify the underlying assumptions, and discuss possible pitfalls and challenges. We also provide the data as well as the MATLAB code we used to achieve our results. We show that out-of-the-box ML classifiers can yield classification accuracies of about 60 to 70 percent. Finally, we discuss how classification accuracy can be further improved, and we mention methodological developments that are needed to pave the way for the use of ML classifiers in clinical practice.},
+  doi       = {10.3389/fpsyt.2016.00177},
+  file      = {:kassraian2016promises - Promises, Pitfalls, and Basic Guidelines for Applying Machine Learning Classifiers to Psychiatric Imaging Data, with Autism As an Example.pdf:PDF},
+  publisher = {Frontiers Media {SA}},
+}
+
+@Book{james2013introduction,
+  title     = {An Introduction to Statistical Learning},
+  publisher = {Springer New York},
+  year      = {2013},
+  author    = {Gareth James and Daniela Witten and Trevor Hastie and Robert Tibshirani},
+  abstract  = {An Introduction to Statistical Learning provides an accessible overview of the field of statistical learning, an essential toolset for making sense of the vast and complex data sets that have emerged in fields ranging from biology to finance to marketing to astrophysics in the past twenty years. This book presents some of the most important modeling and prediction techniques, along with relevant applications. Topics include linear regression, classification, resampling methods, shrinkage approaches, tree-based methods, support vector machines, clustering, and more. Color graphics and real-world examples are used to illustrate the methods presented. Since the goal of this textbook is to facilitate the use of these statistical learning techniques by practitioners in science, industry, and other fields, each chapter contains a tutorial on implementing the analyses and methods presented in R, an extremely popular open source statistical software platform. Two of the authors co-wrote The Elements of Statistical Learning (Hastie, Tibshirani and Friedman, 2nd edition 2009), a popular reference book for statistics and machine learning researchers. An Introduction to Statistical Learning covers many of the same topics, but at a level accessible to a much broader audience. This book is targeted at statisticians and non-statisticians alike who wish to use cutting-edge statistical learning techniques to analyze their data. The text assumes only a previous course in linear regression and no knowledge of matrix algebra.},
+  doi       = {10.1007/978-1-4614-7138-7},
+  file      = {:james2013introduction - An Introduction to Statistical Learning.pdf:PDF},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
