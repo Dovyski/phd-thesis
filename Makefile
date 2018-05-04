@@ -53,7 +53,7 @@ COVER_FILE=example-thesis-cover
 SPIK_FILE=example-thesis-spik
 
 # Information about the Latex and bibtex compilers to be used.
-LATEX_CMD=xelatex
+LATEX_CMD=xelatex -interaction=batchmode
 BIBTEX_CMD=biber
 
 # Which command is used to open the PDF for reading
