@@ -217,9 +217,37 @@ Hypothesis $u_1$ was tested by checking if the mean value of the classification 
 \section{Results}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+The following sections present the results obtained with the analysis of the data performed according to the previously described method.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Self-reported emotional state}
-Show some analysis and statistics regarding the games. I can mention the average stress level reported for some Mario legels, which confirms that our design of the game meets our expectations (some levels must be boring and others must be stressful).
+
+Table \ref{table:experiment2-mario-emotions} shows the mean value and standard deviation of the answers given in the self-reported emotional state questionnare after each level of Infinite Mario.
+
+\begin{table}[!htbp]
+  \centering
+  \caption{Mean value of the answers given in the self-reported emotional state questionnare after levels of Infinite Mario}
+  \label{table:experiment2-mario-emotions}
+  \begin{tabular}{ccc}
+    \hline
+      \textbf{Level} & \textbf{Stress} & \textbf{Boredom} \\
+    \hline
+      $A_1$ & 1.6 $\pm$ 0.8 & 2.3 $\pm$ 1.2 \\
+      $A_2$ & 2.1 $\pm$ 0.9 & 1.8 $\pm$ 1.1 \\
+      $A_3$ & 2.9 $\pm$ 0.9 & 1.9 $\pm$ 1.2 \\
+      $B_1$ & 1.5 $\pm$ 1.0 & 3.9 $\pm$ 1.2 \\
+      $B_2$ & 2.0 $\pm$ 0.8 & 2.2 $\pm$ 1.2 \\
+      $B_3$ & 3.0 $\pm$ 1.1 & 2.1 $\pm$ 1.2 \\
+      $C_1$ & 1.3 $\pm$ 0.7 & 4.0 $\pm$ 1.2 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+Levels $A_3$ and $B_3$ presented 2.9 and 3.0 as the mean value for reported stress, respectively, the two highest mean values for stress. Using level $A_1$ as a baseline, since it presented the lowest median values for stress and boredom, 1.0 and 2.0 respectively, a Wilcoxon Signed-ranks test indicated different stress levels between $A_1$ (median = 2.0) and $A_3$ (median = 3.0), $Z=-5.78$, $p < 0.001$, $r=0.73$. The same test also indicated different stress levels between $A_1$ (median = 2.0) and $B_3$ (median = 3.0), $Z=-5.55$, $p < 0.001$, $r=0.70$.
+
+Levels $B_1$ and $C_1$ presented 3.9 and 4.0 as the mean value for reported boredom, respectively, the two highest mean values for boredom. Repeating the use of level $A_1$ as a baseline, a Wilcoxon Signed-ranks test indicated different boredom levels between $A_1$ (median = 2.0) and $B_1$ (median = 4.0), $Z=-6.14$, $p < 0.001$, $r=0.77$. The same test also indicated different boredom levels between $A_1$ (median = 2.0) and $C_1$ (median = 4.0), $Z=-6.21$, $p < 0.001$, $r=0.78$.
+
+As mentioned in Section \ref{sec:experiment2-evaluation-game}, levels $A_3$ and $B_3$ were adjusted to be perceived as more stressful. Similarly levels $B_1$ and $C_1$ were adjusted to be perceived as more boring. Results with statistical significance confirm that the adjustments applied to those levels of Infinite Mario indeed caused a particular emotional state.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Emotion classification}
