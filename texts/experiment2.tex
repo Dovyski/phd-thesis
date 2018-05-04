@@ -3,7 +3,7 @@
 
 The experiment described in this chapter, the second one conducted, aimed at validating the proposed approach for remote detection of emotions, described in the objectives of this thesis (see Section \ref{sec:contributions}, on page \pageref{sec:contributions}). The approach uses remotely acquired signals, namely heart rate (HR) and facial actions (FA), to create a user-tailored model, i.e. trained neural network, able to detect emotional states of boredom and stress of a given subject. The approach is composed of two phases: training (or calibration) and testing. In the training phase, the model is trained using a user-tailored approach, i.e. data from subject $S_a$ playing 3 calibration games (Mushroom, Platformer and Tetris) is used to create model $M_a$. The result of the training phase is a user-tailored model, i.e. model $M_a$, which is a trained neural network aimed to be used on subject $S_a$. The testing phase happens in a game session involving subject $S_a$ playing any ordinary, non-calibration game, e.g. Super Mario. During the testing phase, subject's $S_a$ signals are remotely acquired and fed into the previously trained model $M_a$, which outputs the estimated emotional state of subject $S_a$ for that particular testing game.
 
-In summary, this experiment is intendeded to answer the following research question:
+In summary, this experiment was intendeded to answer the following research question:
 
 \begin{fquote}
 How accurate is an emotion detection approach that uses remotely acquired signals, i.e. heart rate and facial actions, as input of a machine learning model, i.e. neural network, that was trained on a user-tailored basis (one subject produces one model) using calibration games as emotion elicitation?
@@ -197,16 +197,21 @@ The evaluation of the proposed emotion classifier is based on classification acc
 \subsection{Analysis}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Subjects perceived the games as boring and stressful, so such difference should make a trained neural network capable of properly classifying evaluation samples as either boredom or stress. Additionally the use of a multifactorial approach, where facial analysis and HR information are used in combination instead of either one alone, is expected to produce better classification results \parencite{zacharatos2014automatic}. Based on those expectations, the following hypotheses are stated:
+The aim of the experiment is to validate and prove the feasibility of the proposed emotion detection approach, i.e. use of remotely acquired signals and a user-tailored model (trained on data from calibration games) to detect emotional states of stress and boredom. The feasibility of the approach will be tested in terms of classification accuracy.
+
+Thus the following hypothesis is stated:
 
 \begin{itemize}
-  \item $u_1$: a user-tailored neural network trained on data samples from two calibration games of a given subject $S_i$ is able to classify samples from a third calibration game of that same subject $S_i$ with an accuracy greater than chance-level rate (random guessing);
-  \item $u_2$: a user-tailored neural network using a multifactorial feature set, i.e. facial and HR features, performs with greater accuracy than a user-tailored neural network using facial features only;
-  \item $u_3$: a user-tailored neural network using a multifactorial feature set, i.e. facial and HR features, performs with greater accuracy than a user-tailored neural network using HR features only.
+  \item $u_1$: a user-tailored model, i.e. neural network, trained on data samples from three calibration games of a given subject $S_a$, i.e. Mushroom, Platformer and Tetris, is able to classify the emotional state of samples extracted from an evaluation game, i.e. Infinite Mario, played by that same subject $S_a$ with mean accuracy greater than chance-level rate;
 \end{itemize}
 
-Hypothesis $u_1$ was tested by checking if the mean value of the classification accuracy, i.e. calculated from all $A_i$ values, is greater than 0.5. In such case it is assumed that an accuracy rate of 0.5 (50\%) is the theoretical probabilistic chance level achieved by totally random classification performed by a classifier evaluated on an infinite number of data samples. Hypotheses $u_2$ and $u_3$ were tested by performing a Wilcoxon Signed Ranks test on all $J_i$ values of the two competing tests $T_i$. As previously mentioned, the use of LOSOCV produces 57 accuracy measuraments $J_i$ per test $T_i$.
+Chance level is thereby the accuracy achieved assuming that it is equally likely for a data sample to fall in any of the existing classes \parencite{kassraian2016promises}. For a balanced two-class problem, chance-level classification accuracy equal 50\%. However, a chance-level accuracy rate of 50\% assumes a classifier performing random guessing on data sets of infinite size. As a consequence, random guessing approximates chance level accuracies if the testing data set is large enough. If the testing data set if small, random classification can deliver accuracies strongly deviating from chance level \parencite{combrisson2015exceeding}.
 
+In order to account for that, a minimal correct classification rate for accuracy has been calculated using the binomial cumulative distribution to assert statistical significance with a confidence level of 95\% ($p < 0.05$) as a function of sample size $n$, i.e. size of validation dataset, and number of classes, i.e. boredom and stress \parencite{combrisson2015exceeding}. Since subjects have different gaming skills, time spent playing levels of Infinite Mario are likely to differ. It produces validation datasets of different sizes among subjects. An analysis of all validation datasets show a mean size of 64.4 samples with 32.1 and 32.3 being the mean number of stress and boredom samples in each set, respectively. Therefore it has been assumed that the proposed method is being validated as a balanced two-class problem with a sample size of $n=64$ (on average) used for the evaluation of each classification. Based on those numbers, a mean classification accuracy rate of 60\% has been found as the minimal rate to assert classification better than chance-level.
+
+Hypothesis $u_1$ was tested by checking if the mean value of the classification accuracy, i.e. calculated from all $A_i$ values, is greater than 0.6.
+
+%e refer the reader to Combrisson and Jerbi \parencite{combrisson2015exceeding} who explain in detail how assuming a binomial distribution for the classification error, significant classification accuracies can be calculated.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
@@ -225,6 +230,8 @@ Show the results of applying the machine learning model to classify the emotiona
 Discussion will be focused on the following: 1) was the machine learning model able to detect emotions with accuracy better than chance? 2) was the use of a multimodal approach (foundation of my thesis) better than the use of only facial features (or only HR)?. This section will almost be a replication of the "Study 5", however using the data from the second experiment instead of the first.
 
 % Additionally, the validation sampling is every 5 seconds based on \parencite{ravaja20051} (IBI with a peak decrease 4 sec after event onset) and \parencite{valenza2014revealing} (estimating emotions each 10 seconds achieve an overall accuracy in recognizing four emotional states based on the circumplex model of affect of 79.29\%, with 79.15\% on the valence axis, and 83.55\% on the arousal axis).
+
+% Classification performance on the fresh data from the validation set is a better measure for how well the classifiers generalize [james2013introduction, Chapter 5],
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
