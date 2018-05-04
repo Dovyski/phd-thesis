@@ -23,6 +23,7 @@ Those numbers indicate that the sample population has a diversity of ages, gamin
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Method}
+\label{sec:experiment2-method}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The following sections present the experiment structure and the methods employed to collect and analyse data.
@@ -243,15 +244,48 @@ Table \ref{table:experiment2-mario-emotions} shows the mean value and standard d
   \end{tabular}
 \end{table}
 
-Levels $A_3$ and $B_3$ presented 2.9 and 3.0 as the mean value for reported stress, respectively, the two highest mean values for stress. Using level $A_1$ as a baseline, since it presented the lowest median values for stress and boredom, 1.0 and 2.0 respectively, a Wilcoxon Signed-ranks test indicated different stress levels between $A_1$ (median = 2.0) and $A_3$ (median = 3.0), $Z=-5.78$, $p < 0.001$, $r=0.73$. The same test also indicated different stress levels between $A_1$ (median = 2.0) and $B_3$ (median = 3.0), $Z=-5.55$, $p < 0.001$, $r=0.70$.
+Levels $A_3$ and $B_3$ presented 2.9 and 3.0 as the mean value for reported stress, respectively, the two highest mean values for stress. Using level $A_1$ as a baseline, since it presented the lowest median values for stress and boredom, 1.0 and 2.0 respectively, a Wilcoxon Signed-ranks test indicated different stress levels between $A_1$ (median 2.0) and $A_3$ (median 3.0), $Z=-5.78$, $p < 0.001$, $r=0.73$. The same test also indicated different stress levels between $A_1$ (median 2.0) and $B_3$ (median 3.0), $Z=-5.55$, $p < 0.001$, $r=0.70$.
 
-Levels $B_1$ and $C_1$ presented 3.9 and 4.0 as the mean value for reported boredom, respectively, the two highest mean values for boredom. Repeating the use of level $A_1$ as a baseline, a Wilcoxon Signed-ranks test indicated different boredom levels between $A_1$ (median = 2.0) and $B_1$ (median = 4.0), $Z=-6.14$, $p < 0.001$, $r=0.77$. The same test also indicated different boredom levels between $A_1$ (median = 2.0) and $C_1$ (median = 4.0), $Z=-6.21$, $p < 0.001$, $r=0.78$.
+Levels $B_1$ and $C_1$ presented 3.9 and 4.0 as the mean value for reported boredom, respectively, the two highest mean values for boredom. Repeating the use of level $A_1$ as a baseline, a Wilcoxon Signed-ranks test indicated different boredom levels between $A_1$ (median 2.0) and $B_1$ (median 4.0), $Z=-6.14$, $p < 0.001$, $r=0.77$. The same test also indicated different boredom levels between $A_1$ (median 2.0) and $C_1$ (median 4.0), $Z=-6.21$, $p < 0.001$, $r=0.78$.
 
 As mentioned in Section \ref{sec:experiment2-evaluation-game}, levels $A_3$ and $B_3$ were adjusted to be perceived as more stressful. Similarly levels $B_1$ and $C_1$ were adjusted to be perceived as more boring. Results with statistical significance confirm that the adjustments applied to those levels of Infinite Mario indeed caused a particular emotional state.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Emotion classification}
-Show the results of applying the machine learning model to classify the emotional state of subjects.
+
+Table \ref{table:experiment2-result-metrics-mean} presents the mean value of the resulting classification metrics for accuracy, precision, recall and F1 score, calculated and analyzed according to the procedures described in Section \ref{sec:experiment2-method}.
+
+\begin{table*}[ht]
+    \centering
+    \caption{Mean values of resulting classification metrics}
+    \label{table:experiment2-result-metrics-mean}
+    \begin{tabular}[l]{@{}cccc}
+        \hline
+            \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1}\\
+        \hline
+            0.6158 & 0.6163 & 0.6127 & 0.5786 \\ % 912327a8-c86e26c6
+        \hline
+    \end{tabular}
+\end{table*}
+
+Figure \ref{fig:experiment2-result-charts} shows something.
+
+\begin{figure}[ht]
+\centering
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=0.95\textwidth]{figures/experiment2-hist-user}
+    \caption{}
+    \label{fig:experiment2-chart-hist}
+  \end{subfigure}%
+  \begin{subfigure}[b]{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/experiment2-density-user}
+    \caption{}
+    \label{fig:experiment2-chart-density}
+  \end{subfigure}
+  \caption{Write something nice about those here.}
+  \label{fig:experiment2-result-charts}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
