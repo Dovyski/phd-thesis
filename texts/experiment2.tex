@@ -223,7 +223,7 @@ The following sections present the results obtained with the analysis of the dat
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Self-reported emotional state}
 
-Table \ref{table:experiment2-mario-emotions} shows the mean value and standard deviation of the answers given in the self-reported emotional state questionnare after each level of Infinite Mario.
+The emotional state of subjects during the interaction with the Infinite Mario game is an important element of the experiment. Table \ref{table:experiment2-mario-emotions} shows the mean value and standard deviation of the answers given in the self-reported emotional state questionnare after each level of Infinite Mario.
 
 \begin{table}[!htbp]
   \centering
@@ -244,16 +244,18 @@ Table \ref{table:experiment2-mario-emotions} shows the mean value and standard d
   \end{tabular}
 \end{table}
 
-Levels $A_3$ and $B_3$ presented 2.9 and 3.0 as the mean value for reported stress, respectively, the two highest mean values for stress. Using level $A_1$ as a baseline, since it presented the lowest median values for stress and boredom, 1.0 and 2.0 respectively, a Wilcoxon Signed-ranks test indicated different stress levels between $A_1$ (median 2.0) and $A_3$ (median 3.0), $Z=-5.78$, $p < 0.001$, $r=0.73$. The same test also indicated different stress levels between $A_1$ (median 2.0) and $B_3$ (median 3.0), $Z=-5.55$, $p < 0.001$, $r=0.70$.
+Levels $A_3$ and $B_3$ presented 2.9 and 3.0 as the mean value for reported stress, respectively, the two highest mean values for stress. Using level $A_1$ as a baseline, since it presented the lowest median values for stress and boredom, i.e. 1.0 and 2.0 respectively, a Wilcoxon Signed-ranks test indicated different stress levels between $A_1$ (median 2.0) and $A_3$ (median 3.0), $Z=-5.78$, $p < 0.001$, $r=0.73$. The same test also indicated different stress levels between $A_1$ (median 2.0) and $B_3$ (median 3.0), $Z=-5.55$, $p < 0.001$, $r=0.70$.
 
 Levels $B_1$ and $C_1$ presented 3.9 and 4.0 as the mean value for reported boredom, respectively, the two highest mean values for boredom. Repeating the use of level $A_1$ as a baseline, a Wilcoxon Signed-ranks test indicated different boredom levels between $A_1$ (median 2.0) and $B_1$ (median 4.0), $Z=-6.14$, $p < 0.001$, $r=0.77$. The same test also indicated different boredom levels between $A_1$ (median 2.0) and $C_1$ (median 4.0), $Z=-6.21$, $p < 0.001$, $r=0.78$.
 
 As mentioned in Section \ref{sec:experiment2-evaluation-game}, levels $A_3$ and $B_3$ were adjusted to be perceived as more stressful. Similarly levels $B_1$ and $C_1$ were adjusted to be perceived as more boring. Results with statistical significance confirm that the adjustments applied to those levels of Infinite Mario indeed caused a particular emotional state.
 
+Such confirmation should ensure that features extracted from the video recordings of Infinite Mario gameplay are indeed associated with emotional states of stress and boredom. It is essential for the evaluation and validation of the proposed method.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Emotion classification}
 
-Table \ref{table:experiment2-result-metrics-mean} presents the mean value of the resulting classification metrics for accuracy, precision, recall and F1 score, calculated and analyzed according to the procedures described in Section \ref{sec:experiment2-method}.
+Subject's emotional state during the interaction with particular levels of Infinite Mario was classified as stress or boredom using the proposed method. Table \ref{table:experiment2-result-metrics-mean} presents the mean value of the resulting classification metrics for accuracy, precision, recall and F1 score, calculated and analyzed according to the procedures described in Section \ref{sec:experiment2-method}.
 
 \begin{table*}[ht]
     \centering
@@ -268,7 +270,9 @@ Table \ref{table:experiment2-result-metrics-mean} presents the mean value of the
     \end{tabular}
 \end{table*}
 
-Figure \ref{fig:experiment2-result-charts} shows something.
+The proposed method was able to identify the emotional state of subjects with a mean accuracy of 61.6\%. As previously mentioned, hypothesis $u_1$ states that a user-tailored model, i.e. neural network, trained on data samples from three calibration games of a given subject $S_a$, i.e. Mushroom, Platformer and Tetris, is able to classify the emotional state of samples extracted from an evaluation game, i.e. Infinite Mario, played by that same subject $S_a$ with mean accuracy greater than 60\% (calculated chance-level rate). A mean accuracy of 61.6\% supports hipothesis $u_1$, confirming the feasibility of the proposed method to perform better than chance-level estimations.
+
+Since subjects were evaluated independently, the mean classification accuracy is not enough to contextualize the estimations on a user level. Figure \ref{fig:experiment2-result-charts} provides a better contextualization of the distribution of accuracy values on a subject level as observed by a histogram and density curves. As illustrated in the histogram of Figure \ref{fig:experiment2-result-charts}(a), the majority of the subjects presented an emotion classification accuracy close to 60\%. Particuarly wrong estimations can be observed in a group of 13 subjects (20.9\%) that were classified with mean accuracy inferior to 50\%. Contrarely, a group of 14 subjects (22.5\%) presented particuarly precise emotion estimations with classification accuracy greater than 75\%.
 
 \begin{figure}[ht]
 \centering
@@ -287,9 +291,13 @@ Figure \ref{fig:experiment2-result-charts} shows something.
   \label{fig:experiment2-result-charts}
 \end{figure}
 
+Figure \ref{fig:experiment2-result-charts}(b) shows a density curve with default bandwidth and an adjustment of 0.25 regarding the distribution of accuracy values. In such illustration, the area under any part of the curve provides the probability that the accuracy value would equal that particular group of samples. As expected, there is a greater likelihood of samples being classified with an accuracy of 60\% (mean accuracy). Interestingly is the likelihood of samples being classified with an accuracy of 80\% or 90\%, which are more likely than a classification accuracy of 40\%.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
-Discussion will be focused on the following: 1) was the machine learning model able to detect emotions with accuracy better than chance? 2) was the use of a multimodal approach (foundation of my thesis) better than the use of only facial features (or only HR)?. This section will almost be a replication of the "Study 5", however using the data from the second experiment instead of the first.
+
+Validation results of the proposed method for emotion classification based on remotely acquired signals show mean accuracy better than chance-level.
 
 % Additionally, the validation sampling is every 5 seconds based on \parencite{ravaja20051} (IBI with a peak decrease 4 sec after event onset) and \parencite{valenza2014revealing} (estimating emotions each 10 seconds achieve an overall accuracy in recognizing four emotional states based on the circumplex model of affect of 79.29\%, with 79.15\% on the valence axis, and 83.55\% on the arousal axis).
 
