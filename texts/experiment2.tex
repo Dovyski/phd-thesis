@@ -154,12 +154,12 @@ In total 8 features, denoted $F_1$ to $F_8$, are used in the process. Features $
 
 \subsection{Training of the emotion classifier}
 
-The classification procedure uses the previously mentioned feature set and a neural network to identify two emotional states: boredom and stress. Both the training and evaluation of the neural network are performed on a user-tailored basis: data from the calibration games of a given subject $S_a$ is used to train a model for that subject, i.e. model $N_a$, which is then used to classify the emotional state of that given subject $S_a$ on levels of Infinite Mario. Figure \ref{fig:experiment2-training-evaluation} illustrates the process. \todo{Add a better image and explanation here.}
+The classification procedure uses the previously mentioned feature set and a neural network to identify two emotional states: boredom and stress. Both the training and evaluation of the neural network are performed on a user-tailored basis: data from the calibration games of a given subject $S_a$ is used to train a model for that subject, i.e. model $N_a$, which is then used to classify the emotional state of that given subject $S_a$ on levels of Infinite Mario. Figure \ref{fig:experiment2-training-evaluation} illustrates the process.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{figures/experiment2-training-evaluation.png}
-    \caption{Iteration of a 3-fold \textit{Leave One Session Out Cross Validation} performed on a gaming sessions with 3 games, i.e. A, B and C. Data of two calibration games, e.g. A and B, are used to train the machine learning model, while data of the third calibration game, e.g. C, is used to evaluate the model.}
+    \includegraphics[width=\textwidth]{figures/experiment2-training-evaluation}
+    \caption{Training and evaluation of an user-tailored emotion classifier. (a) Training of the emotion classifier; (b) Constructions of a testing dataset; (c) Evaluation of the emotion classifier.}
     \label{fig:experiment2-training-evaluation}
 \end{figure}
 
