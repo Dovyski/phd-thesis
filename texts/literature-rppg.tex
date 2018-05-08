@@ -32,7 +32,7 @@ There exist initiatives to classify \parencite{rouast2016remote, mcduff2015surve
 
 \subsection{Signal extraction}
 
-The signal extraction phase extracts a set of raw signals from a video. Step 1 relates to the detection of a region of interest (ROI), which is an area of the video that usually contains the face of the subject. Approaches commonly used for this step are the algorithm of Viola\&Jones (VJ) \parencite{ViolaJones}, a machine learning based approach to classifying faces, Active Appearance Models (AMM) \parencite{EdwardsAAM} and facial landmark detectors. %\parencite{saragih2011deformable,martinez2013local}.
+The signal extraction phase extracts a set of raw signals from a video. Step 1 relates to the detection of a region of interest (ROI), which is an area of the video that usually contains the face of the subject. Approaches commonly used for this step are the algorithm of Viola\&Jones (VJ) \parencite{viola2004robust}, a machine learning based approach to classifying faces, Active Appearance Models (AMM) \parencite{EdwardsAAM} and facial landmark detectors. %\parencite{saragih2011deformable,martinez2013local}.
 
 In step 2 (ROI definition) the parts of the ROI to be used for the signal extraction are defined. Approaches commonly employed include the use of whole ROI (usually the bounding box returned by VJ, which is likely to contain background pixels along with the facial pixels), a part of the ROI (e.g. 60\% of the bounding box width) or specially defined areas (e.g. forehead, cheeks or shapes defined by facial landmark points).
 
