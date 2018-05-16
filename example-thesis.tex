@@ -40,6 +40,9 @@
 \usepackage{epigraph}
 \include{fquote}
 
+% Allow math formulas side by side
+\usepackage{multicol}
+
 % For generating dummy text.
 % Only necessary for the example document, remove for "real dissertations"
 \hyphenation{vesti-bulum sce-leris-que}
@@ -65,7 +68,7 @@
 \listoffigures
 \listoftables
 
-\input{texts/epigraph}
+%\input{texts/epigraph}
 
 \cleardoublepage
 \pagenumbering{arabic}% Switch to Arabic page numbers
@@ -84,6 +87,7 @@
 \input{texts/discussion}
 \input{texts/tool}
 \input{texts/ethics}
+\input{texts/limitations}
 \part{Closing remarks}
 \input{texts/conclusion}
 \input{texts/future-work}
