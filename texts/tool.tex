@@ -1,86 +1,75 @@
 \chapter{Software for emotion detection}
 \label{ch:software}
 
-This chapter will mention the software I developed for all the analysis conducted during the PhD. As Henrik mentioned, I did not download a software and applied it. I created my own from scratch. The idea is not to extensively describe the software and its architecture, but to mention it here to highlight the amount of work put into this part as well. I will also mention how this software could be used in games research, for instance. 
+During the systematic evaluation of the elements that compose the method proposed in this thesis, several software-based tests were performed. Additionally all data collection, e.g. HR estimations and facial actions, was performed by custom made software. The previously mentioned automated facial analysis responsible for collecting facial cues from videos is an example. Each of those code components was incorporated in a software, which can be seen as a partial instantiation of the artifact produced as the outcome of this research. Figure \ref{fig:readmind-main-window} shows the software working on a video file. This chapter details each one of those components and how they were unified in a single software that can be used to collect data for remote estimation of emotional states of a player interacting with games.
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{figures/tool-main-window.png}
+    \caption{Software developed as a partial instantiation of proposed method.}
+    \label{fig:readmind-main-window}
+\end{figure}
 
-%This chapter details the software developed to be an instanciation of the artifact produced as the outcome of this research, which is an approach for remotely detecting the changes in stress and boredom levels of a player during the interaction with a game.
-
-\section{Architecture}
-
-The software is developed in C++ and its overall structure is illustrated in Figure \ref{fig:tool-overall-structure}.
+The software was mainly developed in C++ using the computer vision OpenCV \parencite{opencv_library}. The overall structure of the software is illustrated in Figure \ref{fig:tool-overall-structure}. The system contains six main components, i.e. emotion model, emotion estimator, face detector, signal estimator, face analyzer, and report manager. They work in conjunction with two auxiliary components, i.e. video manager and UI. The two auxiliary components are not relevant to the scope of this thesis, however they perform tasks related to reading video files, provision of raw data to other components, i.e. frames of any loaded video, and allowing interactions with the operator, i.e. parameters adjustments. The following sections explain in details the previously mentioned main components.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/tool-overall-structure.png}
-    \caption{Overall structure of the software. Components highlighted in red are unfinished.}
+    \caption{Overall structure of the software and the relation among different components.}
     \label{fig:tool-overall-structure}
 \end{figure}
 
-The software contains six main components: face detector, signal estimator, face analyzer, emotion model manager, emotion estimator and finally report manager. The two components marked in red, the emotion model and the emotion estimator, are responsible for emotion estimation. Those components are unfinished and will be implemented in the future. The remaining of the components is finished and working. The following sections detail those components.
+\section{Face detector}
 
+The face detector component locates a human face in a frame of the of input video being analyzed. It performs a face alignment procedure using one of the two avaiable algorithms: Constrained Local Neural Fields (CLNF) \parencite{baltrusaitis2013constrained} and Ensemble of Regression Trees (ERT) \parencite{kazemi2014one}. The face detector component uses existing implementations of those techniques, which are provided by OpenFace \parencite{baltruvsaitis2016openface} and dlib \footnote{http://dlib.​net} \parencite{dlib09} respectively.
 
-
-\paragraph{Face detector}
-
-The face detector component locates a human face in a frame of the of input video being analyzed. It performs the face alignment process using one of the two avaiable algorithms: Constrained Local Neural Fields (CLNF) \parencite{baltrusaitis2013constrained} and Ensemble of Regression Trees (ERT) \parencite{kazemi2014one}. The implementation of those techniques is provided by the libraries OpenFace \parencite{baltruvsaitis2016openface} and dlib \footnote{http://dlib.​net} respectively.
-
-\begin{figure}[h]
+\begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{figures/tool-ui-face-detector.png}
-    \caption{Visual representation of detected facial landmark points.}
+    \caption{Visual representation of the 68 points detected as facial landmarks.}
     \label{fig:tool-ui-face-detector}
 \end{figure}
 
-The output of the face detector is a vector containing 68 2D points, each one representing a facial landmark. Figure \ref{fig:tool-ui-face-detector} shows a visual representation of the mentioned vector and its points.
+The output of the face detector is a vector containing 68 2D points, each one representing a facial landmark. Figure \ref{fig:tool-ui-face-detector} shows a visual representation of the mentioned vector and its points overlapped in a face.
 
-\paragraph{Face analyzer}
+\section{Face analyzer}
 
-The face analyzer component uses a frame of the input video and the located face information to extract data regarding facial activity. It contains several different analyzers, each one responsible for extracting specific activity patterns, e.g. eye blink. Analyzers are based on the computer vision OpenCV.
+The face analyzer component uses a frame of the input video and the information related to facial landmarks provided by the face detector. The face analyzer uses that data to extracts information regarding facial activity, e.g. eye area. The facial analyzer orchestrates a list of independent analyzers, each one responsible for extracting specific activity patterns, e.g. eye area. Figure \ref{fig:tool-ui-face-analyzer} shows the user interface regarding the data provided by the face analyzer.
 
-Currently the implemented analyzers extract information regarding eye area (for blinking rate), mouth area (for lips/mouth activity), facial center of mass (mean position of all detected landmarks), distance among facial landmarks, face stability (measurement of movement/rotation of the face), head movement, FACS facial action units (based on the implementation of \textcite{baltruvsaitis2015cross}), and eye gaze tracking (based on the implementation of \textcite{wood2015rendering}).
-
-Figure \ref{fig:tool-ui-face-analyzer} shows the user interface regarding the data provided by the face analyzer.
-
-\begin{figure}[h]
+\begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/tool-ui-face-analyzer.png}
-    \caption{Visualization of data provided by the face analyzer. Information includes FACS AUs, currently detected face, motion and instability of the face, and variations of eye/mouth areas over time.}
+    \caption{Visualization of data provided by the face analyzer. Information includes FACS AUs, detected face, motion and instability of the face, and variations of eye/mouth areas over time.}
     \label{fig:tool-ui-face-analyzer}
 \end{figure}
 
-\paragraph{Signal estimator}
+Available analyzers extract information regarding eye (including eyebrow activity), mouth (lips/mouth activity), facial center of mass (mean position of all detected landmarks), distance among facial landmarks, face instability (including measurement of movement/rotation of the face), head movement, FACS facial action units (based on the implementation of \textcite{baltruvsaitis2015cross}), and eye gaze tracking (based on the implementation of \textcite{wood2015rendering}).
 
-The signal estimator component uses the frames of the input video and the located face information to estimate user signals, e.g. HR. It contains different estimators, each one responsible for estimating a single signals. Currently the HR estimator is implemented according to two ICA-based rPPG techniques \parencite{poh2010non,poh2011advancements}.
+\section{Signal estimator}
 
-Figure \ref{fig:tool-ui-signal-estimator} shows the user interface regarding the data provided by the signal estimator.
+The signal estimator component works similarly to the face analyzer, however it uses input video frames and located facial landmarks to estimate physiological signals, e.g. HR. It contains different estimators, each one responsible for estimating a single signals. There are two signal estimators available, both estimating HR using different techniques. Those estimators use ICA-based rPPG techniques \parencite{poh2010non,poh2011advancements}.
 
-\begin{figure}[h]
+\begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/tool-ui-signal-estimator.png}
     \caption{Visualization of data provided by the signal estimator.}
     \label{fig:tool-ui-signal-estimator}
 \end{figure}
 
-\paragraph{Report manager}
+Figure \ref{fig:tool-ui-signal-estimator} shows the user interface regarding the data provided by the signal estimator. Available information provided by the signal estimator include the photoplethysmographic signal, estimated HR, and the ROI being used in the estimation.
 
-The report compoment aggregates the information produced by other components, generating a CSV report file as its output. The report files contains information regarding the video, e.g. time, as well as estimated signals and extracted facial activity. Figure \ref{fig:tool-ui-report-csv} shows part of the content of a report file.
+\section{Report manager}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\textwidth]{figures/tool-ui-report-csv.png}
-    \caption{Part of the content of a CSV file generated by the report component.}
-    \label{fig:tool-ui-report-csv}
-\end{figure}
+The report component aggregates the information produced by other components, generating a CSV report file as output. The report files contains information regarding the video, e.g. time, as well as estimated signals and extracted facial activity. The file generated by the report manager is used as a way of information exchange between the software and third-party systems, e.g. software for statistical analysis. The report file is also used by the two components related to emotion modeling and estimation, as explained in the next section.
 
-\section{Possible use cases}
+\section{Emotion model and estimator}
 
 %\section{Instantiation of the proposed method as a software tool}
 %\label{closing:development-software}
 
-%Following the completion of experiment 2, the proposed emotion detection process will be validated. The aim of this final task is to implement an instantiation of the artifact of this research, i.e. the proposed emotion detection process, as a software.
+Following the completion of experiment 2, the proposed emotion detection process will be validated. The aim of this final task is to implement an instantiation of the artifact of this research, i.e. the proposed emotion detection process, as a software.
 
-%All previously described tasks involve the implementation of algorithms to remotely extract the signals and to classify them using machine learning. All those steps will be coded in Matlab to provide fast iteration and to ensure scientific valididy with previous work. The development of the software will involve the translation of all those developed parts, i.e. computer vision extraction of signals, processing of signals and mapping using machine learning, into a single and usable tool.
+All previously described tasks involve the implementation of algorithms to remotely extract the signals and to classify them using machine learning. All those steps will be coded in Matlab to provide fast iteration and to ensure scientific valididy with previous work. The development of the software will involve the translation of all those developed parts, i.e. computer vision extraction of signals, processing of signals and mapping using machine learning, into a single and usable tool.
 
 %It can be seen as an encapsulation of several individual parts, e.g. model training and emotion detection. The software will contain and orchestrate all those parts, resulting in a tool that researchers and practitioners can use for emotion detection.
 
