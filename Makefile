@@ -48,9 +48,10 @@
 # Information about which files will be used as the starting point
 # to compile the whole project. By default the file "example-thesis.tex"
 # is the main project for the thesis.
-THESIS_FILE=example-thesis
-COVER_FILE=example-thesis-cover
-SPIK_FILE=example-thesis-spik
+MAIN_NAME=fernando-bevilacqua
+THESIS_FILE=${MAIN_NAME}-thesis
+COVER_FILE=${MAIN_NAME}-thesis-cover
+SPIK_FILE=${MAIN_NAME}-thesis-spik
 
 # Information about the Latex and bibtex compilers to be used.
 LATEX_CMD=xelatex -interaction=batchmode
@@ -90,4 +91,5 @@ clean:
 	-rm -f *.lot
 	-rm -f *.run.xml
 	-rm -f *.toc
+	-rm -f *.synctex.gz
 	@echo All clean!
