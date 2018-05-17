@@ -10,7 +10,7 @@
 % Import functionality to set bibliography
 \usepackage{hisbibliography}
 % Some example bibliography
-\addbibresource{references.bib}
+\addbibresource{Content/references.bib}
 % Import functionality for text formatting
 \usepackage{histextformatting}
 % Import functionality for "own publications" page
@@ -38,7 +38,7 @@
 
 % Allow nice quotation blocks.
 \usepackage{epigraph}
-\include{fquote}
+\include{Content/commands/fquote}
 
 % Allow math formulas side by side
 \usepackage{multicol}
@@ -58,17 +58,17 @@
 \setcounter{page}{1}% Start page numbers from 'i' (Roman 1)
 \pagestyle{headings}
 
-\input{texts/abstract}
-\input{texts/summary}
-\input{texts/acknowledgements}
+\input{Content/texts/abstract}
+\input{Content/texts/summary}
+\input{Content/texts/acknowledgements}
 
 \ownpublications[During this project, a number of papers have been published with varying relevance to the core aims of this thesis proposal.]{bevilacqua2018changes,bevilacqua2018automated,bevilacqua2018accuracy}{bevilacqua2016variations,bevilacqua2015proposal,hellkvist2017reading}
+
+\input{Content/texts/epigraph}
 
 \tableofcontents
 \listoffigures
 \listoftables
-
-%\input{texts/epigraph}
 
 \cleardoublepage
 \pagenumbering{arabic}% Switch to Arabic page numbers
@@ -76,22 +76,22 @@
 \pagestyle{headings}
 
 \part{Introduction and methodology}
-\input{texts/introduction}
-\input{texts/method}
+\input{Content/texts/introduction}
+\input{Content/texts/method}
 \part{Literature review}
-\input{texts/literature}
+\input{Content/texts/literature}
 \part{Experiments}
-\input{texts/experiment1}
-\input{texts/experiment2}
+\input{Content/texts/experiment1}
+\input{Content/texts/experiment2}
 \part{Results and implications}
-\input{texts/discussion}
-\input{texts/tool}
-\input{texts/ethics}
-\input{texts/limitations}
+\input{Content/texts/discussion}
+\input{Content/texts/tool}
+\input{Content/texts/ethics}
+\input{Content/texts/limitations}
 \part{Closing remarks}
-\input{texts/conclusion}
-\input{texts/future-work}
-%\input{texts/appendix}
+\input{Content/texts/conclusion}
+\input{Content/texts/future-work}
+%\input{Content/texts/appendix}
 
 %\begin{fullarticles}
 %\fullarticle{bergmarklund2013gamesformaleducationalsettings}{manual.pdf}
