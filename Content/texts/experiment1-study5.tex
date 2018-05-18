@@ -15,19 +15,12 @@ This study is a systematic evaluation of the feasibility of a user-tailored neur
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Data pre-processing}
 
-Pre-processing of video recordings involved the extraction of the parts containing the interaction with the games and the discard of noisy frames. The process significantly similar to the one detailed in Section \ref{s:experiment1-study4-feature-analysis} (on page \pageref{s:experiment1-study4-feature-analysis}). Firstly the periods where subjects were playing each one of the available games were extracted from the video recordings. It resulted in three videos per subject, denoted as $V_{s,i}$ where $s$ is the $s$-th subject and $i \in \{1, 2, 3\}$ represents the game. Then the initial 45 seconds of any given video $V_{s,i}$ were ignored. The remaining of the video was then divided into three pieces, from which the first and the last were selected as $H_0$ and $H_1$, respectively.
+Pre-processing of video recordings involved the extraction of the parts containing the interaction with the games and the discard of noisy frames. The process is significantly similar to the one detailed in Section \ref{s:experiment1-study4-feature-analysis} (on page \pageref{s:experiment1-study4-feature-analysis}). Firstly the periods where subjects were playing each one of the available games were extracted from the video recordings. It resulted in three videos per subject, denoted as $V_{s,i}$ where $s$ is the $s$-th subject and $i \in \{1, 2, 3\}$ represents the game. Then the initial $D=45$ seconds of any given video $V_{s,i}$ were ignored. The remaining of the video was then divided into three pieces, from which the first and the last were selected as $H_0$ and $H_1$, respectively.
 %Segment $H_0$ represents the boredom part, i.e. $P_b$, while $H_1$ represents the stressful part, i.e. $P_s$.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.95\textwidth]{Content/figures/machine-learning-labeling-approach.png}
-    \caption{Labeling approach used in the training and testing of the user-tailored model based on two segments: $H_0$ (boredom samples) and $H_s1$ (stress samples). Stripes highlight discarded segments.}
-    \label{fig:machine-learning-labeling-approach}
-\end{figure}
-
-The emotion elicitation design of the calibration games is used as the foundation for labeling samples during the training of the model, as well as ground truth for its testing. The procedure is illustrated in Figure \ref{fig:machine-learning-labeling-approach}. Following the division of each game in two parts: boredom, i.e. $H_0$, and stress, i.e. $H_1$, samples from the $H_1$ part are labeled as stress, while samples from the $H_0$ part are labeled as boredom. The approach accounts for the informed levels of boredom and stress of the subject, labeling only the samples within the areas more likely to accurately reflect the self-reported emotional states.
-
 The pre-processing of the recordings resulted in 6 video segments per subjects: 3 segments $H_0$ (one per game) and 3 segments $H_1$ (one per game). A given game $i$ contains $N=20$ pairs of $H_0$ and $H_1$ video segments (20 segments $H_0$, one per subject, and 20 segments $H_1$, one per subject). When considering all subjects and games, there are $N=60$ pairs of $H_0$ and $H_1$ video segments (3 games $\times$ 20 subjects, resulting in 60 segments $H_0$ and 60 segments $H_1$). Subject 9 had problems playing the Platformer game, so all segments $H_0$ and $H_1$ from that subject were discarded. Consequentially there are $N=57$ pairs of $H_0$ and $H_1$ video segments in total after the pre-processing.
+
+The emotion elicitation design of the calibration games, where $H_0$ and $H_1$ represent boring and stressful interactions, respectively, is used to label samples to train and test the model. Samples from the $H_0$ part were labeled as boredom and samples from the $H_1$ part were labeled as stress. Such process accounts for the informed levels of boredom and stress of the subject, aiming to ensure a correct labeling of samples based on video segments that are more likely to accurately reflect the emotional state self-reported by subjects.
 
 \subsubsection{Classification features}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -36,7 +29,7 @@ The classification efficiency of a machine learning model is related to the numb
 
 Features and their classification potential are highly dependent on the type of data being used. In the present study, the set of features used for classification was extracted and selected based on previous reports of the potential of said features to differentiate emotional states in games. In total 9 features, denoted $F_1$ to $F_9$, are available for use: $F_1$ to $F_7$ are related to facial activity, and $F_8$ and $F_9$ are related to HR activity, including remote estimations (rPPG). Table \ref{table:study5-features-list} presents a description of all features.
 
-\begin{table*}
+\begin{table*}[h]
     \centering
     \caption{Description of features used for classification}
     \label{table:study5-features-list}
