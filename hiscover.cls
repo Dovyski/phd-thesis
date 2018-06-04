@@ -9,20 +9,27 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{hiscover}[2016/12/22 University of Skovde Thesis Cover class by Thomas Fischer]
+\ProvidesClass{hiscover}[2017/06/05 University of Skovde Thesis Cover class by Thomas Fischer]
 
 \newcommand{\@coatofarmsimagefilename}{CoatOfArms/HiSCoatOfArms-white-english}
-\newcommand{\@localizeddoctoraldissertation}{Doctoral Thesis Proposal}
+\newcommand{\@localizeddoctoraldissertation}{Doctoral Dissertation}
 \newcommand{\@localizedlicentiatethesis}{Licentiate Thesis}
+\newcommand{\@localizedresearchproposal}{Research Proposal}
+\newcommand{\@localizedthesisproposal}{Thesis Proposal}
 
+\newcounter{@numberoflanguagesinoptions}
 \DeclareOption{english}{%
-\PassOptionsToPackage{USenglish,swedish,main=USenglish}{babel}%
+\PassOptionsToPackage{swedish,main=USenglish}{babel}%
+\stepcounter{@numberoflanguagesinoptions}
 }
 \DeclareOption{swedish}{%
 \renewcommand{\@coatofarmsimagefilename}{CoatOfArms/HiSCoatOfArms-white-swedish}
 \renewcommand{\@localizeddoctoraldissertation}{Doktorsavhandling}
-\newcommand{\@localizedlicentiatethesis}{Licentiatexamen}
-\PassOptionsToPackage{USenglish,swedish,main=swedish}{babel}%
+\renewcommand{\@localizedlicentiatethesis}{Licentiatexamen}
+\renewcommand{\@localizedresearchproposal}{Forskningsförslag}% TODO correct translation?
+\renewcommand{\@localizedthesisproposal}{Avhandlingsförslag}% TODO correct translation?
+\PassOptionsToPackage{USenglish,main=swedish}{babel}%
+\stepcounter{@numberoflanguagesinoptions}
 }
 
 \ProcessOptions
@@ -31,7 +38,18 @@
 
 \RequirePackage{ifthen}
 \RequirePackage{graphicx}
-\RequirePackage[a4paper,showcrop=true,margin=20mm,top=45mm,bottom=10mm,layoutsize={166mm,240mm},layoutvoffset={28.5mm},layouthoffset={22mm}]{geometry}
+\RequirePackage[paperwidth=176mm,paperheight=250mm,margin=20mm,top=45mm,bottom=10mm]{geometry}
+\RequirePackage{luatex85}% required for \pdfpageheight and \pdfpagewidth
+
+% Check that either 'english' or 'swedish' is specified as class option,
+% but not both at the same time or none at all
+\ifthenelse{\equal{\value{@numberoflanguagesinoptions}}{0}}{%
+\PackageError{his-thesis}{One language must be specified as option: either 'english' or 'swedish'}{}%
+}{%
+\ifthenelse{\equal{\value{@numberoflanguagesinoptions}}{1}}{}{%
+\PackageError{his-thesis}{Only one language may be specified as option: either 'english' or 'swedish'}{}%
+}}
+
 \RequirePackage{babel}
 
 \RequirePackage[absolute]{textpos}
@@ -51,10 +69,12 @@
 \setlength{\parskip}{0pt}
 \setlength{\parindent}{0pt}
 
-% Color definitions
-\RequirePackage[table,svgnames,dvipsnames]{xcolor}
-\ifthenelse{\equal{\@publicationtype}{licentiate}}{\definecolor{specialpagebackground}{RGB}{68,72,78}}{\definecolor{specialpagebackground}{RGB}{86,34,97}}% update color for special pages' background
 \definecolor{oxid}{RGB}{234,120,25}
+
+% Set paper color to match special page background
+\xdef\thepagecolornone{specialpagebackground}% this seeming redundant definition is sometimes necessary
+\RequirePackage[nopagecolor={specialpagebackground}]{pagecolor}
+\newpagecolor{specialpagebackground}
 
 \sodef\bookspinespacing{}{.1em}{8pt}{0pt}% TODO adjust last two parameters ('inner space' and 'outer space')
 
@@ -62,58 +82,63 @@
 \begin{internalcoverpage}%
 #1%
 \end{internalcoverpage}%
+\eject \pdfpagewidth 198mm \pdfpageheight 250mm% Set paper size to 198mm x 250mm
 \newpage%
 \internalbookspine%
-\newpage%
 \internallastpage{#2}{#3}{#4}%
 }
 
 \newenvironment{internalcoverpage}{%
 \begingroup%
 \vphantom{A}% problems with completely empty pages ...
-% absolute position, slightly larger/outside normal layout (166mm,240mm) at offset (22mm,28.5mm)
-\begin{textblock}{170}(20,26)%
+\begin{textblock}{176}(0,0)%
 \begin{tikzpicture}[inner sep=0pt]%
 % background inamge in rubin/purple using the laurel branch
-\node[anchor=south west](backgroundimage) at (1mm,1mm) {%
 \ifthenelse{\equal{\@publicationtype}{dissertation}}{% if dissertation ...
-\includegraphics[width=170mm,height=244mm,keepaspectratio]{LaurelBranch/laurelbranch-rubin}%
+\node[anchor=south west](backgroundimage) at (0mm,0mm) {\includegraphics[width=176mm,height=250mm,keepaspectratio]{LaurelBranch/laurelbranch-rubin}};%
 }{%
 \ifthenelse{\equal{\@publicationtype}{licentiate}}{% if licentiate ...
-\includegraphics[width=170mm,height=244mm,keepaspectratio]{LaurelBranch/laurelbranch-grafit}%
+\node[anchor=south west](backgroundimage) at (0mm,0mm) {\includegraphics[width=176mm,height=250mm,keepaspectratio]{LaurelBranch/laurelbranch-grafit}};%
 }{%
-}% end of inner if
-}% end of outer if
-};
+% no background image for 'thesisproposal' or 'researchproposal'
+}% end of if licentiate
+}% end of if dissertation
 \end{tikzpicture}%
 \end{textblock}%
 
-\begin{textblock}{138}(35,48.5)%
+\begin{textblock}{138}(18,21)%
 % Coat of Arms on page's top left side
-\begin{minipage}[t][5.5cm][t]{\linewidth}%
-\includegraphics[height=34.4mm,width=34.1mm,keepaspectratio]{\@coatofarmsimagefilename}%
-\end{minipage}%
+\includegraphics[height=35mm,width=35mm,keepaspectratio]{\@coatofarmsimagefilename}%
+\vspace*{3cm plus 5mm minus 5mm}%
 \par%
 %
 % user content comes here
 }{%
 % after user content:
 \par%
-\vspace*{9mm}\vfil%
+\vspace*{5mm}\vfil%
 %
 \begin{minipage}[t]{\linewidth}%
 \RaggedRight%
 \color{white}%
-\begingroup\fontgeorgia{13.5}{13.5}%
+\begingroup\fontgeorgia{13}{13}%
 \ifthenelse{\equal{\@publicationtype}{dissertation}}{% if dissertation ...
 \MakeUppercase{\coverpagesubjectspacing{\@localizeddoctoraldissertation}}%
 }{% else (i.e. not dissertation) ...
 \ifthenelse{\equal{\@publicationtype}{licentiate}}{% if licentiate ...
 \MakeUppercase{\coverpagesubjectspacing{\@localizedlicentiatethesis}}%
 }{% else (i.e. not licentiate) ...
-????
-}% end of inner if
-}% end of outer if
+\ifthenelse{\equal{\@publicationtype}{researchproposal}}{% if licentiate ...
+\MakeUppercase{\coverpagesubjectspacing{\@localizedresearchproposal}}%
+}{% else (i.e. not research proposal) ...
+\ifthenelse{\equal{\@publicationtype}{thesisproposal}}{% if thesisproposal ...
+\MakeUppercase{\coverpagesubjectspacing{\@localizedthesisproposal}}%
+}{% else (i.e. not thesis proposal) ...
+% tertium non datur
+}% end of if thesisproposal
+}% end of if researchproposal
+}% end of if licentiate
+}% end of if dissertation
 \par\endgroup%
 \vspace*{4mm}%
 \begingroup\fontarial{25}{25}\MakeUppercase{\coverpagetitlespacing{\@title}}\par\endgroup%
@@ -122,7 +147,7 @@
 \vspace*{4mm}%
 \begingroup\fontarial{14.5}{14.5}\color{oxid}\MakeUppercase{\@author}\par\endgroup%
 \vspace*{1mm}%
-\begingroup\fontgeorgia{12}{12}\textit{\subject}\par\endgroup%
+\begingroup\fontgeorgia{12}{12}\textit{\@subject}\par\endgroup%
 \end{minipage}%
 \end{textblock}%
 \endgroup%
@@ -131,40 +156,28 @@
 
 
 \newcommand{\internalbookspine}{
-\begingroup%
-\newgeometry{%
-   margin=2mm,% default margin on all sides ...
-   top=45mm,% more space on the top
-   bottom=10mm,% less space on the bottom
-   layoutsize={12mm,240mm},% the dissertations internal paper size
-   layoutvoffset={28mm},% where to place the dissertation's pages on an A4 paper
-   layouthoffset={90mm}%
-}%
 \vphantom{A}% problems with completely empty pages ...
-% absolute position, slightly larger/outside normal layout (16mm,244mm) at offset (88mm,26mm)
-\begin{textblock}{16}(88,26)%
+\begin{textblock}{22}(176,20)%
+\centering%
 \begin{tikzpicture}[inner sep=0pt]%
-% background inamge in rubin/purple using the laurel branch
-\fill[fill=specialpagebackground] (1mm,1mm) rectangle +(16mm,244mm);
-\node[rotate=-90,color=white,anchor=west](author) at (9mm,220mm) {%
-\begingroup\color{white}\fontarial{10}{10}%
+\node[rotate=-90,color=white,anchor=west](author) {%
+\begingroup\color{white}\fontarial{8.5}{8.5}%
 \textbf{\color{oxid}\bookspinespacing{\MakeUppercase{\@author}}}%
 \par\endgroup
 };
-\node[rotate=-90,below=1cm of author.east,anchor=west,color=white,text width=12cm,align=left](title) {%
-\begingroup\color{white}\fontarial{10}{10}%
+\node[rotate=-90,below=3mm of author.east,anchor=west,color=white,align=left](title) {%
+\begingroup\color{white}\fontarial{8.5}{8.5}%
 \bookspinespacing{\MakeUppercase{\@title}}%
 \par\endgroup
 };
-\node[rotate=-90,below=1cm of title.east,anchor=west,color=white](year) {%
-\begingroup\color{white}\fontarial{10}{10}%
+\node[rotate=-90,below=3mm of title.east,anchor=west,color=white](year) {%
+\begingroup\color{white}\fontarial{8.5}{8.5}%
 \@year%
 \par\endgroup
 };
 \end{tikzpicture}%
+\par%
 \end{textblock}%
-\restoregeometry
-\endgroup
 }
 
 
@@ -172,15 +185,7 @@
 \newcommand{\internallastpage}[3]{%
 \begingroup%
 \vphantom{A}% problems with completely empty pages ...
-% absolute position, slightly larger/outside normal layout (168mm,240mm) at offset (21mm,28.5mm)
-\begin{textblock}{172}(19,26)%
-\begin{tikzpicture}[inner sep=0pt]%
-% background inamge in rubin/purple using the laurel branch
-\fill[fill=specialpagebackground] (1mm,1mm) rectangle +(172mm,244mm);
-\end{tikzpicture}%
-\end{textblock}%
-
-\begin{textblock}{88}(61,48.5)%
+\begin{textblock}{88}(50,50)%
 \begin{tikzpicture}[inner sep=0mm]%
 \color{white}% use white text color due to dark purple background
 %
@@ -193,7 +198,7 @@
 %
 % Name
 \node[right=4mm of photobg.south east,anchor=south west,text width=53.75mm](name){%
-\begingroup\fontarial{12}{12}\MakeUppercase{\@author}\par\endgroup%
+\begingroup\fontarial{10}{10}\MakeUppercase{\@author}\par\endgroup%
 };%
 %
 % User content (abstract)
@@ -220,8 +225,8 @@
 }% end of "only if collaboration partner is defined ..."
 %
 % ISBN and Dissertation Number
-\node[text width=88mm,align=flush center](number) at (28mm,-175mm) {%
-\begingroup\fontarial{7.5}{11}%
+\node[text width=88mm,align=flush center,below=169mm of photo.north west,anchor=north west](number) {%
+\begingroup\fontarial{8.5}{11}%
 ISBN \@isbn\\%
 Dissertation Series, No.~\@seriesnumber~(\@year)%
 \par\endgroup%

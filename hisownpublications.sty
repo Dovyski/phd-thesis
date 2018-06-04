@@ -8,11 +8,12 @@
 
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesPackage{hisownpublications}[2016/12/27 HiS Doctoral Candidate's Own Publications]
+\ProvidesPackage{hisownpublications}[2017/06/07 HiS Doctoral Candidate's Own Publications]
 
 \RequirePackage{hisbibliography}
 \RequirePackage{pdfpages}
 \RequirePackage{biblatex}
+\RequirePackage{geometry}
 
 \newcounter{ownpublicationsenumi}
 \setcounter{ownpublicationsenumi}{0}
@@ -36,26 +37,43 @@
 
 \DeclareBibliographyCategory{ownpublicationshighrelevance}
 \DeclareBibliographyCategory{ownpublicationslowrelevance}
+\DeclareBibliographyCategory{ownpublications}
 
-\newcommand{\ownpublications}[3][]{%
+\newenvironment{ownpublications}{%
 \clearpage%
 \chapter*{Publications}%
-
-#1
-
-\begin{refcontext}[sorting=none]
-\addtocategory{ownpublicationshighrelevance}{#2}\nocite{#2}
-\printbibliography[heading=subbibliography,title=Publications with High Relevance,env=ownpublicationsbibenvironment,category=ownpublicationshighrelevance]
-\end{refcontext}
-
-\begin{refcontext}[sorting=none]
-\addtocategory{ownpublicationslowrelevance}{#3}\nocite{#3}
-\printbibliography[heading=subbibliography,title=Publications with Low Relevance,env=ownpublicationsbibenvironment,category=ownpublicationslowrelevance]
-\end{refcontext}
-
+}{%
 \clearpage%
+\setcounter{ownpublicationsenumi}{0}%
 }
 
+\newcommand{\highrelevancepublications}[1]{%
+\begin{refcontext}[sorting=none]
+\addtocategory{ownpublicationshighrelevance}{#1}\nocite{#1}
+\printbibliography[heading=subbibliography,title=Publications with High Relevance,env=ownpublicationsbibenvironment,category=ownpublicationshighrelevance]
+\end{refcontext}
+}
+
+\newcommand{\lowrelevancepublications}[1]{%
+\begin{refcontext}[sorting=none]
+\addtocategory{ownpublicationslowrelevance}{#1}\nocite{#1}
+\printbibliography[heading=subbibliography,title=Publications with Low Relevance,env=ownpublicationsbibenvironment,category=ownpublicationslowrelevance]
+\end{refcontext}
+}
+
+\newcommand{\authorspublications}[1]{%
+\begin{refcontext}[sorting=none]
+\addtocategory{ownpublications}{#1}\nocite{#1}
+\printbibliography[heading=none,env=ownpublicationsbibenvironment,category=ownpublications]
+\end{refcontext}
+}
+
+\newcommand{\authorspublication}[2][]{%
+\stepcounter{ownpublicationsenumi}%
+\subsection*{Paper \Roman{ownpublicationsenumi}}%
+\fullcite{#2}%
+\ifthenelse{\equal{#1}{}}{}{\par\textit{Author's contribution}: #1}% print optional author's contributions
+}
 
 % Retrieving a publication's title, without quotation marks or any other 'candy'.
 % Title can be retrieved 'verbatim' (as it is) or in uppercase.
@@ -65,10 +83,16 @@
 \DeclareCiteCommand{\citetitleuppercase}{}{\printfield[uppercase]{title}}{}{}
 
 \newcommand{\fullarticle}[3][pages=-]{%
-\addcontentsline{toc}{section}{\citetitleverbatim{#2}}% section-like line in ToC, but does not appear in main text body
-\partlike{\citetitleuppercase{#2}}% nice purple page with article's title, like special page for parts, but does not appear in ToC and does not try to make it uppercase
-% FIXME scaling gets messed up when activating the 'final' document option, as the paper size changes
-\includepdf[#1]{#3}% include article's PDF
+\stepcounter{ownpublicationsenumi}
+\addcontentsline{toc}{section}{Paper~\Roman{ownpublicationsenumi}: \citetitleverbatim{#2}}% section-like line in ToC, but does not appear in main text body
+\partlike[\MakeUppercase{Paper~\Roman{ownpublicationsenumi}}]{\citetitleuppercase{#2}}% nice purple page with article's title, like special page for parts, but does not appear in ToC and does not try to make it uppercase
+\ifthenelse{\boolean{@isfinal}}{%
+\newgeometry{margin=0cm}%
+\includepdf[#1,noautoscale]{#3}% include article's PDF, but scale it to fit the smaller pages' size
+\restoregeometry%
+}{%
+\includepdf[#1]{#3}% include article's PDF, but keep author's scaling intact
+}
 }%
 
 \newenvironment{fullarticles}[1][Previously Published Articles]{%

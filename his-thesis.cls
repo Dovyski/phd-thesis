@@ -18,7 +18,7 @@
 %%   Right brace   \}     Tilde         \~}
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{his-thesis}[2017/01/15]
+\ProvidesClass{his-thesis}[2017/06/05]
 
 % Necessary for included LaTeX classes
 \newif\if@titlepage%
@@ -50,11 +50,14 @@
 \@mparswitchtrue
 
 % Pass language-specific options "english" and "swedish" to Babel
+\newcounter{@numberoflanguagesinoptions}
 \DeclareOption{english}{%
-\PassOptionsToPackage{USenglish,swedish,main=USenglish}{babel}%
+\PassOptionsToPackage{swedish,main=USenglish}{babel}%
+\stepcounter{@numberoflanguagesinoptions}
 }
 \DeclareOption{swedish}{%
-\PassOptionsToPackage{USenglish,swedish,main=swedish}{babel}%
+\PassOptionsToPackage{USenglish,main=swedish}{babel}%
+\stepcounter{@numberoflanguagesinoptions}
 }
 
 %%
@@ -80,6 +83,15 @@
 %% Required packages
 %%
 
+% Check that either 'english' or 'swedish' is specified as class option,
+% but not both at the same time or none at all
+\ifthenelse{\equal{\value{@numberoflanguagesinoptions}}{0}}{%
+\PackageError{his-thesis}{One language must be specified as option: either 'english' or 'swedish'}{}%
+}{%
+\ifthenelse{\equal{\value{@numberoflanguagesinoptions}}{1}}{}{%
+\PackageError{his-thesis}{Only one language may be specified as option: either 'english' or 'swedish'}{}%
+}}
+
 % For language-specific features such as correct word wrapping
 \RequirePackage{babel}
 % For improved \RaggedLeft, \RaggedRight, and \Centering commands
@@ -90,20 +102,25 @@
 \ifthenelse{\boolean{@isfinal}}{%
 %% Option 'final' is set, so use special paper size
 \RequirePackage[%
-paperwidth=166mm,%
+paperwidth=168mm,%
 paperheight=240mm,%
-layoutsize={166mm,240mm},% layout size equals special paper size
+layoutsize={168mm,240mm},% layout size equals special paper size
 layoutvoffset={0mm},% where to place the dissertation's pages on paper
 layouthoffset={0mm},%
+margin=20mm,% symmetric margins even in two-side layout
 showcrop=false%
 ]{geometry}
+%% Important: there are various \pdfpagewidth \pdfpageheight statements that
+%% change the paper size in mid-document
+\RequirePackage{luatex85}% required for \pdfpageheight and \pdfpagewidth
 }{%
 %% Option 'final' not set, so use A4 paper with cut marks
 \RequirePackage[%
 a4paper,% use A4 paper as base to print on
-layoutsize={166mm,240mm},% the dissertations internal paper size
+layoutsize={168mm,240mm},% the dissertations internal paper size
 layoutvoffset={28.5mm},% where to place the dissertation's pages on an A4 paper
-layouthoffset={22mm},%
+layouthoffset={21mm},%
+margin=20mm,% symmetric margins even in two-side layout
 showcrop=true%
 ]{geometry}
 }
@@ -266,7 +283,8 @@ showcrop=true%
 %% End of Penalties
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\headerfooterfont}{\fontarial{8}{9}}
+\newcommand{\headerfooterfont}{\fontarial{6}{6}}
+\newcommand{\staticheadertext}{\MakeUppercase{University of Sk{\"o}vde}}
 \setcounter{topnumber}{2}
 \renewcommand\topfraction{.7}
 \setcounter{bottomnumber}{1}
@@ -278,30 +296,12 @@ showcrop=true%
 \renewcommand\dbltopfraction{.7}
 \renewcommand\dblfloatpagefraction{.5}
 \def\ps@headings{%
-    \let\@oddfoot\@empty\let\@evenfoot\@empty
-    \def\@evenhead{\headerfooterfont\thepage\hfil\itshape\leftmark}%
-    \def\@oddhead{\headerfooterfont{\itshape\rightmark}\hfil\thepage}%
-    \let\@mkboth\markboth
-  \def\chaptermark##1{%
-    \markboth {\MakeUppercase{%
-      \ifnum \c@secnumdepth >\m@ne
-        \if@mainmatter% if in main text body (i.e. not ToC, LoC, LoF, ...)
-          \@chapapp\ \thechapter. \ %
-        \fi
-      \fi
-      ##1}}{}}%
-  \def\sectionmark##1{%
-    \markright {\MakeUppercase{%
-      \ifnum \c@secnumdepth >\z@
-        \thesection. \ %
-      \fi
-      ##1}}}}
-\def\ps@headingsfoot{%
-    \let\@oddhead\@empty\let\@evenhead\@empty
+    \def\@evenhead{\headerfooterfont\staticheadertext\hfil}%
     \def\@evenfoot{\headerfooterfont\thepage\hfil}%
+    \def\@oddhead{\headerfooterfont\hfil\staticheadertext}%
     \def\@oddfoot{\headerfooterfont\hfil\thepage}%
-    }
-\newcommand*\chaptermark[1]{}
+    \let\@mkboth\markboth
+}%
 \setcounter{secnumdepth}{2}
 \newcounter {part}
 \newcounter {chapter}
@@ -332,68 +332,83 @@ showcrop=true%
 %% Parts
 %%
 
-\newcommand{\partlike}[1]{%
-  \cleardoublepage
-  \thispagestyle{headingsfoot}%
-  \null\vfil
-  % Define a dark purple color used for page backgrounds
-  \newpagecolor{specialpagebackground}%
-  \markboth{}{}% no page header
-  {\thispagestyle{empty}% no page numbers on just this page
+\newcommand{\partlike}[1][]{%
+  \def\OptArgPartlike{{#1}}%
+  \partlikeRelay
+}
+
+% Hack to get two optional arguments into \partlike
+% see: http://www.tex.ac.uk/FAQ-twooptarg.html
+\newcommand{\partlikeRelay}[2][]{%
+  \@beginpart
    \vspace{34.74mm}%
    \begingroup\color{white}\raggedleft% \RaggedLeft
-   \begingroup\fontarial{16.5}{21.0}#1\par\endgroup%
+   \ifthenelse{\equal{\OptArgPartlike}{}}{}{\begingroup\fontarial{13.5}{15.0}\OptArgPartlike\par\endgroup}%
+   \begingroup\fontarial{16.5}{21.0}#2\par\endgroup%
+   \ifthenelse{\equal{#1}{}}{}{\medskip\par\begingroup\fontarial{9.5}{10.5}#1\par\endgroup}%
    \endgroup%
-  }%
-  \@endpart
+  \@endpart%
 }
 
 \newcommand\part{%
-  \cleardoublepage
-  \thispagestyle{headingsfoot}%
-  \null\vfil
   \secdef\@part\@spart}% for part*, use @spart, for non-star part use @part
 
 %% The actual formatting of the title of the part
 \def\@part[#1]#2{%
-    % Define a dark purple color used for page backgrounds
-    \newpagecolor{specialpagebackground}%
+    \@beginpart
     \ifnum \c@secnumdepth >-2\relax
       \refstepcounter{part}%
       \addcontentsline{toc}{part}{\thepart.\hspace{1em}#1}%
     \else
       \addcontentsline{toc}{part}{#1}%
     \fi
-    \markboth{}{}% no page header
-    {\thispagestyle{empty}% no page numbers on just this page
      \vspace{34.74mm}%
      \begingroup\color{white}\raggedleft% \RaggedLeft
      \begingroup\fontarial{13.5}{15.0}\MyUpperCase{\partname\hspace{0.5em}\thepart}\par\endgroup%
      \begingroup\fontarial{16.5}{21.0}\MyUpperCase{#2}\par\endgroup%
      \endgroup%
-    }%
-    \@endpart}
+    \@endpart%
+}
 
 %% The actual formatting of the title of the part (star form)
 \def\@spart#1{%
-    % Define a dark purple color used for page backgrounds
-    \newpagecolor{specialpagebackground}%
-    \markboth{}{}% no page header
-    {\thispagestyle{empty}% no page numbers on just this page
+    \@beginpart
      \vspace{34.74mm}%
      \begingroup\color{white}\raggedleft% \RaggedLeft
      \begingroup\fontarial{16.5}{21.0}\MyUpperCase{#1}\par\endgroup%
      \endgroup%
-    }%
-    \@endpart}
+    \@endpart%
+}
+
+
+%% The actual formatting of the beginning of the part (both star and non-star forms)
+\def\@beginpart{%
+    \cleardoublepage
+    \ifthenelse{\boolean{@isfinal}}{%
+      \eject \pdfpagewidth 176mm \pdfpageheight 250mm% Set paper size to 176mm x 250mm
+    }{%
+      % In non-final mode, i.e. when printing on A4, do not change paper size
+    }
+    \null\vfil
+    % Define a dark purple color used for page backgrounds
+    \newpagecolor{specialpagebackground}%
+    \markboth{}{}% no page header
+    \thispagestyle{empty}% no page numbers on just this page
+}
 
 %% The actual formatting of the end of the part (both star and non-star forms)
 \def\@endpart{\vfill
-	     \newpage
-            \null
-            \thispagestyle{empty}%
-            \restorepagecolor% restore original page color
-            \newpage}
+    \newpage%
+    \null%
+    \thispagestyle{empty}%
+    \ifthenelse{\boolean{@isfinal}}{%
+      \eject \pdfpagewidth 168mm \pdfpageheight 240mm% Set paper size to 168mm x 240mm
+    }{%
+      % In non-final mode, i.e. when printing on A4, do not change paper size
+    }
+    \newpage%
+    \restorepagecolor% restore original page color
+}
 
 %%
 %% End of Parts
@@ -405,7 +420,6 @@ showcrop=true%
 %%
 
 \newcommand\chapter{\cleardoublepage% chapter shall start on a fresh right page
-                    \thispagestyle{headingsfoot}% page numbers on page's bottom (top is default)
                     \global\@topnum\z@% ???
                     \@afterindentfalse% ???
                     \secdef\@chapter\@schapter}% for chapter*, use @schapter, for non-star chapter use @chapter
@@ -421,7 +435,6 @@ showcrop=true%
                     \else
                       \addcontentsline{toc}{chapter}{#1}% will appear in ToC
                     \fi
-                    \chaptermark{#1}%
                     \addtocontents{lof}{\protect\addvspace{10\p@}}% add vertical space between chapters in list of figures
                     \addtocontents{lot}{\protect\addvspace{10\p@}}% add vertical space between chapters in list of tables
                     \@makechapterhead{#2}%

@@ -9,20 +9,23 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{hisspik}[2016/12/22 University of Skovde Thesis Spikblad class by Thomas Fischer]
+\ProvidesClass{hisspik}[2017/04/27 University of Skovde Thesis Spikblad class by Thomas Fischer]
 
 \newcommand{\@documenttype}{\MakeUppercase{Academic Work}}
 \newcommand{\@by}{by}
 \newcommand{\@coatofarmsimagefilename}{CoatOfArms/HiSCoatOfArms-black-english}
 
+\newcounter{@numberoflanguagesinoptions}
 \DeclareOption{english}{%
-\PassOptionsToPackage{USenglish,swedish,main=USenglish}{babel}%
+\PassOptionsToPackage{swedish,main=USenglish}{babel}%
+\stepcounter{@numberoflanguagesinoptions}
 }
 \DeclareOption{swedish}{%
-\PassOptionsToPackage{USenglish,swedish,main=swedish}{babel}%
+\PassOptionsToPackage{USenglish,main=swedish}{babel}%
 \renewcommand{\@documenttype}{\MakeUppercase{Akademisk Avhandling}}
 \renewcommand{\@by}{av}
 \renewcommand{\@coatofarmsimagefilename}{CoatOfArms/HiSCoatOfArms-black-swedish}
+\stepcounter{@numberoflanguagesinoptions}
 }
 
 \ProcessOptions
@@ -45,6 +48,15 @@
    ]{geometry}
 
 \RequirePackage{graphicx}
+
+% Check that either 'english' or 'swedish' is specified as class option,
+% but not both at the same time or none at all
+\ifthenelse{\equal{\value{@numberoflanguagesinoptions}}{0}}{%
+\PackageError{his-thesis}{One language must be specified as option: either 'english' or 'swedish'}{}%
+}{%
+\ifthenelse{\equal{\value{@numberoflanguagesinoptions}}{1}}{}{%
+\PackageError{his-thesis}{Only one language may be specified as option: either 'english' or 'swedish'}{}%
+}}
 
 \RequirePackage{babel}
 

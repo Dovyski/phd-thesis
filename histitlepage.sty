@@ -8,16 +8,20 @@
 
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesPackage{histitlepage}[2016/11/30 HiS Title Page]
+\ProvidesPackage{histitlepage}[2017/04/27 HiS Title Page]
 
 \newcommand{\@coatofarmsimagefilename}{CoatOfArms/HiSCoatOfArms-grafit-median-english}
-\newcommand{\@localizeddoctoraldissertation}{Doctoral Thesis}
+\newcommand{\@localizeddoctoraldissertation}{Doctoral Dissertation}
 \newcommand{\@localizedlicentiatethesis}{Licentiate Thesis}
+\newcommand{\@localizedresearchproposal}{Research Proposal}
+\newcommand{\@localizedthesisproposal}{Thesis Proposal}
 
 \DeclareOption{swedish}{%
 \renewcommand{\@coatofarmsimagefilename}{CoatOfArms/HiSCoatOfArms-grafit-median-swedish}
 \renewcommand{\@localizeddoctoraldissertation}{Doktorsavhandling}
-\newcommand{\@localizedlicentiatethesis}{Licentiatexamen}
+\renewcommand{\@localizedlicentiatethesis}{Licentiatexamen}
+\renewcommand{\@localizedresearchproposal}{Forskningsförslag}% TODO correct translation?
+\renewcommand{\@localizedthesisproposal}{Avhandlingsförslag}% TODO correct translation?
 }
 
 \PassOptionsToPackage{table,svgnames,dvipsnames}{xcolor}
@@ -26,26 +30,82 @@
 
 \RequirePackage{tikz}
 
+% Letter spacing support (\textls}
+\RequirePackage{letterspace}
+
+\RequirePackage{xcolor}
+\definecolor{grayfortitle}{RGB}{68,72,78}% gray used for title, same as 'licentiate gray'
+
 % Import user's metadata such as title, name, ISBN, ...
 \RequirePackage{hismetadata}
 
 \renewcommand{\maketitle}{%
 \pagestyle{empty}
+
 \cleardoublepage%
 \begingroup%
 \centering%
-\vspace*{2cm plus 2cm minus 2cm}%
+\vspace*{5.6cm}% value taken from Word template
+\begingroup%
+\fontarial{9.5}{12}%
+\textls[125]{% increase letter spacing by 125/1000em
+\newdimen\origiwspc%
+\origiwspc=\fontdimen2\font% original inter word space
+\fontdimen2\font=0.5em% inter word space
+\@titleUC%
+\fontdimen2\font=\origiwspc% (original) inter word space
+\par%
+}% textls
+\endgroup%
+\fontarial{9.5}{10.5}\@subtitle%
+\par%
+\endgroup
+
+\cleardoublepage%
+\begingroup%
+\centering%
+\vspace*{3cm plus 2cm minus 2cm}
 {\fontgeorgia{11.5}{11.5}%
-\ifthenelse{\equal{\@publicationtype}{licentiate}}{\MakeUppercase{\@localizedlicentiatethesis}}{\MakeUppercase{\@localizeddoctoraldissertation}}%
+\ifthenelse{\equal{\@publicationtype}{licentiate}}{\MakeUppercase{\@localizedlicentiatethesis}}{\ifthenelse{\equal{\@publicationtype}{researchproposal}}{\MakeUppercase{\@localizedresearchproposal}}{\ifthenelse{\equal{\@publicationtype}{thesisproposal}}{\MakeUppercase{\@localizedthesisproposal}}{\MakeUppercase{\@localizeddoctoraldissertation}}}}%
 \par}%
 \vspace*{4mm}
-{\fontarial{14}{17}\@titleUC\par}%
-\vspace*{5mm}
-{\fontarial{9.5}{11.5}\@subtitleUC\par}%
+\textls[125]{% increase letter spacing by 125/1000em
+\color{grayfortitle}\fontarial{12.5}{16}
+\newdimen\origiwspc%
+\origiwspc=\fontdimen2\font% original inter word space
+\fontdimen2\font=0.5em% inter word space
+\@titleUC%
+\fontdimen2\font=\origiwspc% (original) inter word space
+\par%
+}% textls
+\vspace*{4mm}
+{\fontarial{9.5}{11.5}\@subtitle\par}%
 \vspace*{1cm}
 {\fontarial{8.5}{10}\@authorUC\par}%
 {\fontgeorgia{8}{9}\textit{\@subject}\par}%
 \vspace*{3cm plus 1cm minus 1cm}
 \includegraphics[width=3.4cm,height=3.4cm,keepaspectratio]{\@coatofarmsimagefilename}\par%
+\endgroup%
+
+\clearpage%
+\vspace*{\fill}\par%
+\begingroup%
+\centering%
+\fontgeorgia{11.5}{14}%
+\@author, \@year%
+\smallskip\par%
+{\fontgeorgia{9.5}{12}\ifthenelse{\equal{\@publicationtype}{licentiate}}{\@localizedlicentiatethesis}{\ifthenelse{\equal{\@publicationtype}{researchproposal}}{\@localizedresearchproposal}{\ifthenelse{\equal{\@publicationtype}{thesisproposal}}{\@localizedthesisproposal}{\@localizeddoctoraldissertation}}}}%
+\smallskip\par%
+{\fontgeorgia{12}{15}\textit{Title:} \@title\par}%
+{\fontgeorgia{8.5}{10}\ifthenelse{\equal{\@subtitle}{}}{}{\@subtitle\par}}%
+\medskip%
+University of Skövde, Sweden\\%
+\href{https://www.his.se/}{www.his.se}
+\bigskip\par%
+\textit{Printer:} \@printshop
+\medskip\par%
+ISBN \@isbn\par%
+Dissertation Series No. \@seriesnumber~(\@year)%
+\par%
 \endgroup%
 }% END \newcommand{\maketitle}

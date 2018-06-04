@@ -10,7 +10,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{hismetadata}[2016/11/30 University of Skovde Thesis Metadata by Thomas Fischer]
+\ProvidesPackage{hismetadata}[2017/04/27 University of Skovde Thesis Metadata by Thomas Fischer]
 
 \RequirePackage{ifthen}
 \RequirePackage[table,svgnames,dvipsnames]{xcolor}
@@ -27,7 +27,7 @@
 \renewcommand{\@day}{#3}%
 }
 
-\newcommand{\@seriesnumber}{\missingparam{seriesnumbe}}
+\newcommand{\@seriesnumber}{\missingparam{seriesnumber}}
 \newcommand{\seriesnumber}[1]{\renewcommand\@seriesnumber{#1}}
 
 \newcommand{\@subtitle}{~}% subtitle cannot be empty, would give compilation errors
@@ -69,14 +69,34 @@
 %
 \newcommand{\@isbn}{\missingparam{isbn}}
 \newcommand{\isbn}[1]{\renewcommand{\@isbn}{#1}}
+%
+\newcommand{\@printshop}{\missingparam{printshop}}
+\newcommand{\printshop}[1]{\renewcommand{\@printshop}{#1}}
+
+\definecolor{specialpagebackground}{RGB}{150,100,50}% default value if nothing else is set
 
 %% To differ between doctoral dissertations (default) and licentiates:
 %% Use either
 %%    \publicationtype{dissertation}
 %% or
 %%    \publicationtype{licentiate}
+%% or
+%%    \publicationtype{thesisproposal}
+%% or
+%%    \publicationtype{researchproposal}
 \newcommand{\@publicationtype}{}
 \newcommand{\publicationtype}[1]{%
+% Whenever a new publication type is set, redefine special page color
+\ifthenelse{\equal{\@publicationtype}{licentiate}}{%
+% If publication is a licentiate thesis
+\definecolor{specialpagebackground}{RGB}{94,97,100}%
+}{\ifthenelse{\equal{\@publicationtype}{dissertation}}{%
+% If publication is a doctoral thesis
+\definecolor{specialpagebackground}{RGB}{94,97,100}%
+}{%
+% Either 'thesisproposal' or 'researchproposal'
+\definecolor{specialpagebackground}{RGB}{72,45,24}% TODO settle with some color for 'thesisproposal' and 'researchproposal'
+}%
+}%
 \renewcommand{\@publicationtype}{#1}%
-\ifthenelse{\equal{\@publicationtype}{licentiate}}{\definecolor{specialpagebackground}{RGB}{68,72,78}}{\definecolor{specialpagebackground}{RGB}{86,34,97}}% update color for special pages' background
 }

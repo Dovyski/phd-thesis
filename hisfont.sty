@@ -36,7 +36,7 @@
 %% https://packages.debian.org/wheezy/ttf-mscorefonts-installer
 %% Windows users should have the fonts in any case
 \setmainfont{Georgia}
-\setsansfont{Arial}
+% \setsansfont{Arial}
 
 %% Free replacements for the Windows fonts Georgia and Arial are
 %% "Droid Serif" (by Google, licensed under the Apache License) or
@@ -48,23 +48,16 @@
 
 %% Download all DroidSerif-*.ttf from
 %% https://github.com/android/platform_frameworks_base/tree/master/data/fonts
-%\setmainfont{Droid Serif}
+% \setmainfont{Droid Serif}
 %% Follow instructions for Libertine at http://www.linuxlibertine.org/
 % \setmainfont{Linux Libertine O}
-
-%\setmainfont[   Path              = fonts/droid/,
-%                Extension         = .ttf,
-%                BoldFont          = DroidSerif-Bold,
-%                ItalicFont        = DroidSerif-Italic,
-%                BoldItalicFont    = DroidSerif-BoldItalic,
-%                SmallCapsFeatures = {Letters = SmallCaps},
-%                Numbers           = OldStyle
-%            ]{DroidSerif}
 
 %% Crimson is available at https://github.com/skosch/Crimson/releases
 %% Either use the version shipped with TeX Live ...
 % \RequirePackage{crimson}
 %% ... or the OTF variant from git.nsa.his.se:latex/fonts.git
+%% (also available on the LaTeX SCIO page in archive 'fonts-from-git-nsa.zip':
+%%  https://scio.his.se/access/content/group/7ef76f77-5e09-4634-8ef0-7da408b13991/Doctoral%20Dissertation/fonts-from-git-nsa.zip)
 % \RequirePackage{crimson-otf}
 %% A variant of DejaVu Sans which is "slightly enhanced for use with TeX"
 % \RequirePackage{berasans}
@@ -78,6 +71,8 @@
 %% Either use the version shipped with TeX Live ...
 % \RequirePackage{sourcecodepro}
 %% ... or the OTF variant from git.nsa.his.se:latex/fonts.git
+%% (also available on the LaTeX SCIO page in archive 'fonts-from-git-nsa.zip':
+%%  https://scio.his.se/access/content/group/7ef76f77-5e09-4634-8ef0-7da408b13991/Doctoral%20Dissertation/fonts-from-git-nsa.zip)
 % \RequirePackage{adobesourcecodepro-otf}
 %% The DejaVu font family has been derieved from Bitstream's Vera
 %% font family. Download this font legally at:
@@ -86,14 +81,18 @@
 %% installation, but this font works only with the classical 'pdflatex',
 %% but not 'lualatex'. Therefore, the TTF variant from
 %%    git.nsa.his.se:latex/fonts.git
+%% (also available on the LaTeX SCIO page in archive 'fonts-from-git-nsa.zip':
+%%  https://scio.his.se/access/content/group/7ef76f77-5e09-4634-8ef0-7da408b13991/Doctoral%20Dissertation/fonts-from-git-nsa.zip)
 %% must be used.
-%\RequirePackage{dejavu-mono-ttf}
+%RequirePackage{dejavu-mono-ttf}
 
 
 %% Nimbus Sans L should be shipped with your *TeX installation,
 %% but this font works only with the classical 'pdflatex', but not
 %% 'lualatex'. Therefore, the OTF variant from
 %%    git.nsa.his.se:latex/fonts.git
+%% (also available on the LaTeX SCIO page in archive 'fonts-from-git-nsa.zip':
+%%  https://scio.his.se/access/content/group/7ef76f77-5e09-4634-8ef0-7da408b13991/Doctoral%20Dissertation/fonts-from-git-nsa.zip)
 %% must be used.
 %\RequirePackage{nimbussansl-otf}
 

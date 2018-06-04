@@ -8,9 +8,77 @@
 
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesPackage{hisbibliography}[2016/11/14 HiS Bibliography]
+\ProvidesPackage{hisbibliography}[2017/03/14 HiS Bibliography]
 
-\RequirePackage[backend=biber,style=authoryear]{biblatex}
+\RequirePackage[backend=biber,datamodel=his-thesis,style=authoryear]{biblatex}
+
+\renewbibmacro*{urn}{%
+ \iffieldundef{urn}
+ {}%
+ {\adddot\space URN\addcolon\space\printfield{urn}%
+ }%
+}
+
+% TODO better 'inherit' the official definiton of the following macro
+% from standard.bbx and then enhance it for URNs
+\renewbibmacro*{doi+eprint+url}{%
+  \iftoggle{bbx:doi}
+    {\printfield{doi}}
+    {}%
+  \newunit\newblock
+  \iftoggle{bbx:eprint}
+    {\usebibmacro{eprint}}
+    {}%
+  \newunit\newblock
+    \usebibmacro{urn}%
+  \newunit\newblock
+  \iftoggle{bbx:url}
+    {\usebibmacro{url+urldate}}
+    {}%
+}
+
+% Some more nice reading on DeclareSourcemap for the Swedish context:
+%  http://blog.sigurdhsson.org/2014/04/extending-biblatex-chicago/
+
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map[overwrite]{
+      % Any PhD thesises (including licentiate thesises) that are
+      % part of the 'Dissertation Series' and have an URN
+      % from HiS given, change the type from 'phdthesis' to 'histhesis'.
+      % File 'his-thesis.dbx' defines a new entry type 'histhesis'
+      % that is very similar to the default 'thesis' entry but prints
+      % 'Dissertation Series, No. X' as well.
+      \step[fieldsource=series,match={Dissertation Series},final]
+      \step[fieldsource=urn,match=\regexp{^urn:nbn:se:his:},final]
+      \step[typesource=phdthesis,typetarget=histhesis]
+    }
+    \map{
+      % Remove 'url' field from entries that have a DOI defined
+      \step[fieldsource=doi,final]
+      \step[fieldset=url,null]
+    }
+    \map{
+      % Remove 'url' field from entries that have an ISSN defined
+      \step[fieldsource=issn,final]
+      \step[fieldset=url,null]
+    }
+    \map{
+      % Remove 'url' field from entries that have an ISSN defined
+      \step[fieldsource=isbn,final]
+      \step[fieldset=url,null]
+    }
+    \map{
+      % Remove 'url' field from entries that have an URN defined
+      \step[fieldsource=urn,final]
+      \step[fieldset=url,null]
+    }
+  }
+}
+
+\DeclareSortingScheme{seriesnumber}{%
+  \sort{\field{number}}%
+}
 
 % Comma between author and year when citing
 \renewcommand{\nameyeardelim}{\addcomma\addspace}
@@ -23,6 +91,18 @@
 % All publications in this bibliography will be
 % printed, no \cite or \nocite command is necessary.
 \addbibresource[label=dissertation-series]{dissertation-series.bib}
+
+% The following hyphenation command will take care of
+% correctly wrap/breaking words with dashes.
+% Add all words with dashes when adding new entries to
+% this bibliography.
+% Use '=' to signify that there shall be a dash in the
+% word even if it is not wrapped. Use '-' to signify a
+% valid breaking point. No dash will be printed unless
+% the word will get wrapped/broken at this location.
+%\hyphenation{Anna=Sofia e=ser-vice game=based Game=Based in-struc-tor=led multi=ob-jec-tive Multi=ob-jec-tive Multi=Ob-jec-tive on=con-di-tion On=con-di-tion  pref-er-ence=based Pref-er-ence=based  sim-u-la-tion=based time=con-strain Vi-sion=Based}
+% Other hyphenations which seem to be problematic:
+\hyphenation{Au-ton-o-mous Sköv-de}
 
 %% Prints the list of previous dissertations published
 %% in the same series. The list of dissertations is
@@ -37,7 +117,7 @@
 }
 \begin{refsection}[dissertation-series]
 \nocite{*}
-\begin{refcontext}[sorting=ynt]
+\begin{refcontext}[sorting=seriesnumber]
 \printbibliography[heading=subbibliography]
 \end{refcontext}
 \end{refsection}
