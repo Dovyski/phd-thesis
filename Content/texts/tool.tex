@@ -16,18 +16,18 @@ The software was mainly developed in C++ using the computer vision library OpenC
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{Content/figures/tool-overall-structure.png}
-    \caption{Overall structure of the software and the relation among different components.}
+    \includegraphics[width=0.8\textwidth]{Content/figures/tool-overall-structure.png}
+    \caption{Overall structure of the software and its components.}
     \label{fig:tool-overall-structure}
 \end{figure}
 
 \subsection{Face detector}
 
-The face detector component locates a human face in a given frame read from the input video being analyzed. It performs a face alignment procedure using one of the two avaiable algorithms: Constrained Local Neural Fields (CLNF) \parencite{baltrusaitis2013constrained} and Ensemble of Regression Trees (ERT) \parencite{kazemi2014one}. The face alignment procedure is based on existing implementations of CLNF and ERT provided by OpenFace \parencite{baltruvsaitis2016openface} and dlib \footnote{http://dlib.​net} \parencite{dlib09}, respectively.
+The face detector component locates a human face in a given frame read from the input video being analyzed. It performs a face alignment procedure using one of the two available algorithms: Constrained Local Neural Fields (CLNF) \parencite{baltrusaitis2013constrained} and Ensemble of Regression Trees (ERT) \parencite{kazemi2014one}. The face alignment procedure is based on existing implementations of CLNF and ERT provided by OpenFace \parencite{baltruvsaitis2016openface} and dlib \footnote{http://dlib.​net} \parencite{dlib09}, respectively.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{Content/figures/tool-ui-face-detector.png}
+    \includegraphics[width=0.6\textwidth]{Content/figures/tool-ui-face-detector.png}
     \caption{Visual representation of the 68 points detected as facial landmarks. Blue circle represents the average position (center of mass) of all detected facial landmarks.}
     \label{fig:tool-ui-face-detector}
 \end{figure}
@@ -38,9 +38,9 @@ The output of the face detector is a vector containing 68 2D points, each one re
 
 The face analyzer component uses a frame of the input video and the information related to facial landmarks provided by the face detector. The face analyzer uses that data to extracts information regarding facial activity, e.g. eye area. The facial analyzer orchestrates a list of independent analyzers, each one responsible for extracting specific activity patterns, e.g. eye area. Figure \ref{fig:tool-ui-face-analyzer} shows the user interface regarding the data provided by the face analyzer.
 
-\begin{figure}
+\begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{Content/figures/tool-ui-face-analyzer.png}
+    \includegraphics[width=0.8\textwidth]{Content/figures/tool-ui-face-analyzer.png}
     \caption{Visualization of data provided by the face analyzer. Available information: FACS AUs, detected face, motion and instability of the face, and variations of eye/mouth areas over time.}
     \label{fig:tool-ui-face-analyzer}
 \end{figure}
@@ -51,9 +51,9 @@ Available analyzers extract information regarding eye (including eyebrow activit
 
 The signal estimator component works similarly to the face analyzer, however it uses input video frames and located facial landmarks to estimate physiological signals, e.g. HR. It contains different estimators, each one responsible for estimating a single signals. There are two signal estimators available, both estimating HR using different techniques. Those estimators use ICA-based rPPG techniques \parencite{poh2010non,poh2011advancements} implemented in Matlab.
 
-\begin{figure}
+\begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{Content/figures/tool-ui-signal-estimator.png}
+    \includegraphics[width=0.8\textwidth]{Content/figures/tool-ui-signal-estimator.png}
     \caption{Visualization of data provided by the signal estimator. Available information: most prominent frequencies detected, photoplethysmographic signal, estimated HR, and the ROI being used in the estimation.}
     \label{fig:tool-ui-signal-estimator}
 \end{figure}
