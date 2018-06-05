@@ -34,9 +34,9 @@ Features and their classification potential are highly dependent on the type of 
     \caption{Description of features used for classification}
     \label{table:study5-features-list}
     \begin{tabular}[l]{@{}clp{6.5cm}}
-        \hline
+        \toprule%
             \textbf{Notation} & \textbf{Name} & \textbf{Description} \\
-        \hline
+        \midrule%
             $F_1$ & Mouth outer & Monitor the zygomatic muscle.  \\
             $F_2$ & Mouth corner & Monitor the zygomatic muscle. \\
             $F_3$ & Eye area & Monitor the orbicularis oculi muscle, e.g. blinking. \\
@@ -46,7 +46,7 @@ Features and their classification potential are highly dependent on the type of 
             $F_7$ & Facial COM & Describe the overall movement of all facial landmarks. \\
             $F_8$ & Remote HR & HR estimated using the rPPG technique proposed by \textcite{poh2011advancements}.  \\
             $F_9$ & Ground HR & HR calculated from a physical sensor, i.e. watch. \\
-        \hline
+        \bottomrule%
     \end{tabular}
 \end{table*}
 
@@ -72,11 +72,11 @@ The classification procedure uses the previously mentioned feature set and a neu
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{Content/figures/machine-learning-investigation.png}
-    \caption{Iteration of a 3-fold \textit{Leave One Session Out Cross Validation} performed on the gaming session of a given subject with 3 games, i.e. A, B and C. Data of two calibration games, e.g. A and B, are used to train the machine learning model, while data of the third calibration game, e.g. C, is used to evaluate the model.}
+    \caption{Iteration of a 3-fold \textit{Leave-One-Session-Out Cross-Validation} performed on the gaming session of a given subject with 3 games, i.e. A, B and C. Data of two calibration games, e.g. A and B, are used to train the machine learning model, while data of the third calibration game, e.g. C, is used to evaluate the model.}
     \label{fig:study5-training-evaluation}
 \end{figure}
 
-Leave One Session Out Cross Validation (LOSOCV) is used to evaluate each trained user-tailored model, as illustrated in Figure \ref{fig:study5-training-evaluation}. In LOSOCV, data from one session instance is left out and a model is constructed on data from all other session instances. In the present study, a given subject $S_i$ played 3 calibration games, e.g. A, B and C, so data from one calibration game is left out and a model is trained on the data of the other two calibration games for that subject $S_i$. This is repeated for all three calibration games of that subject $S_i$. Consequentially the use of LOSOCV will produce 3 models per subject, resulting in 3 measurements of classificaiton accuracy per subject, denoted $L_j$, where $j \in \{1, 2, 3\}$ represent each evaluated model. The final classification accuracy for given subject $S_i$, named $A_i$, is calculated as the mean of $L_j$ values obtained from the iterations in the LOSOCV. In other words, each subject contributes a single classification accuracy value $A_i$, which is calculated based on the mean classification accuracy of his/her three models in the LOSOCV iterations.
+\textit{Leave-One-Session-Out Cross-Validation} (LOSOCV) is used to evaluate each trained user-tailored model, as illustrated in Figure \ref{fig:study5-training-evaluation}. In LOSOCV, data from one session instance is left out and a model is constructed on data from all other session instances. In the present study, a given subject $S_i$ played 3 calibration games, e.g. A, B and C, so data from one calibration game is left out and a model is trained on the data of the other two calibration games for that subject $S_i$. This is repeated for all three calibration games of that subject $S_i$. Consequentially the use of LOSOCV will produce 3 models per subject, resulting in 3 measurements of classificaiton accuracy per subject, denoted $L_j$, where $j \in \{1, 2, 3\}$ represent each evaluated model. The final classification accuracy for given subject $S_i$, named $A_i$, is calculated as the mean of $L_j$ values obtained from the iterations in the LOSOCV. In other words, each subject contributes a single classification accuracy value $A_i$, which is calculated based on the mean classification accuracy of his/her three models in the LOSOCV iterations.
 
 In the training process of each model, which is performed 3 times per user, the hyper-parameters of each neural network, e.g. number of neurons, is optimized using random search \parencite{bergstra2012random}. A 10-fold cross validation method repeated 3 times is applied, so the dataset is split into 10-subsets and each of those subset is held out while the model is trained on all others. The process is repeated 3 times and the final metric for the model is the mean from the number of repeats. Area under the ROC curve (AUC) is used as a metric to select the best model.
 
@@ -100,15 +100,15 @@ Aiming to better understand the contribution of each feature for the classificat
     \caption{Tests and their respective feature sets}
     \label{table:study5-different-feature-sets}
     \begin{tabular}[l]{@{}cclp{4.0cm}}
-        \hline
+        \toprule%
             \textbf{$T_i$} & \textbf{Name} & \textbf{Feature set} & \textbf{Note} \\
-        \hline
+        \midrule%
             1 & \texttt{MULTI\_R} & $F_1^\mu$, $F_2^\mu$, $F_3^\sigma$, $F_4^\sigma$, $F_5^\mu$, $F_6^\sigma$, $F_8$ & Facial analysis, rPPG-estimated HR.\\ % 5278d175-71e752ce: HR_poh2011, mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
             2 & \texttt{MULTI\_G} & $F_1^\mu$, $F_2^\mu$, $F_3^\sigma$, $F_4^\sigma$, $F_5^\mu$, $F_6^\sigma$, $F_9^\mu$ & Facial analysis, HR from physical sensor.\\ % 5278d175-9fa716ee: mean_HR_ground, mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
             3 & \texttt{FACE} & $F_1^\mu$, $F_2^\mu$, $F_3^\sigma$, $F_4^\sigma$, $F_5^\mu$, $F_6^\sigma$ & Facial analysis only. \\ % 5278d175-826512b2: mean_face_activity_mouth_corner, mean_face_activity_mouth_outer, mean_face_area, std_face_activity_eyebrow, std_face_eye_area, std_face_motion_instability
             4 & \texttt{HR\_R} & $F_8$ & rPPG-estimated HR only.\\ % 5278d175-97a38001: HR_poh2011
             5 & \texttt{HR\_G} & $F_9^\mu$ & HR from physical sensor only. \\ % 5278d175-ad2580a5: mean_HR_ground
-        \hline
+        \bottomrule%
     \end{tabular}
 \end{table*}
 
@@ -135,15 +135,15 @@ Table \ref{table:study5-result-metrics-mean} presents the mean values of the res
     \caption{Mean values of resulting classification metrics}
     \label{table:study5-result-metrics-mean}
     \begin{tabular}[l]{@{}ccccc}
-        \hline
+        \toprule%
             \textbf{Test} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1}\\
-        \hline
+        \midrule%
             \texttt{MULTI\_R} & 0.604 & 0.612 & 0.599 & 0.521 \\ % 5278d175-71e752ce
             \texttt{MULTI\_G} & \textbf{0.623} & 0.583 & 0.607 & 0.514 \\ % 5278d175-9fa716ee
             \texttt{FACE} & 0.594 & 0.601 & 0.585 & 0.507 \\ % 5278d175-826512b2
             \texttt{HR\_R} & 0.547 & 0.541 & 0.545 & 0.497 \\ % 5278d175-97a38001
             \texttt{HR\_G} & 0.608 & \textbf{0.656} & \textbf{0.624} & \textbf{0.581} \\ % 5278d175-ad2580a5
-        \hline
+        \bottomrule%
     \end{tabular}
 \end{table*}
 
@@ -154,16 +154,16 @@ Table \ref{table:study5-result-metrics-minmax} presents a discrimination of the 
   \caption{Minimum and maximum mean values of resulting classification metrics}
   \label{table:study5-result-metrics-minmax}
   \begin{tabular}{ccccccccc}
-    \hline
+    \toprule%
       \textbf{Test} & \multicolumn{2}{c}{\textbf{Accuracy}} & \multicolumn{2}{c}{\textbf{Precision}} & \multicolumn{2}{c}{\textbf{Recall}} & \multicolumn{2}{c}{\textbf{F1}} \\
       {} & min & max & min & max & min & max & min & max \\
-    \hline
+    \midrule%
       \texttt{MULTI\_R}  & 0.19 & 0.91 & 0.00 & 0.95 & 0.19 & 0.87 & 0.00 & 0.91 \\ % 5278d175-71e752ce
       \texttt{MULTI\_G}  & 0.25 & \textbf{0.98} & 0.00 & \textbf{0.97} & 0.13 & \textbf{0.98} & 0.00 & \textbf{0.98} \\ % 5278d175-9fa716ee
       \texttt{FACE}  & 0.26 & 0.90 & 0.00 & 0.95 & 0.12 & 0.90 & 0.00 & 0.89 \\ % 5278d175-826512b2
       \texttt{HR\_R}  & 0.36 & 0.72 & 0.00 & 0.79 & 0.18 & 0.77 & 0.00 & 0.67 \\ % 5278d175-97a38001
       \texttt{HR\_G}  & 0.38 & 0.82 & 0.26 & 0.85 & 0.23 & 0.87 & 0.00 & 0.81 \\ % 5278d175-ad2580a5
-    \hline
+    \bottomrule%
   \end{tabular}
 \end{table}
 

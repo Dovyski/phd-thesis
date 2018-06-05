@@ -46,7 +46,7 @@ Subjects were seated in front a computer, alone in the room, while being recorde
     \caption{}
     \label{fig:experiment2-setup-camera}
   \end{subfigure}
-  \caption{Experiment setup. (a) Position of equipment, showing computer, camera, and external light source. (b) Highlight of the video camera and its angulation.}
+  \caption{Experiment setup. (a) Position of equipment, showing computer, camera, and external light source. (b) Highlight of the video camera and its angle.}
   \label{fig:experiment2-setup}
 \end{figure}
 
@@ -110,9 +110,9 @@ Previous works using Infinite Mario \parencite{pedersen2009modeling,pedersen2010
     \caption{Levels of Infinite Mario and adjustments performed to induce a particular emotional state from them.}
     \label{table:experiment2-mario-levels}
     \begin{tabular}[l]{@{}cllp{9.5cm}}
-        \hline
+        \toprule%
             \textbf{Level} & \textbf{Type} & \textbf{Emotion} & \textbf{Adjustments} \\
-        \hline
+        \midrule%
             $A_1$ & Overground  & Any & Reduced number of interactable/collectable items and terrain obstacles; no power-ups; only 2 enemies and 1 gap (with width of Mario himself); Mario starts in big state. \\
             $A_2$ & Underground & Any & Regular number of interactable/collectable items, terrain obstacles, power-ups and enemies. Mario starts in small state. \\
             $A_3$ & Castle      & Stress  & Several gaps (with varying widths); reduced number of interactable items; no collectables/power-ups; several enemies; reduced time to complete level. Mario remains in small state. Mario starts with 5 lives. Available level time is 80 seconds. \\
@@ -120,7 +120,7 @@ Previous works using Infinite Mario \parencite{pedersen2009modeling,pedersen2010
             $B_2$ & Underground & Any & Regular number of interactable/collectable items, terrain obstacles, power-ups and enemies. Mario starts in small state. \\
             $B_3$ & Castle      & Stress  & Several gaps (with varying widths); reduced number of interactable items; no collectables/power-ups; several enemies; reduced time to complete level. Mario remains in small state. Mario starts with 5 lives. Available level time is 80 seconds. \\
             $C_1$ & Overground  & Boredom & Auto-scrolling camera; reduced number of interactable/collectable items; few terrain obstacles; no gaps, power-ups, or enemies. Mario remains in big state. \\
-        \hline
+        \bottomrule%
     \end{tabular}
 \end{table*}
 \end{landscape}
@@ -137,7 +137,7 @@ As previously mentioned, levels were adjusted and play-tested by game design exp
 
 During the whole experiment, subjects were recorded using a Canon Legria HF R606 video camera. All videos were recorded in color (24-bit RGB with three channels $\times$ 8bits/channel) at 50p frames per second (fps) with pixel resolution of 1920 $\times$ 1080 and saved in AVCHD-HD format, MPEG-4 AVC as the codec. At the same time, subject's HR was measured by a TomTom Runner Cardio watch (TomTom International BV, Amsterdam, Netherlands). The watch was placed on the left arm, approximately 7cm away from the wrist, like a regular wrist watch. The use of the watch was unobtrusive, so it did not affect the movements of the subjects, who could still use both hands to play the games. The watch recorded the HR at 1 Hz.
 
-In the calibration phase of the experiment, subjects answered a questionnaire after each game in order to provide a self-reported level of stress and boredom. The questionnaire had six questions: the first four were a 5-point Likert scale related to how the player felt regarding stress/boredom at the beginning/end of each game (1: not stressed/bored at all, 5: extremely stressed/bored); a question to identify the part of the game that best describes the moment the subject enjoyed the most (very beginning, after beginning and before middle, middle, after middle and before end, very end); finally a question asking if the subject understood the game. In the testing phase of the experiment, subjects answered a questionnaire after each level of Infinite Mario to provide a self-reported level of stress and boredom about the played level. The questionnaire had two questions, one about stress and one about boredom, both with a 5-point Likert scale related to how stressed/bored the player felt while playing the level (1: not stressed/bored at all, 5: extremely stressed/bored). Finally before the end of the experiment, subjects answered a questionnaire with ten questions related to: age; gender; number of hours per week spent with games over the last year, i.e. question from the video game experience questionnaire by \parencite{unsworth2015playing}; how proficient or skilled the subject believe being at playing video games, i.e. question from the Survey of Spatial Representation and Activities - SSRA \parencite{terlecki2005important}; familiarity with puzzle, platform, Tetris and Mario games; current state of mind compared to other days (e.g. normal, unusually stressed, etc.); and familiarity with the research related to the experiment (unfamiliar, not very familiar, moderately familiar, very familiar).
+In the calibration phase of the experiment, subjects answered a questionnaire after each game in order to provide a self-reported level of stress and boredom. The questionnaire had six questions: the first four were a 5-point Likert scale related to how the player felt regarding stress/boredom at the beginning/end of each game (1: not stressed/bored at all, 5: extremely stressed/bored); a question to identify the part of the game that best describes the moment the subject enjoyed the most (very beginning, after beginning and before middle, middle, after middle and before end, very end); finally a question asking if the subject understood the game. In the testing phase of the experiment, subjects answered a questionnaire after each level of Infinite Mario to provide a self-reported level of stress and boredom about the played level. The questionnaire had two questions, one about stress and one about boredom, both with a 5-point Likert scale related to how stressed/bored the player felt while playing the level (1: not stressed/bored at all, 5: extremely stressed/bored). Finally before the end of the experiment, subjects answered a questionnaire with ten questions related to: age; gender; number of hours per week spent with games over the last year, i.e. question from the video game experience questionnaire \parencite{unsworth2015playing}; how proficient or skilled the subject believe being at playing video games, i.e. question from the Survey of Spatial Representation and Activities - SSRA \parencite{terlecki2005important}; familiarity with puzzle, platform, Tetris and Mario games; current state of mind compared to other days (e.g. normal, unusually stressed, etc.); and familiarity with the research related to the experiment (unfamiliar, not very familiar, moderately familiar, very familiar).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Data preprocessing}
@@ -146,7 +146,7 @@ Before any analysis was performed, the video recordings of the experiment were p
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\textwidth]{Content/figures/experiment2-pre-processing}
+    \includegraphics[width=0.7\textwidth]{Content/figures/experiment2-pre-processing}
     \caption{Extraction of video segments $H_0$ and $H_1$ containing boring and stressful interactions, respectively, in the calibration games. Initial $D=45$ seconds of any video $C_{i,g}$ are ignored and the remaining is divided into three pieces, from which the first and the last ones are selected. Stripes highlight discarded video segments.}
     \label{fig:experiment2-pre-processing}
 \end{figure}
@@ -172,7 +172,7 @@ The classification procedure uses the previously mentioned feature set and a neu
 
 In the training process of each user-tailored model, illustrated in Figure \ref{fig:experiment2-training-evaluation}(a), features are extracted from video segments $H_0$ and $H_1$ (calibration data) of a given subject. That information is used to create a training dataset for that given subject. According to previous analysis, subjects perceived the calibration games as being boring at the beginning and stressful at the end. As a consequence, it is assumed that subject's emotional state in $H_0$ and $H_1$ is boredom and stress, respectively. Based on that assumption, training data obtained from video segments in $H_0$ and $H_1$ were labeled as boredom and stress, respectively.
 
-The training dataset is then used to train the user-tailored model, i.e. neural network. The hyper-parameters of the subject's model, e.g. number of neurons, is optimized using random search \parencite{bergstra2012random}. A 10-fold cross validation method repeated 3 times is applied, so the training data is split into 10-subsets and each of those subset is held out while the model is trained on all others. The process is repeated 3 times and the final metric for the model is the mean from the number of repeats. Area under the ROC curve (AUC) is used as a metric to select the best model.
+The training dataset is then used to train the user-tailored model, i.e. neural network. The hyper-parameters of the subject's model, e.g. number of neurons, is optimized using random search \parencite{bergstra2012random}. A 10-fold cross-validation method repeated 3 times is applied, so the training data is split into 10-subsets and each of those subset is held out while the model is trained on all others. The process is repeated 3 times and the final metric for the model is the mean from the number of repeats. Area under the ROC curve (AUC) is used as a metric to select the best model.
 
 The result of the training process is a trained neural network, i.e. $N_i$ where $i$ is the $i$-th subject. The model is said to be user-tailored because it was trained using only data from a given subject, e.g. subject $S_a$ produces model $N_a$.
 
@@ -242,9 +242,9 @@ The emotional state of subjects during the interaction with the Infinite Mario g
   \caption{Mean value of the answers given in the self-reported emotional state questionnaire after levels of Infinite Mario}
   \label{table:experiment2-mario-emotions}
   \begin{tabular}{ccc}
-    \hline
+    \toprule%
       \textbf{Level} & \textbf{Stress} & \textbf{Boredom} \\
-    \hline
+    \midrule%
       $A_1$ & 1.6 $\pm$ 0.8 & 2.3 $\pm$ 1.2 \\
       $A_2$ & 2.1 $\pm$ 0.9 & 1.8 $\pm$ 1.1 \\
       $A_3$ & 2.9 $\pm$ 0.9 & 1.9 $\pm$ 1.2 \\
@@ -252,7 +252,7 @@ The emotional state of subjects during the interaction with the Infinite Mario g
       $B_2$ & 2.0 $\pm$ 0.8 & 2.2 $\pm$ 1.2 \\
       $B_3$ & 3.0 $\pm$ 1.1 & 2.1 $\pm$ 1.2 \\
       $C_1$ & 1.3 $\pm$ 0.7 & 4.0 $\pm$ 1.2 \\
-    \hline
+    \bottomrule%
   \end{tabular}
 \end{table}
 
@@ -274,11 +274,11 @@ Subject's emotional state during the interaction with particular levels of Infin
     \caption{Mean values of resulting classification metrics}
     \label{table:experiment2-result-metrics-mean}
     \begin{tabular}[l]{@{}cccc}
-        \hline
+        \toprule%
             \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1}\\
-        \hline
+        \midrule%
             0.6158 & 0.6163 & 0.6127 & 0.5786 \\ % 912327a8-c86e26c6
-        \hline
+        \bottomrule%
     \end{tabular}
 \end{table*}
 
@@ -299,7 +299,7 @@ Since subjects were evaluated independently, the mean classification accuracy is
     \caption{}
     \label{fig:experiment2-chart-density}
   \end{subfigure}
-  \caption{Write something nice about those here.}
+  \caption{Distribution of accuracy values on a subject level. (a) Histogram showing the number of subjects and the accuracy rate obtained in their emotion classification. (b) Density curve regarding the distribution of accuracy values.}
   \label{fig:experiment2-result-charts}
 \end{figure}
 

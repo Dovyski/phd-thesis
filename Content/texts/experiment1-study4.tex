@@ -24,9 +24,9 @@ The process of extracting the facial features has two main steps: face detection
     \caption{Information regarding calculated facial features}
     \label{table:features}
     \begin{tabular}[l]{@{}lcp{11cm}}
-        \hline
+        \toprule%
             \textbf{Name} & \textbf{Notation} & \textbf{Description} \\
-        \hline
+        \midrule%
             Mouth outer & $F_1$ & Sum of the Euclidean distance between the mouth contour landmarks and the anchor landmarks. It monitors the zygomatic muscle.  \\
             Mouth corner & $F_2$ & Sum of the Euclidean distance between the mouth corner landmarks and the anchor landmarks. It monitors the zygomatic muscle. \\
             Eye area & $F_3$ & Area of the regions bounded by the closed curves formed by the landmarks in contour of the eyes. It monitors the orbicularis oculi muscle. \\
@@ -34,7 +34,7 @@ The process of extracting the facial features has two main steps: face detection
             Face area & $F_5$ & Area of the region bounded by the closed polygon formed by the most external detected landmarks.  \\
             Face motion & $F_6$ & Average value of the Euclidean norm of a set of landmarks in the last $N$ frames. It describes the total distance the head has moved in any direction in a short period of time.  \\
             Facial COM & $F_7$ & Average value of all detected landmarks. It describes the overall movement of all facial landmarks.  \\
-        \hline
+        \bottomrule%
     \end{tabular}
 \end{table*}
 \end{landscape}
@@ -63,7 +63,7 @@ where $p_i$ is a detected facial landmark that represents a 2D coordinate $(x_i,
     \caption{}
     \label{fig:head-tilt}
   \end{subfigure}
-  \caption{Facial landmarks and features. (a) Highlight of 68 detected facial landmarks. (b) Visual representation of our facial features.}
+  \caption{Facial landmarks and features. (a) Highlight of 68 detected facial landmarks. (b) Visual representation of the facial features.}
   \label{fig:faces}
 \end{figure}
 
@@ -154,7 +154,7 @@ Pre-processing of video recordings involved the extraction of parts containing t
 
 \begin{figure}
 \centering
-\includegraphics[width=0.9\textwidth]{Content/figures/pre-processing}
+\includegraphics[width=0.7\textwidth]{Content/figures/pre-processing}
 \caption{Extraction of video segments $H_0$ and $H_1$ containing boring and stressful game interactions, respectively. Initial $D$ seconds of any video $V_{s,i}$ are ignored and the remaining is divided into three pieces, from which the first and the last ones are selected. Stripes highlight discarded video segments.}
 \label{fig:preprocessing}
 \end{figure}
@@ -187,19 +187,17 @@ Table \ref{table:changes} presents the mean of differences of all features betwe
     \centering
     \begin{threeparttable}
         \begin{tabular}{lc}
-            \hline
+            \toprule%
                 \textbf{Feature (notation)} &  \\
-            \hline
+            \midrule%
                 Mouth outer ($F_1$)      & -20.59 $\pm$ 57.36\textsuperscript{**} \\
                 Mouth corner ($F_2$)     & -3.90 $\pm$ 10.16\textsuperscript{**} \\
-            \hline
                 Eye area ($F_3$)         & -0.019 $\pm$ 0.064\textsuperscript{*} \\
                 Eyebrow activity ($F_4$) & -15.59 $\pm$ 49.71\textsuperscript{*} \\
-            \hline
                 Face area ($F_5$)        & -2.60 $\pm$ 7.90\textsuperscript{*} \\
                 Face motion ($F_6$)      & -44.97 $\pm$ 326.74 \\
                 Facial COM ($F_7$)       & -0.029 $\pm$ 0.113 \\
-            \hline
+            \bottomrule%
         \end{tabular}
         \begin{tablenotes}
           \small
@@ -232,19 +230,17 @@ Finally features related to the whole face, i.e. face area ($F_5$), face motion 
     \centering
     \begin{threeparttable}
         \begin{tabular}{lccc}
-            \hline
+            \toprule%
                 \textbf{Feature (notation)} & \textbf{Mean} & \textbf{Min.} & \textbf{Max.} \\
-            \hline
+            \midrule%
                 Mouth outer ($F_1$)      & -12.9 & -69.1  &  22.1  \\
                 Mouth corner ($F_2$)     & -15.0 & -71.6  &  15.5  \\
-            \hline
                 Eye area ($F_3$)         & -8.9  & -76.9  &  8.2   \\
                 Eyebrow activity ($F_4$) & -8.0  & -72.3  &  9.6   \\
-            \hline
                 Face area ($F_5$)        & -11.3 & -74.5  &  18.2  \\
                 Face motion ($F_6$)      & 47.2  & -61.3  &  253.8 \\
                 Facial COM ($F_7$)       & -12.9 & -81.0  &  9.8   \\
-            \hline
+            \bottomrule%
         \end{tabular}
         \begin{tablenotes}
           \small
@@ -300,19 +296,17 @@ It could be argued that the characteristics of each game mechanic influences the
     \centering
     \begin{threeparttable}
         \begin{tabular}{lccc}
-            \hline
+            \toprule%
                 \textbf{Feature (notation)} & \textbf{Mean} & \textbf{Min.} & \textbf{Max.} \\
-            \hline
+            \midrule%
                 Mouth outer ($F_1$)      & -7.4 & -54.0 & 16.9  \\
                 Mouth corner ($F_2$)     & -8.2 & -55.9 & 15.5  \\
-            \hline
                 Eye area ($F_3$)         & -6.8 & -30.4 & 20.0  \\
                 Eyebrow activity ($F_4$) & -4.9 & -31.1 & 7.8   \\
-            \hline
                 Face area ($F_5$)        & -5.9 & -43.8 & 14.2  \\
                 Face motion ($F_6$)      & 0.9  & -60.2 & 112.7 \\
                 Facial COM ($F_7$)       & -3.6 & -42.1 & 23.1  \\
-            \hline
+            \bottomrule%
         \end{tabular}
         \begin{tablenotes}
           \small
@@ -329,19 +323,17 @@ Mouth and eye related features, i.e. $F_1$ to $F_4$, presented, on average, a de
     \centering
     \begin{threeparttable}
         \begin{tabular}{lccc}
-            \hline
+            \toprule%
                 \textbf{Feature (notation)} & \textbf{Mean} & \textbf{Min.} & \textbf{Max.} \\
-            \hline
+            \midrule%
                 Mouth outer ($F_1$)      & -1.5  & -27.8 & 39.0  \\
                 Mouth corner ($F_2$)     & -2.1  & -26.5 & 26.9  \\
-            \hline
                 Eye area ($F_3$)         & -2.6  & -19.0 & 26.1  \\
                 Eyebrow activity ($F_4$) & -3.3  & -16.2 & 21.1  \\
-            \hline
                 Face area ($F_5$)        & -1.4  & -24.3 & 26.7  \\
                 Face motion ($F_6$)      & -11.3 & -85.8 & 114.3 \\
                 Facial COM ($F_7$)       & -2.7  & -24.7 & 21.8  \\
-            \hline
+            \bottomrule%
         \end{tabular}
         \begin{tablenotes}
           \small
