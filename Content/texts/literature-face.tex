@@ -10,7 +10,7 @@ While previous work explored the use of manual or automated facial analysis as a
 \textcite{giannakakis2017stress} present a literature review focused on facial elements with value for detection of anxiety and stress, including the involvement of eyes (pupil size variations, gaze distribution, blinking rate), mouth (lips deformation, mouth activity) and head (head movement and velocity). Table \ref{table:stress-facial-features} lists all identified facial elements.
 
 \begin{table}[h]
-\caption{Categorization of facial elements connected with stress and anxiety \parencite{giannakakis2017stress}}
+\caption{Categorization of facial elements connected with stress and anxiety according to \textcite{giannakakis2017stress}}
 \label{table:stress-facial-features}
 \begin{tabular}{lll}%
 \toprule%
@@ -18,7 +18,7 @@ While previous work explored the use of manual or automated facial analysis as a
 \midrule
 Head movement & Blink rate & Mouth shape \\
 Skin color & Eyelid response & Lip deformation  \\
-Heart rate (facial PPG) & Eye apperture & Lip corner puller \\
+Heart rate (facial PPG) & Eye aperture & Lip corner puller \\
 & Eyebrow movements & Lip corner depressor \\
 & & Lip pressor \\
 \midrule
@@ -31,9 +31,9 @@ Gaze direction & &\\
 \end{tabular}%
 \end{table}
 
-There are indications that blinking increases with emotional arousal, including stress and anxiety levels \parencite{dinges2005optical}. Gaze direction, gaze congruency (agreement between eye and head orientation) and the size of the gaze-cuing effect (facilitation of reation time towards visual clues) are also influenced by the level of anxiety or stress \parencite{staab2014influence}. Similarly mouth activity is influenced by conditions of stress, particularly lip movement \parencite{dinges2005optical} and asymmetric lip deformation \parencite{metaxas2004image}. Finally the frequency of mouth openenings has been measured as inversely proportional to the stress level under high cognitive load \parencite{liao2005decision}.
+There are indications that blinking increases with emotional arousal, including stress and anxiety levels \parencite{dinges2005optical}. Gaze direction, gaze congruency (agreement between eye and head orientation) and the size of the gaze-cuing effect (facilitation of reaction time towards visual clues) are also influenced by the level of anxiety or stress \parencite{staab2014influence}. Similarly mouth activity is influenced by conditions of stress, particularly lip movement \parencite{dinges2005optical} and asymmetric lip deformation \parencite{metaxas2004image}. Finally the frequency of mouth openings has been measured as inversely proportional to the stress level under high cognitive load \parencite{liao2005decision}.
 
-Different approaches have been used to connect facial analysis to emotional states of users. Initiatives include manual or automated face detection, use of machine learning models to map facial features to emotions and so on. The following sections present in more detail works related to face detection, including the approch used for analysis and connection to emotional states.
+Different approaches have been used to connect facial analysis to emotional states of users. Initiatives include manual or automated face detection, use of machine learning models to map facial features to emotions and so on. The following sections present in more detail works related to face detection, including the approach used for analysis and connection to emotional states.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Facial analysis based on sensors}
@@ -43,7 +43,7 @@ The analysis of facial behavior commonly relies on data obtained from physical s
 
 \begin{figure}
 \centering
-\includegraphics[width=1.0\textwidth]{Content/figures/face-muscles.jpg}
+\includegraphics[width=0.7\textwidth]{Content/figures/face-muscles.jpg}
 \caption{Facial muscles. (a) Corrugator supercilii. (b) Orbicularis oculi. (c) Zygomaticus minor. (d) Zygomaticus major. Adapted from ``Sobotta's Atlas and Text-book of Human Anatomy", by Dr. Johannes Sobotta (Illustration: K. Hajek and A. Schmitson), 1909. In the public domain \parencite{sobotta1909wikimedia}.}
 \label{fig:face-muscles}
 \end{figure}
@@ -63,7 +63,7 @@ Computer vision systems usually rely on image processing, artificial intelligenc
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{Content/figures/face_alignment.jpg}
-    \caption{Example of face alignment. (A) Input image. (B) Detected face. (C) Aligned face.}
+    \caption{Example of face alignment. From left to right: input image, detected face, and aligned face.}
     \label{fig:alignment}
 \end{figure}
 
@@ -73,32 +73,35 @@ Many methods have been proposed and a literature review shows that two basic app
 
 \subsection{Constrained Local Model}
 
-The Constrained Local Model (CLM) approach consists of locating a set of points on a target image, then applying a constrain to them. The constrain is usually based on a statistical shape model, which is obtained via training in a set of images featuring manually inserted landmarks. Since the shape model is statistical, the position of the points (landmarks) that it describes will always resemble a face, so proportions of lines and/or the distance among points will not be so different from a human face (at least not different from the ones found in the training set). Figure \ref{fig:clm-model-variation} illustrates the configuration of the shape model with different variations.
+The Constrained Local Model (CLM) approach consists of locating a set of points on a target image, then applying a constrain to them. The constrain is usually based on a statistical shape model, which is obtained via training in a set of images featuring manually inserted landmarks. Since the shape model is statistical, the position of the points (landmarks) that it describes will always resemble a face, so proportions of lines and/or the distance among points will not be so different from a human face (at least not different from the ones found in the training set). Figure \ref{fig:clm-models}(a) illustrates the configuration of the shape model with different variations.
 
 \begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\linewidth]{Content/figures/clm-model-variation.jpg}
-    \caption{Configuration of the shape models with different variations \parencite{yu2010facial}.}
+\centering
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=0.95\textwidth]{Content/figures/clm-model-variation.jpg}
+    \caption{}
     \label{fig:clm-model-variation}
+  \end{subfigure}%
+  \begin{subfigure}[b]{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.95\textwidth]{Content/figures/clm-patches.jpg}
+    \caption{}
+    \label{fig:clm-patches}
+  \end{subfigure}
+  \caption{Shape models of CLM. (a) Configuration of the shape models with different variations. (b) Shape models and their respective entries in the texture model. Reproduced from \textcite{yu2010facial}.}
+  \label{fig:clm-models}
 \end{figure}
 
-Additionally to the shape model, there is a texture model that contains a set of patches (images) extracted from the training images by selecting the areas around the inserted landmarks. Those patches are used to guide the search procedure in the alignment process, which allows the technique to correctly identify the right model to properly align the face being analyzed. Figure \ref{fig:clm-patches} shows different shape models and their respective entries in the texture model.
+Additionally to the shape model, there is a texture model that contains a set of patches (images) extracted from the training images by selecting the areas around the inserted landmarks. Those patches are used to guide the search procedure in the alignment process, which allows the technique to correctly identify the right model to properly align the face being analyzed. Figure \ref{fig:clm-models}(b) shows different shape models and their respective entries in the texture model.
 
 The process of aligning a face is iterative and it starts by sampling points that are placed in the face image according to the current shape estimation of the face. In the first try, this estimation is usually the average face obtained from all training images. The area around the sampled points are extracted and used in a search to locate a set of similar patches in the texture model. The current shape estimation and the texture patches it locates are evaluated according to a cost function. As soon as the shape variation with the minimal cost is found, the process is repeated: new patches are sampled and searched against the texture model, the current estimation is adjusted and so on. Eventually the cost function will not produce a significantly different value from one iteration to another, which means the current estimation is the best match found.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.6\linewidth]{Content/figures/clm-patches.jpg}
-    \caption{Shape models and their respective entries in the texture model \parencite{yu2010facial}.}
-    \label{fig:clm-patches}
-\end{figure}
 
 Figure \ref{fig:clm-evolution} demonstrates the evolution of the technique as it iterates in an image. In Figure \ref{fig:clm-evolution}-(a), the mean shape is placed into the image and the patches are sampled around the (mistakenly) positioned landmarks. As the technique iterates ((b) and (c)), searched patches progressively induce changes in the current shape model, sampling more accurate patches. Eventually the technique converges to the aligned face, presented in Figure \ref{fig:clm-evolution}-(d).
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{Content/figures/clm-evolution.jpg}
-    \caption{Iteration of CLM during the alignment of an image \parencite{cristinacce2006feature}.}
+    \caption{Iteration of CLM during the alignment of an image. Reproduced from \textcite{cristinacce2006feature}.}
     \label{fig:clm-evolution}
 \end{figure}
 
@@ -113,14 +116,14 @@ The shape-indexed features are differences in pixel intensities. The calculation
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\linewidth]{Content/figures/shape-indexed.png}
-    \caption{Pixels used in the calculation of a shape-indexed feature \parencite{maris2015}.}
+    \caption{Pixels used in the calculation of a shape-indexed feature. Reproduced from \textcite{maris2015}.}
     \label{fig:shape-indexed}
 \end{figure}
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=1.0\linewidth]{Content/figures/cascade-explanation.png}
-    \caption{Estimation of face shape with regressors in a set of stages \parencite{maris2015}.}
+    \caption{Estimation of face shape with regressors in a set of stages. Reproduced from \textcite{maris2015}.}
     \label{fig:regressor-steps}
 \end{figure}
 
@@ -132,13 +135,13 @@ Different variations are used to handle the training, the extraction of features
 \label{ch:literature-face-emotion-detection}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Facial-based emotion detection techniques try to estimate the emotional state of a subject based on the analysis of facial features. Works involving such approach commonly focus on detecting or classifing emotional states based on the six basic emotions proposed by \textcite{ekman1971constants}, i.e. happiness, surprise, sadness, fear, anger and disgust. Some visual methods rely on manual or automated FACS-based analysis as a standard for categorization and measuring of emotional expressions \parencite{bartlett1999measuring}.
+Facial-based emotion detection techniques try to estimate the emotional state of a subject based on the analysis of facial features. Works involving such approach commonly focus on detecting or classifying emotional states based on the six basic emotions proposed by \textcite{ekman1971constants}, i.e. happiness, surprise, sadness, fear, anger and disgust. Some visual methods rely on manual or automated FACS-based analysis as a standard for categorization and measuring of emotional expressions \parencite{bartlett1999measuring}.
 
 The feasibility of that approach is demonstrated by \textcite{kaiser1994multi}, showing that more AU were reported by manual FACS coders during the analysis of video recordings of subjects playing the stressful part of a game when compared to its neutral part. Additionally authors report lip pull corner and inner/outer brow raise as more frequent AUs during gaming sessions. \textcite{wehrle2000emotion} also support the approach using an automated, FACS-based facial analysis aggregated with data from game events to provide an appraisal analysis of subjects emotional state.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1.0\linewidth]{Content/figures/samara2016sensing-distances.png}
+    \includegraphics[width=0.7\linewidth]{Content/figures/samara2016sensing-distances.png}
     \caption{Distance-based facial feature descriptors. Left: detected facial landmarks. Right: highlight of the distance among facial landmarks. Reproduced from \textcite{samara2016sensing}.}
     \label{fig:distance-samara}
 \end{figure}

@@ -103,15 +103,13 @@ The frequency resolution $\Delta f$ influences the error rate in the estimation 
 
 The value for $F_s$ is usually dependent on the camera device being used, which follows certain standards, e.g. 30 FPS. As a consequence, $\Delta f$ can be altered by changes on the window size $N$. Such changes, however, directly impact the estimations, since there is a trade-off between the window size and the estimation error. The higher the window size, the longer the video segment required for the estimation. Longer video segments are likely to contain movement of the subject being analyzed, which adds noise to the rPPG estimation.
 
-\textcite{roald2013estimation} presents this trade-off by detailing the frequency resolution as a function of window size and video frame rate, as demonstrated in Table \ref{table:frequency-resolution}.
-
 \begin{table}[h!]
 \caption{Frequency resolution $\Delta f$ (in Hz) as a function of window size (in samples) and frame rate (in FPS) \parencite{roald2013estimation}.}
 \label{table:frequency-resolution}
 \centering
 \begin{tabular}{ccccccc}%
 \toprule%
-Window size & 10 FPS & 15 FPS & 25 FPS & 30 FPS & 50 FPS & 60 FPS \\
+\textbf{Window size} & \textbf{10 FPS} & \textbf{15 FPS} & \textbf{25 FPS} & \textbf{30 FPS} & \textbf{50 FPS} & \textbf{60 FPS} \\
 \midrule
 100 & 0.1 & 0.15 & 0.25 & 0.3 & 0.5 & 0.6 \\
 200 & 0.05 & 0.075 & 0.125 & 0.15 & 0.25 & 0.3 \\
@@ -125,4 +123,4 @@ Window size & 10 FPS & 15 FPS & 25 FPS & 30 FPS & 50 FPS & 60 FPS \\
 \end{tabular}%
 \end{table}
 
-As an example, assuming a video of 50 FPS and a frequency resolution of 0.07 Hz (which corresponds to an estimation error of $\pm 2.1$ bpm), a window size of 700 samples is required (equivalent of a video segment of 14 seconds). Additionally it has been proven that limitations in the sampling frequency, e.g. low $F_s$, can be compensated in the PPG signal detection by the use of interpolation \parencite{sun2012noncontact}.
+\textcite{roald2013estimation} presents this trade-off by detailing the frequency resolution as a function of window size and video frame rate, as demonstrated in Table \ref{table:frequency-resolution}. As an example, assuming a video of 50 FPS and a frequency resolution of 0.07 Hz (which corresponds to an estimation error of $\pm 2.1$ bpm), a window size of 700 samples is required (equivalent of a video segment of 14 seconds). Additionally it has been proven that limitations in the sampling frequency, e.g. low $F_s$, can be compensated in the PPG signal detection by the use of interpolation \parencite{sun2012noncontact}.
