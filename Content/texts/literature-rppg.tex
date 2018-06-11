@@ -5,7 +5,7 @@ Photoplethysmography (PPG) is a technique commonly used to measure HR based on t
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.7\linewidth]{Content/figures/ppg.png}
+\includegraphics[width=0.6\linewidth]{Content/figures/ppg.png}
 \caption{General structure of a physical photoplethysmographic system. Adapted from \textcite{chwyl2016statistical}.}
 \label{fig:ppg}
 \end{figure}
@@ -32,7 +32,7 @@ There exist initiatives to classify \parencite{rouast2016remote, mcduff2015surve
 
 \subsection{Signal extraction}
 
-The signal extraction phase extracts a set of raw signals from a video. Step 1 relates to the detection of a region of interest (ROI), which is an area of the video that usually contains the face of the subject. Approaches commonly used for this step are the algorithm of Viola\&Jones (VJ) \parencite{viola2004robust}, a machine learning based approach to classifying faces, Active Appearance Models (AMM) \parencite{EdwardsAAM} and facial landmark detectors. %\parencite{saragih2011deformable,martinez2013local}.
+The signal extraction phase extracts a set of raw signals from a video. Step 1 relates to the detection of a region of interest (ROI), which is an area of the video that usually contains the face of the subject. Approaches commonly used for this step are the VJ\footnote{VJ is the abbreviation of \textit{Viola \& Jones}, which is how the algorithm is commonly mentioned in the literature.} algorithm of \textcite{viola2004robust}, a machine learning based approach to classifying faces, Active Appearance Models (AMM) \parencite{EdwardsAAM} and facial landmark detectors. %\parencite{saragih2011deformable,martinez2013local}.
 
 In step 2 (ROI definition) the parts of the ROI to be used for the signal extraction are defined. Approaches commonly employed include the use of whole ROI (usually the bounding box returned by VJ, which is likely to contain background pixels along with the facial pixels), a part of the ROI (e.g. 60\% of the bounding box width) or specially defined areas (e.g. forehead, cheeks or shapes defined by facial landmark points).
 
@@ -64,8 +64,8 @@ The work of \textcite{poh2010non} was the first in the field to rely on BSS. Fig
 
 \begin{figure}
 \centering
-\includegraphics[width=0.7\linewidth]{Content/figures/poh.png}
-\caption{rPPG approach based on ICA \parencite{poh2010non}.}
+\includegraphics[width=0.6\linewidth]{Content/figures/poh.png}
+\caption{Overall structure of rPPG approach based on ICA. Adapted from \textcite{poh2010non}.}
 \label{fig:poh}
 \end{figure}
 
