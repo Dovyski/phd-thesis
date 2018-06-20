@@ -10,7 +10,12 @@
 
 \ProvidesPackage{hisbibliography}[2017/03/14 HiS Bibliography]
 
-\RequirePackage[backend=biber,datamodel=his-thesis,style=authoryear]{biblatex}
+\RequirePackage[
+    backend=biber,
+    datamodel=his-thesis,
+    uniquename=init,            % we can still disambiguate names in citations
+    firstinits=false,           % full names are used in bibliography
+    style=authoryear]{biblatex}
 
 \renewbibmacro*{urn}{%
  \iffieldundef{urn}
