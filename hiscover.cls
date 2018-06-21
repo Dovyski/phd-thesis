@@ -1,5 +1,5 @@
 %%
-%% Copyright 2016-2017 by Thomas Fischer <thomas.fischer@his.se>
+%% Copyright 2016-2018 by Thomas Fischer <thomas.fischer@his.se>
 %%
 %% This file has been released under the following license:
 %% Creative Commons Attribution-Share Alike 4.0 Unported
@@ -9,7 +9,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{hiscover}[2017/06/05 University of Skovde Thesis Cover class by Thomas Fischer]
+\ProvidesClass{hiscover}[2018/06/20 University of Skovde Thesis Cover class by Thomas Fischer]
 
 \newcommand{\@coatofarmsimagefilename}{CoatOfArms/HiSCoatOfArms-white-english}
 \newcommand{\@localizeddoctoraldissertation}{Doctoral Dissertation}
@@ -37,6 +37,7 @@
 \LoadClass{article}
 
 \RequirePackage{ifthen}
+\RequirePackage{pagecolor}
 \RequirePackage{graphicx}
 \RequirePackage[paperwidth=176mm,paperheight=250mm,margin=20mm,top=45mm,bottom=10mm]{geometry}
 \RequirePackage{luatex85}% required for \pdfpageheight and \pdfpagewidth
@@ -70,11 +71,6 @@
 \setlength{\parindent}{0pt}
 
 \definecolor{oxid}{RGB}{234,120,25}
-
-% Set paper color to match special page background
-\xdef\thepagecolornone{specialpagebackground}% this seeming redundant definition is sometimes necessary
-\RequirePackage[nopagecolor={specialpagebackground}]{pagecolor}
-\newpagecolor{specialpagebackground}
 
 \sodef\bookspinespacing{}{.1em}{8pt}{0pt}% TODO adjust last two parameters ('inner space' and 'outer space')
 

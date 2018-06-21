@@ -1,5 +1,5 @@
 %%
-%% Copyright 2016-2017 by Thomas Fischer <thomas.fischer@his.se>
+%% Copyright 2016-2018 by Thomas Fischer <thomas.fischer@his.se>
 %%
 %% This file has been released under the following license:
 %% Creative Commons Attribution-Share Alike 4.0 Unported
@@ -10,7 +10,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{hismetadata}[2017/04/27 University of Skovde Thesis Metadata by Thomas Fischer]
+\ProvidesPackage{hismetadata}[2018/06/20 University of Skovde Thesis Metadata by Thomas Fischer]
 
 \RequirePackage{ifthen}
 \RequirePackage[table,svgnames,dvipsnames]{xcolor}
@@ -73,7 +73,7 @@
 \newcommand{\@printshop}{\missingparam{printshop}}
 \newcommand{\printshop}[1]{\renewcommand{\@printshop}{#1}}
 
-\definecolor{specialpagebackground}{RGB}{150,100,50}% default value if nothing else is set
+\definecolor{specialpagebackground}{RGB}{15,191,0}% default value if nothing else is set
 
 %% To differ between doctoral dissertations (default) and licentiates:
 %% Use either
@@ -87,16 +87,23 @@
 \newcommand{\@publicationtype}{}
 \newcommand{\publicationtype}[1]{%
 % Whenever a new publication type is set, redefine special page color
-\ifthenelse{\equal{\@publicationtype}{licentiate}}{%
+\ifthenelse{\equal{#1}{licentiate}}{%
 % If publication is a licentiate thesis
-\definecolor{specialpagebackground}{RGB}{94,97,100}%
-}{\ifthenelse{\equal{\@publicationtype}{dissertation}}{%
+\definecolor{specialpagebackground}{RGB}{94,97,100}% grey
+}{\ifthenelse{\equal{#1}{dissertation}}{%
 % If publication is a doctoral thesis
-\definecolor{specialpagebackground}{RGB}{94,97,100}%
+\definecolor{specialpagebackground}{RGB}{86,34,97}% purple
 }{%
 % Either 'thesisproposal' or 'researchproposal'
 \definecolor{specialpagebackground}{RGB}{72,45,24}% TODO settle with some color for 'thesisproposal' and 'researchproposal'
 }%
 }%
 \renewcommand{\@publicationtype}{#1}%
+%
+% Update page background color for cover document
+\@ifclassloaded{hiscover}{% take special action about page color if being used in 'hiscover' class
+\renewcommand{\nopagecolor}{specialpagebackground}%
+\newpagecolor{specialpagebackground}%
+}% end of 'then' for @ifclassloaded
+{}% nothing in 'else'
 }

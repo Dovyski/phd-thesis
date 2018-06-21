@@ -18,7 +18,7 @@
 %%   Right brace   \}     Tilde         \~}
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{his-thesis}[2017/06/05]
+\ProvidesClass{his-thesis}[2018/03/07]
 
 % Necessary for included LaTeX classes
 \newif\if@titlepage%
