@@ -36,6 +36,7 @@
 
 \LoadClass{article}
 
+\RequirePackage{hyphenat} % prevent hyphenation of title. Added by: Fernando Bevilacqua <fernando.bevilacqua@his.se>
 \RequirePackage{ifthen}
 \RequirePackage{pagecolor}
 \RequirePackage{graphicx}
@@ -137,9 +138,19 @@
 }% end of if dissertation
 \par\endgroup%
 \vspace*{4mm}%
-\begingroup\fontarial{25}{25}\MakeUppercase{\coverpagetitlespacing{\@title}}\par\endgroup%
+\begingroup
+	% Prevent hyphenation here. Added by Fernando Bevilacqua <fernando.bevilacqua@his.se>
+	\hyphenpenalty 10000
+	\exhyphenpenalty 10000
+	\fontarial{25}{25}\MakeUppercase{\coverpagetitlespacing{\@title}}\par
+\endgroup%
 \vspace*{1mm}%
-\begingroup\fontarial{14.5}{14.5}\@subtitle\par\endgroup%
+\begingroup
+	% Prevent hyphenation here. Added by Fernando Bevilacqua <fernando.bevilacqua@his.se>
+	\hyphenpenalty 10000
+	\exhyphenpenalty 10000
+	\fontarial{14.5}{14.5}\@subtitle\par
+\endgroup%
 \vspace*{4mm}%
 \begingroup\fontarial{14.5}{14.5}\color{oxid}\MakeUppercase{\@author}\par\endgroup%
 \vspace*{1mm}%
