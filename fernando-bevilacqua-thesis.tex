@@ -42,9 +42,13 @@
 % Prevent hyphenation of titles
 \usepackage{hyphenat}
 
+% For the abbreviations list
+\usepackage{longtable}
+
 % Include some custom commands
 \include{Content/commands/fquote}
 \include{Content/commands/makesponsors}
+\include{Content/commands/nomenclature}
 
 % Allow math formulas side by side
 \usepackage{multicol}
@@ -78,6 +82,7 @@
 \tableofcontents
 \listoffigures
 \listoftables
+\input{Content/texts/abbreviations}
 
 \cleardoublepage
 \pagenumbering{arabic}% Switch to Arabic page numbers
