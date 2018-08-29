@@ -7,7 +7,7 @@ Physiological signals, e.g. HR, are considered reliable sources since they are h
 
 The following sections present works related to multifacotiral emotion estimation categorized by contact (use of physical sensors) and non-contact (remote analysis) approaches.
 
-\section{Approaches based on physical contact and sensors}
+\section{\sloppy Approaches based on physical contact and sensors}
 
 The first multifactorial analysis approaches were based on obtrusive measurements of the input signals, where physical sensors were used. \textcite{Chanel_2011}, for instance, demonstrate the use of multifactorial input analysis to measure emotions and involvement in a game context. Participants play Tetris in different difficulty conditions while being monitored by a variety of sensors, which include a respiration belt and an electroencephalogram (EEG) system. The data from the EEG and the other peripheral signals are computed into two groups of features, which are used to train classifiers to recognize the states: boredom (low pleasure and low pressure, associated with easy difficulty), engagement (higher pleasure and motivation, associated with medium difficulty) and stress (anxiety and low pleasure, associated with hard difficulty). The classification accuracy of the model varies between 48\% and 55\% for different input signals, classifiers and feature selection.
 
@@ -22,7 +22,7 @@ The first multifactorial analysis approaches were based on obtrusive measurement
 \label{fig:zhou}
 \end{figure}
 
-\section{Approaches based on remote, non-contact analysis}
+\section{\sloppy Approaches based on remote, non-contact analysis}
 
 \textcite{mental} propose a completely non-obtrusive and remote approach based on multifactorial analysis to identify user emotion, as illustrated in Figure \ref{fig:zhou}. The main goal of such approach is aimed at monitoring patients mental health states. The model was created by weighting different features created from input signals, all obtained unobtrusively from a video of the subject's face and the textual content he/she created during the session (e.g. a reply to a tweet). The features are physiological (HR and pupil radius), physical (head movement rate, facial expression, eye blinking rate), based on human-computer interactions (mouse and keyboard usage rate) and based on sentiment analysis of social content (images and textual tweets). All features are used to train a multi-class classifier (based on logistic regression), which learns about the three possible emotion states: negative, neutral and positive. The emotion inference is performed in real-time and based on a probability rule: the state suggested by the classifier with the highest intensity is assumed to be the current subject's emotional state. The results show an accuracy rate of 89\% for negative, 56\% for neutral and 78\% for positive state identification. The authors do not specify, however, how much each input signals contributes to the emotional output. Additionally it is not possible to infer if such approach could be used outside the controlled environment created by the authors, which requires a simulation of a social network filled with previously defined and known content in order to work.
 
