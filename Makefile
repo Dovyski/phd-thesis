@@ -80,7 +80,7 @@ read: thesis
 	${PDF_READING_CMD} ${THESIS_FILE}.pdf
 
 clean:
-	-rm -f *.pdf
+	-rm -f ${MAIN_NAME}*.pdf
 	-rm -f *.log
 	-rm -f *.aux
 	-rm -f *.out
