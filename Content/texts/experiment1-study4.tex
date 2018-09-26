@@ -181,7 +181,7 @@ Hypothesis $u_i$ was tested by performing a paired two-tail t-test on the values
 
 Table \ref{table:changes} presents the mean of differences of all the features between periods $H_0$ and $H_1$, calculated for all the subjects in all the games, according to the description in Section \ref{sec:experiment1-study4-features-extraction}, and analyzed according to the procedures described in Section \ref{sec:experiment1-study4-feature-analysis}. The mean of differences of all the features shows a decrease from $H_0$ to $H_1$. Comparing the mean difference of a feature to its mean value in $H_0$, the decrease from $H_0$ to $H_1$ was 10.7\% for mouth outer ($F_1$), 11.8\% for mouth corner ($F_2$), 10.4\% for eye area ($F_3$), 8.1\% for eyebrow activity ($F_4$), 9.4\% for face area ($F_5$), 8.2\% for face motion ($F_6$), and 11\% for facial COM ($F_7$). Changes related to $F_6$ and $F_7$ were not statistically significant. All the remaining features presented statistically significant changes from $H_0$ to $H_1$. The greatest decrease with statistical significance was associated with mouth corner, followed by mouth outer, eye area, face area, and eyebrow activity. These numbers support the experimental expectations that values for facial features are different when a comparison is made between two distinct parts of the games, i.e. boring and stressful ones.
 
-\begin{table}
+\begin{table}[ht]
     \caption{Mean of differences ($\pm$SD) of features between periods $H_0$ and $H_1$ ($N=59$). Units expressed in normalized pixels.}
     \label{table:changes}
     \centering
@@ -224,7 +224,7 @@ Eye related features, i.e. eye area ($F_3$) and eyebrow activity ($F_4$), also p
 
 Finally, features related to the whole face, i.e. face area ($F_5$), face motion ($F_6$) and facial COM ($F_7$), are partially conclusive. These features are affected by body motion, e.g. head movement and corporal posture, therefore, a decrease in value might indicate less corporal activity during $H_1$ compared to $H_0$. Face area was the only feature in this category to present a change that was statistically significant. The value of the face area feature is directly connected to the subjects' movement towards and away from the camera. A decrease in face area from $H_0$ to $H_1$ suggests that the subjects were closer to the computer screen more often during boring parts of the games than during stressful parts. The facial COM feature also presented a decrease from $H_0$ to $H_1$. This feature is connected to vertical and horizontal movements, performed by the subject's face, that are anchored to a fixed reference point and less influenced by head rotations. Despite presenting a change that is not statistically significant ($p = 0.519$), the decrease of facial COM might be an indication that the subjects were motionless more during stressful periods than during boring periods. The face motion feature also presented a decrease from $H_0$ to $H_1$ that is not statistically significant ($p = 0.294$). This feature accounts for the amount of movement a subject's face performs in a period of 50 frames (dynamic reference point), which is directly affected by vertical, horizontal and rotational movements of the head. A decrease could be associated with moving/rotating the head less often during the analyzed 50 frames periods in $H_1$ than in $H_0$. However, the lack of statistical significance suggests the change is not related to a subject's emotional state, but other factors, such as the inherent behavior associated with game mechanics, i.e. head movement caused by the observation of cards in the Mushroom game. The results lack the statistical significance to replicate the findings of previous work, which relate head movements to changes in games, i.e. failure \parencite{shaker2011game} and frustration \parencite{blom2014towards}, or to stressful situations \parencite{giannakakis2017stress}.
 
-\begin{table}
+\begin{table}[ht]
     \caption{Percentage of change of features from period $H_0$ to $H_1$ in the Mushroom game ($N=20$).}
     \label{table:mushroom}
     \centering
@@ -290,7 +290,7 @@ It could be argued that the characteristics of each game mechanic influence the 
 %  --- Platformer:feature_percent_change_h1h0 (MEAN: -3.6207 +- 12.5175, MIN: -42.0907, MAX: 23.0761, size: 20)
 %  --- Tetris:feature_percent_change_h1h0 (MEAN: -2.6776 +- 11.7565, MIN: -24.6873, MAX: 21.8101, size: 20)
 
-\begin{table}
+\begin{table}[ht]
     \caption{Percentage of change of features from period $H_0$ to $H_1$ in the Platformer game ($N=19$).}
     \label{table:platformer}
     \centering
@@ -317,7 +317,7 @@ It could be argued that the characteristics of each game mechanic influence the 
 
 Mouth and eye related features, i.e. $F_1$ to $F_4$, presented, on average, a decrease from $H_0$ to $H_1$ in all three games. However, the decrease does not apply to all the subjects, since at least one presented an increase from $H_0$ to $H_1$, as demonstrated by the positive values in the \textit{Max} column of Tables \ref{table:mushroom}, \ref{table:platformer} and \ref{table:tetris}. Comparatively, the mean, minimum and maximum change of mouth ($F_1$, $F_2$) and eye ($F_4$, $F_5$) related features is similar in the three games. Consequentially, it is possible that features $F_1$ to $F_4$ are not affected by the game mechanics, however they do differ on a subject basis. On the other hand, features related to the whole face, i.e. $F_5$ to $F_7$, seem to be affected by game mechanics. Both $F_5$ and $F_7$ presented, on average, a decrease in the three games. In contrast, $F_6$ presented, on average, an increase in the Mushroom and the Platformer game. A disproportional mean increase of 47.2\% from $H_0$ to $H_1$ for feature $F_6$ in the Mushroom game compared to the Platformer (0.9\% increase) and Tetris (11.3\% decrease) game, suggests that the feature is highly influenced by the mechanic of the Mushroom game. In this game, subjects are likely to move the head to facilitate saccadic eye movements used to inspect the cards. As the difficulty of the game increases, the number of cards to be inspected on the screen also increases, which could potentially lead to more (periodic) head movements as the game progresses to its stressful part.
 
-\begin{table}
+\begin{table}[ht]
     \caption{Percentage of change of features from period $H_0$ to $H_1$ in the Tetris game ($N=20$).}
     \label{table:tetris}
     \centering
