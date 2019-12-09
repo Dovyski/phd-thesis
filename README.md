@@ -13,6 +13,8 @@ PhD thesis authored by [Fernando Bevilacqua](https://fernandobevilacqua.com) fro
 * _Bibliographic details:_ [urn.kb.se/resolve?urn=urn:nbn:se:his:diva-16347](http://urn.kb.se/resolve?urn=urn:nbn:se:his:diva-16347)
 * _PDF version:_ [download (32Mb)](http://his.diva-portal.org/smash/get/diva2:1259426/FULLTEXT01.pdf)
 
+> **NOTICE:** you can read a more condensed version of this research by reading the [final manuscript of the thesis](https://doi.org/10.3390/s19132877). It is open access. 
+
 ## Citation
 
 Please cite using the following BibTex entry:
@@ -42,17 +44,17 @@ Questionnaires and physiological measurements are the most common approach used 
 
 A number of manuscripts with varying relevance to the core aims of this thesis were published:
 
-* Fernando Bevilacqua, Per Backlund, and Henrik Engström (2015). _"Proposal for NonContact Analysis of Multimodal Inputs to Measure Stress Level in Serious Games."_ In: 2015 7th International Conference on Games and Virtual Worlds for Serious Applications (VS-Games). IEEE. Institute of Electrical & Electronics Engineers (IEEE), pp. 1–4. [`DOI: 10.1109/vs-games.2015.7295783`](https://doi.org/10.1109/VS-GAMES.2015.7295783)
+* Fernando Bevilacqua, Per Backlund, and Henrik Engström (2015). ***"Proposal for Non-Contact Analysis of Multimodal Inputs to Measure Stress Level in Serious Games."*** In: 2015 7th International Conference on Games and Virtual Worlds for Serious Applications (VS-Games). IEEE. Institute of Electrical & Electronics Engineers (IEEE), pp. 1–4. [`DOI: 10.1109/vs-games.2015.7295783`](https://doi.org/10.1109/VS-GAMES.2015.7295783)
 
-* Fernando Bevilacqua, Per Backlund, and Henrik Engström (2016). _"Variations of Facial Actions While Playing Games with Inducing Boredom and Stress."_ In: 2016 8th International Conference on Games and Virtual Worlds for Serious Applications (VSGAMES). IEEE. Institute of Electrical and Electronics Engineers (IEEE), pp. 1–8. [`DOI: 10.1109/vs-games.2016.7590374`](http://dx.doi.org/10.1109/VS-GAMES.2016.7590374)
+* Fernando Bevilacqua, Per Backlund, and Henrik Engström (2016). ***"Variations of Facial Actions While Playing Games with Inducing Boredom and Stress."*** In: 2016 8th International Conference on Games and Virtual Worlds for Serious Applications (VSGAMES). IEEE. Institute of Electrical and Electronics Engineers (IEEE), pp. 1–8. [`DOI: 10.1109/vs-games.2016.7590374`](http://dx.doi.org/10.1109/VS-GAMES.2016.7590374)
 
-* Fernando Bevilacqua, Henrik Engström, and Per Backlund (2018a). _"Accuracy Evaluation of Remote Photoplethysmography Estimations of Heart Rate in Gaming Sessions with Natural Behavior."_ In: Advances in Computer Entertainment Technology. Ed. by Adrian David Cheok, Masahiko Inami, and Teresa Romão. Cham: Springer International Publishing, pp. 508–530. ISBN: 978-3-319-76270-8. [`DOI: 10.1007/978-3-319-76270-8_35`](https://doi.org/10.1007/978-3-319-76270-8_35)
+* Fernando Bevilacqua, Henrik Engström, and Per Backlund (2018a). ***"Accuracy Evaluation of Remote Photoplethysmography Estimations of Heart Rate in Gaming Sessions with Natural Behavior."*** In: Advances in Computer Entertainment Technology. Ed. by Adrian David Cheok, Masahiko Inami, and Teresa Romão. Cham: Springer International Publishing, pp. 508–530. ISBN: 978-3-319-76270-8. [`DOI: 10.1007/978-3-319-76270-8_35`](https://doi.org/10.1007/978-3-319-76270-8_35)
 
-* Fernando Bevilacqua, Henrik Engström, and Per Backlund (2018c). _"Changes in heart rate and facial actions during a gaming session with provoked boredom and stress." In: Entertainment Computing 24.Supplement C, pp. 10–20. ISSN: 1875-9521. [`DOI: 10.1016/j.entcom.2017.10.004`](https://doi.org/10.1016/j.entcom.2017.10.004)
+* Fernando Bevilacqua, Henrik Engström, and Per Backlund (2018c). ***"Changes in heart rate and facial actions during a gaming session with provoked boredom and stress."*** In: Entertainment Computing 24.Supplement C, pp. 10–20. ISSN: 1875-9521. [`DOI: 10.1016/j.entcom.2017.10.004`](https://doi.org/10.1016/j.entcom.2017.10.004)
 
-* Fernando Bevilacqua, Henrik Engström, and Per Backlund (2018b). _"Automated analysis of facial cues from videos as a potential method for differentiating stress and boredom of players in games."_ In: International Journal of Computer Games Technology 2018, p. 14. ISSN: 1687-7055. [`DOI: 10.1155/2018/8734540`](https://doi.org/10.1155/2018/8734540)
+* Fernando Bevilacqua, Henrik Engström, and Per Backlund (2018b). ***"Automated analysis of facial cues from videos as a potential method for differentiating stress and boredom of players in games."*** In: International Journal of Computer Games Technology 2018, p. 14. ISSN: 1687-7055. [`DOI: 10.1155/2018/8734540`](https://doi.org/10.1155/2018/8734540)
 
-* Fernando Bevilacqua, Henrik Engström, and Per Backlund (2019). _"Game-calibrated and user-tailored remote detection of stress and boredom in games."_ In: Sensors, 19, 2877, Pages 1-43. ISSN: 1424-8220. [`DOI: 10.3390/S19132877`](https://doi.org/10.3390/s19132877)
+* Fernando Bevilacqua, Henrik Engström, and Per Backlund (2019). ***"Game-calibrated and user-tailored remote detection of stress and boredom in games."*** In: Sensors 2019, 19, 2877. ISSN: 1424-8220. [`DOI: 10.3390/S19132877`](https://doi.org/10.3390/s19132877)
 
 ## Acknowledgments
 
